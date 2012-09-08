@@ -36,7 +36,7 @@ namespace MCDawn
 				
 				Player.SendMessage(p, "Plugin's Name: " + pm._PluginName);
 				Player.SendMessage(p, "Plugin's Version: " + pm._PluginVersion);
-				Player.SendMessage(p, "Plugin's Lowest Compatible MCDawn Version: " + pm._LowestCompatibleMCDawnVersion);
+				Player.SendMessage(p, "Plugin's Compatible MCDawn Version: " + pm._MCDawnVersion);
 				
 				return;
 			} else if (parameters[0].ToLower() == "load") {
@@ -123,7 +123,7 @@ namespace MCDawn
 		
 		public override void Help(Player p) {
 			Player.SendMessage(p, "This command has many uses.");
-			Player.SendMessage(p, "/plugin info <plugin> - Gives you the name, version, and lowest compatible MCDawn version of that plugin.");
+			Player.SendMessage(p, "/plugin info <plugin> - Gives you the name, version, and compatible MCDawn version of that plugin.");
 			Player.SendMessage(p, "Example: \"/plugin info hello\" would give you the info about \"extra/plugins/hello.dll\"");
 			Player.SendMessage(p, "");
 			Player.SendMessage(p, "/plugin load <plugin> - Loads the plugin at extra/plugins/<plugin>.dll");

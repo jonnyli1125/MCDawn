@@ -14,7 +14,7 @@ namespace MCDawn
 		public Plugin _Plugin { get; private set; }
 		public String _PluginName { get; private set; }
 		public String _PluginVersion { get; private set; }
-		public String _LowestCompatibleMCDawnVersion { get; private set; }
+		public String _MCDawnVersion { get; private set; }
 
 		// This will throw an exception if it didn't load right.
 		public static PluginManager Load(string plugin) {
@@ -35,25 +35,22 @@ namespace MCDawn
 				throw new Exception("Could not find child class of Plugin in DLL.");
 			
 			{
-				string[] version = pm._Plugin.LowestCompatibleMCDawnVersion.Split('.');
+				string[] version = pm._Plugin.MCDawnVersion.Split('.');
 				
 				if (version.Length != 4)
 					throw new Exception("Invalid MCDawn version specified by plugin.");
-				
-				if (pm._Plugin.LowestCompatibleMCDawnVersion != Server.Version)
+
+                int ii = 0;
+                if (!int.TryParse(pm._Plugin.MCDawnVersion, out ii))
+                    throw new Exception("Invalid MCDawn version specified by plugin.");
+
+                if (pm._Plugin.MCDawnVersion != Server.Version)
 					throw new Exception("Plugin is incompatible with current MCDawn version (" + Server.Version + "). Created for " + version + ".");
-			
-				try {
-					foreach (string st in version)
-						Int32.Parse(st);
-				} catch (Exception) {
-					throw new Exception("Invalid MCDawn version specified by plugin.");
-				}
 			}
 			
 			pm._PluginName = pm._Plugin.Name;
 			pm._PluginVersion = pm._Plugin.PluginVersion;
-			pm._LowestCompatibleMCDawnVersion = pm._Plugin.LowestCompatibleMCDawnVersion;
+			pm._MCDawnVersion = pm._Plugin.MCDawnVersion;
 
 			return pm;
 		}

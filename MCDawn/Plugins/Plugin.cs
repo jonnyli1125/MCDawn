@@ -14,9 +14,9 @@ namespace MCDawn {
 		/// </summary>
 		public abstract string PluginVersion { get; }
 		/// <summary>
-		/// Lowest version of MCDawn that the plugin is compatible with.
+		/// Version of MCDawn that the plugin is compatible with.
 		/// </summary>
-		public abstract string LowestCompatibleMCDawnVersion { get; } // This is a weak way of doing it. Should be changed to what MyBB does for compatibility.
+		public abstract string MCDawnVersion { get; } // This is a weak way of doing it. Should be changed to what MyBB does for compatibility.
 
 		/// <summary>
 		/// First method to be called in the plugin.
