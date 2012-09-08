@@ -4775,6 +4775,9 @@ namespace MCDawn
         //Player Ignore
         public static void IgnoreSave(Player p)
         {
+            foreach (string s in p.ignoreList)
+                if (s.Trim() == "")
+                    p.ignoreList.Remove(s);
             string path = "extra/ignore/" + p.name + ".txt";
             StreamWriter file = File.CreateText(path);
             p.ignoreList.ForEach(delegate(string s) { file.WriteLine(s); });
@@ -4787,15 +4790,19 @@ namespace MCDawn
             if (File.Exists(path))
             {
                 p.ignoreList.Clear();
-                foreach (string line in File.ReadAllLines(path)) { if (line != "" && line[0] != '#') { p.ignoreList.Add(line); } }
+                foreach (string line in File.ReadAllLines(path))
+                    if (line != "" && line[0] != '#')
+                    {
+                        if (Server.allowIgnoreOps && (Server.hasProtection(line)) || Group.findPlayerGroup(line).Permission >= LevelPermission.Operator) 
+                            continue;
+                        p.ignoreList.Add(line);
+                    }
             }
-            else
-            {
-                File.Create(path).Close();
-            }
+            else File.Create(path).Close();
         }
         public static void IgnoreAdd(Player p, string ignored)
         {
+            if (Server.allowIgnoreOps && (Server.hasProtection(ignored)) || Group.findPlayerGroup(ignored).Permission >= LevelPermission.Operator) { return; }
             foreach (Group gr in Group.GroupList)
             {
                 if (gr.playerList.Contains(ignored.ToLower()) && gr.Permission >= LevelPermission.Operator && !Server.allowIgnoreOps || Server.devs.Contains(ignored.ToLower()) || Server.staff.Contains(ignored.ToLower()) || Server.administration.Contains(ignored.ToLower())) { return; }

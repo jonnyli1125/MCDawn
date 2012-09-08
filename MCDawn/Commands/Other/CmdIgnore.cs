@@ -38,7 +38,7 @@ namespace MCDawn
                     if (who != null) { ignored = who.name; }
                     else { ignored = message.Split(' ')[0]; }
 
-                    if (!Server.allowIgnoreOps && (Server.hasProtection(name)) || who.group.Permission >= LevelPermission.Operator || Group.findPlayerGroup(ignored).Permission >= LevelPermission.Operator) {  }
+                    if (Server.allowIgnoreOps && (Server.hasProtection(name)) || who.group.Permission >= LevelPermission.Operator || Group.findPlayerGroup(ignored).Permission >= LevelPermission.Operator) { Player.SendMessage(p, "Cannot ignore operators."); return; }
 
                     if (p.ignoreList.Contains(ignored.ToLower())) 
                     {
