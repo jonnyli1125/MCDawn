@@ -1,7 +1,7 @@
 ﻿/*-----------------------------------------------------------------------------------------------------
 * This code was written by Jonny Li, also known as jonnyli1125, for use with MCDawn only.
 * Licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
-* http://creativecommons.org/licenses/by-nc-nd/3.0/
+* http://creativecommons.org/licenses/by-nc-sa/3.0/
 * Any of the conditions stated in the license can be waived if you get written permission from the copyright holder.  
 * ----------------------------------------------------------------------------------------------------*/
 

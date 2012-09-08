@@ -5,7 +5,7 @@ Friday, April 27, 2012
 Version 1.0
 ----------------------------------------------------------------------------------------------------
 Licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
-http://creativecommons.org/licenses/by-nc-nd/3.0/
+http://creativecommons.org/licenses/by-nc-sa/3.0/
 
 You must attribute the work in the manner specified by the author or licensor.
 You may not use this work for commercial purposes. 

@@ -2,7 +2,7 @@
 * This command was made for use with MCDawn, by Jonny Li, also known as jonnyli1125
 * Friday, July 11, 2012, Version 1.0
 * Licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
-* http://creativecommons.org/licenses/by-nc-nd/3.0/
+* http://creativecommons.org/licenses/by-nc-sa/3.0/
 * Any of the conditions stated in the license can be waived if you get written permission from the copyright holder.  
 * ----------------------------------------------------------------------------------------------------*/
 
