@@ -119,6 +119,27 @@ namespace MCDawn
                         who = Player.Find(message.Split(' ')[1]);
                         p.level.spleef.SendRules(who);
                         break;
+                    case "players":
+                    case "alive":
+                    case "dead":
+                    case "refs":
+                        if (p == null) { p.SendMessage("Command not usable in Console."); return; }
+                        if (p.level.spleefstarted == false) { p.SendMessage("Spleef has not started yet!"); return; }
+                        Player.SendMessage(p, "Players on Spleef right now:");
+                        string refs = "", alive = "", dead = "";
+                        foreach (Player pl in p.level.players)
+                        {
+                            if (pl.referee) refs += pl.name + ", ";
+                            else if (pl.spleefAlive) alive += pl.name + ", ";
+                            else if (!pl.spleefAlive) dead += pl.name + ", ";
+                        }
+                        refs = refs.Remove(refs.Length - 2);
+                        alive = alive.Remove(alive.Length - 2);
+                        dead = dead.Remove(dead.Length - 2);
+                        Player.SendMessage(p, "&9Refs: " + refs);
+                        Player.SendMessage(p, "&aAlive: " + alive);
+                        Player.SendMessage(p, "&cDead: " + dead);
+                        break;
                     default: Help(p); break;
                 }
             }
@@ -128,6 +149,7 @@ namespace MCDawn
             Player.SendMessage(p, "/spleef start - Does countdown and starts the game.");
             Player.SendMessage(p, "/spleef rules <all> - Read the rules for playing spleef.");
             Player.SendMessage(p, "/spleef freeze - Freeze all players on spleef, use again to unfreeze.");
+            Player.SendMessage(p, "/spleef players - Shows you the status of all players playing spleef.");
             Player.SendMessage(p, "/spleef end - End the spleef game.");
             Player.SendMessage(p, "Use the first letter of each of the options for shortcuts.");
             Player.SendMessage(p, "HOW TO PLAY: ");
