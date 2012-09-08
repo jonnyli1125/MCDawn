@@ -1,0 +1,534 @@
+/*
+	Copyright 2010 MCSharp team (Modified for use with MCZall/MCLawl) Licensed under the
+	Educational Community License, Version 2.0 (the "License"); you may
+	not use this file except in compliance with the License. You may
+	obtain a copy of the License at
+	
+	http://www.osedu.org/licenses/ECL-2.0
+	
+	Unless required by applicable law or agreed to in writing,
+	software distributed under the License is distributed on an "AS IS"
+	BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+	or implied. See the License for the specific language governing
+	permissions and limitations under the License.
+*/
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Meebey.SmartIrc4net;
+using System.Threading;
+using System.Net;
+<<<<<<< local
+=======
+using System.Net.Sockets;
+>>>>>>> other
+
+namespace MCDawn
+{
+    class GlobalChatBot
+    {
+        static IrcClient globalchat = new IrcClient();
+        static string server = "irc.geekshed.net";
+        static string channel = "#Global";
+        static string devchannel = "#DevGlobal";
+        //static string globalPass = "hopeful";
+        //static string devGlobalPass = "voltage";
+        static string nick = Server.globalNick;
+        static Thread globalThread;
+
+        static string[] names;
+
+        public GlobalChatBot()
+        {
+            // The IRC Bot must run in a seperate thread, or else the server will freeze.
+            globalThread = new Thread(new ThreadStart(delegate
+            {
+                // Attach event handlers
+                globalchat.OnConnecting += new EventHandler(OnConnecting);
+                globalchat.OnConnected += new EventHandler(OnConnected);
+                globalchat.OnChannelMessage += new IrcEventHandler(OnChanMessage);
+                globalchat.OnJoin += new JoinEventHandler(OnJoin);
+                globalchat.OnPart += new PartEventHandler(OnPart);
+                globalchat.OnQuit += new QuitEventHandler(OnQuit);
+                globalchat.OnNickChange += new NickChangeEventHandler(OnNickChange);
+                globalchat.OnDisconnected += new EventHandler(OnDisconnected);
+                globalchat.OnQueryMessage += new IrcEventHandler(OnPrivMsg);
+                globalchat.OnNames += new NamesEventHandler(OnNames);
+                globalchat.OnChannelAction += new ActionEventHandler(OnAction);
+
+                // Attempt to connect to the IRC server
+                try { globalchat.Connect(server, 6667); }
+                catch (Exception ex) { Console.WriteLine("Unable to connect to MCDawn Global Chat Server: ", ex.Message); }
+            }));
+            globalThread.Start();
+        }
+
+        // While connecting
+        void OnConnecting(object sender, EventArgs e)
+        {
+        }
+        // When connected
+        void OnConnected(object sender, EventArgs e)
+        {
+            Server.s.Log("Server joined MCDawn Global Chat channel!");
+            globalchat.Login(nick, nick, 0, nick);
+            globalchat.RfcJoin(channel);
+            globalchat.RfcJoin(devchannel);
+            globalchat.Listen();
+        }
+
+        void OnNames(object sender, NamesEventArgs e)
+        {
+            names = e.UserList;
+        }
+        void OnDisconnected(object sender, EventArgs e)
+        {
+            Server.s.Log("Server disconnected from MCDawn Global Chat channel!");
+            try { globalchat.Connect(server, 6667); }
+            catch { Console.WriteLine("Failed to reconnect to MCDawn Global Chat"); }
+        }
+
+        // On public channel message
+        void OnChanMessage(object sender, IrcEventArgs e)
+        {
+            string temp = e.Data.Message; string storedNick = e.Data.Nick;
+
+            string allowedchars = "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./!@#^*()_+QWERTYUIOPASDFGHJKL:\"ZXCVBNM<>? ";
+
+            foreach (char ch in temp)
+            {
+                if (allowedchars.IndexOf(ch) == -1)
+                    temp = temp.Replace(ch.ToString(), "*");
+            }
+
+            if (e.Data.Channel == devchannel)
+            {
+                foreach (Player plr in Player.players)
+                {
+                    if (Server.devs.Contains(plr.name.ToLower()) || Server.staff.Contains(plr.name.ToLower()) || Server.administration.Contains(plr.name.ToLower()))
+                    {
+                        // Commands in DevGlobal.
+                        string[] splitted = temp.Split(new char[] { ' ' }, 2);
+                        if (temp[0] == '\\' && temp.Length > 1) { HandleCmd(splitted[0], splitted[1]); }
+
+                        if (temp.Contains("$color") || temp.Contains("&") || temp.Contains("&")) { plr.SendMessage(Server.DefaultColor + ">[DevGlobal] " + Server.GlobalChatColour + storedNick + ": &cCENSORED - Message Contains Illegal Colour Codes."); return; }
+                        plr.SendMessage(Server.DefaultColor + ">[DevGlobal] " + Server.GlobalChatColour + storedNick + ": &f" + temp);
+                    }
+                }
+                //Player.GlobalMessageDevsStaff(Server.DefaultColor + ">[DevGlobal] " + Server.GlobalChatColour + storedNick + ": &f" + temp);
+            }
+            else
+            {
+                foreach (Player pl in Player.players)
+                {
+                    WebClient omni = new WebClient();
+                    string banned = omni.DownloadString("http://dl.dropbox.com/u/43809284/omniban.txt");
+                    if (!Server.ignoreGlobal.Contains(pl.name.ToLower()) && !pl.ignoreList.Contains(temp.Split(':')[0]) && !Server.globalBanned.Contains(e.Data.Nick.ToLower()) && !Server.globalBanned.Contains(temp.Split(':')[0]) && !pl.ignoreList.Contains(temp.Split(':')[0]) && !banned.Contains(e.Data.Nick.ToLower()) && !banned.Contains(temp.Split(':')[0]))
+                    
+                    {
+                        if (temp.Contains("$color") || temp.Contains("&") || temp.Contains("&")) { pl.SendMessage(Server.DefaultColor + ">[Global] " + Server.GlobalChatColour + storedNick + ": &cCENSORED - Message Contains Illegal Colour Codes."); return; }
+                        
+                        if (Server.devs.Contains(temp.Split(':')[0]) && !temp.StartsWith("[Developer] ")) { temp = "[Developer] " + temp; }
+                        if (Server.staff.Contains(temp.Split(':')[0]) && !temp.StartsWith("[MCDawn Staff] ")) { temp = "[MCDawn Staff] " + temp; }
+                        if (Server.administration.Contains(temp.Split(':')[0]) && !temp.StartsWith("[Administrator] ")) { temp = "[Administrator] " + temp; }
+
+                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage(Server.DefaultColor + ">[Global] &6" + storedNick + ": &f" + temp); }
+                        else { pl.SendMessage(Server.DefaultColor + ">[Global] " + Server.GlobalChatColour + storedNick + ": &f" + temp); }
+                    }
+                }
+                Server.s.Log(">[Global] " + e.Data.Nick + ": " + temp);
+                //Player.GlobalChat(null, Server.DefaultColor + ">[Global] " + Server.GlobalChatColour + storedNick + ": &f" + temp, false);
+            }
+
+            //if (temp.IndexOf(':') < temp.IndexOf(' ')) {
+            //    storedNick = temp.Substring(0, temp.IndexOf(':'));
+            //    temp = temp.Substring(temp.IndexOf(' ') + 1);
+            //}
+
+            //s.Log("IRC: " + e.Data.Nick + ": " + e.Data.Message);
+            //Player.GlobalMessage("IRC: &1" + e.Data.Nick + ": &f" + e.Data.Message);
+        }
+
+        bool ValidString(string str)
+        {
+            string allowedchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890\\";
+            foreach (char ch in str)
+            {
+                if (allowedchars.IndexOf(ch) == -1)
+                {
+                    return false;
+                }
+            } return true;
+        }
+        string worlds { get { return Server.getWorlds(); } } 
+        void HandleCmd(string cmd, string message)
+        {
+            try
+            {
+                if (cmd[0] == '\\') { cmd = cmd.Remove(0, 1); }
+                if (!ValidString(cmd)) { return; }
+
+                if (cmd.ToLower() == "sinfo" || cmd.ToLower() == "serverinfo")
+                {
+                    bool thisServer = false;
+                    if (message.ToLower() == Server.globalNick.ToLower()) { thisServer = true; }
+                    if (message == "") { return; }
+                    if (thisServer)
+                    {
+                        Say("\\Server Info:", true);
+                        Say("\\Name: " + Server.name, true);
+                        Say("\\MOTD: " + Server.motd, true);
+                        Say("\\Version: " + Server.Version, true);
+                        Say("\\GlobalChat Nick: " + Server.globalNick, true);
+                        Say("\\URL: " + Server.URL, true);
+                        Say("\\Players: " + Player.number + " / " + Server.players, true);
+                        Say("\\Worlds: " + worlds, true);
+                        Say("\\Public: " + Server.pub.ToString(), true);
+                        if (Server.irc)
+                        {
+                            Say("\\IRC: " + Server.ircChannel, true);
+                            Say("\\IRC OP Channel: " + Server.ircOpChannel, true);
+                        }
+                        Player.GlobalMessageDevsStaff("<[DevGlobal]: &fSent Server information to DevGlobal.");
+                    }
+                    return;
+                }
+
+                if (cmd.ToLower() == "pinfo" || cmd.ToLower() == "playerinfo" || cmd.ToLower() == "whois")
+                {
+                    Player who = null;
+                    bool foundPlayer = false;
+                    if (message == "") { return; }
+                    foreach (Player p in Player.players) { if (p.name.ToLower() == message.ToLower()) { who = p; foundPlayer = true; } }
+                    if (foundPlayer == false) { return; }
+                    if (who == null) { return; }
+                    Say("\\Name: " + who.name, true);
+                    Say("\\Rank of " + who.group.name, true);
+                    Say("\\Died: " + who.overallDeath + " times", true);
+                    Say("\\Modified: " + who.overallBlocks + " blocks, " + who.loginBlocks + " since logging in.", true);
+                    string countryname = Server.iploopup.getCountry(IPAddress.Parse(who.ip)).getName();
+                    if (Server.useMaxMind) { Say("\\Country: " + countryname, true); }
+                    Say("\\Time Spent: " + who.timeSpent.Split(' ')[0] + " Days, " + who.timeSpent.Split(' ')[1] + " Hours, " + who.timeSpent.Split(' ')[2] + " Minutes.", true);
+                    string storedTime = Convert.ToDateTime(DateTime.Now.Subtract(who.timeLogged).ToString()).ToString("HH:mm:ss");
+                    Say("\\Logged in for: " + storedTime, true);
+                    Say("\\First logged in: " + who.firstLogin.ToString("yyyy-MM-dd") + " at " + who.firstLogin.ToString("HH:mm:ss"), true);
+                    Say("\\Logged in: " + who.totalLogins + " times, and kicked " + who.totalKicked + " times.", true);
+                    Say("\\IP: " + who.ip, true);
+                    if (Server.useWhitelist) { if (Server.whiteList.Contains(who.name)) { Say("\\Player is Whitelisted", true); } }
+                    if (Server.devs.Contains(who.name.ToLower())) { Say("\\Player is a Developer", true); }
+                    if (Server.staff.Contains(who.name.ToLower())) { Say("\\Player is a member of MCDawn Staff", true); }
+                    if (Server.administration.Contains(who.name.ToLower())) { Say("\\Player is a MCDawn Administrator", true); }
+                    Player.GlobalMessageDevsStaff("<[DevGlobal]: &fSent Player information of " + who.color + who.name + "&f to DevGlobal.");
+                    return;
+                }
+            }
+            catch { }
+        }
+        // When someone joins the IRC
+        void OnJoin(object sender, JoinEventArgs e)
+        {
+            if (e.Data.Channel == devchannel)
+            {
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has joined the Dev Global Chat Channel.");
+            }
+            else
+            {
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has joined the Global Chat Channel.");
+            }
+            globalchat.RfcNames(channel);
+            globalchat.RfcNames(devchannel);
+        }
+        // When someone leaves the IRC
+        void OnPart(object sender, PartEventArgs e)
+        {
+            if (e.Data.Channel == devchannel)
+            {
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has left the Dev Global Chat Channel");
+            }
+            else
+            {
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has left the Global Chat Channel");
+            }
+            globalchat.RfcNames(channel);
+            globalchat.RfcNames(devchannel);
+        }
+        void OnQuit(object sender, QuitEventArgs e)
+        {
+            if (e.Data.Channel == devchannel)
+            {
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has quit the Dev Global Chat Channel");
+            }
+            else
+            {
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has quit the Global Chat Channel");
+            }
+            globalchat.RfcNames(channel);
+            globalchat.RfcNames(devchannel);
+        }
+        void OnPrivMsg(object sender, IrcEventArgs e)
+        {
+            if (!Server.globalChatMods.Contains(e.Data.Nick)) { } //Idk lol, just make it do nothing
+            else
+            {
+                string cmd;
+                string msg;
+                int len = e.Data.Message.Split(' ').Length;
+                cmd = e.Data.Message.Split(' ')[0];
+                if (len > 1)
+                {
+                    msg = e.Data.Message.Substring(e.Data.Message.IndexOf(' ')).Trim();
+                }
+                else
+                {
+                    msg = "";
+                }
+
+                if (msg != "" || cmd == "restart" || cmd == "update")
+                {
+                    Server.s.Log(cmd + " : " + msg);
+                    switch (cmd)
+                    {
+                        case "kick":
+                            if (Player.Find(msg.Split()[0]) != null)
+                            {
+                                Command.all.Find("kick").Use(null, msg);
+                            }
+                            else
+                            {
+                                globalchat.SendMessage(SendType.Message, e.Data.Nick, "Player not found.");
+                            }
+                            break;
+                        case "ban":
+                            if (Player.Find(msg) != null)
+                            {
+                                Command.all.Find("ban").Use(null, msg);
+                            }
+                            else
+                            {
+                                globalchat.SendMessage(SendType.Message, e.Data.Nick, "Player not found.");
+                            }
+                            break;
+                        case "banip":
+                            if (Player.Find(msg) != null)
+                            {
+                                Command.all.Find("banip").Use(null, msg);
+                            }
+                            else
+                            {
+                                globalchat.SendMessage(SendType.Message, e.Data.Nick, "Player not found.");
+                            }
+                            break;
+                        case "say":
+                            globalchat.SendMessage(SendType.Message, channel, msg); break;
+                        case "setrank":
+                            if (Player.Find(msg.Split(' ')[0]) != null)
+                            {
+                                Command.all.Find("setrank").Use(null, msg);
+                            }
+                            else
+                            {
+                                globalchat.SendMessage(SendType.Message, e.Data.Nick, "Player not found.");
+                            }
+                            break;
+                        case "mute":
+                            if (Player.Find(msg) != null)
+                            {
+                                Command.all.Find("mute").Use(null, msg);
+                            }
+                            else
+                            {
+                                globalchat.SendMessage(SendType.Message, e.Data.Nick, "Player not found.");
+                            }
+                            break;
+                        case "joker":
+                            if (Player.Find(msg) != null)
+                            {
+                                Command.all.Find("joker").Use(null, msg);
+                            }
+                            else
+                            {
+                                globalchat.SendMessage(SendType.Message, e.Data.Nick, "Player not found.");
+                            }
+                            break;
+                        case "slap":
+                            if (Player.Find(msg) != null)
+                            {
+                                Player who = Player.Find(msg);
+                                if (Server.devs.Contains(who.name.ToLower()))
+                                {
+                                    globalchat.SendMessage(SendType.Message, e.Data.Nick, "Woah!! You can't slap a MCDawn Developer!");
+                                    Player.GlobalMessage(Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " is crazy! Trying to slap a MCDawn Developer!");
+                                    return;
+                                }
+
+                                ushort currentX = (ushort)(who.pos[0] / 32);
+                                ushort currentY = (ushort)(who.pos[1] / 32);
+                                ushort currentZ = (ushort)(who.pos[2] / 32);
+                                ushort foundHeight = 0;
+
+                                for (ushort yy = currentY; yy <= 1000; yy++)
+                                {
+                                    if (!Block.Walkthrough(who.level.GetTile(currentX, yy, currentZ)) && who.level.GetTile(currentX, yy, currentZ) != Block.Zero)
+                                    {
+                                        foundHeight = (ushort)(yy - 1);
+                                        Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was slapped into the roof by " + Server.GlobalChatColour + e.Data.Nick);
+                                        break;
+                                    }
+                                }
+                                if (foundHeight == 0)
+                                {
+                                    Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was slapped sky high by " + Server.GlobalChatColour + e.Data.Nick);
+                                    foundHeight = 1000;
+                                }
+
+                                unchecked { who.SendPos((byte)-1, who.pos[0], (ushort)(foundHeight * 32), who.pos[2], who.rot[0], who.rot[1]); }
+                            }
+                            else
+                            {
+                                globalchat.SendMessage(SendType.Message, e.Data.Nick, "Player not found.");
+                            }
+                            break;
+                        case "warn":
+                            if (Player.Find(msg) != null)
+                            {
+                                Player who = Player.Find(msg);
+                                if (Server.devs.Contains(who.name.ToLower())) { globalchat.SendMessage(SendType.Message, e.Data.Nick, "You can't warn a MCDawn Developer!"); return; }
+                                if (Server.staff.Contains(who.name.ToLower())) { globalchat.SendMessage(SendType.Message, e.Data.Nick, "You can't warn a MCDawn Staff Member!"); return; }
+                                string reason = msg.Substring(msg.IndexOf(' ') + 1).Trim();
+
+                                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was warned by " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + ".");
+                                if (msg.Split(' ').Length > 1) { Player.GlobalMessage("Reason: " + reason); }
+                                Server.s.Log(who.name + " was warned by " + e.Data.Nick + "!");
+                                if (msg.Split(' ').Length > 1) { Server.s.Log("Reason: " + reason); }
+
+                                if (who.warnings == 0)
+                                {
+                                    who.warnings++;
+                                    who.SendMessage("&cYou have been warned! You will be kicked on the next warning!");
+                                    return;
+                                }
+                                if (who.warnings >= 1)
+                                {
+                                    who.Kick("Exceeded maximum amount of warnings!");
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                globalchat.SendMessage(SendType.Message, e.Data.Nick, "Player not found.");
+                            }
+                            break;
+                        default:
+                            Command.all.Find(cmd).Use(null, msg); break;
+                            //globalchat.SendMessage(SendType.Message, e.Data.Nick, "Invalid command."); break;
+                    }
+                }
+                else
+                {
+                    globalchat.SendMessage(SendType.Message, e.Data.Nick, "Invalid command format.");
+                }
+            }
+        }
+        public void OnNickChange(object sender, NickChangeEventArgs e)
+        {
+            if (e.NewNickname.ToLower().Contains("afk") || e.NewNickname.ToLower().Contains("away"))
+            {
+                if (e.Data.Channel == devchannel)
+                {
+                    Player.GlobalMessageDevsStaff("To Devs/Staff: <[DevGlobal]: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is away");
+                }
+                else
+                {
+                    Player.GlobalMessageDevsStaff("To Devs/Staff: <[Global]: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is away");
+                }
+            }
+            else if (e.OldNickname.ToLower().Contains("afk") || e.OldNickname.ToLower().Contains("away"))
+            {
+                if (e.Data.Channel == devchannel)
+                {
+                    Player.GlobalMessageDevsStaff("To Devs/Staff: <[DevGlobal]: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is no longer away");
+                }
+                else
+                {
+                    Player.GlobalMessageDevsStaff("To Devs/Staff: <[Global]: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is no longer away");
+                }
+            }
+            else
+            {
+                if (e.Data.Channel == devchannel)
+                {
+                    Player.GlobalMessageDevsStaff("To Devs/Staff: <[DevGlobal]: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is now known as " + e.NewNickname);
+                }
+                else
+                {
+                    Player.GlobalMessageDevsStaff("To Devs/Staff: <[Global]: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is now known as " + e.NewNickname);
+                }
+            }
+            globalchat.RfcNames(channel);
+            globalchat.RfcNames(devchannel);
+        }
+        void OnAction(object sender, ActionEventArgs e)
+        {
+            if (e.Data.Channel == devchannel)
+            {
+                Player.GlobalMessageDevsStaff("To Devs/Staff: <[DevGlobal] *" + Server.GlobalChatColour + e.Data.Nick + " " + Server.DefaultColor + e.ActionMessage);
+            }
+            else
+            {
+                Player.GlobalMessageDevsStaff("To Devs/Staff: <[Global] *" + Server.GlobalChatColour + e.Data.Nick + " " + Server.DefaultColor + e.ActionMessage);
+            }
+        }
+
+
+        /// <summary>
+        /// A simple say method for use outside the bot class
+        /// </summary>
+        /// <param name="msg">what to send</param>
+        public static void Say(string msg, bool devchat = false)
+        {
+            if (globalchat != null && globalchat.IsConnected && Server.useglobal)
+                if (devchat == false)
+                {
+                    globalchat.SendMessage(SendType.Message, channel, msg);
+                }
+                else
+                {
+                    globalchat.SendMessage(SendType.Message, devchannel, msg);
+                }
+        }
+        public static bool IsConnected()
+        {
+            if (globalchat.IsConnected)
+                return true;
+            else
+                return false;
+        }
+
+
+        public static void Reset()
+        {
+            if (globalchat.IsConnected)
+                globalchat.Disconnect();
+            globalThread = new Thread(new ThreadStart(delegate
+            {
+                try { globalchat.Connect(server, 6667); }
+                catch (Exception e)
+                {
+                    Server.s.Log("Error Connecting to MCDawn Global Chat");
+                    Server.s.Log(e.ToString());
+                }
+            }));
+            globalThread.Start();
+        }
+        public static string[] GetConnectedUsers()
+        {
+            return names;
+        }
+
+        public static void ShutDown()
+        {
+            globalchat.Disconnect();
+            globalThread.Abort();
+        }
+    }
+}

@@ -1,0 +1,6 @@
+C:\Users\User\Documents\Programming\C#\Minecraft Software Test Project\MCDawn\MCDawn\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\User\Documents\Programming\C#\Minecraft Software Test Project\MCDawn\MCDawn\obj\Debug\MCDawn.Gui.PropertyWindow.resources
+C:\Users\User\Documents\Programming\C#\Minecraft Software Test Project\MCDawn\MCDawn\obj\Debug\MCDawn.Gui.UpdateWindow.resources
+C:\Users\User\Documents\Programming\C#\Minecraft Software Test Project\MCDawn\MCDawn\obj\Debug\MCDawn.Gui.Window.resources
+C:\Users\User\Documents\Programming\C#\Minecraft Software Test Project\MCDawn\MCDawn\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\User\Documents\Programming\C#\Minecraft Software Test Project\MCDawn\MCDawn\obj\Debug\GenerateResource.write.1.tlog
