@@ -14,6 +14,7 @@ namespace MCDawn
         public override void Use(Player p, string message)
         {
             if (p == null) { p.SendMessage("Command not usable in Console."); return; }
+            if (message == "" || message.Split(' ').Length > 2) { Help(p); return; }
             switch (message.Split(' ')[0].ToLower())
             {
                 case "global":
@@ -36,6 +37,8 @@ namespace MCDawn
                     string ignored = "";
                     if (who != null) { ignored = who.name; }
                     else { ignored = message.Split(' ')[0]; }
+
+                    if (!Server.allowIgnoreOps && (Server.hasProtection(name)) || who.group.Permission >= LevelPermission.Operator || Group.findPlayerGroup(ignored).Permission >= LevelPermission.Operator) {  }
 
                     if (p.ignoreList.Contains(ignored.ToLower())) 
                     {
