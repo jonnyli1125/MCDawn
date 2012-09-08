@@ -1,0 +1,37 @@
+MCDawnRC Protocol - Version 1
+
+-Client connects to given server ip and port
+-Client sends login packet:
+
+Type: Client to Server
+Packet ID: 0x00
+Purpose: Login Authentication
+Description: Packet ID (byte), Protocol version (byte), RCUsername (string), RCPassword (string), Server "key" (string), Host State (string)
+
+-Client is connected, Server sends confirmation message of connection
+
+Type: Server to Client
+Packet ID: 0x01
+Purpose: Server Message
+Description: Packet ID (byte), Message (string)
+
+-Client can send messages to server
+
+Type: Client to Server
+Packet ID: 0x02
+Purpose: Client Message
+Description: Packet ID (byte), Message (string)
+
+-At end of session, server will send disconnect packet
+
+Type: Server to Client
+Packet ID: 0x03
+Purpose: Disconnect
+Description: Packet ID (byte), Disc Message (string)
+
+-Extra ping packet, to check if connection open:
+
+Type: Server to Client
+Packet ID: 0x04
+Purpose: Ping
+Description: Packet ID (byte)

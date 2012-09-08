@@ -1,0 +1,33 @@
+This is a tutorial on how to set up MySQL for your server.
+
+--------------------------------------------------------------
+
+DOWNLOADING AND INSTALLING
+
+Step 1
+When you go to this link (http://dev.mysql.com/downloads/), you will see an image with a link for 'MySQL Installer'. Click the green download button.
+
+Step 2
+At the bottom of the page, hit download.
+
+Step 3
+There are two boxes for you to either register or login, but you don't need those. If you scroll down a little farther, you'll notice a link to just take you directly to the downloads without registering. Click on that.
+
+Step 4
+Now you should be at a page with a list of downloads. You are going to want to choose the download from your own country, it will be faster. There should be 2 options, HTTP or FTP. It doesn't matter which one you choose, so just click any one of those.
+
+Step 5
+Once the installer finishes downloading, run it. Follow the installation tutorial, and where it prompts you to enter a password, remember that password, do NOT forget it.
+
+--------------------------------------------------------------
+
+CONFIGURING
+
+Step 6
+Windows: Open up your MCDawn Server Console, then click on the 'properties' button. Click on the MySQL tab in the properties widnow, and where it asks for your MySQL password, enter the MySQL password you previously entered while installing MySQL. Leave the other stuff alone. After you are done, make sure the 'Use MySQL' button is selected/checked, otherwise MySQL is still disabled. Now click the save button in properties.
+Mac/Linux: Go to server.properties, find the Use MySQL, MySQL user, password, and database lines, and set them accordingly.
+
+Step 7
+Restart your server. If there are no errors, congratulations, you got it right. If there ARE errors, make sure you have the correct username, password, and database name. If you are sure you have the correct password, post the error logs on the Bugs and Glitches forum at forums.mcdawn.com.
+
+--------------------------------------------------------------

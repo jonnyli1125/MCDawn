@@ -1,0 +1,521 @@
+MCDawn 1.0.1.3
+-Color codes are no longer sent to IRC/Global.
+-Ranking/banning 'reasons' can now be assigned.
+-Updated Commands
+	-/displayname - Allows up to 60 characters (including color codes), instead of just 16 now.
+	-/me - Shows displayname instead of real name now.
+	-/logoutmessage - Fixed error where if logouts.txt file did not exist it would throw an error.
+	-/impersonate - Fixed bug where if message is not given it throws an error.
+	-/banip - Fixed small bug where when a user xbans a player, the ip-ban would kick the player instead of the xban message.
+	-/hzone del - Works as intended now.
+	-/setrank <player> <rank> [reason] - Now saves reasons for rankings.
+	-/ban - Now saves reasons for bannings.
+	-/whois - Displays last rank/ban reason given.
+	-/whowas - Displays lat rank/ban reason given.
+	-/ban - Works as intended from Console.
+	-/xban - Works as intended from Console.
+	-/undo <player> all - Works as intended from Console.
+	-/copylvl - Now sends a confirmation message after level is copied.
+	-/logsearch - Term searched no longer needs to match case.
+	-/abort - If a cuboid or building command is going on, you can now stop it with abort.
+	-All building type commands have been tweaked to not cause lag on the players. This means you can chat and use commands while still making a large cuboid, and even run multiple cuboids at once.
+	-/remote - Remotes are unable to use this command now (security issues).
+	-/remoteuser - Remotes are unable to use this command now (security issues).
+	-/patrol - Works as intended.
+	-/undo - Undo all permission lowered from SuperOP to Operator now.
+	-/settime - Works as intended now.
+	-/userdetail custom - Does not throw anymore errors now.
+	-/gun - Fixed bug that causes server to crash if enumeration error occured.
+	-/missile - Fixed bug that causes server to crash if enumeration error occured.
+	-/players rank - Show players only on [rank].
+	-/portal <type> cuboid - Players can now "cuboid" portal blocks, saving time for larger portals.
+-New Commands
+	-/shownames - Toggles showing displaynames or real names.
+	-/pausecuboids - Pause all ongoing cuboids and/or building commands.
+	-/throttle <1-10> - Set speed of building commands. 1 is the slowest, 10 is the fastest. Default is 9. If your cuboid is going painfully slow, Throttle 10 is probably the best idea, as that is the original cuboid speed.
+	-/report <user> <reason> - Report a user to server operators.
+	-/setwompass <password> - Set your password for the WOM Direct Connect URL Password System.
+-Placing/destroying dirt or grass blocks now will grow and destroy grass at the appropriate situations now.
+-Explosions no longer made on physics level 5 (Doors Only).
+-Server-crashing Remote Console socket error fixed.
+-Fixed spelling errors in "maintenance mode".
+-Small Admin Security System glitch patched.
+-Bug fixed where when players are spawned, other players teleport to their position.
+-If the listening socket stops listening for some reason, the server will now attempt to restart/re-setup the listening socket. This applies to the Remote Console too.
+-Fixed MySQL error for users that last used MCDawn since v1.0.0.1 or lower...
+-If server has invalid Global Chat or IRC nickname, it will automatically filter now.
+-Increased stability with MCDawn Remote Console. MCDawn Remote v1.0.0.2 also released, with .NET 3.5 instead of .NET 4.
+-MCDawn Team has been "reformed". No applications or free spots are open now, until further notice.
+-If MySQL settings are configured incorrectly, a notice will show in Console, instead of just silently turning the UseMySQL property to false.
+-Fixed MySQL property saving problem for GUI Console users.
+-IRCBot says names and titles now, when players are chatting from in-game.
+-Another tweak/fix to anti color code crashing.
+-Ignoring a user will also ignore their whispers/queries/privmsgs now.
+-The LoadPlugin method for plugins is no longer LoadPlugin(Player p), instead just LoadPlugin().
+-Plugin namespace changed from MCDawn.Plugins to MCDawn.
+-Putting your plugins in text/pluginautoload.txt will now automatically load them on server start.
+-Fixed error for some players who had problems with GeoIP.
+-Heartbeat pumping slowed from pumping every 1 min to pumping every 10 min, in order to save bandwidth.
+-OmniBan and GlobalBan systems fixed, and rewritten to be more efficient and faster.
+-WOM Direct Connect URL Password System, an extension on to WOM's Direct Connect feature added. WOM users can now connect by putting "mc://ip:port/username/password" in their Direct Connect URL (DURL) box, without having to wait for lists to load or using the server's salt, but still in a secure manner.
+-/me's or actions coming from the Global Chat IRC are now shown to the server.
+-Disallowed some building commands in games that were previously allowed.
+-Fixed small error where players could use guns/missiles on maps that had allow guns off.
+
+MCDawn 1.0.1.2
+-Updated Commands
+	-/whois - Fixed an error of using /whois from console.
+	-/hide - Matches displayname now.
+	-/loginmessage - No longer requires relog to take effect.
+	-/logoutmessage - No longer requires relog to take effect.
+	-/brush - If the block is out of range of map it won't attempt to place it and/or throw an error.
+	-/pcount - Works as intended if the server isn't using MySQL.
+	-/players - If someone is ranked nobody, it'll just continue and not show that player, without throwing errors.
+	-/speedhacks - Works as intended from Console now.
+	-/userdetail blockinfo - Fixed small bug in BlockInfo algorithm that went through walls.
+	-/global - If server's GlobalChatBot is disconnected, it will attempt to auto-reconnect now.
+	-/write - Doens't error in some directions now, creating linebreaks automatically on the wrong places.
+	-/follow - Instead of activating regular hide, now does stealth hide.
+	-/possess - Instead of activating regular hide, now does stealth hide.
+	-/caps - Works as intended now.
+	-/levels - Works as intended from Console now.
+	-/whois - Fix for total blocks built/destroyed, when sometimes one might show negative numbers.
+	-/whowas - Fix for total blocks built/destroyed, when sometimes one might show negative numbers.
+	-/gun - Fixed an error where the server would crash sometimes due to foreach loop enumeration errors...
+	-/banip - If another online player has the ip that was banned, he will also be kicked.
+	-/infection <start/stop/powerpill> - Start or stop infection game. For a twist, try powerpill option :P
+	-/infected - See infected players
+	-/alive - See alive players
+	-/infect - Infect a player. Referee use only.
+	-/cure - Cure a player. Referee use only.
+	-/remote - See online remotes and control them.
+	-/remoteuser - Control remote users allowed on the server.
+	-/impersonate - Now shows displayName of impersonated player, instead of original name.
+	-/userdetail games - Removed /userdetail infection, now all games will share the "games" option instead.
+-New Commands
+	-/autobuild <action> <block> [interval] - Automatically build on the position of your cursor.
+	-/copylvl <level> <newlevel> - Copy a level to a new level.
+	-/unxban <player/ip> - Unban a player and their IP. If an IP is given instead of a name, it will unban all names with that IP as well.
+	-/logsearch <search term> - Search for <search term> and return the last 20 results in your current log file.
+	-The command /team has been changed to /ctfteam.
+-Server salt is now unmodifiable (for extra security).
+-Patched several security problems.
+-If player is not agreed to rules and says "agree" without a slash ('/'), the server will automatically add a slash and handle it as a command.
+-Admin Security System now uses XML (.xml) files instead of text files (.txt), and encryption strenght of passwords greatly improved. IF your password is not working anymore, simply /grantpass yourself from the Console, and redo your /setpass.
+-Fixed annoying game-crasher when players are near eachother.
+-More tweaks to anti-color-code crashing (faster, more efficient, reduced chance of crashing)
+-Server tweaked to have improved performance in speed.
+-Guest maximum works as intended now.
+-Chatting from Console is now logged to server log files.
+-Fixed error where server could not start up because it couldn't connect to the MCDawn Global-Ban and/or Omni-Ban list.
+-MCDawn Undo tweaked MORE again, for higher success rate of undo properly working.
+-MCDawn Remote Console (BETA Version) released! Currently only supports Windows (.NET4). Soon, an online web-browser version will be released, and also a desktop version that supports all platforms.
+-New Infection game mode! Basically a popular zombie tag game, and with MCDawn, it comes with a little twist (See powerpill mode :P)
+
+MCDawn 1.0.1.1
+-MCDawn undo has been tweaked again for more functionality.
+-$country variable has been added, which shows player's country name.
+-Updated Commands
+	-/whowas - Instead of showing WOM Version as "1" or "0", it now shows actual version.
+	-/setpass - Works as intended on newly opped players (no longer requires relog to work).
+	-/hzone - Works as intended now.
+	-/cage - Is undo-able via /undo now.
+	-/userdetail blockinfo - Works as intended now.
+	-/abort - Also aborts brushing mode too now.
+	-/handcuff - Works as intended now from Console.
+	-/whois - Fixed a small error for destroyed/built blocks not being recorded.
+	-/whowas - Fixed a small error for destroyed/built blocks not being recorded.
+	-Fixed MULTIPLE commands that threw errors while using them on devs from Console.
+	-/hzone - /hzone add, and /hzone del work properly now.
+-New Commands
+	-/ds - Now a "shortcut" for double_stair mode.
+	-/discourager <on/off/add/remove> [player] - Manage the discourager system.
+	-/caps (/decaps, /nocaps) <player> - Toggle permissions for usage of caps for <player> in chat messages.
+	-/speedhacks [level] <rank> - Set the minimum speed hack rank needed to use speedhacks on [level].
+-Custom Loginmessages and Logoutmessages are no longer saved in single text files, instead now all stored in a single file "extra/logins.txt" / "extra/logouts.txt".
+-Changelog Updater now works as intended (line breaks error fixed).
+-MCDawn Discourager system added! This makes "discouraged" users in the server have a hard time playing, for example, random lag spikes and errors and such coming up for them. The list of these players are at "text/discouraged.txt".
+-Fixed MCDawn mini-console chat colors error, and now the size of the form cannot be modified anymore.
+-On heartbeats, a file "hb.data" is created. This contains information for heartbeats of the server, and can be used for custom beats.
+-Fixed GUI error in editing text files.
+-Added Anti-Speed hacks feature. This chooses a minimum rank required for players to be able to speedhack on a level. Set to lowest rank of server to let everyone use speedhacks.
+-If during spleef game a player attempts to noclip outside of map, player is sent back to original position.
+-MCDawn Updater has been completely redone, MCDawn Updater.exe is gone, now it's a form inside the GUI.
+
+MCDawn 1.0.1.0
+-Updated Commands 
+	-/freeze <player1> <player2> <player3> etc. - Now you can freeze multiple players at once.
+	-/setskin [playername] [s] - Fixed to work without errors now. Adding [s] on the end of the command does the action in silent mode now.
+	-/write - Fixed the char '!' being slightly too short.
+	-/title - Strips color codes before checking for length now (%ch%ai is now 2 chars in length, as opposed to before it would count as 6).
+	-/hwipe - Now works as intended.
+	-/undo all - Fixed for maximum functionality.
+	-/middle - If coordinates are even, the command will place 2 blocks now.
+	-/ircreset - You can now use /ircreset all, /ircreset irc, and /ircreset global.
+	-/timerank - Typing /timerank hours will now show the list of all the requirements for each rank.
+	-/tprequest - Fixed small bug that made it not send the request to the other player.
+	-/missile - Matched to the /gun algorithm, now also allows 360 degrees aiming.
+	-/setskin - Fixed /setskin <player> s.
+	-/whois - Shows if player is using WOM Game Client now, and shows how many blocks the player has destroyed / built.
+	-/whowas - Shows if player was using WOM Game Client, and shows how many blocks the player has destroyed / built.
+	-/patrol [level] - You can now select to patrol only players on a given level.
+-New Commands
+	-/displayname (/dname, /nick, /nickname) <player> [newName] - Change the "Display Name" of <player> to [newName]. If [newName] is not given, display name is reverted to original name.
+	-/top (/asecnd) - Brings you on to open space ontop.
+	-/under (/descend) - Brings you under a open space.
+	-/through (/thru) - Brings you through a wall.
+	-/userdetail <type> - For WOM users, now an option for more customization in the detail.user line (top right corner). NOTE: The BlockInfo userdetail type is still in BETA and may not work properly.
+	-/portcheck [port] - Checks if [port] is open. IF [port] is not given, Server.port is used.
+	-/brush <radius> <block> <sphere/cube/random> - Activate brushing mode.
+	-/handcuff [name] - Prevent a player from building.
+-MCDawn OmniBan and GlobalBan lists rewritten to be more efficient.
+-Changelog updater button fixed.
+-Changes with the plugin system:
+	-All override-able variables are required in a plugin
+	-Lowest compatible MCDawn version must be valid
+	-The LoadPlugin method now has the parameter of "Player p". p is the person who ran the plugin.
+	-Moved plugin commands to /plugin
+		-Commands:
+		-/plugin info <plugin>
+		-/plugin load <plugin>
+	-Added events that can be used in both plugins and scripting.
+-Plugin Event list can be found here: http://forums.mcdawn.com/topic/559-plugin-event-list/
+-Patched small derp in anti-color code crash patch (lolwut), causing some errors in commands such as /whois or /whowas.
+-Fixed CLI console chat not sending to IRC
+-If player types /pass or /setpass, forgetting to put a slash infront, the server will automatically add a slash in front now.
+-If MySQL Login details are incorrect, instead of going into a loop of opening and closing the server, it will just set UseMySQL to false.
+-Profanity filter error fixed.
+-Ignore now works as intended.
+-Fixed Spleef error that wiped map or destroyed parts of map.
+-Added Max-Guests property, which kicks Guests from the server when trying to join if the guest limit is full. 
+-MySQL Database now records blocks destroyed/built too.
+-Fixed small error in Spleef countdown timer.
+
+MCDawn 1.0.0.9
+-level.Unload fixed.
+-New Commands
+	-/setskin [playername] - Set your skin as [playername]'s skin. If [playername] is not given, your skin is restored to your original character's skin.
+-Updated Commands
+	-/hide - Now matches the login/logoutmessages.
+	-/whowas - Shows country name of where player last logged in from.
+	-/shutdown - Shuts down the server.
+	-/gun - Improved aiming for WOM, now allows aiming straight up and straight down.
+	-/measure - Shows how wide, high, and deep your selected area was.
+	-/write - If the text's length reaches the level's edge or is longer, it will automatically make a line break now.
+	-/cage - Works as intended on players who have lower rank than their level's build permission.
+	-/impersonate - Works as intended now.
+	-/clearchat - Works in Console as intended now.
+	-/cmdcreate - Generates command class without errors now.
+-Server restarts fixed.
+-UPnP ports close automatically on server shutdown now, and code cleaned to be more efficient.
+-CLI improved to be more user-friendly. Console commands are usable by putting the first character of the input as '/', whispers to and from console with '@' / '@@' supported, '#' for opchat, ';' for adminchat, regular chatting doesnt use /say now, and it shows the host state.
+-Identify to Global Chat (irc.GeekShed.net) added.
+-MCDawn Mini-Console (Chat/Commands Only) added. If you have this open, it will just be a small box that you can have open while the main Console window is minimized.
+-Fixed random occurences of errors on startup at MCDawn.Level.Find.
+-Fixed /sandstone block.
+-Patched ALL color code crash exploits, nobody can crash games anymore via these.
+-Fixed error in creating new command classes with /cmdcreate, now the aliases option will be generated correctly.
+-Added customCommand.obj[] array, which is for object (basically anything). 
+-Changelog tab in GUI now lets you "update changelog", which just downloads the latest changelog file off of updates.mcdawn.com.
+-Plugin System added! Use the /loadplugin command to load them onto your server, and view THIS forum: http://forums.mcdawn.com/forum/34-plugins/ for more info.
+
+MCDawn 1.0.0.8
+-New Commands
+	-/womtext [status] - Toggle WoM text on or off.
+	-/patrol - Teleports you to a random guest player.
+	-/p2p <player1> <player2> - Teleport <player1> to <player2>'s location.
+	-/loginmessage <message> - Set custom login message.
+	-/logoutmessage <message> - Set custom logout message.
+	-/tprequest (/tpr) <player> - Send teleportation request to <player>.
+	-/tpaccept (/tpa) - Accept the last teleportation request sent to you.
+	-/tpdeny (/tpd) - Deny the last teleportation request sent to you.
+	-/summonrequest (/summonr) <player> - Send summon request to <player>.
+	-/summonaccept (/summona) - Accept the last summon request sent to you.
+	-/summondeny (/summond) - Deny the last summon request sent to you.
+	-/cage <player> [freeze] - "Cage" a player by trapping <player> in a 5x5x5 adminium box. If [freeze] is added, it will freeze them too.
+-Updated Commands
+	-/unload - Fixed stealth unloading (while player is hidden).
+	-/commandblock - Temporarily disabled.
+	-/lua - Temporarily disabled.
+	-/zoneall - Works as intended now.
+	-/portal <block> cuboid - You can now set portals with cuboids, no more single block placing, lol. (YEY!!!)
+	-/zone - Back to the regular /zone del and /zone del all.
+	-/zoneall - Works as intended now.
+	-/title - You can't put on Dev titles now if you aren't a dev.
+	-/setpass - Fixed huge bug, of unverified players being able to use /setpass without being /grantpassed.
+	-/undo - Fixed the MCLawl undo. Should work as intended now.
+	-/gun - See below for new /gun options.
+	-/unload - Works as intended now.
+	-All commands have been updated to aliases (string arrays, instead of just one string).
+-Added WOM Text feature, which if enabled, shows global messages in the top right hand corner for WOM users. If you want to use this, you must have a WOM texture on.
+-Anti-name hacking/impersonating feature has been slightly tweaked...
+-You can add a different login message for users in WOM to show up in the top right hand corner.
+-Shortcuts have been removed from commands, instead now, commands can have multiple shortcuts, except they're now called 'Aliases'. Yes, we stole the name from fCraft, lol. For custom command users, there will be a slight change for custom command makers, you will have to redo/recompile your commands.
+-Due to mono completely not supporting Lua code, Lua scripting has been removed completely. This feature may return in the future as a plugin of some sort, if possible.
+-Custom $ variables added. Edit them at <text/customvars.txt>.
+-LoginMessages and LogoutMessages added. Edit at <extra/logins/playername.txt> or <extra/logouts/playername.txt>
+-Welcome new developer Incedo to the team! He is a Java and C# programmer, experienced in both, and an old member of the Minecraft Community. :D
+-ProfanityFilter re-written, now its fully functional.
+-Fixed some GUI derps with chat channels tab.
+-Patched several memory leaks.
+-Fixed some internal security exploits and small bugfixes.
+-New ushort block system in progress...
+-Fixed several derps that happen if you have CLI enabled.
+-Gun now supports these new types (/gun <type> to use): freeze, cage, bot, main, demote, promote, joker, kick, undo, redo, xban, rules
+-Custom text files can be added now. When you add one, all you have to do is type /(textfile). The files are located at <extra/text/file.txt>, and can be made with /text.
+-UPnP support added! Port forward is no longer required, you can just enable UPnP and choose a port! NOTE: Most routers do support UPnP, but if your router doesnt, either it completely doesnt support UPnP, or you have to enable a UPnP option.
+
+MCDawn 1.0.0.7
+-Updated Commands
+	-/spheroid [type] [hollow/vertical] - Hollow and vertical cylinder spheroids added.
+	-/newlvl <name> <x/y/z> <type> [block] - New <type> option, sphere. Creates a hollow sphere the size of the map, with [block] if specified.
+	-/zone [del] [name/rank] - Zone command refined, now you can delete single zones from an area.
+	-/zoneall <levelname> - No longer requires you to load map now.
+	-/unload empty - Now works as intended.
+	-/write - Now supports ()[]{}?!| characters.
+	-/chatroom (/cr) - Chatroom system. View /help chatroom for more info.
+-According to Jackthekat9, Mono =/= Lua, so an option to disable Lua scripting in properties has been added.
+-Chatrooms system added, almost like a mini-IRC system, but ingame. All commands are in /chatroom.
+-Advanced PlayerGroup systems started... :P
+-Kicking players that aren't allowed to join on Maintenence Mode doesn't error now.
+-If GUI buttons error, they shouldn't crash the server now, instead they just do nothing, if they fail.
+-For custom command makers, added Player.fullName(Player p, bool defaultColor), which is just a shortcut for 'p.color + p.prefix + p.name', and if you defaultColor is true, it adds 'Server.DefaultColor' to the end.
+-Again for custom command maker,s added p.customCommand and Server.customCommand variables. Each of these contain a 'string[] str, int[] i, and bool[] b' array. For example, you could set a string by doing: 'Server.customCommand.str[0] = "OHAIDAR";'.
+-Internal bugfixes.
+
+MCDawn 1.0.0.6
+-Server List script improved.
+-New Commands
+	-/revoke <player> [reason] - Revoke a warning from <player>.
+	-/spleef <start/stop/freeze/rules [all]> - Spleef commands.
+-Updated Commands
+	-/setpass <password> - Fixed so it shouldn't cause any more errors.
+	-/pass <password> - No more errors.
+	-/newlvl <name> <x> <y> <z> <type> - Added a arctic level type generator. 
+	-/settime - Works as intended without errors now
+-Disabled the 'X' button in the GUI.
+-Welcome new MCDawn Developer, Sinjai (Minecraft Username 'Serado'). He is a MCForge Staff, and has experience coding commands/plugins for MCForge/MCLawl in C#.
+-About/Stats tab in GUI improved
+-Added Chat tab in GUI
+-Type "jonnyisawesome" into the Console Chat O.o
+-Anti-salt-hacking added
+-Anti-name-hacking added
+-AFK kick timer fixed
+-Spleef finished! Read /help spleef on how to play. :D
+-Infection still unfinished, don't use it yet lol.
+-Commands that act like /nick will not mess up your MySQL database now (hopefully O.o) :D
+-Color code crashing will not work anymore now, it is fixed :P
+-Welcome Jackthekat9 and BunnyMines to the MCDawn Dev Team. Jack is our webmaster and does a lot of work at times, so he deserves the spot. BunnyMines comes from MCGreen (his own software completely made by himself), and he is a very experienced programmer, so he will be helping program MCDawn now.
+-Server can now start without being able to connect to updates.mcdawn.com.
+
+MCDawn 1.0.0.5
+-GUI shrunk/made smaller,  new icon.
+-CommandBlocks added
+-Update code changed to updates.mcdawn.com. Our site is now at mcdawn.com, no more .tk! :D
+-New Commands
+	-/bitchslap <player> (/bslap) - "Bitchslap" a player, knocking them sideways XD
+	-/callconsole <message> - Get the attention of the Console Owner.
+	-/ignore [global] <player> - Messages from <player> will no longer show in your chat. Using [global] without <player> ignores the whole global chat, and doing /ignore global player will ignore that player on the global chat.
+	-/money <player> - See how much money <player> has.
+	-/deafen <player> - Make <player> unable to recieve any incoming chat messages.
+	-/obupdate - Updates MCDawn Omni-Ban list.
+	-/gbupdate - Updates MCDawn Global-Ban list.
+	-/lua <script> - Load a Lua script. - The script file must be located in your <extra/scripts/> folder and must end with .lua
+	-/timerank (/tr) - Rank up by time. You can change the name of the command by changing it in the ranks tab of the properties window.
+	-/settime [player] <days> <hours> <minutes> - Change/reset the time spent of [player].
+	-/middle  (/mid)- Place a block in the middle of the two blocks specified
+	-/hfixgrass (/hfg) - /fixgrass for home map owners.
+	-/hkick <player> - Kick a player from your home map
+	-/hmotd <motd> - Set your home map's MOTD
+	-/hphysics <physics level> - Set your home map's Physics level
+	-/hportal <type> [multi] - /portal for your home map.
+	-/hrestore <backup> - Restore a previous backup of your home map.
+	-/hspawn - Set the spawn point of your home map.
+	-/hzone <add/del> <player/rank> - Manage zones for your home map.
+	-/commandblock <block> <lua script> (/cmdblock) - Add a CommandBlock to execute your Lua script.
+	-/temprank <player> <rank> - Temporarily rank <player> to <rank>. Their rank will reset to their old rank after they leave the game.
+-Updated Commands
+	-/portal home [multi] - Creates a player homes when you step in it, or brings you to your existing one.
+	-/whois - Doesn't error from Console now.
+	-/zz - Works as intended now
+-New Blocks
+	-home_portal - Used for player homes.
+	-sandstone - Sand, but not affected by physics.
+-Enable/disable "Anti-Grief" option added in Properties.
+-3D Map Viewer started
+-There is now a Home Rank property, which makes only players of that rank and higher able to make player homes.
+-For Ignore, you can choose to allow/disallow ignoring operators and higher.
+-MCDawn now supports Lua Scripting; CommandBlocks/CmdBlocks can run these scripts also.
+-Time Ranking is now supported! Edit options in the Ranks tab of the Properties window.
+-Enable/Disable WOM Direct option added in Properties.
+-Omni-Ban and Global-Ban systems improved, now banning players is instant, no longer an hourly update.
+-Admin Security System no longer requires MySQL. Encryption strength greatly improved, passwords saved in passwords directory.
+-ProfanityFilter finished and working. Add swear words at <text/swearwords.txt>, 1 swear word per line. If you want the word to replace, add a second word on that line for the replacement for the word.
+-Player MitchOssimPants/AdminMitch demoted from staff. Storm_ReSurge (sillyboyization's alt account) has been added to administration list since his original name is too long.
+-Lets also give a big welcome to new MCDawn Staff member Sandford27!
+
+MCDawn 1.0.0.4
+-Agree To Rules option availible now (Forces players on first join to read and agree to rules)
+-New Commands
+	-/agree <password> - Agree to the rules
+	-/agreepass - Set agree password
+	-/setmain <levelname> - Set server's main level.
+-Updated Commands
+	-/rules - Now says a line at bottom prompting user to agree to rules if Server.agreeToRules is true. 
+	-/oprules - Fixed so it doesnt mix with /rules
+	-/invincible (/inv) - Now supports un-inv message
+	-/newlvl nether - New Map Generator thingy, now you can generate nether levels :D
+	-/ban - Works in Console without errors now
+	-/banip - Works in Console whithout errors now
+	-/load - Works in Console without errors now
+	-/unload - Works in Console without errors now
+-Added Un-Invincible message, this is customizable in the properties window in Console.
+-GUI Expanded, made slightly more wide
+-Admin Security Rank box in Console now saves properly
+-Color Codes are now stripped off in Console too
+-Players can no longer read /me actions coming from the Global IRC
+-Console Sounds added, enabling this plays a sound when your window is minimized. You can change this sound, all you have to do is take your own sound and replace it into extra/sounds/chatupdate.wav.
+-Home Prefix and Home XYZ Dimensions for setting homes is now editable in Console
+-Fixed leftGame void (again)
+-New Auto-Updating Omni-Ban and Global-Ban systems are in place (Updates hourly)
+-Fixed tp and summon when going to locked maps
+-Fixed Dev/Staff rights
+-Show attempted logins option added, this will show when players attempt to log in but could not join.
+-Spleef game mode started
+-ProfanityFilter class started
+-MitchOssimPants is a long name, so whenever Mitch logged on/off he would crash games. To fix this, Mitch has a new account "AdminMitch" now, so the MCDawn Staff List has been updated.
+-Kelvintiger and xsnakev have been removed from MCDawn Staff Team, due to inactivity.
+-KingGold171 has also been removed from MCDawn Dev Team, but welcome a new MCDawn Web Developer ScHmIdTy56789 to the team!
+-MCDawn Server List and heartbeat have been completed!
+-Too many connections kick removed, some people were having problems with it.
+-Fixed agree-to-rules for players who are in Admin Security System.
+
+MCDawn 1.0.0.3
+-WOM Direct heartbeat added, edit options in Console added.
+-/join (/j) can also be used for /goto (/g) now
+-Added Commands (Also new Homes commands added!!)
+	-/home - Takes you to your home, creates map for you if you dont have one.
+	-/hwipe - Wipes your home map
+	-/hlockmap (/hlock) - Toggle Lock on your Home Map
+	-/rankchat (/rchat) <rank> <message> - Toggle talking to players in your rank. 
+	-/compload - Compiles and Loads a command.
+	-/hsave - Save your home map.
+	-/warn <player> - Warns a player. If the player has 2 warnings, they will be kicked.
+-3 New Developers, EpidermiK, GameMakerGM, and Givo! Welcome to the MCDawn Dev Team! :D
+-Fixed Dev+Staff Rights
+-Creative Commons License added
+-Added Option in Console to show what country players are joining from (GeoIP). NOTE: If you are joining from the IP of 127.0.0.1, or 192.168.x.x, it will say N/A for country.
+-You must have GeoIP.dat to have the show country on join enabled; if you don't have the file it will auto-download for you.
+-Updated Commands
+	-/clearchat (/cc) - Actual Chat Clearing!
+	-/whois - Displays what country players are logging in from (if they are online)
+	-/help - Added "games" and "colors" categories.
+	-/title - Now fixed for players under Operator rank.
+	-/tcolor - Now fixed for players under Operator rank.
+	-/zz - Not a command on its own, but is now a shortcut for /static cuboid.
+	-/global (/gl) toggle - Toggle Global Chat on/off, so you don't have to type /gl <text> everytime.
+	-/lowlag - Now requires /lowlag <interval/off>, which you can set custom intervals for Server update timer.
+	-/review (/rev) - Only shows OP Chat message to players who can use /setrank or /promote commands. 
+	-/cmdset - Now not only shows a message in-game when using, but also shows message in Console.
+	-/zone(all) - Shows a message to Player if MySQL is not configured in Server.
+	-/portal - Shows a message to Player if MySQL is not configured in Server.
+	-/whois - No more errors
+	-/whowas - No more errors
+-WOM Texturing Support
+-TONS of bugfixing, code cleaning, error fixing.
+-Anti-Proxy option
+-Infection Game Mode started
+-OmniBan system redone
+-RankChat added and Player.GlobalMessageRank(group, message); and p.GlobalMessageRank(message); void added.
+-Level "locked" and "allow guns" property now save and load correctly.
+-Levels now load and unload stealthily (to admin chat) if you are hidden. 
+-REDONE UPDATER!! Thanks to Givo! :D
+-NullReferenceExceptions on some commands have been fixed
+-When players can't connect, that error has been fixed
+-GUI Expanded
+-Kill All Physics button in Levels tab added
+-Added message: bannedplayer was banned by player! when banning/ipbanning
+-when players cant join, error fixed (Player.leftGame void fixed)
+-/lockmap options now save properly
+-/allowgun options now save properly
+-User "pinevil" has been omnibanned (He asked for it, we co-operated with him).
+
+MCDawn 1.0.0.2
+-Added timeSpent string, this is the "total time spent on server". Requires MySQL.
+-Added Admin Security System. Requires MySQL Also.
+IMPORTANT NOTE: THIS WILL REQUIRE YOU TO WIPE YOUR MYSQL DATABASE, AND RESTART IT, OTHERWISE YOU WILL GET ERRORS.
+THERE IS A TUTORIAL AT forums.mcdawn.tk ON HOW TO RESET YOUR MYSQL DATABASE.
+-Added Commands
+	-/global (/gl) - Send Message to Global Chat - Works in Console too.
+	-/pass - Enter password for Admin Security System (ASS). 
+	-/setpass -Set your password for ASS.
+	-/grantpass - Grants a player access out of the ASS.
+-Updated Commands
+	-/mapinfo - Added "Guns enabled/disabled" line.
+-Spam and Caps Detection added (BETA)
+-MCDawn Global Chat has been added!
+-First Start up error (Console shutting down when you just open) fixed
+
+MCDawn 1.0.0.1
+-Commands added
+	-/private - talk to players only on your level without RP Chat
+	-/allowgun - allow guns/disable guns on a level.
+-GUI Improved & Added Items
+	-Added "Players" tab (BETA)
+	-Added "Levels" tab (BETA)
+	-Added Confirmation MessageBox when clicking the "Restart" button
+-Staff Rights Added (Anti-Staff ban/kick etc.)
+-Console name/state is the "Default Host State" at startup, instead of "Alive"
+-/ranks shortcut added for /help ranks
+-Restart on Error turned to False by default
+-Added "Allow Teleport to Higher Ranked Players" option
+-Fixed "logging only Level"
+-Port Check has been added
+-Allow/Disable Guns on levels
+-Typing a unknown command into console no longer causes error.
+-Changelog updater on start up.
+
+MCDawn 1.0.0.0
+-Removed/modified some options in console that don't exist but are planned, so you can edit your properties
+-Added MySQL Settings Tab in GUI (and fixed that it reset the settings before)
+-The Player.GlobalMessage fixed; text show up when doing commands now.
+-Disabled updater, now it leads to the mcdawn.tk "Downloads" page instead of an updater in console.
+-Dev joining glitch fixed (O.o)
+-Putting a # infront of text in the Console GUI will make your text go to Op Chat
+-Putting a ; infront of text in the Console GUI will make your text go to Admin Chat
+-Updater Removed, now leads to the MCDawn Downloads page.
+-Added /spleef (beta)
+-Locking a map is now possible with /lockmap (/lock)
+
+MCDawn Pre-Release 2:
+-Review system added
+-Commands have been fixed
+	-/xban
+	-/title
+	-/summon
+	-/review next
+	-/lockmap
+	-/adminchat
+	-/invincible
+	-/undo physics
+-Commands have been added
+	-/killphysics (/kp) - Kills all physics
+	-/summonmap (/smap) - Summon all players from a map
+	-/unflood - Unflood a level.
+-Whisper to and from Console added
+	-Type @(player) (message) in Console GUI to whisper to Player in-game
+	-Type @@(message) in-game to whisper to Console
+-GUI Redesigned, again
+-OP+ join invincible now
+-Maintenence mode option added
+
+MCDawn Pre-Release 1:
+-MCDawn has been released (Yay!)
+-GUI "designed" :/ 
+-Developer rights added (Anti-Dev ban/kick etc.)
+-Added a few new Commands
+
+MCDawn Development Team: jonnyli1125, Gamemakergm, incedo, Jackthekat9, ScHmIdTy56789
+MCDawn Administration Team: jonnyli1125, sillyboyization, EpidermiK
+MCDawn Staff Team: MerkDalat, Speedkicks6, Sandford27, ddeckys
+Post any bugs/suggestions in the MCDawn Forums at forums.mcdawn.com please.
