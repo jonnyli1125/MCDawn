@@ -211,56 +211,53 @@ namespace MCDawn_.Gui
             {
                 try
                 {
-                    using (WebClient Client = new WebClient())
+                    if (wait) { if (!Server.checkUpdates) return; Thread.Sleep(10000); }
+                    try
                     {
-                        if (wait) { if (!Server.checkUpdates) return; Thread.Sleep(10000); }
-                        try
+                        if (Server.LatestVersion() != Server.Version)
                         {
-                            if (Client.DownloadString("http://updates.mcdawn.com/curversion.txt") != Server.Version)
+                            if (Server.autoupdate == true || p != null)
                             {
-                                if (Server.autoupdate == true || p != null)
+                                if (Server.autonotify == true || p != null)
                                 {
-                                    if (Server.autonotify == true || p != null)
-                                    {
-                                        Player.GlobalMessage("Update found. Restarting Server.");
-                                        Server.s.Log("Update found. Restarting Server.");
-                                        Player.GlobalMessage("---UPDATING SERVER---");
-                                        Server.s.Log("---UPDATING SERVER---");
-                                        PerformUpdate(false);
-                                    }
-                                    else
-                                    {
-                                        PerformUpdate(false);
-                                    }
+                                    Player.GlobalMessage("Update found. Restarting Server.");
+                                    Server.s.Log("Update found. Restarting Server.");
+                                    Player.GlobalMessage("---UPDATING SERVER---");
+                                    Server.s.Log("---UPDATING SERVER---");
+                                    PerformUpdate(false);
                                 }
                                 else
                                 {
-                                    if (!msgOpen && !usingConsole)
-                                    {
-                                        msgOpen = true;
-                                        if (MessageBox.Show("New version found. Would you like to update?", "Update?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                                        {
-                                            PerformUpdate(false);
-                                        }
-                                        msgOpen = false;
-                                    }
-                                    else
-                                    {
-                                        ConsoleColor prevColor = Console.ForegroundColor;
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("An update was found!");
-                                        Console.WriteLine("Update using the file at updates.mcdawn.com/MCDawn_.dll and placing it over the top of your current MCDawn_.dll!");
-                                        Console.ForegroundColor = prevColor;
-                                    }
+                                    PerformUpdate(false);
                                 }
                             }
                             else
                             {
-                                Player.SendMessage(p, "No update found!");
+                                if (!msgOpen && !usingConsole)
+                                {
+                                    msgOpen = true;
+                                    if (MessageBox.Show("New version found. Would you like to update?", "Update?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                                    {
+                                        PerformUpdate(false);
+                                    }
+                                    msgOpen = false;
+                                }
+                                else
+                                {
+                                    ConsoleColor prevColor = Console.ForegroundColor;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("An update was found!");
+                                    Console.WriteLine("Update using the file at updates.mcdawn.com/MCDawn_.dll and placing it over the top of your current MCDawn_.dll!");
+                                    Console.ForegroundColor = prevColor;
+                                }
                             }
                         }
-                        catch { Server.s.Log("No web server found to update on."); }
+                        else
+                        {
+                            Player.SendMessage(p, "No update found!");
+                        }
                     }
+                    catch { Server.s.Log("No web server found to update on."); }
                 }
                 catch { }
                 CurrentUpdate = false;
@@ -332,8 +329,7 @@ namespace MCDawn_.Gui
                 string assemblyname = proc.ProcessName + ".exe";
                 if (!oldrevision)
                 {
-                    using (WebClient client = new WebClient())
-                        Server.selectedrevision = client.DownloadString("http://updates.mcdawn.com/curversion.txt");
+                    Server.selectedrevision = Server.LatestVersion();
                 }
                 verscheck = Server.selectedrevision.TrimStart('r');
                 int vers = int.Parse(verscheck.Split('.')[0]);

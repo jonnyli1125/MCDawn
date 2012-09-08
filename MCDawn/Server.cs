@@ -58,6 +58,22 @@ namespace MCDawn
         public static int speedPhysics = 250;
 
         public static string Version { get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(); } }
+        public static string LatestVersion()
+        {
+            try
+            {
+                string temp = "";
+                using (WebClient w = new WebClient()) 
+                    temp = w.DownloadString("http://updates.mcdawn.com/curversion.txt");
+                int current, latest;
+                if (!int.TryParse(Version.Replace(".", ""), out current)) return Version;
+                if (int.TryParse(temp.Replace(".", ""), out latest))
+                    if (latest > current)
+                        return temp;
+                return Version;
+            }
+            catch { return Version; }
+        }
 
         // URL
         public static string URL = String.Empty;

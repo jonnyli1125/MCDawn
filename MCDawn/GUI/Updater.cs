@@ -25,12 +25,9 @@ namespace MCDawn.Gui
             {
                 txtStatus.Text = "Retrieving updates";
                 Update();
+                txtCurVersion.Text = Server.LatestVersion();
                 using (WebClient w = new WebClient())
-                {
-                    txtCurVersion.Text = w.DownloadString("http://updates.mcdawn.com/curversion.txt");
                     w.DownloadFile("http://updates.mcdawn.com/revs.txt", "revs.txt");
-                }
-
                 if (File.Exists("revs.txt"))
                 {
                     liDownloads.Items.Clear();

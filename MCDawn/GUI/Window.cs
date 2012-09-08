@@ -192,16 +192,9 @@ namespace MCDawn.Gui
                 if (temp.ToLower() != "sillyboyization") { liAdministration.Items.Add(temp); }
             }
             lblCurVersion.Text = Server.Version;
-            bool success = false;
-            try
-            {
-                using (WebClient web = new WebClient())
-                	lblLatestVersion.Text = web.DownloadString("http://updates.mcdawn.com/curversion.txt");
-                success = true;
-            }
-            catch { success = false; }
+            lblLatestVersion.Text = Server.LatestVersion();
             // Auto-Update on server start
-            if (lblCurVersion.Text != lblLatestVersion.Text && success)
+            if (lblCurVersion.Text != lblLatestVersion.Text)
             {
                 if (MessageBox.Show("New version found. Would you like to update?", "Update?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
