@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdDevs : Command
     {
         public override string name { get { return "devs"; } }
-        public override string[] aliases { get { return new string[] { "developers", "staff", "administration" }; } }
+        public override string[] aliases { get { return new string[] { "developers" }; } }
         public override string type { get { return "information"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Banned; } }
@@ -58,7 +58,7 @@ namespace MCDawn
             adminlist = adminlist.Remove(adminlist.Length - 2);
             Player.SendMessage(p, "&6MCDawn Administration Team: " + Server.DefaultColor + adminlist);
 
-            try
+            /*try
             {
                 string stafflist = "";
                 string temp2;
@@ -71,7 +71,7 @@ namespace MCDawn
                 stafflist = stafflist.Remove(stafflist.Length - 2);
                 Player.SendMessage(p, "&4MCDawn Staff Team: " + Server.DefaultColor + stafflist);
             }
-            catch { Player.SendMessage(p, "&4MCDawn Staff Team: &gNone"); }
+            catch { Player.SendMessage(p, "&4MCDawn Staff Team: &gNone"); }*/
         }
 
         public override void Help(Player p)
