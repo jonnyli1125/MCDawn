@@ -26,7 +26,7 @@ namespace MCDawn
                 byte type = Block.Byte(t);
                 if (type == 255) { Player.SendMessage(p, "There is no block \"" + t + "\"."); return; }
 
-                if (!Block.canPlace(p, type)) { Player.SendMessage(p, "Cannot place that."); return; }
+                if (!Block.canPlace(p, type)) { Player.SendMessage(p, "You cannot place that."); return; }
 
                 SolidType solid;
                 if (s == "solid") { solid = SolidType.solid; }
