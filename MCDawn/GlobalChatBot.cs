@@ -199,7 +199,7 @@ namespace MCDawn
                     }
                     if (temp.StartsWith("^")) { return; }
                     if (temp.Contains("$color") || temp.Contains("&") || temp.Contains("&")) { return; }
-                    Player.GlobalMessageDevsStaff(Server.DefaultColor + ">[DevGlobal] " + Server.GlobalChatColour + storedNick + ": &f" + temp);
+                    Player.GlobalMessageDevsStaff(">[DevGlobal] " + Server.GlobalChatColour + storedNick + ": &f" + temp);
                 }
                 else
                 {
@@ -280,14 +280,7 @@ namespace MCDawn
         {
             try
             {
-                if (e.Data.Channel == devchannel)
-                {
-                    Player.GlobalMessageDevsStaff("To Devs/Staff: >[DevGlobal]: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is now known as " + e.NewNickname);
-                }
-                else
-                {
-                    Player.GlobalMessageDevsStaff("To Devs/Staff: >[Global]: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is now known as " + e.NewNickname);
-                }
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is now known as " + e.NewNickname + " on " + e.Data.Channel);
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
             }
@@ -298,7 +291,7 @@ namespace MCDawn
             try
             {
                 if (e.Data.Channel == devchannel)
-                    Player.GlobalMessageDevsStaff("To Devs/Staff: <[DevGlobal] *" + Server.GlobalChatColour + e.Data.Nick + " " + Server.DefaultColor + e.ActionMessage);
+                    Player.GlobalMessageDevsStaff("<[DevGlobal] *" + Server.GlobalChatColour + e.Data.Nick + " " + Server.DefaultColor + e.ActionMessage);
                 else
                     DisplayAction(e.ActionMessage, e);
             }
