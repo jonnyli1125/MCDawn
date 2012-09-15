@@ -2,7 +2,11 @@ MCDawn 1.0.1.4
 -Updated Commands
 	-/spleef players - Shows status of all players in spleef.
 	-/ignore - Cannot ignore ops if Server.allowIgnoreOps is false.
-
+	-/gun - Fixed so if you have gun enabled while allowguns on your level is false, it will automatically stop.
+	-/missile - Fixed so if you have missile enabled while allowguns on your level is false, it will automatically stop.
+-New Commands
+	-/hallowguns - Toggle gun use on your home map.
+	
 MCDawn 1.0.1.3
 -Color codes are no longer sent to IRC/Global.
 -Ranking/banning 'reasons' can now be assigned.

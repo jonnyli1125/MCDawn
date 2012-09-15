@@ -15,7 +15,7 @@ namespace MCDawn
         public CmdGun() { }
         public override void Use(Player p, string message)
         {
-            if (p.level.allowguns == false) { Player.SendMessage(p, "Gun use is not allowed on this level."); return; }
+            if (!p.level.allowguns) { Player.SendMessage(p, "Gun use is not allowed on this level."); p.aiming = false; return; }
             if (p.hasflag != null) { Player.SendMessage(p, "You can't use a gun while you have the flag!"); return;}
             Pos cpos;
 
@@ -81,6 +81,7 @@ namespace MCDawn
             {
                 try
                 {
+                    if (!p.level.allowguns) { Player.SendMessage(p, "Gun use is not allowed on this level."); p.aiming = false; return; }
                     CatchPos pos;
                     List<CatchPos> buffer = new List<CatchPos>();
                     while (p.aiming)
@@ -165,6 +166,7 @@ namespace MCDawn
         {
             try
             {
+                if (!p.level.allowguns) { }
                 byte by = p.level.GetTile(x, y, z);
                 p.SendBlockchange(x, y, z, by);
                 Pos bp = (Pos)p.blockchangeObject;
@@ -187,6 +189,7 @@ namespace MCDawn
                 {
                     try
                     {
+                        if (!p.level.allowguns) { Player.SendMessage(p, "Gun use is not allowed on this level."); p.aiming = false; return; }
                         ushort startX = (ushort)(p.pos[0] / 32);
                         ushort startY = (ushort)(p.pos[1] / 32);
                         ushort startZ = (ushort)(p.pos[2] / 32);

@@ -104,6 +104,7 @@
     <Compile Include="AutoSaver.cs" />
     <Compile Include="Commands\Building\CmdReflection.cs" />
     <Compile Include="Commands\Games\CmdPushBallTeam.cs" />
+    <Compile Include="Commands\Homes\CmdHAllowGuns.cs" />
     <Compile Include="Commands\Moderation\CmdShowNames.cs" />
     <Compile Include="Commands\Moderation\CmdReport.cs" />
     <Compile Include="Commands\Other\CmdAdminChat.cs" />

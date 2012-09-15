@@ -17,7 +17,7 @@ namespace MCDawn
                 Level where = Level.Find(message);
                 if (String.IsNullOrEmpty(message)) { p.SendMessage("Level could not be found."); return; }
                 if (where == null) { p.SendMessage("Level could not be found."); return; }
-                if (where.allowguns == true)
+                if (where.allowguns)
                 {
                     where.allowguns = false;
                     Player.GlobalMessage("Guns disabled on level &b" + where.name + Server.DefaultColor + ".");

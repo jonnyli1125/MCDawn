@@ -14,7 +14,7 @@ namespace MCDawn
         public CmdMissile() { }
         public override void Use(Player p, string message)
         {
-            if (p.level.allowguns == false) { Player.SendMessage(p, "Gun use is not allowed on this level."); return; }
+            if (!p.level.allowguns) { Player.SendMessage(p, "Gun use is not allowed on this level."); p.aiming = false; return; }
             Pos cpos;
 
             if (p.aiming)
@@ -49,6 +49,7 @@ namespace MCDawn
             {
                 try
                 {
+                    if (!p.level.allowguns) { Player.SendMessage(p, "Gun use is not allowed on this level."); p.aiming = false; return; }
                     CatchPos pos;
                     List<CatchPos> buffer = new List<CatchPos>();
                     while (p.aiming)
