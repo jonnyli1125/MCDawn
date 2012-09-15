@@ -81,7 +81,7 @@ namespace MCDawn
             catch { if (Server.useglobal) Server.s.Log("Failed to reconnect to MCDawn Global Chat"); }
         }
 
-        void DisplayMessage(string temp, IrcEventArgs e)
+        public static void DisplayMessage(string temp, IrcEventArgs e)
         {
             try
             {
@@ -105,6 +105,27 @@ namespace MCDawn
             }
             catch { }
         }
+
+        public static void DisplayAction(string temp, IrcEventArgs e) // too lazy to rewrite displaymessage... .-.
+        {
+            try
+            {
+                string storedNick = e.Data.Nick;
+                foreach (Player pl in Player.players)
+                {
+                    if (!Server.ignoreGlobal.Contains(pl.name.ToLower()) && !pl.ignoreList.Contains(temp.Split(':')[0]) && !Server.GlobalBanned().Contains(e.Data.Nick.ToLower()) && !Server.GlobalBanned().Contains(temp.Split(':')[0]) && !pl.ignoreList.Contains(temp.Split(':')[0]) && !Server.OmniBanned().Contains(e.Data.Nick.ToLower()) && !Server.OmniBanned().Contains(temp.Split(':')[0]))
+                    {
+                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage(Server.DefaultColor + ">[Global] &6*" + storedNick + " " + temp); }
+                        else { pl.SendMessage(Server.DefaultColor + ">[Global] " + Server.GlobalChatColour + "*" + storedNick + " " + temp); }
+                    }
+                }
+                Server.s.Log(">[Global] *" + storedNick + " " + temp);
+                try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteGlobalLine(">[Global] *" + storedNick + " " + temp); } }
+                catch { }
+            }
+            catch { }
+        }
+
         // On public channel message
         void OnChanMessage(object sender, IrcEventArgs e)
         {
@@ -279,7 +300,7 @@ namespace MCDawn
                 if (e.Data.Channel == devchannel)
                     Player.GlobalMessageDevsStaff("To Devs/Staff: <[DevGlobal] *" + Server.GlobalChatColour + e.Data.Nick + " " + Server.DefaultColor + e.ActionMessage);
                 else
-                    DisplayMessage(">[Global] *" + Server.GlobalChatColour + e.Data.Nick + " " + e.ActionMessage, e);
+                    DisplayAction(e.ActionMessage, e);
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
         }
