@@ -19,6 +19,7 @@ namespace MCDawn
             if (!p.level.zombiegame)
             {
                 Player.SendMessage(p, "This command can only be used when Infection is on.");
+                return;
             }
             if (!who.infected)
             {
