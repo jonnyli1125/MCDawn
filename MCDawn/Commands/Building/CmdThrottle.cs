@@ -17,7 +17,7 @@ namespace MCDawn
             if (message == "") { Help(p); return; }
             try
             {
-                if (Convert.ToInt32(message) > 200 || Convert.ToInt32(message) < 1) { Player.SendMessage(p, "Throttle must be inbetween 0 and 10."); return; }
+                if (Convert.ToInt32(message) > 200 || Convert.ToInt32(message) < 1) { Player.SendMessage(p, "Throttle must be inbetween 1 and 200."); return; }
                 Server.throttle = Convert.ToInt32(message);
                 Player.GlobalChat(null, "Building commands throttle level set to &a" + Server.throttle + "&g.", false);
                 Server.s.Log("Building commands throttle level set to " + Server.throttle + ".");
@@ -29,6 +29,7 @@ namespace MCDawn
         {
             Player.SendMessage(p, "/throttle <1-200> - Set speed throttle of cuboid and/or building commands.");
             Player.SendMessage(p, "1 is the slowest, 200 is the fastest.");
+            Player.SendMessage(p, "Current throttle is set to: &a" + Server.throttle + Server.DefaultColor + ".");
         }
     }
 }
