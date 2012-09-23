@@ -163,6 +163,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtWOMIPAddress = new System.Windows.Forms.TextBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.chkUseWOMPasswords = new System.Windows.Forms.CheckBox();
             this.chkUseWOM = new System.Windows.Forms.CheckBox();
             this.chkUseAntiGrief = new System.Windows.Forms.CheckBox();
             this.txtUnCheap = new System.Windows.Forms.TextBox();
@@ -268,9 +271,6 @@
             this.btnDiscard = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.chkUseWOMPasswords = new System.Windows.Forms.CheckBox();
-            this.label69 = new System.Windows.Forms.Label();
-            this.txtWOMIPAddress = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.grpAdminSecurity.SuspendLayout();
@@ -1760,6 +1760,32 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Misc";
             // 
+            // txtWOMIPAddress
+            // 
+            this.txtWOMIPAddress.Location = new System.Drawing.Point(350, 90);
+            this.txtWOMIPAddress.Name = "txtWOMIPAddress";
+            this.txtWOMIPAddress.Size = new System.Drawing.Size(87, 21);
+            this.txtWOMIPAddress.TabIndex = 38;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(266, 94);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(78, 13);
+            this.label69.TabIndex = 37;
+            this.label69.Text = "WOM Direct IP:";
+            // 
+            // chkUseWOMPasswords
+            // 
+            this.chkUseWOMPasswords.AutoSize = true;
+            this.chkUseWOMPasswords.Location = new System.Drawing.Point(269, 74);
+            this.chkUseWOMPasswords.Name = "chkUseWOMPasswords";
+            this.chkUseWOMPasswords.Size = new System.Drawing.Size(125, 17);
+            this.chkUseWOMPasswords.TabIndex = 36;
+            this.chkUseWOMPasswords.Text = "Use WOM Passwords";
+            this.chkUseWOMPasswords.UseVisualStyleBackColor = true;
+            // 
             // chkUseWOM
             // 
             this.chkUseWOM.AutoSize = true;
@@ -2112,11 +2138,11 @@
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(371, 53);
+            this.label67.Location = new System.Drawing.Point(365, 53);
             this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(47, 13);
+            this.label67.Size = new System.Drawing.Size(53, 13);
             this.label67.TabIndex = 36;
-            this.label67.Text = "10 (Fast)";
+            this.label67.Text = "200 (Fast)";
             // 
             // label66
             // 
@@ -2125,14 +2151,17 @@
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(43, 13);
             this.label66.TabIndex = 35;
-            this.label66.Text = "0 (Slow)";
+            this.label66.Text = "1 (Slow)";
             // 
             // tbThrottle
             // 
             this.tbThrottle.Location = new System.Drawing.Point(6, 69);
+            this.tbThrottle.Maximum = 200;
+            this.tbThrottle.Minimum = 1;
             this.tbThrottle.Name = "tbThrottle";
             this.tbThrottle.Size = new System.Drawing.Size(412, 45);
             this.tbThrottle.TabIndex = 34;
+            this.tbThrottle.Value = 1;
             this.tbThrottle.Scroll += new System.EventHandler(this.tbThrottle_Scroll);
             // 
             // tabPage2
@@ -2800,32 +2829,6 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Information";
             this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
-            // 
-            // chkUseWOMPasswords
-            // 
-            this.chkUseWOMPasswords.AutoSize = true;
-            this.chkUseWOMPasswords.Location = new System.Drawing.Point(269, 74);
-            this.chkUseWOMPasswords.Name = "chkUseWOMPasswords";
-            this.chkUseWOMPasswords.Size = new System.Drawing.Size(125, 17);
-            this.chkUseWOMPasswords.TabIndex = 36;
-            this.chkUseWOMPasswords.Text = "Use WOM Passwords";
-            this.chkUseWOMPasswords.UseVisualStyleBackColor = true;
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(266, 94);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(78, 13);
-            this.label69.TabIndex = 37;
-            this.label69.Text = "WOM Direct IP:";
-            // 
-            // txtWOMIPAddress
-            // 
-            this.txtWOMIPAddress.Location = new System.Drawing.Point(350, 90);
-            this.txtWOMIPAddress.Name = "txtWOMIPAddress";
-            this.txtWOMIPAddress.Size = new System.Drawing.Size(87, 21);
-            this.txtWOMIPAddress.TabIndex = 38;
             // 
             // PropertyWindow
             // 

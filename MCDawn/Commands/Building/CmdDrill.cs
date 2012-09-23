@@ -100,11 +100,11 @@ namespace MCDawn
                                 counter++;
                                 if (l.GetTile(pos1.x, pos1.y, pos1.z) == oldType)
                                     l.Blockchange(p, pos1.x, pos1.y, pos1.z, Block.air);
-                                if (c >= 2)
+                                while (Server.pauseCuboids) { Thread.Sleep(1000); }
+                                if (c >= Server.throttle)
                                 {
                                     c = 0;
-                                    if (!Server.pauseCuboids) Thread.Sleep(10 - Server.throttle);
-                                    else { while (Server.pauseCuboids) { Thread.Sleep(1000); } }
+                                    if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
                                 }
                             }
                         }
@@ -139,11 +139,11 @@ namespace MCDawn
                         if (p.activeCuboids == 0) return;
                         if (l.GetTile(pos1.x, pos1.y, pos1.z) == oldType)
                             l.Blockchange(p, pos1.x, pos1.y, pos1.z, Block.air);
-                        if (c >= 2)
+                        while (Server.pauseCuboids) { Thread.Sleep(1000); }
+                        if (c >= Server.throttle)
                         {
                             c = 0;
-                            if (!Server.pauseCuboids) Thread.Sleep(10 - Server.throttle);
-                            else { while (Server.pauseCuboids) { Thread.Sleep(1000); } }
+                            if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
                         }
                     }
 

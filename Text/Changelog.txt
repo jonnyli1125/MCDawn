@@ -1,9 +1,11 @@
 MCDawn 1.0.1.4
+-Building commands "throttle" redone, now goes on a scale of 1 to 200 (Determines how many blocks to set in 100 ms).
 -Updated Commands
 	-/spleef players - Shows status of all players in spleef.
 	-/ignore - Cannot ignore ops if Server.allowIgnoreOps is false.
 	-/gun - Fixed so if you have gun enabled while allowguns on your level is false, it will automatically stop.
 	-/missile - Fixed so if you have missile enabled while allowguns on your level is false, it will automatically stop.
+	-/throttle - Goes on a scale of 1-200 now.
 -New Commands
 	-/hallowguns - Toggle gun use on your home map.
 	

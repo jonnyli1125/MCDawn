@@ -61,11 +61,11 @@ namespace MCDawn
                                 if (p.level.GetTile(Pos1.x, Pos1.y, Pos1.z) != Block.Zero)
                                     l.Blockchange(p, (ushort)(Pos1.x + p.copyoffset[0]), (ushort)(Pos1.y + p.copyoffset[1]), (ushort)(Pos1.z + p.copyoffset[2]), pos.type);
                             }
-                        if (c >= 2)
+                        while (Server.pauseCuboids) { Thread.Sleep(1000); }
+                        if (c >= Server.throttle)
                         {
                             c = 0;
-                            if (!Server.pauseCuboids) Thread.Sleep(10 - Server.throttle);
-                            else { while (Server.pauseCuboids) { Thread.Sleep(1000); } }
+                            if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
                         }
                     });
                     Player.SendMessage(p, "Pasted " + p.CopyBuffer.Count + " blocks.");

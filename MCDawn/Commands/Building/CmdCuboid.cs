@@ -223,14 +223,15 @@ namespace MCDawn
                                 if (p.activeCuboids == 0) return;
                                 counter++;
                                 l.Blockchange(p, buffer[i].x, buffer[i].y, buffer[i].z, type);
-                                if (c >= 2)
+                                while (Server.pauseCuboids) { Thread.Sleep(1000); }
+                                if (c >= Server.throttle)
                                 {
                                     c = 0;
-                                    if (!Server.pauseCuboids && l.players.Count > 0 && !l.Instant) Thread.Sleep(10 - Server.throttle);
-                                    else { while (Server.pauseCuboids) { Thread.Sleep(1000); } }
+                                    if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
                                 }
                             }
                         }
+
                         if (counter >= p.group.maxBlocks)
                         {
                             Player.SendMessage(p, "Tried to cuboid " + buffer.Count + " blocks, but your limit is " + p.group.maxBlocks + ".");
@@ -262,11 +263,11 @@ namespace MCDawn
                         c++;
                         if (p.activeCuboids == 0) return;
                         l.Blockchange(p, buffer[i].x, buffer[i].y, buffer[i].z, type);
-                        if (c >= 2)
+                        while (Server.pauseCuboids) { Thread.Sleep(1000); }
+                        if (c >= Server.throttle)
                         {
                             c = 0;
-                            if (!Server.pauseCuboids && l.players.Count > 0 && !l.Instant) Thread.Sleep(10 - Server.throttle);
-                            else { while (Server.pauseCuboids) { Thread.Sleep(1000); } }
+                            if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
                         }
                     }
                     //st.Stop();

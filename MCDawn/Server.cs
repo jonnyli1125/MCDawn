@@ -289,7 +289,7 @@ namespace MCDawn
         public static bool useRemote = false;
 
         // Cuboid Throttle
-        public static int throttle = 9;
+        public static int throttle = 200;
         public static bool pauseCuboids = false;
 
         //public static string[] userMOTD;
