@@ -8,6 +8,7 @@ MCDawn 1.0.1.4
 	-/throttle - Goes on a scale of 1-200 now.
 -New Commands
 	-/hallowguns - Toggle gun use on your home map.
+-Updated minecraft.net server list heartbeat url from http://www.minecraft.net/heartbeat.jsp to https://minecraft.net/heartbeat.jsp.
 	
 MCDawn 1.0.1.3
 -Color codes are no longer sent to IRC/Global.
