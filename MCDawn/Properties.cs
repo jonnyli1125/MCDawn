@@ -614,7 +614,7 @@ namespace MCDawn
                                 }
                                 break;
                             case "throttle":
-                                try { if (Server.throttle <= 10 && Server.Version == "1.0.1.4") Server.throttle = 200; else Server.throttle = int.Parse(value); } // o_o... dun wan dem to stay on throttle 10 lolz :/
+                                try { if (Server.throttle <= 10 && (Server.Version == "1.0.1.4" || Server.Version == "1.0.1.3")) Server.throttle = 200; else Server.throttle = int.Parse(value); } // o_o... dun wan dem to stay on throttle 10 lolz :/
                                 catch { Server.s.Log("throttle invalid! setting to default."); }
                                 break;
                             case "usewompasswords":
