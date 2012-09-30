@@ -833,6 +833,7 @@ namespace MCDawn
                     {
                         w.DownloadFile("http://updates.mcdawn.com/Changelog.txt", "Changelog.txt");
                         w.DownloadFile("http://updates.mcdawn.com/License.txt", "License.txt");
+                        w.DownloadFile("http://updates.mcdawn.com/MySQL_Setup.txt", "MySQL_Setup.txt");
                         if (!File.Exists("GeoIP.dat")) { w.DownloadFile("http://updates.mcdawn.com/dll/GeoIP.dat", "GeoIP.dat"); }
                         if (!File.Exists("extra/sounds/chatupdate.wav")) { w.DownloadFile("http://dl.dropbox.com/u/43809284/chatupdate.wav", "extra/sounds/chatupdate.wav"); }
                         if (!File.Exists("Interop.NATUPNPLib.dll")) { w.DownloadFile("http://updates.mcdawn.com/dll/Interop.NATUPNPLib.dll", "Interop.NATUPNPLib.dll"); }
