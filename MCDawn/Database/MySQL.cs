@@ -14,7 +14,7 @@ namespace MCDawn
     {
         private static string connString = "Data Source=" + Server.MySQLHost + ";Port=" + Server.MySQLPort + ";User ID=" + Server.MySQLUsername + ";Password=" + Server.MySQLPassword + ";Pooling=" + Server.MySQLPooling;
 
-        public static bool CanConnect()
+        public static bool CanConnect(out Exception ex)
         {
             try
             {
@@ -22,10 +22,11 @@ namespace MCDawn
                 {
                     conn.Open();
                     conn.Close();
+                    ex = null;
                     return true;
                 }
             }
-            catch { return false; }
+            catch (Exception e) { ex = e; return false; }
         }
 
         public static void executeQuery(string queryString, bool createDB = false)

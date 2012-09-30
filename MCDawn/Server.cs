@@ -500,8 +500,10 @@ namespace MCDawn
 
             timeOnline = DateTime.Now;
 
-            if (!MySQL.CanConnect() && Server.useMySQL) 
+            Exception MySQLError;
+            if (!MySQL.CanConnect(out MySQLError) && Server.useMySQL)
             {
+                if (MySQLError != null) Server.ErrorLog(MySQLError);
                 Server.s.Log("MySQL settings have not been set! Please reference the MySQL_Setup.txt file on setting up MySQL!");
                 Server.s.Log("MySQL has been turned off for now, until you correctly configure it.");
                 Server.useMySQL = false;
