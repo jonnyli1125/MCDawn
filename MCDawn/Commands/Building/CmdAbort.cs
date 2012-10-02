@@ -30,6 +30,7 @@ namespace MCDawn
             p.activeCuboids = 0;
             p.zoneDel = false;
             p.isFlying = false;
+            p.storedMessage = "";
             foreach (Level l in Server.levels)
             {
                 if (l.reflections.ContainsKey(p.name.ToLower()))

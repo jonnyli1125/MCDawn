@@ -2293,7 +2293,7 @@ namespace MCDawn
                     return;
                 }
 
-                if (storedMessage != "")
+                if (storedMessage != "" && !text.StartsWith("/abort") && !text.StartsWith("!abort"))
                 {
                     if (!text.EndsWith(">") && !text.EndsWith("<"))
                     {

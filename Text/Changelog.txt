@@ -6,10 +6,13 @@ MCDawn 1.0.1.4
 	-/gun - Fixed so if you have gun enabled while allowguns on your level is false, it will automatically stop.
 	-/missile - Fixed so if you have missile enabled while allowguns on your level is false, it will automatically stop.
 	-/throttle - Goes on a scale of 1-200 now.
+	-/newlvl - Changed level creation size maximum to the MaxValue of Int32 in .NET (over 2 billion), for permission 100 (Admin) and higher.
+	-/abort - Clears your stored message if you chose to extend it with putting a > or < at the end now.
 -New Commands
 	-/hallowguns - Toggle gun use on your home map.
 -If MySQL is not configured properly the error log will also show now.
 -CRITICAL: Updated minecraft.net server list heartbeat url from http://www.minecraft.net/heartbeat.jsp to https://minecraft.net/heartbeat.jsp.
+-Added !url IRC command (Type !url in the channel of the IRC bot and the server will say the URL of the server).
 	
 MCDawn 1.0.1.3
 -Color codes are no longer sent to IRC/Global.

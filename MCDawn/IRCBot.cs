@@ -118,76 +118,7 @@ namespace MCDawn
                 Say("There are currently " + Player.players.Count + " players online", e.Data.Channel == opchannel);
                 if (toSay.Length > 0) Say(toSay.Remove(toSay.Length - 2), e.Data.Channel == opchannel);
             }
-            if (text.Split(' ')[0].ToLower() == "whois")
-            {
-                Player p = Player.Find(text.Split(' ')[1]);
-                if (e.Data.Channel == opchannel)
-                {
-                    if (p == null) { Say("Player could not be found.", true); }
-                    Say("Rank: " + p.group.name, true);
-                    Say("Died: " + p.overallDeath, true);
-                    Say("Modified: " + p.overallBlocks + ", " + p.loginBlocks + " since login.", true);
-                    string countryname = Server.iploopup.getCountry(IPAddress.Parse(p.ip)).getName();
-                    if (Server.useMaxMind) { Say("Country: " + countryname, true); }
-                    Say("Total Time Online: " + p.timeSpent.Split(' ')[0] + " Days, " + p.timeSpent.Split(' ')[1] + " Hours, " + p.timeSpent.Split(' ')[2] + " Minutes.", true);
-                    Say("Time Online: " + p.timeLogged, true);
-                    Say("First Login: " + p.firstLogin.ToString("yyyy-MM-dd") + " at " + p.firstLogin.ToString("HH:mm:ss"), true);
-                    Say("Logged in / Kicked: " + p.totalLogins + " / " + p.totalKicked, true);
-                    Say("Awards: " + Awards.awardAmount(p.name) + " awards", true);
-                    if (Server.useWhitelist)
-                    {
-                        if (Server.whiteList.Contains(p.name))
-                        {
-                            Say("Player is Whitelisted.", true);
-                        }
-                    }
-                    if (Server.devs.Contains(p.name.ToLower()))
-                    {
-                        Say("Player is a Developer", true);
-                    }
-                    if (Server.staff.Contains(p.name.ToLower()))
-                    {
-                        Say("Player is a member of MCDawn Staff", true);
-                    }
-                    if (Server.administration.Contains(p.name.ToLower()))
-                    {
-                        Say("Player is a MCDawn Administrator", true);
-                    }
-                }
-                else
-                {
-                    if (p == null) { Say("Player could not be found."); }
-                    Say("Rank: " + p.group.name);
-                    Say("Died: " + p.overallDeath);
-                    Say("Modified: " + p.overallBlocks + ", " + p.loginBlocks + " since login.");
-                    string countryname = Server.iploopup.getCountry(IPAddress.Parse(p.ip)).getName();
-                    if (Server.useMaxMind) { Say("Country: " + countryname); }
-                    Say("Total Time Online: " + p.timeSpent.Split(' ')[0] + " Days, " + p.timeSpent.Split(' ')[1] + " Hours, " + p.timeSpent.Split(' ')[2] + " Minutes.");
-                    Say("Time Online: " + p.timeLogged);
-                    Say("First Login: " + p.firstLogin.ToString("yyyy-MM-dd") + " at " + p.firstLogin.ToString("HH:mm:ss"));
-                    Say("Logged in / Kicked: " + p.totalLogins + " / " + p.totalKicked);
-                    Say("Awards: " + Awards.awardAmount(p.name) + " awards");
-                    if (Server.useWhitelist)
-                    {
-                        if (Server.whiteList.Contains(p.name))
-                        {
-                            Say("Player is Whitelisted.");
-                        }
-                    }
-                    if (Server.devs.Contains(p.name.ToLower()))
-                    {
-                        Say("Player is a Developer");
-                    }
-                    if (Server.staff.Contains(p.name.ToLower()))
-                    {
-                        Say("Player is a member of MCDawn Staff");
-                    }
-                    if (Server.administration.Contains(p.name.ToLower()))
-                    {
-                        Say("Player is a MCDawn Administrator");
-                    }
-                }
-            }
+            if (text.Split(' ')[0].ToLower() == "url") { Say("URL: " + Server.URL, e.Data.Channel == opchannel); }
         }
 
         // When someone joins the IRC

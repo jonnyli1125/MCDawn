@@ -64,13 +64,15 @@ namespace MCDawn
                     }
                     else
                     {
-                        if (x * y * z > 225000000) { Player.SendMessage(p, "You cannot make a map with over 225 million blocks"); return; }
+                        if (x * y * z > Int32.MaxValue) { Player.SendMessage(p, "You cannot make a map with over 2147483647 blocks."); return; }
                     }
                 }
                 catch 
                 { 
                     Player.SendMessage(p, "An error occured"); 
                 }
+
+                if (parameters[4].ToLower() == "sphere" || parameters[4].ToLower() == "dome") { if (x != y || y != z || z != x) { Player.SendMessage(p, "X, Y, and Z must be equal to make a sphere type level."); return; } }
 
                 // create a new level...
                 try
