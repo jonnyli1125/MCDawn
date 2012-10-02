@@ -2375,20 +2375,17 @@ namespace MCDawn
 
                 #region Anti-Caps
                 // Anti-Caps
-                if (Server.antiCaps == true)
-                {
-                    if (text.ToUpper() == text && text.Length >= Server.capsRequired)
-                    {
-                        if (Server.antiCapsOp == true)
-                        {
+                if (Server.antiCaps)
+                    if (text == text.ToUpper() && text.Length >= Server.capsRequired)
+                        if (Server.antiCapsOp || (!Server.antiCapsOp && group.Permission < LevelPermission.Operator))
                             switch (Server.antiCapsStyle)
                             {
                                 case "Kick":
-                                    Command.all.Find("kick").Use(null, this.name + " Let go of your caps lock key!");
-                                    break;
+                                    Kick("Let go of your caps lock key!");
+                                    return;
                                 case "TempBan":
                                     Command.all.Find("tempban").Use(null, this.name + " " + Server.antiCapsTempBanTime.ToString());
-                                    break;
+                                    return;
                                 case "Mute":
                                     Command.all.Find("mute").Use(null, this.name);
                                     break;
@@ -2416,59 +2413,15 @@ namespace MCDawn
 
                                     unchecked { this.SendPos((byte)-1, this.pos[0], (ushort)(foundHeight * 32), this.pos[2], this.rot[0], this.rot[1]); }
                                     break;
+                                default: goto case "Kick";
                             }
-                        }
-                        else
-                        {
-                            if (this.group.Permission < LevelPermission.Operator)
-                            {
-                                switch (Server.antiCapsStyle)
-                                {
-                                    case "Kick":
-                                        Command.all.Find("kick").Use(null, this.name + " Let go of your caps lock key!");
-                                        break;
-                                    case "TempBan":
-                                        Command.all.Find("tempban").Use(null, this.name + " " + Server.antiCapsTempBanTime.ToString());
-                                        break;
-                                    case "Mute":
-                                        Command.all.Find("mute").Use(null, this.name);
-                                        break;
-                                    case "Slap":
-                                        ushort currentX = (ushort)(this.pos[0] / 32);
-                                        ushort currentY = (ushort)(this.pos[1] / 32);
-                                        ushort currentZ = (ushort)(this.pos[2] / 32);
-                                        ushort foundHeight = 0;
-
-                                        for (ushort yy = currentY; yy <= 1000; yy++)
-                                        {
-                                            if (!Block.Walkthrough(this.level.GetTile(currentX, yy, currentZ)) && this.level.GetTile(currentX, yy, currentZ) != Block.Zero)
-                                            {
-                                                foundHeight = (ushort)(yy - 1);
-                                                this.level.ChatLevel(this.color + this.name + Server.DefaultColor + " was slapped into the roof for excessive use of caps!");
-                                                break;
-                                            }
-                                        }
-
-                                        if (foundHeight == 0)
-                                        {
-                                            this.level.ChatLevel(this.color + this.name + Server.DefaultColor + " was slapped sky high for excessive use of caps!");
-                                            foundHeight = 1000;
-                                        }
-
-                                        unchecked { this.SendPos((byte)-1, this.pos[0], (ushort)(foundHeight * 32), this.pos[2], this.rot[0], this.rot[1]); }
-                                        break;
-                                }
-                            }
-                        }
-                    }
-                }
                 #endregion
 
                 #region Anti-Spam
                 // Anti-Spam
-                if (Server.antiSpam == true)
+                if (Server.antiSpam)
                 {
-                    if (text.ToLower() == this.lastMSG.ToLower()) { sameMSGs++; }
+                    if (text.ToLower() == lastMSG.ToLower()) { sameMSGs++; }
                     else { sameMSGs = 0; }
 
                     //lastChatted = name;
@@ -2476,18 +2429,16 @@ namespace MCDawn
                     //if (lastChatted == name) sentMSGs++;
                     //else sentMSGs--;
 
-                    if (this.sameMSGs >= Server.spamCounter)
-                    {
-                        if (Server.antiSpamOp == true)
-                        {
+                    if (sameMSGs >= Server.spamCounter)
+                        if (Server.antiSpamOp || (!Server.antiSpamOp && group.Permission < LevelPermission.Operator))
                             switch (Server.antiSpamStyle)
                             {
                                 case "Kick":
-                                    Command.all.Find("kick").Use(null, this.name + " Kicked for spamming messages!");
-                                    break;
+                                    Kick("Kicked for spamming messages!");
+                                    return;
                                 case "TempBan":
                                     Command.all.Find("tempban").Use(null, this.name + " " + Server.antiSpamTempBanTime.ToString());
-                                    break;
+                                    return;
                                 case "Mute":
                                     Command.all.Find("mute").Use(null, this.name);
                                     break;
@@ -2515,58 +2466,14 @@ namespace MCDawn
 
                                     unchecked { this.SendPos((byte)-1, this.pos[0], (ushort)(foundHeight * 32), this.pos[2], this.rot[0], this.rot[1]); }
                                     break;
+                                default: goto case "Kick";
                             }
-                        }
-                        else
-                        {
-                            if (this.group.Permission < LevelPermission.Operator)
-                            {
-                                switch (Server.antiSpamStyle)
-                                {
-                                    case "Kick":
-                                        Command.all.Find("kick").Use(null, this.name + " Kicked for spamming messages!");
-                                        break;
-                                    case "TempBan":
-                                        Command.all.Find("tempban").Use(null, this.name + " " + Server.antiSpamTempBanTime.ToString());
-                                        break;
-                                    case "Mute":
-                                        Command.all.Find("mute").Use(null, this.name);
-                                        break;
-                                    case "Slap":
-                                        ushort currentX = (ushort)(this.pos[0] / 32);
-                                        ushort currentY = (ushort)(this.pos[1] / 32);
-                                        ushort currentZ = (ushort)(this.pos[2] / 32);
-                                        ushort foundHeight = 0;
-
-                                        for (ushort yy = currentY; yy <= 1000; yy++)
-                                        {
-                                            if (!Block.Walkthrough(this.level.GetTile(currentX, yy, currentZ)) && this.level.GetTile(currentX, yy, currentZ) != Block.Zero)
-                                            {
-                                                foundHeight = (ushort)(yy - 1);
-                                                this.level.ChatLevel(this.color + this.name + Server.DefaultColor + " was slapped into the roof for spamming messages");
-                                                break;
-                                            }
-                                        }
-
-                                        if (foundHeight == 0)
-                                        {
-                                            this.level.ChatLevel(this.color + this.name + Server.DefaultColor + " was slapped sky high for spamming messages");
-                                            foundHeight = 1000;
-                                        }
-
-                                        unchecked { this.SendPos((byte)-1, this.pos[0], (ushort)(foundHeight * 32), this.pos[2], this.rot[0], this.rot[1]); }
-                                        break;
-                                }
-                            }
-                        }
-                        return;
-                    }
                 }
                 this.lastMSG = text;
                 #endregion
 
                 // Profanity Filter
-                if (Server.profanityFilter == true) 
+                if (Server.profanityFilter == true)
                 {
                     if (!Server.profanityFilterOp) { if (this.group.Permission < LevelPermission.Operator) { text = ProfanityFilter.Filter(this, text); } }
                     else { text = ProfanityFilter.Filter(this, text); }
@@ -2580,9 +2487,7 @@ namespace MCDawn
                     SendMessage(this, "&bTo Console: &f" + text);
                     Server.s.Log("(whispers to Console) " + "<" + this.name + "> " + text);
                     if (!Server.devs.Contains(originalName.ToLower()))
-                    {
                         GlobalMessageDevs("To Devs &f-&b" + this.name + " to Console&f- " + text);
-                    }
                     //AllServerChat.Say("(whispers to Console) " + prefix + name + ": " + text);
                     return;
                 }
