@@ -1303,23 +1303,20 @@ namespace MCDawn
             Loading = false;
 
             // Admin Security System
-            if (Server.adminsecurity == true) 
-            { 
-                if (this.group.Permission >= Server.adminsecurityrank || Server.devs.Contains(originalName.ToLower()) || Server.staff.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower())) 
-                { 
-                    this.unverified = true;
-                    if (!Directory.Exists("passwords")) { Directory.CreateDirectory("passwords"); }
-                    if (!File.Exists("passwords/" + name.ToLower() + ".xml")) { File.Create("passwords/" + name.ToLower() + ".xml").Close(); }
-                    if (File.Exists("passwords/" + name.ToLower() + ".xml")) { this.password = File.ReadAllText("passwords/" + name.ToLower() + ".xml"); }
-                    // Converting passwords: New format is Reverse(Hex(SHA256(MD5(password))))
-                    if (password.EndsWith("==") || password.EndsWith("=") || password.Length <= 56) // all old passswords after encryption are returned to base 64 string, which always end in "==" o.o
-                    {
-                        //File.WriteAllText("passwords/" + name.ToLower() + ".xml", PasswordFormat(password, true));
-                        //password = File.ReadAllText("passwords/" + name.ToLower() + ".xml");
-                        grantpassed = true;
-                        SendMessage("&cPlease use /setpass to change your password now, the password storing format has been redone.");
-                    }
-                } 
+            if ((Server.adminsecurity && group.Permission >= Server.adminsecurityrank) || Server.hasProtection(originalName)) 
+            {
+                this.unverified = true;
+                if (!Directory.Exists("passwords")) { Directory.CreateDirectory("passwords"); }
+                if (!File.Exists("passwords/" + name.ToLower() + ".xml")) { File.Create("passwords/" + name.ToLower() + ".xml").Close(); }
+                if (File.Exists("passwords/" + name.ToLower() + ".xml")) { this.password = File.ReadAllText("passwords/" + name.ToLower() + ".xml"); }
+                // Converting passwords: New format is Reverse(Hex(SHA256(MD5(password))))
+                if (password.EndsWith("==") || password.EndsWith("=") || password.Length <= 56) // all old passswords after encryption are returned to base 64 string, which always end in "==" o.o
+                {
+                    //File.WriteAllText("passwords/" + name.ToLower() + ".xml", PasswordFormat(password, true));
+                    //password = File.ReadAllText("passwords/" + name.ToLower() + ".xml");
+                    grantpassed = true;
+                    SendMessage("&cPlease use /setpass to change your password now, the password storing format has been redone.");
+                }
             }
             // Dev Security System
             if (Server.devs.Contains(originalName.ToLower()) || Server.staff.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower())) { this.devUnverified = true; }
