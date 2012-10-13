@@ -392,7 +392,7 @@ namespace MCDawn
                 else countryName = "N/A";
                 if (ip == "127.0.0.1")
                 {
-                    countryName = "the server machine";
+                    countryName = "Localhost";
                 }
 
                 for (byte i = 0; i < 128; ++i) bindings[i] = i;
