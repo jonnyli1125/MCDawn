@@ -390,6 +390,10 @@ namespace MCDawn
                 Server.s.Log(ip + " connected to the server.");
                 if (Server.useMaxMind) countryName = Server.iploopup.getCountry(IPAddress.Parse(ip)).getName();
                 else countryName = "N/A";
+                if (ip == "127.0.0.1")
+                {
+                    countryName = "the server machine";
+                }
 
                 for (byte i = 0; i < 128; ++i) bindings[i] = i;
 
