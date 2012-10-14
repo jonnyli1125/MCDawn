@@ -327,10 +327,27 @@ namespace MCDawn
         public static bool globalIdentify = false;
         public static string globalPassword = "";
 
+        private static string lastIPUpdate = "";
         public static string GetIPAddress()
         {
-            using (WebClient w = new WebClient())
-                return w.DownloadString("http://checkip.dyndns.org/").Split(':')[1].Trim().Split('<')[0].Trim();
+            Thread t = new Thread(new ThreadStart(delegate {
+                try
+                {
+                    using (WebClient w = new WebClient())
+                        lastIPUpdate = w.DownloadString("http://checkip.dyndns.org/").Split(':')[1].Trim().Split('<')[0].Trim();
+                }
+                catch { lastIPUpdate = ""; }
+            })); t.IsBackground = true; t.Priority = ThreadPriority.Lowest; t.Start();
+            if (!String.IsNullOrEmpty(lastIPUpdate)) { return lastIPUpdate; }
+            else
+            {
+                try
+                {
+                    using (WebClient w = new WebClient())
+                        return w.DownloadString("http://checkip.dyndns.org/").Split(':')[1].Trim().Split('<')[0].Trim();
+                }
+                catch { return ""; }
+            }
         }
 
         // WOM Passwords System
@@ -929,6 +946,7 @@ namespace MCDawn
                 }));
                 ml.Queue(delegate
                 {
+                    if (Server.OmniBanned().Contains("server/" + GetIPAddress())) { Command.all.Find("clearchat").Use(null, ""); Server.s.Log("Your server has been Omni-Banned. Visit www.mcdawn.com for appeal."); Player.GlobalMessage("Your server has been Omni-Banned. Visit www.mcdawn.com for appeal."); Thread.Sleep(1000); Exit(); return; }
                     Server.s.Log("MCDawn Omni-Ban list loaded.");
                     Server.s.Log("MCDawn Global-Ban list loaded.");
                     if (useDiscourager)
@@ -1195,7 +1213,7 @@ namespace MCDawn
         }
 
         // Omni-Bans and Global-Bans
-        internal static List<string> lastObUpdate = new List<string>();
+        private static List<string> lastObUpdate = new List<string>();
         public static List<string> OmniBanned()
         {
             string url = "http://mcdawn.com/omniban.txt";
@@ -1205,7 +1223,8 @@ namespace MCDawn
                 try
                 {
                     using (WebClient w = new WebClient())
-                        lastObUpdate = new List<string>(w.DownloadString(url).Split(' '));
+                        lastObUpdate = new List<string>(w.DownloadString(url).ToLower().Split(' '));
+                    if (lastObUpdate.Contains("server/" + GetIPAddress())) { Command.all.Find("clearchat").Use(null, ""); Server.s.Log("Your server has been Omni-Banned. Visit www.mcdawn.com for appeal."); Player.GlobalMessage("Your server has been Omni-Banned. Visit www.mcdawn.com for appeal."); Thread.Sleep(1000); Exit(); return; }
                 }
                 catch { lastObUpdate = backup; }
             })); t.IsBackground = true; t.Priority = ThreadPriority.Lowest; t.Start();
@@ -1216,7 +1235,8 @@ namespace MCDawn
                 try
                 {
                     using (WebClient w = new WebClient())
-                        toUpdate = new List<string>(w.DownloadString(url).Split(' '));
+                        toUpdate = new List<string>(w.DownloadString(url).ToLower().Split(' '));
+                    if (toUpdate.Contains("server/" + GetIPAddress())) { Command.all.Find("clearchat").Use(null, ""); Server.s.Log("Your server has been Omni-Banned. Visit www.mcdawn.com for appeal."); Player.GlobalMessage("Your server has been Omni-Banned. Visit www.mcdawn.com for appeal."); Thread.Sleep(1000); Exit(); return toUpdate; }
                 }
                 catch { return backup; }
                 if (toUpdate.Count <= 0) { return backup; }
@@ -1224,7 +1244,7 @@ namespace MCDawn
             }
         }
 
-        internal static List<string> lastGbUpdate = new List<string>();
+        private static List<string> lastGbUpdate = new List<string>();
         public static List<string> GlobalBanned()
         {
             string url = "http://mcdawn.com/globalban.txt";
@@ -1234,7 +1254,7 @@ namespace MCDawn
                 try
                 {
                     using (WebClient w = new WebClient())
-                        lastGbUpdate = new List<string>(w.DownloadString(url).Split(' '));
+                        lastGbUpdate = new List<string>(w.DownloadString(url).ToLower().Split(' '));
                 }
                 catch { lastGbUpdate = backup; }
             })); t.IsBackground = true; t.Priority = ThreadPriority.Lowest; t.Start();
@@ -1245,7 +1265,7 @@ namespace MCDawn
                 try
                 {
                     using (WebClient w = new WebClient())
-                        toUpdate = new List<string>(w.DownloadString(url).Split(' '));
+                        toUpdate = new List<string>(w.DownloadString(url).ToLower().Split(' '));
                 }
                 catch { return backup; }
                 if (toUpdate.Count <= 0) { return backup; }

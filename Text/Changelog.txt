@@ -4,7 +4,10 @@ MCDawn 1.0.1.5
 -Anti-Caps and Anti-Spam features fixed to work properly now.
 -Fixed small Admin Security System bug.
 -If GeoIP is enabled, players connecting from local IP addresses (same network / machine) now have their countries shown as "Localhost" instead of "N/A".
-
+-Updated Commands
+	-/save - If correct amount of arguments given, it won't error when executed from Console now.
+-Added Omni-Banning and Global-Banning for servers / consoles.
+	
 MCDawn 1.0.1.4
 -Building commands "throttle" redone, now goes on a scale of 1 to 200 (Determines how many blocks to set in 100 ms).
 -Updated Commands

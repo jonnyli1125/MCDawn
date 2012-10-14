@@ -783,7 +783,7 @@ namespace MCDawn
                         }
                     }
                     catch { }
-                    Kick("You have been Omni-banned. Visit www.mcdawn.com for appeal."); 
+                    Kick("You have been Omni-Banned. Visit www.mcdawn.com for appeal."); 
                     return; 
                 }
                 // Whitelist check.

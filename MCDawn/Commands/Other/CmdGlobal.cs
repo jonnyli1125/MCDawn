@@ -19,6 +19,13 @@ namespace MCDawn
             // Console Global
             if (p == null)
             {
+                if (Server.GlobalBanned().Contains("console/" + Server.GetIPAddress()))
+                {
+                    try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteGlobalLine("You have been Global-Banned. Visit www.mcdawn.com for appeal."); } }
+                    catch { }
+                    Server.s.Log("You have been Global-Banned. Visit www.mcdawn.com for appeal.");
+                    return;
+                }
                 if (Server.profanityFilter == true) { if (Server.profanityFilterOp) { if (p.group.Permission >= LevelPermission.Operator) { message = ProfanityFilter.Filter(null, message); } } }
                 GlobalChatBot.Say("Console [" + Server.ZallState + "]: " + message);
                 GCMessage(message);
@@ -34,7 +41,7 @@ namespace MCDawn
                 if (Server.GlobalBanned()[i].Contains("*") && (p.name.ToLower().StartsWith(Server.GlobalBanned()[i].ToLower().Replace("*", "")) || p.ip.StartsWith(Server.GlobalBanned()[i].ToLower().Replace("*", ""))))
                     globalBanned = true;
 
-            if ((Server.GlobalBanned().Contains(p.ip) || Server.GlobalBanned().Contains(p.name.ToLower()) || globalBanned) && p != null) { p.SendMessage("You have been Global-banned. Visit www.mcdawn.com for appeal."); return; }
+            if ((Server.GlobalBanned().Contains(p.ip) || Server.GlobalBanned().Contains(p.name.ToLower()) || globalBanned) && p != null) { p.SendMessage("You have been Global-Banned. Visit www.mcdawn.com for appeal."); return; }
             if (p != null && p.muted) { Player.SendMessage(p, "You are muted."); return; }
             if (p != null && Server.ignoreGlobal.Contains(p.name.ToLower())) { Player.SendMessage(p, "You currently have Global Chat ignored."); return; }
 

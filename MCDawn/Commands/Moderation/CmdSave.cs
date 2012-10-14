@@ -36,9 +36,9 @@ namespace MCDawn
                     {
                         foundLevel.Save(true);
                         Player.SendMessage(p, "Level \"" + foundLevel.name + "\" saved.");
-                        int backupNumber = p.level.Backup(true);
+                        int backupNumber = foundLevel.Backup(true);
                         if (backupNumber != -1)
-                            p.level.ChatLevel("Backup " + backupNumber + " saved.");
+                            foundLevel.ChatLevel("Backup " + backupNumber + " saved.");
                     }
                     else
                     {
@@ -52,7 +52,7 @@ namespace MCDawn
                     if (foundLevel != null)
                     {
                         foundLevel.Save(true);
-                        int backupNumber = p.level.Backup(true, restoreName);
+                        int backupNumber = foundLevel.Backup(true, restoreName);
                         Player.GlobalMessage(foundLevel.name + " had a backup created named &b" + restoreName);
                     }
                     else
