@@ -271,6 +271,7 @@
             this.btnDiscard = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.chkUseThrottle = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.grpAdminSecurity.SuspendLayout();
@@ -2111,6 +2112,7 @@
             // 
             // grpThrottle
             // 
+            this.grpThrottle.Controls.Add(this.chkUseThrottle);
             this.grpThrottle.Controls.Add(this.txtThrottleDesc);
             this.grpThrottle.Controls.Add(this.label67);
             this.grpThrottle.Controls.Add(this.label66);
@@ -2830,6 +2832,17 @@
             this.toolTip.ToolTipTitle = "Information";
             this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
             // 
+            // chkUseThrottle
+            // 
+            this.chkUseThrottle.AutoSize = true;
+            this.chkUseThrottle.Location = new System.Drawing.Point(156, 52);
+            this.chkUseThrottle.Name = "chkUseThrottle";
+            this.chkUseThrottle.Size = new System.Drawing.Size(91, 17);
+            this.chkUseThrottle.TabIndex = 39;
+            this.chkUseThrottle.Text = "Use Throttling";
+            this.chkUseThrottle.UseVisualStyleBackColor = true;
+            this.chkUseThrottle.CheckedChanged += new System.EventHandler(this.chkUseThrottle_CheckedChanged);
+            // 
             // PropertyWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3144,5 +3157,6 @@
         private System.Windows.Forms.CheckBox chkUseWOMPasswords;
         private System.Windows.Forms.TextBox txtWOMIPAddress;
         private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.CheckBox chkUseThrottle;
     }
 }

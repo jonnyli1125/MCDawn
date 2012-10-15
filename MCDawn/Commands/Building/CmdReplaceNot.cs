@@ -85,11 +85,14 @@ namespace MCDawn
                                 if (p.activeCuboids == 0) return;
                                 counter++;
                                 l.Blockchange(p, pos.x, pos.y, pos.z, type);
-                                while (Server.pauseCuboids) { Thread.Sleep(1000); }
-                                if (c >= Server.throttle)
+                                if (Server.throttle > 0)
                                 {
-                                    c = 0;
-                                    if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
+                                    while (Server.pauseCuboids) { Thread.Sleep(1000); }
+                                    if (c >= Server.throttle)
+                                    {
+                                        c = 0;
+                                        if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
+                                    }
                                 }
                             }
                         });
@@ -123,11 +126,14 @@ namespace MCDawn
                         c++;
                         if (p.activeCuboids == 0) return;
                         l.Blockchange(p, pos.x, pos.y, pos.z, type);
-                        while (Server.pauseCuboids) { Thread.Sleep(1000); }
-                        if (c >= Server.throttle)
+                        if (Server.throttle > 0)
                         {
-                            c = 0;
-                            if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
+                            while (Server.pauseCuboids) { Thread.Sleep(1000); }
+                            if (c >= Server.throttle)
+                            {
+                                c = 0;
+                                if (l.players.Count > 0 && !l.Instant) Thread.Sleep(100);
+                            }
                         }
                     });
 

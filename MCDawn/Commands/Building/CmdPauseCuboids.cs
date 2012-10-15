@@ -13,6 +13,7 @@ namespace MCDawn
 
         public override void Use(Player p, string message)
         {
+            if (Server.throttle == 0) { Player.SendMessage(p, "Building commands throttling is currently off."); return; }
             if (!Server.pauseCuboids)
             {
                 Server.pauseCuboids = true;

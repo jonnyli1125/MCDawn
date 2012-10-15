@@ -614,7 +614,20 @@ namespace MCDawn.Gui
                                 catch { Server.s.Log("Invalid " + key + ". Using default."); break; }
                                 break;
                             case "throttle":
-                                try { tbThrottle.Value = Server.throttle; }
+                                try 
+                                {
+                                    if (Server.throttle <= 10 && (Server.Version == "1.0.1.4" || Server.Version == "1.0.1.3")) tbThrottle.Value = 200;
+                                    else
+                                    {
+                                        if (int.Parse(value) == 0) { tbThrottle.Enabled = false; chkUseThrottle.Checked = false; }
+                                        else
+                                        {
+                                            tbThrottle.Enabled = true;
+                                            chkUseThrottle.Checked = true;
+                                            tbThrottle.Value = int.Parse(value); // o_o... dun wan dem to stay on throttle 10 lolz :/
+                                        }
+                                    }
+                                }
                                 catch { Server.s.Log("throttle invalid! setting to default."); }
                                 break;
                             case "usewompasswords":
@@ -816,7 +829,8 @@ namespace MCDawn.Gui
                     w.WriteLine("allow-ignore-ops = " + chkAllowIgnoreOps.Checked.ToString().ToLower());
                     w.WriteLine("wom-text = " + chkWomText.Checked.ToString().ToLower());
                     w.WriteLine("use-discourager = " + chkUseDiscourager.Checked.ToString().ToLower());
-                    w.WriteLine("throttle = " + tbThrottle.Value);
+                    if (chkUseThrottle.Checked) w.WriteLine("throttle = " + tbThrottle.Value);
+                    else w.WriteLine("throttle = 0");
                     w.WriteLine("usewompasswords = " + chkUseWOMPasswords.Checked.ToString().ToLower());
                     w.WriteLine("womipaddress = " + txtWOMIPAddress.Text);
                     w.WriteLine();
@@ -1366,6 +1380,11 @@ namespace MCDawn.Gui
         { 
             if (Char.IsLetterOrDigit(Convert.ToChar(e.KeyCode)))
                 txtFileName.Text = txtRankName.Text.ToLower() + Convert.ToChar(e.KeyValue).ToString().ToLower() + ".txt"; 
+        }
+
+        private void chkUseThrottle_CheckedChanged(object sender, EventArgs e)
+        {
+            tbThrottle.Enabled = chkUseThrottle.Checked;
         }
     }
 }
