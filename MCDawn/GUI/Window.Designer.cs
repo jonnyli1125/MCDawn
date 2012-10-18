@@ -131,25 +131,18 @@ namespace MCDawn.Gui
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.txtSystem = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.test_render = new System.Windows.Forms.Button();
-            this.newblocktype = new System.Windows.Forms.TextBox();
-            this.blocktype = new System.Windows.Forms.TextBox();
-            this.z = new System.Windows.Forms.TextBox();
-            this.y = new System.Windows.Forms.TextBox();
-            this.x = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.mapedit_forcefetch = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
+            this.grpMapEditor = new System.Windows.Forms.GroupBox();
+            this.btnMapEditorChange = new System.Windows.Forms.Button();
+            this.txtMapEditorChangeBlock = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.txtMapEditorCurrentBlock = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.mapedit_delete = new System.Windows.Forms.Button();
-            this.mapedit_change = new System.Windows.Forms.Button();
+            this.txtMapEditorZ = new System.Windows.Forms.TextBox();
+            this.txtMapEditorY = new System.Windows.Forms.TextBox();
+            this.txtMapEditorX = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtMapEditorLevelName = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.grpProperties = new System.Windows.Forms.GroupBox();
             this.chkAutoLoad = new System.Windows.Forms.CheckBox();
@@ -313,6 +306,12 @@ namespace MCDawn.Gui
             this.label48 = new System.Windows.Forms.Label();
             this.btnGenerateRCKey = new System.Windows.Forms.Button();
             this.txtRCKey = new System.Windows.Forms.TextBox();
+            this.btnMapEditorUpdate = new System.Windows.Forms.Button();
+            this.grpMapViewer = new System.Windows.Forms.GroupBox();
+            this.picMapViewer = new System.Windows.Forms.PictureBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtMapViewerLevelName = new System.Windows.Forms.TextBox();
+            this.btnMapViewerUpdate = new System.Windows.Forms.Button();
             this.playerStrip.SuspendLayout();
             this.mapsStrip.SuspendLayout();
             this.iconContext.SuspendLayout();
@@ -324,8 +323,7 @@ namespace MCDawn.Gui
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpMapEditor.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.grpProperties.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDrown)).BeginInit();
@@ -354,6 +352,8 @@ namespace MCDawn.Gui
             this.grpRCUsers.SuspendLayout();
             this.grpRCSettings.SuspendLayout();
             this.grpConnectedRCs.SuspendLayout();
+            this.grpMapViewer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapViewer)).BeginInit();
             this.SuspendLayout();
             // 
             // playerStrip
@@ -1028,204 +1028,128 @@ namespace MCDawn.Gui
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage7.Controls.Add(this.test_render);
-            this.tabPage7.Controls.Add(this.newblocktype);
-            this.tabPage7.Controls.Add(this.blocktype);
-            this.tabPage7.Controls.Add(this.z);
-            this.tabPage7.Controls.Add(this.y);
-            this.tabPage7.Controls.Add(this.x);
-            this.tabPage7.Controls.Add(this.label24);
-            this.tabPage7.Controls.Add(this.label23);
-            this.tabPage7.Controls.Add(this.label22);
-            this.tabPage7.Controls.Add(this.label18);
-            this.tabPage7.Controls.Add(this.groupBox2);
-            this.tabPage7.Controls.Add(this.label20);
-            this.tabPage7.Controls.Add(this.groupBox1);
+            this.tabPage7.Controls.Add(this.grpMapViewer);
+            this.tabPage7.Controls.Add(this.grpMapEditor);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(786, 553);
             this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Map Editing";
+            this.tabPage7.Text = "Map Editor/Viewer";
             // 
-            // test_render
+            // grpMapEditor
             // 
-            this.test_render.Location = new System.Drawing.Point(8, 179);
-            this.test_render.Name = "test_render";
-            this.test_render.Size = new System.Drawing.Size(75, 23);
-            this.test_render.TabIndex = 69;
-            this.test_render.Text = "Test Render";
-            this.test_render.UseVisualStyleBackColor = true;
-            this.test_render.Click += new System.EventHandler(this.test_render_Click);
+            this.grpMapEditor.Controls.Add(this.btnMapEditorUpdate);
+            this.grpMapEditor.Controls.Add(this.btnMapEditorChange);
+            this.grpMapEditor.Controls.Add(this.txtMapEditorChangeBlock);
+            this.grpMapEditor.Controls.Add(this.label21);
+            this.grpMapEditor.Controls.Add(this.txtMapEditorCurrentBlock);
+            this.grpMapEditor.Controls.Add(this.label20);
+            this.grpMapEditor.Controls.Add(this.txtMapEditorZ);
+            this.grpMapEditor.Controls.Add(this.txtMapEditorY);
+            this.grpMapEditor.Controls.Add(this.txtMapEditorX);
+            this.grpMapEditor.Controls.Add(this.label19);
+            this.grpMapEditor.Controls.Add(this.txtMapEditorLevelName);
+            this.grpMapEditor.Controls.Add(this.label18);
+            this.grpMapEditor.Location = new System.Drawing.Point(7, 3);
+            this.grpMapEditor.Name = "grpMapEditor";
+            this.grpMapEditor.Size = new System.Drawing.Size(772, 89);
+            this.grpMapEditor.TabIndex = 0;
+            this.grpMapEditor.TabStop = false;
+            this.grpMapEditor.Text = "Map Editor";
             // 
-            // newblocktype
+            // btnMapEditorChange
             // 
-            this.newblocktype.Location = new System.Drawing.Point(399, 66);
-            this.newblocktype.Name = "newblocktype";
-            this.newblocktype.Size = new System.Drawing.Size(116, 21);
-            this.newblocktype.TabIndex = 66;
+            this.btnMapEditorChange.Location = new System.Drawing.Point(245, 50);
+            this.btnMapEditorChange.Name = "btnMapEditorChange";
+            this.btnMapEditorChange.Size = new System.Drawing.Size(75, 23);
+            this.btnMapEditorChange.TabIndex = 10;
+            this.btnMapEditorChange.Text = "Change";
+            this.btnMapEditorChange.UseVisualStyleBackColor = true;
+            this.btnMapEditorChange.Click += new System.EventHandler(this.btnMapEditorChange_Click);
             // 
-            // blocktype
+            // txtMapEditorChangeBlock
             // 
-            this.blocktype.Location = new System.Drawing.Point(181, 62);
-            this.blocktype.Name = "blocktype";
-            this.blocktype.Size = new System.Drawing.Size(116, 21);
-            this.blocktype.TabIndex = 61;
-            // 
-            // z
-            // 
-            this.z.Location = new System.Drawing.Point(41, 103);
-            this.z.Name = "z";
-            this.z.Size = new System.Drawing.Size(116, 21);
-            this.z.TabIndex = 57;
-            this.z.Text = "0";
-            // 
-            // y
-            // 
-            this.y.Location = new System.Drawing.Point(41, 72);
-            this.y.Name = "y";
-            this.y.Size = new System.Drawing.Size(116, 21);
-            this.y.TabIndex = 56;
-            this.y.Text = "0";
-            // 
-            // x
-            // 
-            this.x.Location = new System.Drawing.Point(41, 40);
-            this.x.Name = "x";
-            this.x.Size = new System.Drawing.Size(116, 21);
-            this.x.TabIndex = 55;
-            this.x.Text = "0";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Location = new System.Drawing.Point(393, 44);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(79, 13);
-            this.label24.TabIndex = 65;
-            this.label24.Text = "New Block Type";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(305, 66);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(64, 13);
-            this.label23.TabIndex = 64;
-            this.label23.Text = "-> Change to";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(8, 7);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(461, 13);
-            this.label22.TabIndex = 63;
-            this.label22.Text = "This currently uses the main level set by the server for testing, then input an x" +
-    ",y, and z coordinate.";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Location = new System.Drawing.Point(177, 44);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(56, 13);
-            this.label18.TabIndex = 62;
-            this.label18.Text = "Block Type";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label25);
-            this.groupBox2.Controls.Add(this.mapedit_forcefetch);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Location = new System.Drawing.Point(8, 25);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(157, 135);
-            this.groupBox2.TabIndex = 68;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Selection";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(14, 55);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(12, 13);
-            this.label25.TabIndex = 69;
-            this.label25.Text = "Y";
-            // 
-            // mapedit_forcefetch
-            // 
-            this.mapedit_forcefetch.Location = new System.Drawing.Point(8, 105);
-            this.mapedit_forcefetch.Name = "mapedit_forcefetch";
-            this.mapedit_forcefetch.Size = new System.Drawing.Size(149, 27);
-            this.mapedit_forcefetch.TabIndex = 42;
-            this.mapedit_forcefetch.Text = "Force Fetch";
-            this.mapedit_forcefetch.UseVisualStyleBackColor = true;
-            this.mapedit_forcefetch.Click += new System.EventHandler(this.mapedit_forcefetch_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(15, 85);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(12, 13);
-            this.label19.TabIndex = 60;
-            this.label19.Text = "Z";
+            this.txtMapEditorChangeBlock.Location = new System.Drawing.Point(139, 52);
+            this.txtMapEditorChangeBlock.Name = "txtMapEditorChangeBlock";
+            this.txtMapEditorChangeBlock.Size = new System.Drawing.Size(100, 21);
+            this.txtMapEditorChangeBlock.TabIndex = 9;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(14, 23);
+            this.label21.Location = new System.Drawing.Point(6, 55);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(13, 13);
-            this.label21.TabIndex = 58;
-            this.label21.Text = "X";
+            this.label21.Size = new System.Drawing.Size(127, 13);
+            this.label21.TabIndex = 8;
+            this.label21.Text = "Change Selected Block to:";
+            // 
+            // txtMapEditorCurrentBlock
+            // 
+            this.txtMapEditorCurrentBlock.Location = new System.Drawing.Point(515, 20);
+            this.txtMapEditorCurrentBlock.Name = "txtMapEditorCurrentBlock";
+            this.txtMapEditorCurrentBlock.ReadOnly = true;
+            this.txtMapEditorCurrentBlock.Size = new System.Drawing.Size(100, 21);
+            this.txtMapEditorCurrentBlock.TabIndex = 7;
+            this.txtMapEditorCurrentBlock.Text = "none";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(19, 81);
+            this.label20.Location = new System.Drawing.Point(436, 23);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(12, 13);
-            this.label20.TabIndex = 59;
-            this.label20.Text = "Y";
+            this.label20.Size = new System.Drawing.Size(73, 13);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "Current Block:";
             // 
-            // groupBox1
+            // txtMapEditorZ
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.mapedit_delete);
-            this.groupBox1.Controls.Add(this.mapedit_change);
-            this.groupBox1.Location = new System.Drawing.Point(172, 26);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(373, 144);
-            this.groupBox1.TabIndex = 67;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Results";
+            this.txtMapEditorZ.Location = new System.Drawing.Point(386, 20);
+            this.txtMapEditorZ.Name = "txtMapEditorZ";
+            this.txtMapEditorZ.Size = new System.Drawing.Size(34, 21);
+            this.txtMapEditorZ.TabIndex = 5;
+            this.txtMapEditorZ.Text = "0";
             // 
-            // mapedit_delete
+            // txtMapEditorY
             // 
-            this.mapedit_delete.BackColor = System.Drawing.Color.Transparent;
-            this.mapedit_delete.Location = new System.Drawing.Point(243, 104);
-            this.mapedit_delete.Name = "mapedit_delete";
-            this.mapedit_delete.Size = new System.Drawing.Size(87, 27);
-            this.mapedit_delete.TabIndex = 48;
-            this.mapedit_delete.Text = "Delete";
-            this.mapedit_delete.UseVisualStyleBackColor = false;
-            this.mapedit_delete.Click += new System.EventHandler(this.mapedit_delete_Click);
+            this.txtMapEditorY.Location = new System.Drawing.Point(346, 20);
+            this.txtMapEditorY.Name = "txtMapEditorY";
+            this.txtMapEditorY.Size = new System.Drawing.Size(34, 21);
+            this.txtMapEditorY.TabIndex = 4;
+            this.txtMapEditorY.Text = "0";
             // 
-            // mapedit_change
+            // txtMapEditorX
             // 
-            this.mapedit_change.Location = new System.Drawing.Point(243, 70);
-            this.mapedit_change.Name = "mapedit_change";
-            this.mapedit_change.Size = new System.Drawing.Size(87, 27);
-            this.mapedit_change.TabIndex = 45;
-            this.mapedit_change.Text = "Change";
-            this.mapedit_change.UseVisualStyleBackColor = true;
-            this.mapedit_change.Click += new System.EventHandler(this.mapedit_change_Click);
+            this.txtMapEditorX.Location = new System.Drawing.Point(306, 20);
+            this.txtMapEditorX.Name = "txtMapEditorX";
+            this.txtMapEditorX.Size = new System.Drawing.Size(34, 21);
+            this.txtMapEditorX.TabIndex = 3;
+            this.txtMapEditorX.Text = "0";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(194, 23);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(106, 13);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "Selected Block (X,Y,Z):";
+            // 
+            // txtMapEditorLevelName
+            // 
+            this.txtMapEditorLevelName.Location = new System.Drawing.Point(78, 20);
+            this.txtMapEditorLevelName.Name = "txtMapEditorLevelName";
+            this.txtMapEditorLevelName.Size = new System.Drawing.Size(100, 21);
+            this.txtMapEditorLevelName.TabIndex = 1;
+            this.txtMapEditorLevelName.Text = "main";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(7, 23);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 13);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Level Name:";
             // 
             // tabPage6
             // 
@@ -2942,6 +2866,64 @@ namespace MCDawn.Gui
             this.txtRCKey.TabIndex = 0;
             this.txtRCKey.TextChanged += new System.EventHandler(this.txtRCKey_TextChanged);
             // 
+            // btnMapEditorUpdate
+            // 
+            this.btnMapEditorUpdate.Location = new System.Drawing.Point(621, 18);
+            this.btnMapEditorUpdate.Name = "btnMapEditorUpdate";
+            this.btnMapEditorUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnMapEditorUpdate.TabIndex = 11;
+            this.btnMapEditorUpdate.Text = "Update";
+            this.btnMapEditorUpdate.UseVisualStyleBackColor = true;
+            this.btnMapEditorUpdate.Click += new System.EventHandler(this.btnMapEditorUpdate_Click);
+            // 
+            // grpMapViewer
+            // 
+            this.grpMapViewer.Controls.Add(this.btnMapViewerUpdate);
+            this.grpMapViewer.Controls.Add(this.txtMapViewerLevelName);
+            this.grpMapViewer.Controls.Add(this.label22);
+            this.grpMapViewer.Controls.Add(this.picMapViewer);
+            this.grpMapViewer.Location = new System.Drawing.Point(7, 98);
+            this.grpMapViewer.Name = "grpMapViewer";
+            this.grpMapViewer.Size = new System.Drawing.Size(772, 449);
+            this.grpMapViewer.TabIndex = 1;
+            this.grpMapViewer.TabStop = false;
+            this.grpMapViewer.Text = "Map Viewer";
+            // 
+            // picMapViewer
+            // 
+            this.picMapViewer.Location = new System.Drawing.Point(6, 41);
+            this.picMapViewer.Name = "picMapViewer";
+            this.picMapViewer.Size = new System.Drawing.Size(760, 402);
+            this.picMapViewer.TabIndex = 0;
+            this.picMapViewer.TabStop = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(7, 17);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(65, 13);
+            this.label22.TabIndex = 1;
+            this.label22.Text = "Level Name:";
+            // 
+            // txtMapViewerLevelName
+            // 
+            this.txtMapViewerLevelName.Location = new System.Drawing.Point(78, 14);
+            this.txtMapViewerLevelName.Name = "txtMapViewerLevelName";
+            this.txtMapViewerLevelName.Size = new System.Drawing.Size(100, 21);
+            this.txtMapViewerLevelName.TabIndex = 2;
+            this.txtMapViewerLevelName.Text = "main";
+            // 
+            // btnMapViewerUpdate
+            // 
+            this.btnMapViewerUpdate.Location = new System.Drawing.Point(184, 12);
+            this.btnMapViewerUpdate.Name = "btnMapViewerUpdate";
+            this.btnMapViewerUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnMapViewerUpdate.TabIndex = 12;
+            this.btnMapViewerUpdate.Text = "Update";
+            this.btnMapViewerUpdate.UseVisualStyleBackColor = true;
+            this.btnMapViewerUpdate.Click += new System.EventHandler(this.btnMapViewerUpdate_Click);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2973,10 +2955,8 @@ namespace MCDawn.Gui
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.grpMapEditor.ResumeLayout(false);
+            this.grpMapEditor.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.grpProperties.ResumeLayout(false);
@@ -3022,6 +3002,9 @@ namespace MCDawn.Gui
             this.grpRCSettings.PerformLayout();
             this.grpConnectedRCs.ResumeLayout(false);
             this.grpConnectedRCs.PerformLayout();
+            this.grpMapViewer.ResumeLayout(false);
+            this.grpMapViewer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMapViewer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3099,25 +3082,6 @@ namespace MCDawn.Gui
         private TabPage tabPage4;
         private TextBox txtSystem;
         private TabPage tabPage7;
-        private Button test_render;
-        private TextBox newblocktype;
-        private TextBox blocktype;
-        private TextBox z;
-        private TextBox y;
-        private TextBox x;
-        private Label label24;
-        private Label label23;
-        private Label label22;
-        private Label label18;
-        private GroupBox groupBox2;
-        private Label label25;
-        private Button mapedit_forcefetch;
-        private Label label19;
-        private Label label21;
-        private Label label20;
-        private GroupBox groupBox1;
-        private Button mapedit_delete;
-        private Button mapedit_change;
         private TabPage tabPage6;
         private GroupBox grpProperties;
         private CheckBox chkAutoLoad;
@@ -3281,5 +3245,23 @@ namespace MCDawn.Gui
         private CheckBox chkUseRemote;
         private Button btnRCPortCheck;
         private Label lblRCCheckPortResult;
+        private GroupBox grpMapEditor;
+        private TextBox txtMapEditorLevelName;
+        private Label label18;
+        private TextBox txtMapEditorX;
+        private Label label19;
+        private TextBox txtMapEditorZ;
+        private TextBox txtMapEditorY;
+        private Label label20;
+        private TextBox txtMapEditorCurrentBlock;
+        private Label label21;
+        private TextBox txtMapEditorChangeBlock;
+        private Button btnMapEditorChange;
+        private Button btnMapEditorUpdate;
+        private GroupBox grpMapViewer;
+        private PictureBox picMapViewer;
+        private TextBox txtMapViewerLevelName;
+        private Label label22;
+        private Button btnMapViewerUpdate;
     }
 }

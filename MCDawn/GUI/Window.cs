@@ -79,156 +79,164 @@ namespace MCDawn.Gui
 
         public string uptime = "0 0 0 1";
         private void Window_Load(object sender, EventArgs e) {
-            thisWindow = this;
-            MaximizeBox = false;
-            this.Text = "<server name here>";
-            this.Icon = new Icon(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("MCDawn.Lawl.ico"));
-
-            this.Show();
-            this.BringToFront();
-            WindowState = FormWindowState.Normal;
-
-            s = new Server();
-            s.OnLog += WriteLine;
-            s.OnCommand += newCommand;
-            s.OnError += newError;
-            s.OnSystem += newSystem;
-
-            foreach (TabPage tP in tabControl1.TabPages)
-                tabControl1.SelectTab(tP);
-            tabControl1.SelectTab(tabControl1.TabPages[0]);
-
-            s.HeartBeatFail += HeartBeatFail;
-            s.OnURLChange += UpdateUrl;
-            s.OnPlayerListChange += UpdateClientList;
-            s.OnPlayerBotListChange += UpdateBotList;
-            s.OnSettingsUpdate += SettingsUpdate;
-            s.Start();
-            notifyIcon1.Text = ("MCDawn Server: " + Server.name);
-
-            this.notifyIcon1.ContextMenuStrip = this.iconContext;
-            this.notifyIcon1.Icon = this.Icon;
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
-
-            System.Timers.Timer MapTimer = new System.Timers.Timer(10000);
-            MapTimer.Elapsed += delegate {
-                UpdateMapList("'");
-            }; MapTimer.Start();
-
-            System.Timers.Timer uptimeTimer = new System.Timers.Timer(1000);
-            uptimeTimer.Elapsed += delegate
+            try
             {
-                try
-                {
-                    TimeSpan up = (DateTime.Now - Process.GetCurrentProcess().StartTime);
-                    lblUptime.Text = up.Days + " days, " + up.Hours + " hours, " + up.Minutes + " minutes, " + up.Seconds + " seconds.";
-                }
-                catch { lblUptime.Text = "0 days, 0 hours, 0 minutes, 1 seconds."; }
-            };
+                thisWindow = this;
+                MaximizeBox = false;
+                this.Text = "<server name here>";
+                this.Icon = new Icon(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("MCDawn.Lawl.ico"));
 
-            System.Timers.Timer statsTimer = new System.Timers.Timer(10000); //10 Seconds
-            statsTimer.Elapsed += delegate
-            {
-                if (Server.PCCounter == null)
-                {
-                    Server.PCCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-                    Server.PCCounter.BeginInit();
-                    Server.PCCounter.NextValue();
-                }
-                if (Server.ProcessCounter == null)
-                {
-                    Server.ProcessCounter = new PerformanceCounter("Process", "% Processor Time", Process.GetCurrentProcess().ProcessName);
-                    Server.ProcessCounter.BeginInit();
-                    Server.ProcessCounter.NextValue();
-                }
-                SetLabel(lblCPU, Server.ProcessCounter.NextValue() + " / " + Server.PCCounter.NextValue() + " Processes");
-                SetLabel(lblMemory, Math.Round((double)Process.GetCurrentProcess().PrivateMemorySize64 / 1048576).ToString() + " Megabytes");
-                SetLabel(lblThreads, Process.GetCurrentProcess().Threads.Count + " Threads");
-            }; statsTimer.Start();
+                this.Show();
+                this.BringToFront();
+                WindowState = FormWindowState.Normal;
 
-            //if (File.Exists(Logger.ErrorLogPath))
+                s = new Server();
+                s.OnLog += WriteLine;
+                s.OnCommand += newCommand;
+                s.OnError += newError;
+                s.OnSystem += newSystem;
+
+                foreach (TabPage tP in tabControl1.TabPages)
+                    tabControl1.SelectTab(tP);
+                tabControl1.SelectTab(tabControl1.TabPages[0]);
+
+                s.HeartBeatFail += HeartBeatFail;
+                s.OnURLChange += UpdateUrl;
+                s.OnPlayerListChange += UpdateClientList;
+                s.OnPlayerBotListChange += UpdateBotList;
+                s.OnSettingsUpdate += SettingsUpdate;
+                s.Start();
+                notifyIcon1.Text = ("MCDawn Server: " + Server.name);
+
+                this.notifyIcon1.ContextMenuStrip = this.iconContext;
+                this.notifyIcon1.Icon = this.Icon;
+                this.notifyIcon1.Visible = true;
+                this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
+
+                System.Timers.Timer MapTimer = new System.Timers.Timer(10000);
+                MapTimer.Elapsed += delegate
+                {
+                    UpdateMapList("'");
+                }; MapTimer.Start();
+
+                System.Timers.Timer uptimeTimer = new System.Timers.Timer(1000);
+                uptimeTimer.Elapsed += delegate
+                {
+                    try
+                    {
+                        TimeSpan up = (DateTime.Now - Process.GetCurrentProcess().StartTime);
+                        lblUptime.Text = up.Days + " days, " + up.Hours + " hours, " + up.Minutes + " minutes, " + up.Seconds + " seconds.";
+                    }
+                    catch { lblUptime.Text = "0 days, 0 hours, 0 minutes, 1 seconds."; }
+                };
+
+                System.Timers.Timer statsTimer = new System.Timers.Timer(10000); //10 Seconds
+                statsTimer.Elapsed += delegate
+                {
+                    if (Server.PCCounter == null)
+                    {
+                        Server.PCCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+                        Server.PCCounter.BeginInit();
+                        Server.PCCounter.NextValue();
+                    }
+                    if (Server.ProcessCounter == null)
+                    {
+                        Server.ProcessCounter = new PerformanceCounter("Process", "% Processor Time", Process.GetCurrentProcess().ProcessName);
+                        Server.ProcessCounter.BeginInit();
+                        Server.ProcessCounter.NextValue();
+                    }
+                    SetLabel(lblCPU, Server.ProcessCounter.NextValue() + " / " + Server.PCCounter.NextValue() + " Processes");
+                    SetLabel(lblMemory, Math.Round((double)Process.GetCurrentProcess().PrivateMemorySize64 / 1048576).ToString() + " Megabytes");
+                    SetLabel(lblThreads, Process.GetCurrentProcess().Threads.Count + " Threads");
+                }; statsTimer.Start();
+
+                //if (File.Exists(Logger.ErrorLogPath))
                 //txtErrors.Lines = File.ReadAllLines(Logger.ErrorLogPath);
 
-            try
-            {
-                using (WebClient w = new WebClient())
-                    w.DownloadFile("http://updates.mcdawn.com/Changelog.txt", "Changelog.txt");
-            }
-            catch { }
-            if (File.Exists("Changelog.txt"))
-            {
-                txtChangelog.Clear();
-                txtChangelog.Lines = File.ReadAllLines("Changelog.txt");
-            }
-            Properties.Load("properties/server.properties");
-            txtHost.Text = Server.ZallState;
-            chkConsoleSounds.Checked = Server.consoleSound;
-            // DevList
-            string temp;
-            foreach (string d in Server.devs) 
-            {
-                temp = d.Substring(0, 1); 
-                temp = temp.ToUpper() + d.Remove(0, 1);
-                //if (temp.ToLower() == "jonnyli1125") { temp = "Jonnyli1125 (Founder)"; }
-                if (temp.ToLower() == "schmidty56789") { temp = "ScHmIdTy56789"; }
-                if (temp.ToLower() == "serado") { temp = "[Sinjai] Serado"; }
-                liDevs.Items.Add(temp); 
-            }
-            // StaffList
-            foreach (string d in Server.staff) 
-            {
-                temp = d.Substring(0, 1); 
-                temp = temp.ToUpper() + d.Remove(0, 1);
-                liStaff.Items.Add(temp);
-            }
-            // Administration
-            foreach (string d in Server.administration)
-            {
-                temp = d.Substring(0, 1);
-                temp = temp.ToUpper() + d.Remove(0, 1);
-                //if (temp.ToLower() == "jonnyli1125") { temp = "Jonnyli1125 (Founder)"; }
-                if (temp.ToLower() == "storm_resurge") { temp = "[Sillyboyization] Storm_ReSurge"; }
-                if (temp.ToLower() != "sillyboyization") { liAdministration.Items.Add(temp); }
-            }
-            lblCurVersion.Text = Server.Version;
-            lblLatestVersion.Text = Server.LatestVersion();
-            // Auto-Update on server start
-            if (lblCurVersion.Text != lblLatestVersion.Text)
-            {
-                if (MessageBox.Show("New version found. Would you like to update?", "Update?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                try
                 {
-                    Process proc = Process.Start("MCDawn Updater", "main " + System.Diagnostics.Process.GetCurrentProcess().Id.ToString() + ".exe");
+                    using (WebClient w = new WebClient())
+                        w.DownloadFile("http://updates.mcdawn.com/Changelog.txt", "Changelog.txt");
                 }
-            }
-            string total = " / " + Server.players;
-            lblTotalPlayers.Text = Player.number.ToString() + total;
-            lblTotalGuests.Text = Player.guests.ToString() + total;
-            lblTotalOps.Text = Player.ops.ToString() + total;
-            if (Server.useMySQL)
-            {
-                DataTable count = MySQL.fillData("SELECT COUNT(id) FROM players");
-                lblTotalPlayersVisited.Text = count.Rows[0]["COUNT(id)"] + " players have visited this server.";
-            }
-            else { lblTotalPlayersVisited.Text = "0"; }
-            int bancount = Group.findPerm(LevelPermission.Banned).playerList.All().Count;
-            lblTotalPlayersBanned.Text = bancount + " players have been banned.";
-            UnloadedlistUpdate(); 
-            lblUptime.Text = "0 days, 0 hours, 0 minutes, 1 seconds."; uptime = "0 0 0 1";
-            uptimeTimer.Start();
-            lblCPU.Text = "0 / 0 Processes";
-            lblMemory.Text = "0 Megabytes";
-            lblThreads.Text = "0 Threads";
+                catch { }
+                if (File.Exists("Changelog.txt"))
+                {
+                    txtChangelog.Clear();
+                    txtChangelog.Lines = File.ReadAllLines("Changelog.txt");
+                }
+                Properties.Load("properties/server.properties");
+                txtHost.Text = Server.ZallState;
+                chkConsoleSounds.Checked = Server.consoleSound;
+                // DevList
+                string temp;
+                foreach (string d in Server.devs)
+                {
+                    temp = d.Substring(0, 1);
+                    temp = temp.ToUpper() + d.Remove(0, 1);
+                    //if (temp.ToLower() == "jonnyli1125") { temp = "Jonnyli1125 (Founder)"; }
+                    if (temp.ToLower() == "schmidty56789") { temp = "ScHmIdTy56789"; }
+                    if (temp.ToLower() == "serado") { temp = "[Sinjai] Serado"; }
+                    liDevs.Items.Add(temp);
+                }
+                // StaffList
+                foreach (string d in Server.staff)
+                {
+                    temp = d.Substring(0, 1);
+                    temp = temp.ToUpper() + d.Remove(0, 1);
+                    liStaff.Items.Add(temp);
+                }
+                // Administration
+                foreach (string d in Server.administration)
+                {
+                    temp = d.Substring(0, 1);
+                    temp = temp.ToUpper() + d.Remove(0, 1);
+                    //if (temp.ToLower() == "jonnyli1125") { temp = "Jonnyli1125 (Founder)"; }
+                    if (temp.ToLower() == "storm_resurge") { temp = "[Sillyboyization] Storm_ReSurge"; }
+                    if (temp.ToLower() != "sillyboyization") { liAdministration.Items.Add(temp); }
+                }
+                lblCurVersion.Text = Server.Version;
+                lblLatestVersion.Text = Server.LatestVersion();
+                // Auto-Update on server start
+                if (lblCurVersion.Text != lblLatestVersion.Text)
+                {
+                    if (MessageBox.Show("New version found. Would you like to update?", "Update?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Process proc = Process.Start("MCDawn Updater", "main " + System.Diagnostics.Process.GetCurrentProcess().Id.ToString() + ".exe");
+                    }
+                }
+                string total = " / " + Server.players;
+                lblTotalPlayers.Text = Player.number.ToString() + total;
+                lblTotalGuests.Text = Player.guests.ToString() + total;
+                lblTotalOps.Text = Player.ops.ToString() + total;
+                if (Server.useMySQL)
+                {
+                    DataTable count = MySQL.fillData("SELECT COUNT(id) FROM players");
+                    lblTotalPlayersVisited.Text = count.Rows[0]["COUNT(id)"] + " players have visited this server.";
+                }
+                else { lblTotalPlayersVisited.Text = "0"; }
+                int bancount = Group.findPerm(LevelPermission.Banned).playerList.All().Count;
+                lblTotalPlayersBanned.Text = bancount + " players have been banned.";
+                UnloadedlistUpdate();
+                lblUptime.Text = "0 days, 0 hours, 0 minutes, 1 seconds."; uptime = "0 0 0 1";
+                uptimeTimer.Start();
+                lblCPU.Text = "0 / 0 Processes";
+                lblMemory.Text = "0 Megabytes";
+                lblThreads.Text = "0 Threads";
 
-            // Remote Tab
-            try
-            {
-                liRCUsers.Items.Clear();
-                RemoteServer.LoadUsers();
-                txtRCPort.Text = RemoteServer.port.ToString(); txtRCKey.Text = RemoteServer.rcpass;
+                // Remote Tab
+                try
+                {
+                    liRCUsers.Items.Clear();
+                    RemoteServer.LoadUsers();
+                    txtRCPort.Text = RemoteServer.port.ToString(); txtRCKey.Text = RemoteServer.rcpass;
+                }
+                catch { }
+                chkUseRemote.Checked = Server.useRemote;
+                // Map Viewer/Editor
+                txtMapEditorLevelName.Text = Server.level;
+                txtMapEditorX.Text = "0"; txtMapEditorY.Text = "0"; txtMapEditorZ.Text = "0";
             }
-            catch { }
-            chkUseRemote.Checked = Server.useRemote;
+            catch (Exception ex) { Server.ErrorLog(ex); }
         }
 
         // guies dis fucking method is majic, you can liek call any action from any thred O_O_O_O_O
@@ -1780,48 +1788,6 @@ namespace MCDawn.Gui
             t.SetToolTip(this.chkConsoleSounds, "Checking this will make the console beep when the window is minimized.");
         }
 
-        private void ChangeBlock()
-        {
-            ushort bx = ushort.Parse(x.Text);
-            ushort by = ushort.Parse(y.Text);
-            ushort bz = ushort.Parse(z.Text);
-            Level l = Server.mainLevel;
-            byte bnew = Block.Byte(newblocktype.Text);
-            l.SetTile(bx, by, bz, bnew);
-        }
-
-        private void UpdateBlock()
-        {
-            Level l = Server.mainLevel;
-            ushort bx = ushort.Parse(x.Text);
-            ushort by = ushort.Parse(y.Text);
-            ushort bz = ushort.Parse(z.Text);
-            byte b = l.GetTile(bx, by, bz);
-
-            if (b != Block.Zero)
-            {
-                blocktype.Text = Block.Name(b);
-            }
-            else
-            {
-                blocktype.Text = b + "# Block/" + Block.Name(b);
-            }
-        }
-
-        private void x_TextChanged(object sender, EventArgs e)
-        {
-            UpdateBlock();
-        }
-
-        private void y_TextChanged(object sender, EventArgs e)
-        {
-            UpdateBlock();
-        }
-
-        private void z_TextChanged(object sender, EventArgs e)
-        {
-            UpdateBlock();
-        }
         private void linkSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("http://mcdawn.com");
@@ -1832,34 +1798,9 @@ namespace MCDawn.Gui
             Process.Start("http://forums.mcdawn.com");
         }
 
-        private void mapedit_forcefetch_Click(object sender, EventArgs e)
-        {
-            UpdateBlock();
-        }
-
-        private void mapedit_change_Click(object sender, EventArgs e)
-        {
-            ChangeBlock();
-        }
-
-        private void mapedit_delete_Click(object sender, EventArgs e)
-        {
-            Level l = Server.mainLevel;
-            ushort bx = ushort.Parse(x.Text);
-            ushort by = ushort.Parse(y.Text);
-            ushort bz = ushort.Parse(z.Text);
-            l.SetTile(bx, by, bz, Block.air);
-            UpdateBlock();
-        }
-
         private void btnPlay_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(txtUrl.Text);
-        }
-
-        private void test_render_Click(object sender, EventArgs e)
-        {
-            MapViewer.Meep(Server.mainLevel);
         }
 
         private void btnOpenChat_Click(object sender, EventArgs e)
@@ -1992,6 +1933,70 @@ namespace MCDawn.Gui
                 lblRCCheckPortResult.ForeColor = Color.Yellow;
                 lblRCCheckPortResult.Text = "Error Checking.";
             }
+        }
+
+        private void btnMapEditorChange_Click(object sender, EventArgs e)
+        {
+            MapEditorChangeBlock();
+        }
+
+        public void MapEditorChangeBlock()
+        {
+            try
+            {
+                Level l = Level.Find(txtLevelName.Text);
+                if (File.Exists("levels/" + txtLevelName.Text + ".lvl") && l == null) { l = Level.Load(txtLevelName.Text); }
+                if (l == null) { MessageBox.Show("Level " + txtLevelName.Text + " could not be found.", "Map Editor"); return; }
+                ushort x, y, z;
+                if (!ushort.TryParse(txtMapEditorX.Text, out x) || (x >= l.width || x < 0)) { txtMapEditorX.Text = "0"; MessageBox.Show("Invalid x value.", "Map Editor"); return; }
+                if (!ushort.TryParse(txtMapEditorY.Text, out y) || (y >= l.height || y < 0)) { txtMapEditorY.Text = "0"; MessageBox.Show("Invalid y value.", "Map Editor"); return; }
+                if (!ushort.TryParse(txtMapEditorZ.Text, out z) || (z >= l.depth || z < 0)) { txtMapEditorZ.Text = "0"; MessageBox.Show("Invalid z value.", "Map Editor"); return; }
+                txtMapEditorCurrentBlock.Text = Block.Name(l.GetTile(x, y, z));
+
+                if (String.IsNullOrEmpty(txtMapEditorChangeBlock.Text)) { MessageBox.Show("Enter a block to change the selected block to."); return; }
+                byte b = Block.Byte(txtMapEditorChangeBlock.Text);
+                if (Block.Name(b).ToLower() == "unknown") { MessageBox.Show("Block could not be found.", "Map Editor"); return; }
+                l.SetTile(x, y, z, b); Player.GlobalBlockchange(l, x, y, z, b);
+                txtMapEditorCurrentBlock.Text = Block.Name(l.GetTile(x, y, z));
+            }
+            catch (Exception ex) { Server.ErrorLog(ex); return; }
+        }
+
+        public void MapEditorUpdateBlock()
+        {
+            try
+            {
+                Level l = Level.Find(txtLevelName.Text);
+                if (File.Exists("levels/" + txtLevelName.Text + ".lvl") && l == null) { l = Level.Load(txtLevelName.Text); }
+                if (l == null) { MessageBox.Show("Level " + txtLevelName.Text + " could not be found.", "Map Editor"); return; }
+                ushort x, y, z;
+                if (!ushort.TryParse(txtMapEditorX.Text, out x) || (x >= l.width || x < 0)) { txtMapEditorX.Text = "0"; MessageBox.Show("Invalid x value.", "Map Editor"); return; }
+                if (!ushort.TryParse(txtMapEditorY.Text, out y) || (y >= l.height || y < 0)) { txtMapEditorY.Text = "0"; MessageBox.Show("Invalid y value.", "Map Editor"); return; }
+                if (!ushort.TryParse(txtMapEditorZ.Text, out z) || (z >= l.depth || z < 0)) { txtMapEditorZ.Text = "0"; MessageBox.Show("Invalid z value.", "Map Editor"); return; }
+                txtMapEditorCurrentBlock.Text = Block.Name(l.GetTile(x, y, z));
+            }
+            catch (Exception ex) { Server.ErrorLog(ex); return; }
+        }
+
+        private void btnMapEditorUpdate_Click(object sender, EventArgs e)
+        {
+            MapEditorUpdateBlock();
+        }
+
+        private void btnMapViewerUpdate_Click(object sender, EventArgs e)
+        {
+            MapViewerUpdateBlock();
+        }
+
+        public void MapViewerUpdateBlock()
+        {
+            try
+            {
+                Level l = Level.Find(txtMapViewerLevelName.Text);
+                if (File.Exists("levels/" + txtLevelName.Text + ".lvl") && l == null) { l = Level.Load(txtLevelName.Text); }
+                if (l == null) { MessageBox.Show("Level could not be found.", "Map Viewer"); return; }
+            }
+            catch (Exception ex) { Server.ErrorLog(ex); }
         }
     }
 }

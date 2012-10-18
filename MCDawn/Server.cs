@@ -232,7 +232,15 @@ namespace MCDawn
         public static bool worldChat = true;
         public static bool guestGoto = false;
         public static bool maintenance = false;
-        public static bool cli = false;
+        public static bool cli 
+        {
+            get
+            {
+                if (!File.Exists("Viewmode.cfg")) return false;
+                if (File.ReadAllLines("Viewmode.cfg")[4].Split(' ')[2].ToLower() == "true") return true;
+                return false;
+            }
+        }
         public static LevelPermission canjoinmaint = LevelPermission.Admin;
         public static LevelPermission adminsecurityrank = LevelPermission.Operator;
         public static bool tpToHigher = false;
@@ -498,8 +506,6 @@ namespace MCDawn
             //if (Directory.Exists("extra/logins")) { Directory.Delete("extra/logins", true); }
             //if (Directory.Exists("extra/logouts")) { Directory.Delete("extra/logouts", true); }
 
-            if (File.ReadAllLines("Viewmode.cfg")[4].Split(' ')[2].ToLower() == "true") { cli = true; }
-
             //Lua
             //LuaScripting.Init();
 
@@ -619,8 +625,12 @@ namespace MCDawn
 
                     if (File.Exists("levels/" + Server.level + ".lvl"))
                     {
-                        mainLevel = Level.Load(Server.level);
-                        mainLevel.unload = false;
+                        try 
+                        { 
+                            mainLevel = Level.Load(Server.level);
+                            mainLevel.unload = false;
+                        }
+                        catch { }
                         if (mainLevel == null)
                         {
                             if (File.Exists("levels/" + Server.level + ".lvl.backup"))
@@ -656,6 +666,7 @@ namespace MCDawn
                     }
                     addLevel(mainLevel);
                     mainLevel.physThread.Start();
+                    if (!Server.cli) MCDawn.Gui.Window.thisWindow.MapEditorUpdateBlock();
                 } catch (Exception e) { Server.ErrorLog(e); }
             });
 
@@ -972,6 +983,8 @@ namespace MCDawn
                 });
             });
         }
+
+        
         
         public static bool Setup()
         {

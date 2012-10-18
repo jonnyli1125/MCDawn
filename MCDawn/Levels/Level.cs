@@ -852,6 +852,8 @@ namespace MCDawn
         public static Level Load(string givenName) { return Load(givenName, 0); }
         public static Level Load(string givenName, byte phys)
         {
+            if (Level.Find(givenName) != null) return Level.Find(givenName);
+
             if (Level.OnLevelLoadEvent != null) Level.OnLevelLoadEvent(givenName, phys);
 
             if (noLoad) return null;

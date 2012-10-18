@@ -136,7 +136,7 @@
     <value>MCDawn is a Minecraft Classic Server Software that is created by the MCDawn Dev Team. Using MCLawl as a basis, it is actively developed with numerous administration tools and options made for server owners, admins, and operators. Whilst providing a quality set of moderation tools, MCDawn simultaneously offers a unique experience for players in-game with a wide variety of blocks and commands for excellent builders.</value>
   </data>
   <data name="rtbDescription.Text" xml:space="preserve">
-    <value>Note: This is the server-side part of the Remote Console. In order to get the remote, you can either download the Desktop Application here: http://mcdawn.com/downloads, or you can use the Online Remote Console in your web browser here: http://remote.mcdawn.com/.</value>
+    <value>Note: This is the server-side part of the Remote Console. In order to get the remote, you can either download the Desktop Application here: http://mcdawn.com, or you can use the Online Remote Console in your web browser here: http://remote.mcdawn.com/.</value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>65</value>

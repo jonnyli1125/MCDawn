@@ -12,7 +12,6 @@ namespace MCDawn_.Gui
 {
     public static class Program
     {
-        public static bool usingConsole = false;
         public static string parent = Path.GetFileName(Assembly.GetEntryAssembly().Location);
 
         [DllImport("kernel32")]
@@ -83,7 +82,7 @@ namespace MCDawn_.Gui
                 string[] foundView = File.ReadAllLines("Viewmode.cfg");
                 if (foundView[0][0] != '#') { skip = true; goto remake; }
 
-                if (foundView[4].Split(' ')[2].ToLower() == "true")
+                if (Server.cli)
                 {
                     Server s = new Server();
                     s.OnLog += Console.WriteLine;
@@ -92,9 +91,7 @@ namespace MCDawn_.Gui
                     s.Start();
 
                     Console.Title = Server.name + " - MCDawn Version: " + Server.Version;
-                    usingConsole = true;
                     handleChat(Console.ReadLine());
-                    Server.cli = true;
                     //Application.Run();
                 }
                 else
@@ -233,7 +230,7 @@ namespace MCDawn_.Gui
                             }
                             else
                             {
-                                if (!msgOpen && !usingConsole)
+                                if (!msgOpen && !Server.cli)
                                 {
                                     msgOpen = true;
                                     if (MessageBox.Show("New version found. Would you like to update?", "Update?", MessageBoxButtons.YesNo) == DialogResult.Yes)
