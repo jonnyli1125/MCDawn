@@ -1995,6 +1995,7 @@ namespace MCDawn.Gui
                 Level l = Level.Find(txtMapViewerLevelName.Text);
                 if (File.Exists("levels/" + txtLevelName.Text + ".lvl") && l == null) { l = Level.Load(txtLevelName.Text); }
                 if (l == null) { MessageBox.Show("Level could not be found.", "Map Viewer"); return; }
+                // incomplete, will finish latar
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
         }
