@@ -18,11 +18,16 @@ namespace MCDawn
         {
             if (message.ToLower() == "empty")
             {
-                Server.levels.ForEach(l =>
+                try
                 {
-                    if (l.players.Count <= 0 && l != Server.mainLevel)
-                        l.Unload(true);
-                });
+                    List<Level> toUnload = new List<Level>();
+                    foreach (Level l in Server.levels)
+                        if (l.unload && Server.mainLevel != l && l.players.Count == 0)
+                            toUnload.Add(l);
+                    if (toUnload.Count == 0) { Player.SendMessage(p, "No levels were empty."); return; }
+                    foreach (Level l in toUnload) l.Unload();
+                }
+                catch (Exception ex) { Server.ErrorLog(ex); Player.SendMessage(p, "Error unloading empty levels."); }
                 return;
             }
 

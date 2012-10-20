@@ -38,6 +38,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -246,6 +247,7 @@
     <Compile Include="GUI\AddRemoveRemote.Designer.cs">
       <DependentUpon>AddRemoveRemote.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\IsoCat.cs" />
     <Compile Include="Player\PushBallTeam.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Remote\Remote.cs" />

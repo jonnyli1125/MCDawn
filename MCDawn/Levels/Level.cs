@@ -192,6 +192,40 @@ namespace MCDawn
 
         public bool changed = false;
         public bool backedup = false;
+
+        // IsoCat
+        public ushort[,] shadows;
+        public void CalculateShadows()
+        {
+            if (shadows != null) return;
+
+            shadows = new ushort[width, height];
+            for (ushort x = 0; x < width; x++)
+            {
+                for (ushort y = 0; y < depth; y++)
+                {
+                    for (ushort z = (ushort)(height - 1); z >= 0; z--)
+                    {
+                        switch (GetTile(x, z, y))
+                        {
+                            case Block.air:
+                            case Block.mushroom:
+                            case Block.glass:
+                            case Block.leaf:
+                            case Block.redflower:
+                            case Block.redmushroom:
+                            case Block.yellowflower:
+                                continue;
+                            default:
+                                shadows[x, z] = y;
+                                break;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
         public Level(string n, ushort x, ushort y, ushort z, string type, byte b = 20)
         {
             width = x; depth = y; height = z;
@@ -1028,7 +1062,7 @@ namespace MCDawn
                         }
                     } catch { }
 
-
+                    level.CalculateShadows();
 
                     Server.s.Log("Level \"" + level.name + "\" loaded.");
                     level.ctfgame.mapOn = level;

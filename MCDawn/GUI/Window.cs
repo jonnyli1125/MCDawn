@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Media;
 using System.Net;
@@ -81,6 +82,7 @@ namespace MCDawn.Gui
         private void Window_Load(object sender, EventArgs e) {
             try
             {
+                CheckForIllegalCrossThreadCalls = false;
                 thisWindow = this;
                 MaximizeBox = false;
                 this.Text = "<server name here>";
@@ -1944,9 +1946,9 @@ namespace MCDawn.Gui
         {
             try
             {
-                Level l = Level.Find(txtLevelName.Text);
-                if (File.Exists("levels/" + txtLevelName.Text + ".lvl") && l == null) { l = Level.Load(txtLevelName.Text); }
-                if (l == null) { MessageBox.Show("Level " + txtLevelName.Text + " could not be found.", "Map Editor"); return; }
+                Level l = Level.Find(txtMapEditorLevelName.Text);
+                if (l == null) { l = Level.Load(txtMapEditorLevelName.Text); }
+                if (l == null) { MessageBox.Show("Level " + txtMapEditorLevelName.Text + " could not be found.", "Map Editor"); return; }
                 ushort x, y, z;
                 if (!ushort.TryParse(txtMapEditorX.Text, out x) || (x >= l.width || x < 0)) { txtMapEditorX.Text = "0"; MessageBox.Show("Invalid x value.", "Map Editor"); return; }
                 if (!ushort.TryParse(txtMapEditorY.Text, out y) || (y >= l.height || y < 0)) { txtMapEditorY.Text = "0"; MessageBox.Show("Invalid y value.", "Map Editor"); return; }
@@ -1958,6 +1960,7 @@ namespace MCDawn.Gui
                 if (Block.Name(b).ToLower() == "unknown") { MessageBox.Show("Block could not be found.", "Map Editor"); return; }
                 l.SetTile(x, y, z, b); Player.GlobalBlockchange(l, x, y, z, b);
                 txtMapEditorCurrentBlock.Text = Block.Name(l.GetTile(x, y, z));
+                MapViewerUpdateLevel();
             }
             catch (Exception ex) { Server.ErrorLog(ex); return; }
         }
@@ -1966,14 +1969,15 @@ namespace MCDawn.Gui
         {
             try
             {
-                Level l = Level.Find(txtLevelName.Text);
-                if (File.Exists("levels/" + txtLevelName.Text + ".lvl") && l == null) { l = Level.Load(txtLevelName.Text); }
-                if (l == null) { MessageBox.Show("Level " + txtLevelName.Text + " could not be found.", "Map Editor"); return; }
+                Level l = Level.Find(txtMapEditorLevelName.Text);
+                if (l == null) { l = Level.Load(txtMapEditorLevelName.Text); }
+                if (l == null) { MessageBox.Show("Level " + txtMapEditorLevelName.Text + " could not be found.", "Map Editor"); return; }
                 ushort x, y, z;
                 if (!ushort.TryParse(txtMapEditorX.Text, out x) || (x >= l.width || x < 0)) { txtMapEditorX.Text = "0"; MessageBox.Show("Invalid x value.", "Map Editor"); return; }
                 if (!ushort.TryParse(txtMapEditorY.Text, out y) || (y >= l.height || y < 0)) { txtMapEditorY.Text = "0"; MessageBox.Show("Invalid y value.", "Map Editor"); return; }
                 if (!ushort.TryParse(txtMapEditorZ.Text, out z) || (z >= l.depth || z < 0)) { txtMapEditorZ.Text = "0"; MessageBox.Show("Invalid z value.", "Map Editor"); return; }
                 txtMapEditorCurrentBlock.Text = Block.Name(l.GetTile(x, y, z));
+                MapViewerUpdateLevel();
             }
             catch (Exception ex) { Server.ErrorLog(ex); return; }
         }
@@ -1985,19 +1989,48 @@ namespace MCDawn.Gui
 
         private void btnMapViewerUpdate_Click(object sender, EventArgs e)
         {
-            MapViewerUpdateBlock();
+            MapViewerUpdateLevel();
         }
 
-        public void MapViewerUpdateBlock()
+        public void MapViewerUpdateLevel()
         {
             try
             {
                 Level l = Level.Find(txtMapViewerLevelName.Text);
-                if (File.Exists("levels/" + txtLevelName.Text + ".lvl") && l == null) { l = Level.Load(txtLevelName.Text); }
+                if (l == null) { l = Level.Load(txtMapViewerLevelName.Text); }
                 if (l == null) { MessageBox.Show("Level could not be found.", "Map Viewer"); return; }
-                // incomplete, will finish latar
+                txtMapViewerX.Text = l.width.ToString();
+                txtMapViewerY.Text = l.height.ToString();
+                txtMapViewerZ.Text = l.depth.ToString();
+                int rotation = 0;
+                if (!int.TryParse(txtMapViewerRotation.Text, out rotation)) { MessageBox.Show("Invalid rotation (must be from 0-3).", "Map Viewer"); return; }
+                if (rotation < 0 || rotation > 3) { MessageBox.Show("Invalid rotation (must be from 0-3).", "Map Viewer"); return; }
+                IsoCat IsoCat = new IsoCat(l, IsoCatMode.Normal, rotation);
+                Rectangle r = new Rectangle(0, 0, picMapViewer.Width, picMapViewer.Height);
+                System.ComponentModel.BackgroundWorker bgw = new System.ComponentModel.BackgroundWorker();
+                bgw.WorkerReportsProgress = true;
+                MapViewerLastDrawn = IsoCat.Draw(out r, bgw);
+                picMapViewer.Image = MapViewerLastDrawn;
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
+        }
+        public Bitmap MapViewerLastDrawn;
+
+        private void btnMapViewerSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MapViewerUpdateLevel();
+                if (!Directory.Exists("extra/levelimages")) Directory.CreateDirectory("extra/levelimages");
+                int lastExisting = 0;
+                string saveLocation = "extra/levelimages/" + txtMapViewerLevelName.Text + " (" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ")";
+                while (File.Exists(saveLocation)) { saveLocation = "extra/levelimages/" + txtMapViewerLevelName.Text + " (" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ") (" + lastExisting + ")"; lastExisting++; }
+                saveLocation += ".png";
+                if (MapViewerLastDrawn != null) MapViewerLastDrawn.Save(saveLocation, ImageFormat.Png);
+                if (MessageBox.Show("Saved to " + saveLocation + "." + Environment.NewLine + "Would you like to display the image now?", "Map Viewer", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    Process.Start(Application.StartupPath + "/" + saveLocation);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
         }
     }
 }
