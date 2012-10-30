@@ -132,6 +132,10 @@ namespace MCDawn.Gui
             this.txtSystem = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.grpMapViewer = new System.Windows.Forms.GroupBox();
+            this.txtMapViewerZ = new System.Windows.Forms.TextBox();
+            this.txtMapViewerY = new System.Windows.Forms.TextBox();
+            this.txtMapViewerX = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.btnMapViewerSave = new System.Windows.Forms.Button();
             this.txtMapViewerRotation = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -315,10 +319,6 @@ namespace MCDawn.Gui
             this.label48 = new System.Windows.Forms.Label();
             this.btnGenerateRCKey = new System.Windows.Forms.Button();
             this.txtRCKey = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtMapViewerZ = new System.Windows.Forms.TextBox();
-            this.txtMapViewerY = new System.Windows.Forms.TextBox();
-            this.txtMapViewerX = new System.Windows.Forms.TextBox();
             this.playerStrip.SuspendLayout();
             this.mapsStrip.SuspendLayout();
             this.iconContext.SuspendLayout();
@@ -1062,6 +1062,42 @@ namespace MCDawn.Gui
             this.grpMapViewer.TabIndex = 1;
             this.grpMapViewer.TabStop = false;
             this.grpMapViewer.Text = "Map Viewer";
+            // 
+            // txtMapViewerZ
+            // 
+            this.txtMapViewerZ.Location = new System.Drawing.Point(540, 14);
+            this.txtMapViewerZ.Name = "txtMapViewerZ";
+            this.txtMapViewerZ.ReadOnly = true;
+            this.txtMapViewerZ.Size = new System.Drawing.Size(34, 21);
+            this.txtMapViewerZ.TabIndex = 19;
+            this.txtMapViewerZ.Text = "0";
+            // 
+            // txtMapViewerY
+            // 
+            this.txtMapViewerY.Location = new System.Drawing.Point(500, 14);
+            this.txtMapViewerY.Name = "txtMapViewerY";
+            this.txtMapViewerY.ReadOnly = true;
+            this.txtMapViewerY.Size = new System.Drawing.Size(34, 21);
+            this.txtMapViewerY.TabIndex = 18;
+            this.txtMapViewerY.Text = "0";
+            // 
+            // txtMapViewerX
+            // 
+            this.txtMapViewerX.Location = new System.Drawing.Point(460, 14);
+            this.txtMapViewerX.Name = "txtMapViewerX";
+            this.txtMapViewerX.ReadOnly = true;
+            this.txtMapViewerX.Size = new System.Drawing.Size(34, 21);
+            this.txtMapViewerX.TabIndex = 17;
+            this.txtMapViewerX.Text = "0";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(371, 17);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(83, 13);
+            this.label24.TabIndex = 16;
+            this.label24.Text = "Level Size (X,Y,Z):";
             // 
             // btnMapViewerSave
             // 
@@ -2965,42 +3001,6 @@ namespace MCDawn.Gui
             this.txtRCKey.Size = new System.Drawing.Size(132, 21);
             this.txtRCKey.TabIndex = 0;
             this.txtRCKey.TextChanged += new System.EventHandler(this.txtRCKey_TextChanged);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(371, 17);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(83, 13);
-            this.label24.TabIndex = 16;
-            this.label24.Text = "Level Size (X,Y,Z):";
-            // 
-            // txtMapViewerZ
-            // 
-            this.txtMapViewerZ.Location = new System.Drawing.Point(540, 14);
-            this.txtMapViewerZ.Name = "txtMapViewerZ";
-            this.txtMapViewerZ.ReadOnly = true;
-            this.txtMapViewerZ.Size = new System.Drawing.Size(34, 21);
-            this.txtMapViewerZ.TabIndex = 19;
-            this.txtMapViewerZ.Text = "0";
-            // 
-            // txtMapViewerY
-            // 
-            this.txtMapViewerY.Location = new System.Drawing.Point(500, 14);
-            this.txtMapViewerY.Name = "txtMapViewerY";
-            this.txtMapViewerY.ReadOnly = true;
-            this.txtMapViewerY.Size = new System.Drawing.Size(34, 21);
-            this.txtMapViewerY.TabIndex = 18;
-            this.txtMapViewerY.Text = "0";
-            // 
-            // txtMapViewerX
-            // 
-            this.txtMapViewerX.Location = new System.Drawing.Point(460, 14);
-            this.txtMapViewerX.Name = "txtMapViewerX";
-            this.txtMapViewerX.ReadOnly = true;
-            this.txtMapViewerX.Size = new System.Drawing.Size(34, 21);
-            this.txtMapViewerX.TabIndex = 17;
-            this.txtMapViewerX.Text = "0";
             // 
             // Window
             // 

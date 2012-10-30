@@ -25,7 +25,7 @@ namespace MCDawn
                 if (Group.Find(split[1]) != null) { zoneOwner = "grp" + Group.Find(split[1]).name; }
                 else if (Player.Find(split[1]) != null) { zoneOwner = Player.Find(split[1]).name; }
                 else { zoneOwner = split[1]; }
-                MySQL.executeQuery("INSERT INTO `Zone" + target + "` (SmallX, SmallY, SmallZ, BigX, BigY, BigZ, Owner) VALUES (" + 0 + ", " + 0 + ", " + 0 + ", " + (p.level.width - 1) + ", " + (p.level.height - 1) + ", " + (p.level.depth - 1) + ", '" + zoneOwner + "')");
+                MySQL.executeQuery("INSERT INTO `Zone" + target + "` (SmallX, SmallY, SmallZ, BigX, BigY, BigZ, Owner) VALUES (" + 0 + ", " + 0 + ", " + 0 + ", " + (p.level.width - 1) + ", " + (p.level.depth - 1) + ", " + (p.level.height - 1) + ", '" + zoneOwner + "')");
                 Player.SendMessage(p, "Zoned entire level " + target + " for &b" + zoneOwner);
                 if (level != null)
                 {
@@ -34,8 +34,8 @@ namespace MCDawn
                     Zn.smallY = 0;
                     Zn.smallZ = 0;
                     Zn.bigX = (ushort)(p.level.width - 1);
-                    Zn.bigY = (ushort)(p.level.height - 1);
-                    Zn.bigZ = (ushort)(p.level.depth - 1);
+                    Zn.bigY = (ushort)(p.level.depth - 1);
+                    Zn.bigZ = (ushort)(p.level.height - 1);
                     Zn.Owner = zoneOwner;
                     level.ZoneList.Add(Zn);
                 }
@@ -45,15 +45,15 @@ namespace MCDawn
                 if (Group.Find(split[0]) != null) { zoneOwner = "grp" + Group.Find(split[0]).name; }
                 else if (Player.Find(split[0]) != null) { zoneOwner = Player.Find(split[0]).name;  }
                 else { zoneOwner = split[0]; }
-                MySQL.executeQuery("INSERT INTO `Zone" + p.level.name + "` (SmallX, SmallY, SmallZ, BigX, BigY, BigZ, Owner) VALUES (" + 0 + ", " + 0 + ", " + 0 + ", " + (p.level.width - 1) + ", " + (p.level.height - 1) + ", " + (p.level.depth - 1) + ", '" + zoneOwner + "')");
+                MySQL.executeQuery("INSERT INTO `Zone" + p.level.name + "` (SmallX, SmallY, SmallZ, BigX, BigY, BigZ, Owner) VALUES (" + 0 + ", " + 0 + ", " + 0 + ", " + (p.level.width - 1) + ", " + (p.level.depth - 1) + ", " + (p.level.height - 1) + ", '" + zoneOwner + "')");
                 Player.SendMessage(p, "Zoned entire level " + p.level.name + " for &b" + zoneOwner);
                 Level.Zone Zn;
                 Zn.smallX = 0;
                 Zn.smallY = 0;
                 Zn.smallZ = 0;
                 Zn.bigX = (ushort)(p.level.width - 1);
-                Zn.bigY = (ushort)(p.level.height - 1);
-                Zn.bigZ = (ushort)(p.level.depth - 1);
+                Zn.bigY = (ushort)(p.level.depth - 1);
+                Zn.bigZ = (ushort)(p.level.height - 1);
                 Zn.Owner = zoneOwner;
                 p.level.ZoneList.Add(Zn);
             }

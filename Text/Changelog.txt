@@ -8,6 +8,7 @@ MCDawn 1.0.1.5
 	-/save - If correct amount of arguments given, it won't error when executed from Console now.
 	-/throttle - If set to 0, throttling will be turned off (building commands will go at full speed).
 	-/unload empty - Works as intended now.
+	-/zoneall - Fixed to work properly on non perfect cube levels.
 -Added Omni-Banning and Global-Banning for servers / consoles.
 -Map Editor/Viewer tab complete, added fCraft IsoCat Map Viewer.
 	
