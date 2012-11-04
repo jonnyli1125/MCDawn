@@ -122,6 +122,8 @@ namespace MCDawn
         public string PushBalltempcolor = "";
         public string PushBalltempprefix = "";
         public int pushBallGoals = 0;
+        // Fallout
+        public bool FalloutAlive = true;
 
         public bool deleteMode = false;
         public bool ignorePermission = false;
@@ -990,7 +992,7 @@ namespace MCDawn
                     return; 
                 }
                 
-                if (name.Length > 16 || !ValidName(name)) 
+                if (!ValidName(name)) 
                 {
                     try
                     {
@@ -1005,7 +1007,7 @@ namespace MCDawn
                     }
                     catch { }
                     Kick("Illegal name!"); 
-                    return; 
+                    return;
                 }
 
                 bool wompasswordverified = false;
@@ -4597,8 +4599,13 @@ namespace MCDawn
         }
         public static bool ValidName(string name)
         {
+            if (name.Length > 16) return false;
             string allowedchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890._";
-            foreach (char ch in name) { if (allowedchars.IndexOf(ch) == -1) { return false; } } return true;
+            if (!name.Contains("@")) 
+                foreach (char ch in name) { if (allowedchars.IndexOf(ch) == -1) return false; }
+            else 
+                if (!Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")) return false;
+            return true;
         }
         public static byte[] GZip(byte[] bytes)
         {
