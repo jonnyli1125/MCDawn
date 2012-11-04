@@ -240,6 +240,7 @@
     <Compile Include="Commands\GameControl\Games\Spleef.cs" />
     <Compile Include="Commands\GameControl\State.cs" />
     <Compile Include="Commands\Other\CmdSetWomPass.cs" />
+    <Compile Include="Games\Fallout.cs" />
     <Compile Include="Games\PushBall.cs" />
     <Compile Include="GUI\AddRemoveRemote.cs">
       <SubType>Form</SubType>
