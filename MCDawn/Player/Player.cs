@@ -383,6 +383,7 @@ namespace MCDawn
 
         public bool loggedIn = false;
 
+        public bool IsLocalhostIP(string ip) { return (ip.StartsWith("127.0.0.") || ip.StartsWith("192.168.") || ip.StartsWith("10.10.")); }
         public Player(Socket s)
         {
             try
@@ -390,9 +391,9 @@ namespace MCDawn
                 socket = s;
                 ip = socket.RemoteEndPoint.ToString().Split(':')[0];
                 Server.s.Log(ip + " connected to the server.");
-                if (Server.useMaxMind) countryName = Server.iploopup.getCountry(IPAddress.Parse(ip)).getName();
+                if (Server.useMaxMind) countryName = Server.iploopup.getCountry(IPAddress.Parse(IsLocalhostIP(ip) ? Server.GetIPAddress() : ip)).getName();
                 else countryName = "N/A";
-                if (ip.StartsWith("127.0.0.") || ip.StartsWith("192.168.") || ip.StartsWith("10.10.")) countryName = "Localhost";
+                if (IsLocalhostIP(ip)) countryName = "Localhost (" + countryName + ")";
 
                 for (byte i = 0; i < 128; ++i) bindings[i] = i;
 
@@ -992,7 +993,7 @@ namespace MCDawn
                     return; 
                 }
                 
-                if (!ValidName(name)) 
+                if (!ValidName(name))
                 {
                     try
                     {
@@ -1006,7 +1007,7 @@ namespace MCDawn
                         }
                     }
                     catch { }
-                    Kick("Illegal name!"); 
+                    Kick((name.Contains("@")) ? "Don't use a 3rd party game client with a migrated account!" : "Illegal name!");
                     return;
                 }
 
@@ -4601,10 +4602,10 @@ namespace MCDawn
         {
             if (name.Length > 16) return false;
             string allowedchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890._";
-            if (!name.Contains("@")) 
+            //if (!name.Contains("@")) 
                 foreach (char ch in name) { if (allowedchars.IndexOf(ch) == -1) return false; }
-            else 
-                if (!Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")) return false;
+            //else 
+            //    if (!Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")) return false;
             return true;
         }
         public static byte[] GZip(byte[] bytes)

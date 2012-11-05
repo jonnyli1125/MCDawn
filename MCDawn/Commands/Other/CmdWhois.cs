@@ -29,9 +29,7 @@ namespace MCDawn
                 //int ratio = (int)(Math.Round((decimal)(1 / (Math.Min(who.destroyedBlocks, (who.overallBlocks - who.destroyedBlocks)) / Math.Max(who.destroyedBlocks, (who.overallBlocks - who.destroyedBlocks))))));
                 try { Player.SendMessage(p, "> > destroyed &a" + who.destroyedBlocks + Server.DefaultColor + " blocks, and built &a" + who.builtBlocks + Server.DefaultColor + "."); }
                 catch { }
-                // MaxMind
-                string countryname = Server.iploopup.getCountry(IPAddress.Parse(who.ip)).getName();
-                if (Server.useMaxMind) { Player.SendMessage(p, "> > logged in from country &a" + countryname); }
+                if (Server.useMaxMind) { Player.SendMessage(p, "> > logged in from country &a" + who.countryName); }
                 Player.SendMessage(p, "> > time spent on server: &a" + who.timeSpent.Split(' ')[0] + " Days, " + who.timeSpent.Split(' ')[1] + " Hours, " + who.timeSpent.Split(' ')[2] + " Minutes.");
                 string storedTime = Convert.ToDateTime(DateTime.Now.Subtract(who.timeLogged).ToString()).ToString("HH:mm:ss");
                 Player.SendMessage(p, "> > been logged in for &a" + storedTime);
