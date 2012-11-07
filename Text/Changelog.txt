@@ -9,6 +9,7 @@ MCDawn 1.0.1.5
 	-/throttle - If set to 0, throttling will be turned off (building commands will go at full speed).
 	-/unload empty - Works as intended now.
 	-/zoneall - Fixed to work properly on non perfect cube levels.
+	-/reveal all - Instead of reloading the map for each player at once, it will do all at the same time.
 -Added Omni-Banning and Global-Banning for servers / consoles.
 -Map Editor/Viewer tab complete, added fCraft IsoCat Map Viewer.
 -On login, if player is not using minecraft.net's game client and they are using a migrated account, instead of kicking for "illegal name" it will tell them to use minecraft.net's client instead.

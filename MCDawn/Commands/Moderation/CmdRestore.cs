@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading;
 
 namespace MCDawn
 {
@@ -18,7 +19,7 @@ namespace MCDawn
 
             if (message != "")
             {
-                Server.s.Log(@Server.backupLocation + "/" + p.level.name + "/" + message + "/" + p.level.name + ".lvl");
+                Server.s.Log("Restore: " + @Server.backupLocation + "/" + p.level.name + "/" + message + "/" + p.level.name + ".lvl");
                 if (File.Exists(@Server.backupLocation + "/" + p.level.name + "/" + message + "/" + p.level.name + ".lvl"))
                 {
                     try
@@ -40,7 +41,13 @@ namespace MCDawn
                             p.level.setPhysics(0);
                             p.level.ClearPhysics();
 
-                            Command.all.Find("reveal").Use(p, "all");
+                            p.level.players.ForEach(pl => {
+                                Thread t = new Thread(new ThreadStart(delegate {
+                                    try { Command.all.Find("reveal").Use(pl, ""); }
+                                    catch (Exception ex) { Server.ErrorLog(ex); }
+                                })); 
+                                t.Start();
+                            });
                         }
                         else
                         {
@@ -49,7 +56,7 @@ namespace MCDawn
                         }
 
                     }
-                    catch { Server.s.Log("Restore fail"); }
+                    catch (Exception ex) { Server.s.Log("Restore fail"); Server.ErrorLog(ex); }
                 }
                 else { Player.SendMessage(p, "Backup " + message + " does not exist."); }
             }

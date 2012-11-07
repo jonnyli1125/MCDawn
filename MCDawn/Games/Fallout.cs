@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 // Game where there's a grid, and there are 2x2 squares, they start out yellow, turn orange, then red, and then disappear, last man surviving wins.
 // Basically "automated spleef".
@@ -44,7 +45,13 @@ namespace MCDawn
             Level.Instant = false;
             Level.permissionbuild = olp;
             if (Level.players.Count > 0)
-                Level.players.ForEach(p => { Command.all.Find("reveal").Use(p, ""); });
+                Level.players.ForEach(p => {
+                    Thread t = new Thread(new ThreadStart(delegate {
+                        try { Command.all.Find("reveal").Use(p, ""); }
+                        catch (Exception ex) { Server.ErrorLog(ex); }
+                    }));
+                    t.Start();
+                });
             Player.GlobalMessageLevel(Level, "Finished creating Fallout level.");
         }
 
@@ -72,7 +79,13 @@ namespace MCDawn
                         Level.ClearPhysics();
 
                         if (Level.players.Count > 0)
-                            Level.players.ForEach(p => { Command.all.Find("reveal").Use(p, ""); });
+                            Level.players.ForEach(p => {
+                                Thread t = new Thread(new ThreadStart(delegate {
+                                    try { Command.all.Find("reveal").Use(p, ""); }
+                                    catch (Exception ex) { Server.ErrorLog(ex); }
+                                }));
+                                t.Start();
+                            });
                     }
                     else
                     {

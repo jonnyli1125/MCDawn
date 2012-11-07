@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace MCDawn
 {
@@ -30,7 +31,13 @@ namespace MCDawn
 
             if (p.level.Instant)
                 Command.all.Find("map").Use(p, "instant");
-            Command.all.Find("reveal").Use(p, "all");
+            p.level.players.ForEach(pl => {
+                Thread t = new Thread(new ThreadStart(delegate {
+                    try { Command.all.Find("reveal").Use(pl, ""); }
+                    catch (Exception ex) { Server.ErrorLog(ex); }
+                }));
+                t.Start();
+            });
             Command.all.Find("physics").Use(p, phys.ToString());
             Player.GlobalMessage("Map has been Unflooded!");
         

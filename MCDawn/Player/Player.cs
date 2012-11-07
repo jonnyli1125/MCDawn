@@ -993,7 +993,7 @@ namespace MCDawn
                     return; 
                 }
                 
-                if (!ValidName(name))
+                if (name.Length > 16 || !ValidName(name))
                 {
                     try
                     {
@@ -1001,13 +1001,13 @@ namespace MCDawn
                         {
                             if (this != null)
                             {
-                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Illegal Name).");
-                                Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Illegal Name).");
+                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (" + (Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$") ? "Illegal Name" : "3rd party game client with migrated account") + ").");
+                                Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (" + (Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$") ? "Illegal Name" : "3rd party game client with migrated account") + ").");
                             }
                         }
                     }
                     catch { }
-                    Kick((name.Contains("@")) ? "Don't use a 3rd party game client with a migrated account!" : "Illegal name!");
+                    Kick(Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$") ? "Don't use a 3rd party game client with a migrated account!" : "Illegal name!");
                     return;
                 }
 
@@ -4600,13 +4600,8 @@ namespace MCDawn
         }
         public static bool ValidName(string name)
         {
-            if (name.Length > 16) return false;
             string allowedchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890._";
-            //if (!name.Contains("@")) 
-                foreach (char ch in name) { if (allowedchars.IndexOf(ch) == -1) return false; }
-            //else 
-            //    if (!Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")) return false;
-            return true;
+            foreach (char ch in name) { if (allowedchars.IndexOf(ch) == -1) return false; } return true;
         }
         public static byte[] GZip(byte[] bytes)
         {
