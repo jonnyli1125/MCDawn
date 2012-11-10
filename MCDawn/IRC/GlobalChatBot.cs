@@ -142,6 +142,8 @@ namespace MCDawn
                         if (Server.globalNick.ToLower() == temp.Split(' ')[1].ToLower())
                         {
                             Say("^NAME: " + Server.name, true);
+                            Say("^IP: " + Server.GetIPAddress(), true);
+                            Say("^PORT: " + Server.port, true);
                             Say("^MOTD: " + Server.motd, true);
                             Say("^VERSION: " + Server.Version, true);
                             Say("^GLOBAL NAME: " + Server.globalNick, true);

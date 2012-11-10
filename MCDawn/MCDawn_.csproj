@@ -258,7 +258,7 @@
     <Compile Include="Games\GunGame.cs" />
     <Compile Include="Games\Infection.cs" />
     <Compile Include="Games\Spleef.cs" />
-    <Compile Include="GlobalChatBot.cs" />
+    <Compile Include="IRC\GlobalChatBot.cs" />
     <Compile Include="FindReference.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Commands\Moderation\CmdBotAdd.cs" />
@@ -425,7 +425,7 @@
       <DependentUpon>Updater.cs</DependentUpon>
     </Compile>
     <Compile Include="Heartbeat.cs" />
-    <Compile Include="IRCBot.cs" />
+    <Compile Include="IRC\IRCBot.cs" />
     <Compile Include="Levels\Level.cs" />
     <Compile Include="Levels\ConvertDAT.cs" />
     <Compile Include="MaxMind\DatabaseInfo.cs" />

@@ -3,7 +3,7 @@ MCDawn 1.0.1.5
 -ProfanityFilter fixed to work properly, and not throw OutOfMemoryExceptions.
 -Anti-Caps and Anti-Spam features fixed to work properly now.
 -Fixed small Admin Security System bug.
--If GeoIP is enabled, players connecting from local IP addresses (same network / machine) now have their countries shown as "Localhost" instead of "N/A".
+-If GeoIP is enabled, players connecting from local IP addresses (same network/machine) now have their countries shown as "Localhost (CountryName)" instead of "N/A".
 -Updated Commands
 	-/save - If correct amount of arguments given, it won't error when executed from Console now.
 	-/throttle - If set to 0, throttling will be turned off (building commands will go at full speed).
