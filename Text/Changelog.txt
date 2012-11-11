@@ -13,6 +13,7 @@ MCDawn 1.0.1.5
 -Added Omni-Banning and Global-Banning for servers / consoles.
 -Map Editor/Viewer tab complete, added fCraft IsoCat Map Viewer.
 -On login, if player is not using minecraft.net's game client and they are using a migrated account, instead of kicking for "illegal name" it will tell them to use minecraft.net's client instead.
+-Heartbeat URL changed back to HTTP instead of HTTPS.
 
 MCDawn 1.0.1.4
 -Building commands "throttle" redone, now goes on a scale of 1 to 200 (Determines how many blocks to set in 100 ms).

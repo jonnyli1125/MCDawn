@@ -71,7 +71,7 @@ namespace MCDawn
         {
             string postVars = staticVars;
 
-            string url = "https://minecraft.net/heartbeat.jsp";
+            string url = "http://minecraft.net/heartbeat.jsp";
             int totalTries = 0;
         retry: try
             {
