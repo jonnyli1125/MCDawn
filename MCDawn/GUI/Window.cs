@@ -175,9 +175,6 @@ namespace MCDawn.Gui
                 {
                     temp = d.Substring(0, 1);
                     temp = temp.ToUpper() + d.Remove(0, 1);
-                    //if (temp.ToLower() == "jonnyli1125") { temp = "Jonnyli1125 (Founder)"; }
-                    if (temp.ToLower() == "schmidty56789") { temp = "ScHmIdTy56789"; }
-                    if (temp.ToLower() == "serado") { temp = "[Sinjai] Serado"; }
                     liDevs.Items.Add(temp);
                 }
                 // StaffList
@@ -192,9 +189,7 @@ namespace MCDawn.Gui
                 {
                     temp = d.Substring(0, 1);
                     temp = temp.ToUpper() + d.Remove(0, 1);
-                    //if (temp.ToLower() == "jonnyli1125") { temp = "Jonnyli1125 (Founder)"; }
-                    if (temp.ToLower() == "storm_resurge") { temp = "[Sillyboyization] Storm_ReSurge"; }
-                    if (temp.ToLower() != "sillyboyization") { liAdministration.Items.Add(temp); }
+                    liAdministration.Items.Add(temp);
                 }
                 lblCurVersion.Text = Server.Version;
                 lblLatestVersion.Text = Server.LatestVersion();

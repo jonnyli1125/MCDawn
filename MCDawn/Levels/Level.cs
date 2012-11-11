@@ -197,33 +197,37 @@ namespace MCDawn
         public ushort[,] shadows;
         public void CalculateShadows()
         {
-            if (shadows != null) return;
-
-            shadows = new ushort[width, height];
-            for (ushort x = 0; x < width; x++)
+            try
             {
-                for (ushort y = 0; y < depth; y++)
+                if (shadows != null) return;
+
+                shadows = new ushort[width, height];
+                for (ushort x = 0; x < width; x++)
                 {
-                    for (ushort z = (ushort)(height - 1); z >= 0; z--)
+                    for (ushort y = 0; y < depth; y++)
                     {
-                        switch (GetTile(x, z, y))
+                        for (ushort z = (ushort)(height - 1); z >= 0; z--)
                         {
-                            case Block.air:
-                            case Block.mushroom:
-                            case Block.glass:
-                            case Block.leaf:
-                            case Block.redflower:
-                            case Block.redmushroom:
-                            case Block.yellowflower:
-                                continue;
-                            default:
-                                shadows[x, z] = y;
-                                break;
+                            switch (GetTile(x, z, y))
+                            {
+                                case Block.air:
+                                case Block.mushroom:
+                                case Block.glass:
+                                case Block.leaf:
+                                case Block.redflower:
+                                case Block.redmushroom:
+                                case Block.yellowflower:
+                                    continue;
+                                default:
+                                    shadows[x, z] = y;
+                                    break;
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
             }
+            catch { shadows = new ushort[width, height]; }
         }
 
         public Level(string n, ushort x, ushort y, ushort z, string type, byte b = 20)

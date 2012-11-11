@@ -18,36 +18,18 @@ namespace MCDawn
             string temp;
             foreach (string dev in Server.devs)
             {
-                if (dev == "schmidty56789")
-                {
-                    devlist += "ScHmIdTy56789, ";
-                }
-                else
-                {
-                    temp = dev.Substring(0, 1);
-                    temp = temp.ToUpper() + dev.Remove(0, 1);
-                    devlist += temp + ", ";
-                }
+                temp = dev.Substring(0, 1);
+                temp = temp.ToUpper() + dev.Remove(0, 1);
+                devlist += temp + ", ";
             }
             devlist = devlist.Remove(devlist.Length - 2);
             Player.SendMessage(p, "&9MCDawn Development Team: " + Server.DefaultColor + devlist);
 
-            string adminlist = "";
+            /*string adminlist = "";
             string temp3;
             foreach (string admin in Server.administration)
             {
-                if (admin == "sillyboyization")
-                {
-                    adminlist += "[Sillyboyization] ";
-                }
-                else if (admin == "storm_resurge")
-                {
-                    adminlist += "Storm_ReSurge, ";
-                }
-                else if (admin == "epidermik")
-                {
-                    adminlist += "EpidermiK, ";
-                }
+                if (admin == "epidermik") adminlist += "EpidermiK, ";
                 else
                 {
                     temp3 = admin.Substring(0, 1);
@@ -56,7 +38,7 @@ namespace MCDawn
                 }
             }
             adminlist = adminlist.Remove(adminlist.Length - 2);
-            Player.SendMessage(p, "&6MCDawn Administration Team: " + Server.DefaultColor + adminlist);
+            Player.SendMessage(p, "&6MCDawn Administration Team: " + Server.DefaultColor + adminlist);*/
 
             /*try
             {

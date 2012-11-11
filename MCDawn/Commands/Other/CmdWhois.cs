@@ -61,7 +61,7 @@ namespace MCDawn
                     if (Server.whiteList.Contains(who.name))
                         Player.SendMessage(p, "> > Player is &fWhitelisted");
                 if (Server.devs.Contains(who.name.ToLower()))
-                    Player.SendMessage(p, Server.DefaultColor + "> > Player is a &9Developer");
+                    Player.SendMessage(p, Server.DefaultColor + "> > Player is a &Developer");
                 if (Server.staff.Contains(who.name.ToLower()))
                     Player.SendMessage(p, Server.DefaultColor + "> > Player is a member of &4MCDawn Staff");
                 if (Server.administration.Contains(who.name.ToLower()))

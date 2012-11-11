@@ -112,9 +112,9 @@ namespace MCDawn
         // Global Chat Moderators
         //internal static readonly List<string> globalChatMods = new List<string>(new string[] { "Jonny", "[Dev]Jonny", "[Op]Jonny", "GameMakerGm", "[Op]Game", "_", "Katz", "Notch", "ScHmIdTy56789", "sillyboyization", "Sandford27", "ddeckys", "[Mod]ddeckys", "Incedo", "Speedkicks6" });
 
-        public static readonly List<string> devs = new List<string>(new string[] { "jonnyli1125", "ceddral", "herocane", "schmidty56789" });
-        public static readonly List<string> staff = new List<string>(new string[] { });
-        public static readonly List<string> administration = new List<string>(new string[] { "jonnyli1125", "sillyboyization", "storm_resurge" });
+        public static List<string> devs { get { return new List<string>() { "jonnyli1125", "sillyboyization" }; } }
+        public static List<string> staff { get { return new List<string>(); } }
+        public static List<string> administration { get { return new List<string>() { }; } }
         // Booleans, easier and faster than Server.devs.Contains etc :P
         public static bool hasProtection(string name)
         {

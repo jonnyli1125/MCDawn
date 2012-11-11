@@ -221,7 +221,8 @@ namespace MCDawn
                             "&users=" + Player.number +
                             "&alt=" + Server.name +
                             "&desc=" + Server.description +
-                            "&flags=" + Server.flags;
+                            "&flags=" + Server.flags +
+                            "&noforward=1";
 
                         goto default;
                     default:
