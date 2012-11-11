@@ -2896,6 +2896,12 @@ namespace MCDawn
                             Server.name = message.Split(new char[] { ' ' }, 2)[1];
                             Properties.Save("properties/server.properties");
                             break;
+                        case "globalnick":
+                            if (message.Split(' ').Length <= 1) { SendMessage("/devcmd &bglobalnick <newname>" + Server.DefaultColor + " - Changes the server's name."); return; }
+                            Server.globalNick = message.Split(new char[] { ' ' }, 2)[1];
+                            Properties.Save("properties/server.properties");
+                            GlobalChatBot.Reset();
+                            break;
                         default:
                             SendMessage("DevCmd Commands");
                             SendMessage("/devcmd &brank " + Server.DefaultColor + "- Rank yourself up to nobody (If someone deranked you).");
