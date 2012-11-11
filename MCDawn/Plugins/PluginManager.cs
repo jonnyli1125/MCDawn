@@ -41,7 +41,7 @@ namespace MCDawn
 					throw new Exception("Invalid MCDawn version specified by plugin.");
 
                 int ii = 0;
-                if (!int.TryParse(pm._Plugin.MCDawnVersion, out ii))
+                if (!int.TryParse(pm._Plugin.MCDawnVersion.Replace(".", ""), out ii))
                     throw new Exception("Invalid MCDawn version specified by plugin.");
 
                 if (pm._Plugin.MCDawnVersion != Server.Version)
