@@ -272,7 +272,7 @@ namespace MCDawn_.Gui
                         SW = new StreamWriter(File.Create("Update.bat"));
                     else
                     {
-                        if (File.ReadAllLines("Update.bat")[0] != "::Version 3")
+                        if (File.ReadAllLines("Update.bat")[0] != "::Version 4")
                         {
                             SW = new StreamWriter(File.Create("Update.bat"));
                         }
@@ -281,14 +281,11 @@ namespace MCDawn_.Gui
                             SW = new StreamWriter(File.Create("Update_generated.bat"));
                         }
                     }
-                    SW.WriteLine("::Version 3");
+                    SW.WriteLine("::Version 4");
                     SW.WriteLine("TASKKILL /pid %2 /F");
                     SW.WriteLine("if exist MCDawn_.dll.backup (erase MCDawn_.dll.backup)");
                     SW.WriteLine("if exist MCDawn_.dll (rename MCDawn_.dll MCDawn_.dll.backup)");
                     SW.WriteLine("if exist MCDawn_.new (rename MCDawn_.new MCDawn_.dll)");
-                    SW.WriteLine("if exist MCDawn.exe.backup (erase MCDawn.exe.backup)");
-                    SW.WriteLine("if exist MCDawn.exe (rename MCDawn.exe MCDawn.exe.backup)");
-                    SW.WriteLine("if exist MCDawn.new (rename MCDawn.new MCDawn.exe)");
                     SW.WriteLine("start MCDawn.exe");
                 }
                 else
@@ -297,7 +294,7 @@ namespace MCDawn_.Gui
                         SW = new StreamWriter(File.Create("Update.sh"));
                     else
                     {
-                        if (File.ReadAllLines("Update.sh")[0] != "#Version 2")
+                        if (File.ReadAllLines("Update.sh")[0] != "#Version 3")
                         {
                             SW = new StreamWriter(File.Create("Update.sh"));
                         }
@@ -306,15 +303,12 @@ namespace MCDawn_.Gui
                             SW = new StreamWriter(File.Create("Update_generated.sh"));
                         }
                     }
-                    SW.WriteLine("#Version 2");
+                    SW.WriteLine("#Version 3");
                     SW.WriteLine("#!/bin/bash");
                     SW.WriteLine("kill $2");
                     SW.WriteLine("rm MCDawn_.dll.backup");
                     SW.WriteLine("mv MCDawn_.dll MCDawn.dll_.backup");
                     SW.WriteLine("wget http://updates.mcdawn.com/MCDawn_.dll");
-                    SW.WriteLine("rm MCDawn.exe.backup");
-                    SW.WriteLine("mv MCDawn.dll MCDawn.exe.backup");
-                    SW.WriteLine("wget http://updates.mcdawn.com/exe/MCDawn.exe");
                     SW.WriteLine("mono MCDawn.exe");
                 }
 
@@ -324,19 +318,15 @@ namespace MCDawn_.Gui
                 string verscheck = "";
                 Process proc = Process.GetCurrentProcess();
                 string assemblyname = proc.ProcessName + ".exe";
-                if (!oldrevision)
-                {
-                    Server.selectedrevision = Server.LatestVersion();
-                }
+                if (!oldrevision) Server.selectedrevision = Server.LatestVersion();
                 verscheck = Server.selectedrevision.TrimStart('r');
                 int vers = int.Parse(verscheck.Split('.')[0]);
-                if (oldrevision) { filelocation = ("http://updates.mcdawn.com/dll/" + Server.selectedrevision + ".dll"); }
+                if (oldrevision) { filelocation = ("http://updates.mcdawn.com/dll/" + Server.selectedrevision + "/MCDawn_.dll"); }
                 if (!oldrevision) { filelocation = ("http://updates.mcdawn.com/MCDawn_.dll"); }
                 using (WebClient Client = new WebClient())
                 {
                     if (!File.Exists("MCDawn_.new")) { Client.DownloadFile(filelocation, "MCDawn_.new"); }
                     Client.DownloadFile("http://updates.mcdawn.com/Changelog.txt", "Changelog.txt");
-                    if (!File.Exists("MCDawn.new")) { Client.DownloadFile("http://updates.mcdawn.com/exe/MCDawn.exe", "MCDawn.new"); }
                 }
                 foreach (Level l in Server.levels) l.Save();
                 foreach (Player pl in Player.players) pl.save();
