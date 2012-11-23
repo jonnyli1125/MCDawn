@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -15,7 +17,7 @@ namespace MCDawn
         static string nick = Server.ircNick;
         static Thread ircThread;
 
-        static string[] names;
+        static Dictionary<string, List<string>> ChannelUsers = new Dictionary<string, List<string>>();
 
         public IRCBot()
         {
@@ -70,8 +72,19 @@ namespace MCDawn
 
         void OnNames(object sender, NamesEventArgs e)
         {
-            names = e.UserList;
+            if (ChannelUsers.ContainsKey(e.Data.Channel))
+                ChannelUsers.Remove(e.Data.Channel);
+            ChannelUsers.Add(e.Data.Channel, new List<string>(e.UserList));
         }
+
+        public static List<string> GetChannelUsers(string channel)
+        {
+            List<string> users = new List<string>();
+            if (ChannelUsers.TryGetValue(channel, out users))
+                return users;
+            else return new List<string>();
+        }
+
         void OnDisconnected(object sender, EventArgs e)
         {
             try { irc.Connect(server, 6667); }
@@ -395,10 +408,6 @@ namespace MCDawn
                 }
             }));
             ircThread.Start();
-        }
-        public static string[] GetConnectedUsers()
-        {
-            return names;
         }
 
         public static void ShutDown()

@@ -11,9 +11,7 @@ namespace MCDawn
         static IrcClient globalchat = new IrcClient();
         static string server = "irc.synirc.net";
         static string channel = "#MCDawn";
-        static string devchannel = "#Dev";
-        //static string globalPass = "hopeful";
-        //static string devGlobalPass = "voltage";
+        static string devchannel = "#MCDawn.Devs";
         static string nick = Server.globalNick;
         static Thread globalThread;
 

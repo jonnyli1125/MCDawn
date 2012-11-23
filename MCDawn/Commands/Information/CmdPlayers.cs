@@ -85,7 +85,10 @@ namespace MCDawn
                         }
                     }
                 }
-                Player.SendMessage(p, "There are " + totalPlayers + " players online.");
+                Player.SendMessage(p, "There are " + totalPlayers + " players online " + 
+                    (Server.irc ? ("(" + IRCBot.GetChannelUsers(Server.ircChannel).Count + " users on IRC" + 
+                    ((p == null || (p != null && p.group.Permission > Server.opchatperm)) ? ", " + 
+                    IRCBot.GetChannelUsers(Server.ircOpChannel).Count + " users on OP IRC" : "") + ")") : "") + ".");
                 if (devs.Length > 0) { Player.SendMessage(p, ":&9Developers:" + Server.DefaultColor + devs.Trim(',')); }
                 for (int i = playerList.Count - 1; i >= 0; i--)
                 {
@@ -105,6 +108,12 @@ namespace MCDawn
                 }
                 if (unverified.Length > 0) { Player.SendMessage(p, ":&3Admin Security System:" + Server.DefaultColor + unverified.Trim(',')); }
                 //if (devUnverified.Length > 0) { Player.SendMessage(p, ":&3Developer Security System:" + Server.DefaultColor + unverified.Trim(',')); }
+                if (Server.irc)
+                {
+                    Player.SendMessage(p, Server.IRCColour + "(IRC) " + Server.ircChannel + ": " + String.Join(", ", IRCBot.GetChannelUsers(Server.ircChannel).ToArray()));
+                    if (p == null || (p != null && p.group.Permission > Server.opchatperm))
+                        Player.SendMessage(p, Server.IRCColour + "(OP IRC) " + Server.ircOpChannel + ": " + String.Join(", ", IRCBot.GetChannelUsers(Server.ircOpChannel).ToArray()));
+                }
             }
             catch (Exception e) { Server.ErrorLog(e); }
         }

@@ -35,29 +35,14 @@ namespace MCDawn
                 if (ircdetails != "")
                 {
                     Player.SendMessage(p, "Location: " + ircdetails);
-                    Player.SendMessage(p, "Current users in IRC channel:");
-                    try
+                    Player.SendMessage(p, "Current users in IRC channels:");
+                    string[] names = IRCBot.GetChannelUsers(Server.ircChannel).ToArray();
+                    Player.SendMessage(p, "(IRC) " + Server.ircChannel + ": " + (names.Length > 0 ? String.Join(", ", names) : "None"));
+                    if (p == null || (p != null && p.group.Permission > Server.opchatperm))
                     {
-                        if (IRCBot.GetConnectedUsers().Length > 0)
-                            try
-                            {
-                                foreach (string user in IRCBot.GetConnectedUsers())
-                                {
-                                    try
-                                    {
-                                        if (!Char.IsLetter(user[0]))
-                                            Player.SendMessage(p, user.Substring(1));
-                                        else
-                                            Player.SendMessage(p, user);
-                                    }
-                                    catch { }
-                                }
-                            }
-                            catch { }
-                        else
-                            Player.SendMessage(p, "None");
+                        names = IRCBot.GetChannelUsers(Server.ircOpChannel).ToArray();
+                        Player.SendMessage(p, "(OP IRC) " + Server.ircOpChannel + ": " + (names.Length > 0 ? String.Join(", ", names) : "None"));
                     }
-                    catch { }
                 }
             }
         }
