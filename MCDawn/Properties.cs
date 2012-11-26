@@ -428,7 +428,7 @@ namespace MCDawn
                                 catch { Server.s.Log("Invalid " + key + ". Using default."); break; }
                                 break;
                             case "globalnick":
-                                if (value != "") Server.globalNick = validNick(value);
+                                if (value != "") Server.globalNick = String.IsNullOrEmpty(value) ? value : Player.ValidIRCNick(value);
                                 break;
                             case "global-identify":
                                 try { Server.globalIdentify = bool.Parse(value); }
@@ -715,7 +715,7 @@ namespace MCDawn
                     w.WriteLine();
                     w.WriteLine("# irc bot options");
                     w.WriteLine("irc = " + Server.irc.ToString().ToLower());
-                    w.WriteLine("irc-nick = " + validNick(Server.ircNick));
+                    w.WriteLine("irc-nick = " + (String.IsNullOrEmpty(Server.ircNick) ? Server.ircNick : Player.ValidIRCNick(Server.ircNick)));
                     w.WriteLine("irc-server = " + Server.ircServer);
                     w.WriteLine("irc-channel = " + Server.ircChannel);
                     w.WriteLine("irc-opchannel = " + Server.ircOpChannel);
@@ -809,7 +809,7 @@ namespace MCDawn
                     w.WriteLine("anticapsstyle = " + Server.antiCapsStyle);
                     w.WriteLine("capsrequired = " + Server.capsRequired.ToString());
                     w.WriteLine("useglobal = " + Server.useglobal.ToString().ToLower());
-                    w.WriteLine("globalnick = " + validNick(Server.globalNick));
+                    w.WriteLine("globalnick = " + (String.IsNullOrEmpty(Server.globalNick) ? Server.globalNick : Player.ValidIRCNick(Server.globalNick)));
                     w.WriteLine("global-identify = " + Server.globalIdentify.ToString().ToLower());
                     w.WriteLine("global-password = " + Server.globalPassword);
                     w.WriteLine("adminsecurity = " + Server.adminsecurity.ToString().ToLower());
@@ -846,13 +846,6 @@ namespace MCDawn
             {
                 Server.s.Log("SAVE FAILED! " + givenPath);
             }
-        }
-        static string validNick(string value)
-        {
-            while (!Char.IsLetter(value[0])) { value = value.Substring(1); }
-            foreach (char ch in value) { if (!Char.IsNumber(ch) && !Char.IsLetterOrDigit(ch)) { value = value.Replace(ch.ToString(), ""); } }
-            value = System.Text.RegularExpressions.Regex.Replace(value, @"\s+", "");
-            return value;
         }
     }
 }

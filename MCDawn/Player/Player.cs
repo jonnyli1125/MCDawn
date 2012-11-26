@@ -4609,6 +4609,17 @@ namespace MCDawn
             string allowedchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890._";
             foreach (char ch in name) { if (allowedchars.IndexOf(ch) == -1) return false; } return true;
         }
+        public static bool IsValidIRCNick(string nick) { return Regex.IsMatch(nick, @"/\A[a-z_\-\[\]\\^{}|`][a-z0-9_\-\[\]\\^{}|`]*\z/i"); }
+        public static string ValidIRCNick(string nick) // Can't figure out how to do this with Regex.Replace t_t
+        {
+            string allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890._-[]\\^{}|`";
+            while (Char.IsNumber(nick[0])) nick = nick.Substring(1);
+            foreach (char ch in nick)
+                if (allowedChars.IndexOf(ch) == -1)
+                    nick = nick.Replace(ch.ToString(), "");
+            return nick;
+        }
+
         public static byte[] GZip(byte[] bytes)
         {
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
@@ -4667,21 +4678,6 @@ namespace MCDawn
             Server.agreedToRules.Add(name.ToLower());
             Server.agreedToRules.Save(true);
             //this.agreedToRules = true;
-        }
-        public string StripIllegalChars(string message)
-        {
-            // Stripping Color Codes
-            for (int i = 0; i < 10; i++)
-            {
-                //message = message.Replace("%" + i, "");
-                message = message.Replace("&" + i, "");
-            }
-            for (char ch = 'a'; ch <= 'f'; ch++)
-            {
-                //filtered = message.Replace("%" + ch, "");
-                message = message.Replace("&" + ch, "");
-            }
-            return message;
         }
 
         //Player Ignore

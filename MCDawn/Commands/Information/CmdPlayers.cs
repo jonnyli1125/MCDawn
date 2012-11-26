@@ -110,9 +110,9 @@ namespace MCDawn
                 //if (devUnverified.Length > 0) { Player.SendMessage(p, ":&3Developer Security System:" + Server.DefaultColor + unverified.Trim(',')); }
                 if (Server.irc)
                 {
-                    Player.SendMessage(p, Server.IRCColour + "(IRC) " + Server.ircChannel + ": " + String.Join(", ", IRCBot.GetChannelUsers(Server.ircChannel).ToArray()));
+                    Player.SendMessage(p, ":" + Server.IRCColour + "IRC: " + String.Join(", ", IRCBot.GetChannelUsers(Server.ircChannel).ToArray()).Trim());
                     if (p == null || (p != null && p.group.Permission > Server.opchatperm))
-                        Player.SendMessage(p, Server.IRCColour + "(OP IRC) " + Server.ircOpChannel + ": " + String.Join(", ", IRCBot.GetChannelUsers(Server.ircOpChannel).ToArray()));
+                        Player.SendMessage(p, ":" + Server.IRCColour + "OP IRC: " + String.Join(", ", IRCBot.GetChannelUsers(Server.ircOpChannel).ToArray()).Trim());
                 }
             }
             catch (Exception e) { Server.ErrorLog(e); }

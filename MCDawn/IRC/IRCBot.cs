@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Meebey.SmartIrc4net;
@@ -74,7 +72,15 @@ namespace MCDawn
         {
             if (ChannelUsers.ContainsKey(e.Data.Channel))
                 ChannelUsers.Remove(e.Data.Channel);
-            ChannelUsers.Add(e.Data.Channel, new List<string>(e.UserList));
+            var userlist = new List<string>();
+            foreach (string s in e.UserList)
+                if (!String.IsNullOrEmpty(s.Trim()))
+                    userlist.Add(s);
+            for (int i = 0; i < userlist.Count; i++)
+                if (!String.IsNullOrEmpty(userlist[i]))
+                    if (!Player.IsValidIRCNick(userlist[i]))
+                        userlist[i] = Player.ValidIRCNick(userlist[i]);
+            ChannelUsers.Add(e.Data.Channel, userlist);
         }
 
         public static List<string> GetChannelUsers(string channel)

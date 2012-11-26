@@ -2,7 +2,8 @@ MCDawn 1.0.1.6
 -Updated Commands
 	-/players - Will show users in IRC channels if IRC is enabled.
 	-/irc - Will correctly show users in IRC channels.
-
+-MCDawn Server List re-coded to fix several bugs.
+	
 MCDawn 1.0.1.5
 -Added !url IRC command (Type !url in the channel of the IRC bot and the server will say the URL of the server).
 -ProfanityFilter fixed to work properly, and not throw OutOfMemoryExceptions.
