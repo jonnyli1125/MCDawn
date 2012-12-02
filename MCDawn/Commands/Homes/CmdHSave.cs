@@ -1,6 +1,5 @@
 // Written by jonnyli1125 for MCDawn
 using System;
-using System.IO;
 
 namespace MCDawn
 {
@@ -17,9 +16,23 @@ namespace MCDawn
         {
             try
             {
+                if (p == null) { Player.SendMessage(p, "Command not usable as Console."); return; }
                 string prefix = Server.HomePrefix;
                 if (p.level.name != prefix + p.name.ToLower()) { p.SendMessage("You must be on your home map to use /hsave"); return; }
-                Command.all.Find("save").Use(p, prefix + p.name + message);
+                if (String.IsNullOrEmpty(message.Trim()))
+                {
+                    p.level.Save(true);
+                    Player.SendMessage(p, "Level \"" + p.level.name + "\" saved.");
+                    int backupNumber = p.level.Backup(true);
+                    if (backupNumber != -1)
+                        p.level.ChatLevel("Backup " + backupNumber + " saved.");
+                }
+                else
+                {
+                    p.level.Save(true);
+                    int backupNumber = p.level.Backup(true, message.Split(' ')[0]);
+                    Player.GlobalMessage(p.level.name + " had a backup created named &b" + message.Split(' ')[0]);
+                }
             }
             catch { Help(p); }
         }

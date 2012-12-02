@@ -2,6 +2,7 @@ MCDawn 1.0.1.6
 -Updated Commands
 	-/players - Will show users in IRC channels if IRC is enabled.
 	-/irc - Will correctly show users in IRC channels.
+	-/hsave - Works as intended.
 -MCDawn Server List re-coded to fix several bugs.
 	
 MCDawn 1.0.1.5

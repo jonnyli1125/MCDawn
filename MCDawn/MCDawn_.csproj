@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoSaver.cs" />
+    <Compile Include="Commands\Building\CmdDome.cs" />
     <Compile Include="Commands\Building\CmdReflection.cs" />
     <Compile Include="Commands\Games\CmdPushBallTeam.cs" />
     <Compile Include="Commands\Homes\CmdHAllowGuns.cs" />
