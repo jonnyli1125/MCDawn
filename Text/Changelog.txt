@@ -6,6 +6,7 @@ MCDawn 1.0.1.6
 -New Commands
 	-/dome <radius> <block> [type] - Creates a sphere around the player using it.
 -MCDawn Server List re-coded to fix several bugs.
+-WOM Server List heartbeat URL updated to https://direct.worldofminecraft.com/server.php.
 	
 MCDawn 1.0.1.5
 -Added !url IRC command (Type !url in the channel of the IRC bot and the server will say the URL of the server).

@@ -62,13 +62,12 @@ namespace MCDawn
                 for (ushort x = sx; x < ex; x++)
                     for (ushort y = sy; y < ey; y++)
                         for (ushort z = sz; z < ez; z++)
-                        {
                             if (Math.Round(Distance(cx, cy, cz, x, y, z)) <= radius)
-                            {
-                                Pos pos = new Pos(); pos.x = x; pos.y = y; pos.z = z;
-                                buffer.Add(pos);
-                            }
-                        }
+                                if (level.GetTile(x, y, z) != type)
+                                {
+                                    Pos pos = new Pos(); pos.x = x; pos.y = y; pos.z = z;
+                                    buffer.Add(pos);
+                                }
             }
             Execute(p, buffer, type);
         }

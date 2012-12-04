@@ -3295,31 +3295,25 @@ namespace MCDawn
 
         public void BlockInfo()
         {
-            // This BlockInfo feature for MCDawn by jonnyli1125 is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
-            // As a note, regular clients support up to 4 blocks away, so this will be limited to 4 blocks away lololol. Also, yaw = rot[0], pitch = rot[1], WoM reverses it >.>
-            // Thanks to Gamey boy for givin me this heapload of info: http://mc.kev009.com/Protocol#Player_Look_.280x0C.29 :D
-            // Well this is sad, I couldn't figure out this myself as my math skills aren't there yet... Meh, just took some shit out of /gun LOL.
+            // Algorithm taken from /gun.
+            // Minecraft Classic clients reach 4 blocks away.
             try
             {
-                //double ratio = 1.40625; // magic number, to scale things from 256 to 360 :D
                 double x = 0, y = 0, z = 0;
                 byte block = 0;
+                double a = Math.Sin(((double)(128 - rot[0]) / 256) * 2 * Math.PI);
+                double b = Math.Cos(((double)(128 - rot[0]) / 256) * 2 * Math.PI);
+                double c = Math.Cos(((double)(rot[1] + 64) / 256) * 2 * Math.PI);
+                double d = Math.Cos(((double)(rot[1]) / 256) * 2 * Math.PI);
                 for (byte i = 0; i < 4; i++)
                 {
-                    //x = Math.Round(((Math.Cos(rot[1] * ratio) * (Math.Sin(rot[0] * ratio) * i)) * -1) + (pos[0] / 32));
-                    x = Math.Round((pos[0] /32) + (double)(Math.Sin(((double)(128 - rot[0]) / 256) * 2 * Math.PI) * i * Math.Cos(((double)(rot[1]) / 256) * 2 * Math.PI)));
-                    //y = Math.Round((Math.Sin(rot[1] * ratio) * -1) + (pos[1] / 32));
-                    //y = Math.Round((double)(pos[1] / 32) + (double)(i * Math.Tan((double)((rot[1] - 128) * ratio)) + 1));
-                    y = Math.Round((pos[1] / 32) + (double)(Math.Cos(((double)(rot[1] + 64) / 256) * 2 * Math.PI) * i));
-                    //z = Math.Round((Math.Cos(rot[1] * ratio) * (Math.Cos(rot[0] * ratio) * i)) + (pos[2] / 32));
-                    z = Math.Round((pos[2] / 32) + (double)(Math.Cos(((double)(128 - rot[0]) / 256) * 2 * Math.PI) * i * Math.Cos(((double)(rot[1]) / 256) * 2 * Math.PI)));
-
+                    x = Math.Round((pos[0] /32) + (double)(a * i * d));
+                    y = Math.Round((pos[1] / 32) + (double)(c * i));
+                    z = Math.Round((pos[2] / 32) + (double)(b * i * d));
                     block = level.GetTile((ushort)(x), (ushort)(y), (ushort)(z));
                     if (block != Block.air && i < 4) break;
                 }
                 SendMessage(this.id, "^detail.user=&fBlock: &c" + Block.Name(block) + " &fX/Y/Z: &c" + x + "/" + y + "/" + z);
-                //SendMessage("Angle: " + angle);
-                //SendBlockchange((ushort)(x), (ushort)(y), (ushort)(z), 1);
             }
             catch { }
         }

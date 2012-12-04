@@ -197,7 +197,7 @@ namespace MCDawn
 
                         goto default;
                     case Beat.WOM:
-                        url = "https://direct.worldofminecraft.com/hb.php";
+                        url = "https://direct.worldofminecraft.com/server.php";
                         if (Server.logbeat)
                         {
                             beatlogger = new StreamWriter("heartbeat.log", true);
