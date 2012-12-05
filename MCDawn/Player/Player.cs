@@ -3296,7 +3296,7 @@ namespace MCDawn
         public void BlockInfo()
         {
             // Algorithm taken from /gun.
-            // Minecraft Classic clients reach 4 blocks away.
+            // Minecraft Classic clients reach 5 blocks away.
             try
             {
                 double x = 0, y = 0, z = 0;
@@ -3305,13 +3305,13 @@ namespace MCDawn
                 double b = Math.Cos(((double)(128 - rot[0]) / 256) * 2 * Math.PI);
                 double c = Math.Cos(((double)(rot[1] + 64) / 256) * 2 * Math.PI);
                 double d = Math.Cos(((double)(rot[1]) / 256) * 2 * Math.PI);
-                for (byte i = 0; i < 4; i++)
+                for (byte i = 0; i < 5; i++)
                 {
                     x = Math.Round((pos[0] /32) + (double)(a * i * d));
                     y = Math.Round((pos[1] / 32) + (double)(c * i));
                     z = Math.Round((pos[2] / 32) + (double)(b * i * d));
                     block = level.GetTile((ushort)(x), (ushort)(y), (ushort)(z));
-                    if (block != Block.air && i < 4) break;
+                    if (block != Block.air && i < 5) break;
                 }
                 SendMessage(this.id, "^detail.user=&fBlock: &c" + Block.Name(block) + " &fX/Y/Z: &c" + x + "/" + y + "/" + z);
             }

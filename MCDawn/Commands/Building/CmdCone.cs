@@ -7,66 +7,94 @@ using System.Threading;
 
 namespace MCDawn
 {
-    public class CmdDome : Command
+    public class CmdCone : Command
     {
-        public override string name { get { return "dome"; } }
-        public override string[] aliases { get { return new string[] { "sphere" }; } }
+        public override string name { get { return "cone"; } }
+        public override string[] aliases { get { return new string[] { "" }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return true; } }
-        public override LevelPermission defaultRank { get { return LevelPermission.Builder; } }
+        public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
 
         public override void Use(Player p, string message)
         {
             if (p == null) { Player.SendMessage(p, "Command not executable from Console."); return; }
-            if (message.Split(' ').Length > 3 || message.Split(' ').Length < 2) { Help(p); return; }
+            if (message.Split(' ').Length > 4 || message.Split(' ').Length < 3) { Help(p); return; }
             ushort radius;
             if (!ushort.TryParse(message.Split(' ')[0], out radius)) { Player.SendMessage(p, "Invalid radius."); return; }
-            else if (radius < 1) { Player.SendMessage(p, "Cannot have negative radius."); return; }
-            byte type = Block.Byte(message.Split(' ')[1]);
+            else if (radius < 1) { Player.SendMessage(p, "Radius must be larger than 0."); return; }
+            ushort verticalExpansion;
+            if (!ushort.TryParse(message.Split(' ')[1], out verticalExpansion)) { Player.SendMessage(p, "Invalid vertical expansion."); return; }
+            else if (radius < 1) { Player.SendMessage(p, "Vertical expansion must be larger than 0."); return; }
+            byte type = Block.Byte(message.Split(' ')[2]);
             if (type == 255) { Player.SendMessage(p, "Block could not be found."); return; }
-            DomeType domeType;
-            if (message.Split(' ').Length == 2) domeType = DomeType.Hollow;
+            ConeType coneType;
+            if (message.Split(' ').Length == 3) coneType = ConeType.Hollow;
             else
             {
-                switch (message.Split(' ')[2].ToLower())
+                switch (message.Split(' ')[3].ToLower())
                 {
-                    case "hollow": domeType = DomeType.Hollow; break;
-                    case "solid": domeType = DomeType.Solid; break;
+                    case "hollow": coneType = ConeType.Hollow; break;
+                    case "solid": coneType = ConeType.Solid; break;
                     default: Help(p); return;
                 }
             }
-            CreateDome(p, type, domeType, radius);
+            CreateCone(p, type, coneType, radius, verticalExpansion);
         }
 
-        public void CreateDome(Player p, byte type, DomeType domeType, ushort radius)
+        public void CreateCone(Player p, byte type, ConeType coneType, ushort radius, ushort verticalExpansion)
         {
             List<Pos> buffer = new List<Pos>();
             Level level = p.level;
-            ushort cx = (ushort)(p.pos[0] / 32), cy = (ushort)(p.pos[1] / 32), cz = (ushort)(p.pos[2] / 32);
-            ushort sx = (ushort)(cx - radius - 1), sy = (ushort)(cy - radius - 1), sz = (ushort)(cz - radius - 1), ex = (ushort)(cx + radius + 1), ey = (ushort)(cy + radius + 1), ez = (ushort)(cz + radius + 1);
-            if (domeType == DomeType.Hollow)
+            ushort cx = (ushort)(p.pos[0] / 32), cy = (ushort)((p.pos[1] / 32) - 1), cz = (ushort)(p.pos[2] / 32);
+            ushort sx = (ushort)(cx - radius - 1), sy = cy, sz = (ushort)(cz - radius - 1), ex = (ushort)(cx + radius + 1), ey = (ushort)(cy + (radius * verticalExpansion)), ez = (ushort)(cz + radius + 1);
+            ushort tempRadius = radius;
+            Pos pos = new Pos(); pos.x = cx; pos.y = ey; pos.z = cz;
+            for (ushort i = 0; i < verticalExpansion; i++)
+                if (level.GetTile(cx, (ushort)(ey + i), cz) != type) 
+                {
+                    pos.y = (ushort)(ey + i);
+                    buffer.Add(pos);
+                }
+            int temp = 0;
+            if (coneType == ConeType.Hollow)
             {
-                for (ushort x = sx; x < ex; x++)
-                    for (ushort y = sy; y < ey; y++)
+                for (ushort y = sy; y < ey; y++)
+                {
+                    for (ushort x = sx; x < ex; x++)
                         for (ushort z = sz; z < ez; z++)
-                            if (Math.Round(Distance(cx, cy, cz, x, y, z)) == radius)
+                            if (Math.Round(Distance(cx, y, cz, x, y, z)) == tempRadius)
                                 if (level.GetTile(x, y, z) != type)
                                 {
-                                    Pos pos = new Pos(); pos.x = x; pos.y = y; pos.z = z;
+                                    pos.x = x; pos.y = y; pos.z = z;
                                     buffer.Add(pos);
                                 }
+                    temp++;
+                    if (temp == verticalExpansion) 
+                    {
+                        temp = 0;
+                        tempRadius--;
+                    }
+                }
             }
-            else if (domeType == DomeType.Solid)
+            else if (coneType == ConeType.Solid)
             {
-                for (ushort x = sx; x < ex; x++)
-                    for (ushort y = sy; y < ey; y++)
+                for (ushort y = sy; y < ey; y++)
+                {
+                    for (ushort x = sx; x < ex; x++)
                         for (ushort z = sz; z < ez; z++)
-                            if (Math.Round(Distance(cx, cy, cz, x, y, z)) <= radius)
+                            if (Math.Round(Distance(cx, y, cz, x, y, z)) <= tempRadius)
                                 if (level.GetTile(x, y, z) != type)
                                 {
-                                    Pos pos = new Pos(); pos.x = x; pos.y = y; pos.z = z;
+                                    pos.x = x; pos.y = y; pos.z = z;
                                     buffer.Add(pos);
                                 }
+                    temp++;
+                    if (temp == verticalExpansion)
+                    {
+                        temp = 0;
+                        tempRadius--;
+                    }
+                }
             }
             Execute(p, buffer, type);
         }
@@ -106,8 +134,8 @@ namespace MCDawn
 
                         if (counter >= p.group.maxBlocks)
                         {
-                            Player.SendMessage(p, "Tried to dome " + buffer.Count + " blocks, but your limit is " + p.group.maxBlocks + ".");
-                            Player.SendMessage(p, "Executed dome up to limit.");
+                            Player.SendMessage(p, "Tried to cone " + buffer.Count + " blocks, but your limit is " + p.group.maxBlocks + ".");
+                            Player.SendMessage(p, "Executed cone up to limit.");
                         }
                         else
                         {
@@ -120,8 +148,8 @@ namespace MCDawn
 
                     if (buffer.Count > p.group.maxBlocks)
                     {
-                        Player.SendMessage(p, "You tried to dome " + buffer.Count + " blocks.");
-                        Player.SendMessage(p, "You cannot dome more than " + p.group.maxBlocks + ".");
+                        Player.SendMessage(p, "You tried to cone " + buffer.Count + " blocks.");
+                        Player.SendMessage(p, "You cannot cone more than " + p.group.maxBlocks + ".");
                         return;
                     }
 
@@ -158,10 +186,11 @@ namespace MCDawn
 
         public override void Help(Player p)
         {
-            Player.SendMessage(p, "/dome <radius> <block> [hollow/solid] - Creates a dome around you.");
+            Player.SendMessage(p, "/cone <radius> <vertical expansion> <block> [hollow/solid] - Creates a cone around and above you.");
+            Player.SendMessage(p, "The vertical expansion determines what to multiply the height of your cone by.");
         }
 
-        public enum DomeType { Hollow, Solid }
+        public enum ConeType { Hollow, Solid }
         public struct Pos { public ushort x, y, z; }
     }
 }

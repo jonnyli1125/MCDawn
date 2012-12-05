@@ -299,6 +299,8 @@ namespace MCDawn
             all.Add(new CmdSetWomPass());
             all.Add(new CmdHAllowGuns());
             all.Add(new CmdDome());
+            all.Add(new CmdCone());
+            all.Add(new CmdPyramid());
 
             //all.Add(new Commands.GameControl.CmdGame());
 

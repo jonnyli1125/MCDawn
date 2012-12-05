@@ -4,7 +4,9 @@ MCDawn 1.0.1.6
 	-/irc - Will correctly show users in IRC channels.
 	-/hsave - Works as intended.
 -New Commands
-	-/dome <radius> <block> [type] - Creates a sphere around the player using it.
+	-/dome <radius> <block> [hollow/solid] - Creates a dome around you.
+	-/cone <radius> <vertical expansion> <block> [hollow/solid] - Creates a cone around and above you.
+	-/pyramid <radius> <vertical expansion> <block> [hollow/solid] - Creates a pyramid around and above you.
 -MCDawn Server List re-coded to fix several bugs.
 -WOM Server List heartbeat URL updated to https://direct.worldofminecraft.com/server.php.
 	

@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdSpheroid : Command
     {
         public override string name { get { return "spheroid"; } }
-        public override string[] aliases { get { return new string[] { "e", "sphere", "torus", "ellipsoid", "ellipse" }; } }
+        public override string[] aliases { get { return new string[] { "e", "ellipsoid", "ellipse" }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Builder; } }
