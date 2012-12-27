@@ -613,10 +613,7 @@ namespace MCDawn
             lastRankReasonExists.Dispose();
 
             // Change name column length from 20 to 256 (For email usernames).
-            DataTable nameExists = MySQL.fillData("SHOW COLUMNS FROM Players WHERE `Field`='Name'");
-            if (nameExists.Rows.Count == 0)
-                MySQL.executeQuery("ALTER TABLE Players MODIFY COLUMN Name VARCHAR(256)");
-            nameExists.Dispose();
+            MySQL.executeQuery("ALTER TABLE Players MODIFY COLUMN Name VARCHAR(256)");
 
             if (levels != null)
                 foreach (Level l in levels) { l.Unload(); }
