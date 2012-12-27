@@ -1,3 +1,6 @@
+MCDawn 1.0.1.7
+-Critical update: Fixed bug with Name column in database.
+
 MCDawn 1.0.1.6
 -Updated Commands
 	-/players - Will show users in IRC channels if IRC is enabled.
