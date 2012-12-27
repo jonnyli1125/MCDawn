@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("MCDawn Dev Team")]
 [assembly: AssemblyProduct("MCDawn")]
 [assembly: AssemblyCopyright("Copyright © 2012")]
-[assembly: AssemblyTrademark("Reach up, to the Dawn.")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.1.5")]
-//[assembly: AssemblyVersion("1.0.1.5")]
-//[assembly: AssemblyFileVersion("1.0.1.5")]
-[assembly: AssemblyVersion("1.0.1.5")]
+// [assembly: AssemblyVersion("1.0.1.6")]
+//[assembly: AssemblyVersion("1.0.1.6")]
+//[assembly: AssemblyFileVersion("1.0.1.6")]
+[assembly: AssemblyVersion("1.0.1.6")]
