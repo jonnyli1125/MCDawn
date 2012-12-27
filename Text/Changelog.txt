@@ -9,6 +9,7 @@ MCDawn 1.0.1.6
 	-/pyramid <radius> <vertical expansion> <block> [hollow/solid] - Creates a pyramid around and above you.
 -MCDawn Server List re-coded to fix several bugs.
 -WOM Server List heartbeat URL updated to https://direct.worldofminecraft.com/server.php.
+-Added support for email usernames.
 	
 MCDawn 1.0.1.5
 -Added !url IRC command (Type !url in the channel of the IRC bot and the server will say the URL of the server).
