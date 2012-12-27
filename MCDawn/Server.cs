@@ -542,7 +542,7 @@ namespace MCDawn
                 return;
             }
 
-            MySQL.executeQuery("CREATE TABLE if not exists Players (ID MEDIUMINT not null auto_increment, Name VARCHAR(20), displayName VARCHAR(60), IP CHAR(15), FirstLogin DATETIME, LastLogin DATETIME, totalLogin MEDIUMINT, Title CHAR(60), TotalDeaths SMALLINT, Money MEDIUMINT UNSIGNED, totalBlocks BIGINT, destroyedBlocks BIGINT, totalKicked MEDIUMINT, color VARCHAR(6), title_color VARCHAR(6), TimeSpent VARCHAR(20), titleBracket MEDIUMINT, HasWOM VARCHAR(20), lastRankReason VARCHAR(255), PRIMARY KEY (ID));");
+            MySQL.executeQuery("CREATE TABLE if not exists Players (ID MEDIUMINT not null auto_increment, Name VARCHAR(256), displayName VARCHAR(60), IP CHAR(15), FirstLogin DATETIME, LastLogin DATETIME, totalLogin MEDIUMINT, Title CHAR(60), TotalDeaths SMALLINT, Money MEDIUMINT UNSIGNED, totalBlocks BIGINT, destroyedBlocks BIGINT, totalKicked MEDIUMINT, color VARCHAR(6), title_color VARCHAR(6), TimeSpent VARCHAR(20), titleBracket MEDIUMINT, HasWOM VARCHAR(20), lastRankReason VARCHAR(255), PRIMARY KEY (ID));");
 
             // Check if the color column exists.
             DataTable colorExists = MySQL.fillData("SHOW COLUMNS FROM Players WHERE `Field`='color'");
@@ -614,9 +614,9 @@ namespace MCDawn
 
             // Change name column length from 20 to 256 (For email usernames).
             DataTable nameExists = MySQL.fillData("SHOW COLUMNS FROM Players WHERE `Field`='Name'");
-            if (titleExists.Rows.Count == 0)
+            if (nameExists.Rows.Count == 0)
                 MySQL.executeQuery("ALTER TABLE Players MODIFY COLUMN Name VARCHAR(256)");
-            titleExists.Dispose();
+            nameExists.Dispose();
 
             if (levels != null)
                 foreach (Level l in levels) { l.Unload(); }
