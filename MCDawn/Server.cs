@@ -612,6 +612,12 @@ namespace MCDawn
                 MySQL.executeQuery("ALTER TABLE Players ADD COLUMN lastRankReason VARCHAR(255) AFTER HasWOM");
             lastRankReasonExists.Dispose();
 
+            // Change name column length from 20 to 256 (For email usernames).
+            DataTable nameExists = MySQL.fillData("SHOW COLUMNS FROM Players WHERE `Field`='Name'");
+            if (titleExists.Rows.Count == 0)
+                MySQL.executeQuery("ALTER TABLE Players MODIFY COLUMN Name VARCHAR(256)");
+            titleExists.Dispose();
+
             if (levels != null)
                 foreach (Level l in levels) { l.Unload(); }
             ml.Queue(delegate

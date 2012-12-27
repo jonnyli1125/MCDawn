@@ -993,7 +993,7 @@ namespace MCDawn
                     return; 
                 }
                 
-                if (name.Length > 16 || !ValidName(name))
+                if (!ValidName(name))
                 {
                     try
                     {
@@ -4600,7 +4600,7 @@ namespace MCDawn
         }
         public static bool ValidName(string name)
         {
-            string allowedchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890._";
+            string allowedchars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890._" + (name.Contains("@") ? "-@" : ""); // added - and @ for email usernames
             foreach (char ch in name) { if (allowedchars.IndexOf(ch) == -1) return false; } return true;
         }
         public static bool IsValidIRCNick(string nick) { return Regex.IsMatch(nick, @"/\A[a-z_\-\[\]\\^{}|`][a-z0-9_\-\[\]\\^{}|`]*\z/i"); }
