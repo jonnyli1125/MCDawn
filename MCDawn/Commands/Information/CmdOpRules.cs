@@ -48,6 +48,13 @@ namespace MCDawn
             }
             else
             {
+                if (p == null)
+                {
+                    Server.s.Log("Server OPRules:");
+                    foreach (string s in rules)
+                        Server.s.Log(s);
+                    return;
+                }
                 Player.SendMessage(p, "There is no player \"" + message + "\"!");
             }
         }
