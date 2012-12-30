@@ -34,6 +34,7 @@ namespace MCDawn
                 { Player.SendMessage(p, "You cant send /rules to another player!"); return; }
                 who = Player.Find(message);
             }
+
             else
             {
                 who = p;
@@ -54,6 +55,13 @@ namespace MCDawn
             }
             else
             {
+                if (p == null)
+                {
+                    Server.s.Log("Server Rules:");
+                    foreach (string s in rules)
+                        Server.s.Log(s);
+                    return;
+                }
                 Player.SendMessage(p, "There is no player \"" + message + "\"!");
             }
         }

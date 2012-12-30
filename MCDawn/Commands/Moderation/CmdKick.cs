@@ -60,7 +60,7 @@ namespace MCDawn
             if (message.Split(' ').Length > 1)
                 message = message.Substring(message.IndexOf(' ') + 1);
             else
-                if (p == null) message = "You were kicked by an IRC controller!"; else message = "You were kicked by " + p.name + "!";
+                message = "You broke the rules!";
 
             if (p != null)
                 if (who == p)
@@ -73,8 +73,10 @@ namespace MCDawn
                     Player.GlobalChat(p, p.color + p.name + Server.DefaultColor + " tried to kick " + who.color + who.name + " but failed.", false); 
                     return; 
                 }
-
-            who.Kick(message);
+            if (p == null)
+                who.Kick("Kicked by " + p.name + " | Reason: " + message);
+            else
+                who.Kick("Kicked by Console | Reason: " + message);
         }
         public override void Help(Player p)
         {
