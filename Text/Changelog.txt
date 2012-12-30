@@ -570,7 +570,3 @@ MCDawn Pre-Release 1:
 -Developer rights added (Anti-Dev ban/kick etc.)
 -Added a few new Commands
 
-MCDawn Development Team: jonnyli1125, Gamemakergm, incedo, Jackthekat9, ScHmIdTy56789
-MCDawn Administration Team: jonnyli1125, sillyboyization, EpidermiK
-MCDawn Staff Team: MerkDalat, Speedkicks6, Sandford27, ddeckys
-Post any bugs/suggestions in the MCDawn Forums at forums.mcdawn.com please.
