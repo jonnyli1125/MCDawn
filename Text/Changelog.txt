@@ -1,7 +1,8 @@
 MCDawn 1.0.1.9
--/rules - Works as intended from Console.
--/oprules - Works as intended from Console.
--/kick - Modified kick messages.
+-Updated Commands
+	-/rules - Works as intended from Console.
+	-/oprules - Works as intended from Console.
+	-/kick - Modified kick messages.
 
 MCDawn 1.0.1.7/8
 -Critical update: Fixed bug with Name column in database.
