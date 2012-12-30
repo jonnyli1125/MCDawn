@@ -60,7 +60,7 @@ namespace MCDawn
             if (message.Split(' ').Length > 1)
                 message = message.Substring(message.IndexOf(' ') + 1);
             else
-                message = "You broke the rules!";
+                message = "No reason given.";
 
             if (p != null)
                 if (who == p)
@@ -74,9 +74,9 @@ namespace MCDawn
                     return; 
                 }
             if (p == null)
-                who.Kick("Kicked by " + p.name + " | Reason: " + message);
+                who.Kick("Kicked by " + p.name + " - " + message);
             else
-                who.Kick("Kicked by Console | Reason: " + message);
+                who.Kick("Kicked by Console " + " - " + message);
         }
         public override void Help(Player p)
         {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -35,35 +34,24 @@ namespace MCDawn
                 who = Player.Find(message);
             }
 
-            else
-            {
-                who = p;
-            }
+            else who = p;
 
-            if (who != null)
+            if ((p == null && who == null) || who != null)
             {
-                if (Server.agreePass.Split(' ').Length > 1) { Server.agreePass = Server.agreePass.Split(' ')[0]; }
-                if (who != p) { p.SendMessage("Sent /rules to " + who.color + who.name); }
-                who.SendMessage("Server Rules:");
+                Player.SendMessage(who, "Server Rules:");
                 foreach (string s in rules)
-                    who.SendMessage(s);
-
-                if (Server.agreeToRules && Server.agreedToRules.Contains(who.name)) { Clear(who); who.SendMessage("You have already agreed to the rules."); return; }
-                if (Server.agreeToRules && Server.agreePass == "") { Clear(who); who.SendMessage("If you agree to the rules, please type &b/agree" + Server.DefaultColor + ". If not, type &b/disagree" + Server.DefaultColor + "."); }
-                if (Server.agreeToRules && Server.agreePass.Length > 0) { Clear(who); who.SendMessage("If you agree to the rules, please type &b/agree " + Server.agreePass + Server.DefaultColor + ". If not, type &b/disagree" + Server.DefaultColor + "."); }
-                if (!p.readRules) { p.readRules = true; }
-            }
-            else
-            {
-                if (p == null)
+                    Player.SendMessage(who, s);
+                if (p != null)
                 {
-                    Server.s.Log("Server Rules:");
-                    foreach (string s in rules)
-                        Server.s.Log(s);
-                    return;
+                    if (Server.agreePass.Split(' ').Length > 1) { Server.agreePass = Server.agreePass.Split(' ')[0]; }
+                    if (who != p) { p.SendMessage("Sent /rules to " + who.color + who.name); }
+                    if (Server.agreeToRules && Server.agreedToRules.Contains(who.name)) { Clear(who); who.SendMessage("You have already agreed to the rules."); return; }
+                    if (Server.agreeToRules && Server.agreePass == "") { Clear(who); who.SendMessage("If you agree to the rules, please type &b/agree" + Server.DefaultColor + ". If not, type &b/disagree" + Server.DefaultColor + "."); }
+                    if (Server.agreeToRules && Server.agreePass.Length > 0) { Clear(who); who.SendMessage("If you agree to the rules, please type &b/agree " + Server.agreePass + Server.DefaultColor + ". If not, type &b/disagree" + Server.DefaultColor + "."); }
+                    if (!p.readRules) { p.readRules = true; }
                 }
-                Player.SendMessage(p, "There is no player \"" + message + "\"!");
             }
+            else Player.SendMessage(p, "There is no player \"" + message + "\"!");
         }
 
         public override void Help(Player p)

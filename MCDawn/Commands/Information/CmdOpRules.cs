@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace MCDawn
@@ -35,28 +33,15 @@ namespace MCDawn
                 { Player.SendMessage(p, "You cant send /oprules to another player!"); return; }
                 who = Player.Find(message);
             }
-            else
-            {
-                who = p;
-            }
+            else who = p;
 
-            if (who != null)
+            if ((p == null && who == null) || who != null)
             {
-                who.SendMessage("Server OPRules:");
+                Player.SendMessage(who, "Server OPRules:");
                 foreach (string s in rules)
-                    who.SendMessage(s);
+                    Player.SendMessage(who, s);
             }
-            else
-            {
-                if (p == null)
-                {
-                    Server.s.Log("Server OPRules:");
-                    foreach (string s in rules)
-                        Server.s.Log(s);
-                    return;
-                }
-                Player.SendMessage(p, "There is no player \"" + message + "\"!");
-            }
+            else Player.SendMessage(p, "There is no player \"" + message + "\"!");
         }
 
         public override void Help(Player p)
