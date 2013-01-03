@@ -73,7 +73,7 @@ namespace MCDawn
                     Player.GlobalChat(p, p.color + p.name + Server.DefaultColor + " tried to kick " + who.color + who.name + " but failed.", false); 
                     return; 
                 }
-            if (p == null)
+            if (p != null)
                 who.Kick("Kicked by " + p.name + " - " + message);
             else
                 who.Kick("Kicked by Console " + " - " + message);
