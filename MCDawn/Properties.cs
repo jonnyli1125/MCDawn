@@ -625,6 +625,10 @@ namespace MCDawn
                                 if (value != "") Server.WOMIPAddress = value;
                                 else Server.WOMIPAddress = Server.GetIPAddress();
                                 break;
+                            case "enablemapliking":
+                                try { Server.enableMapLiking = bool.Parse(value); }
+                                catch { Server.s.Log("enablemapliking invalid! setting to default."); }
+                                break;
                         }
                     }
                 }
@@ -831,6 +835,7 @@ namespace MCDawn
                     w.WriteLine("throttle = " + Server.throttle);
                     w.WriteLine("usewompasswords = " + Server.useWOMPasswords.ToString().ToLower());
                     w.WriteLine("womipaddress = " + Server.WOMIPAddress);
+                    w.WriteLine("enablemapliking = " + Server.enableMapLiking.ToString().ToLower());
                     w.WriteLine();
                     w.WriteLine("#Remote Console");
                     w.WriteLine("use-remote = " + Server.useRemote.ToString().ToLower());

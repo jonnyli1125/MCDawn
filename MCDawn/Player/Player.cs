@@ -50,7 +50,7 @@ namespace MCDawn
         System.Timers.Timer timeSpentTimer = new System.Timers.Timer(1000);
         System.Timers.Timer loginTimer = new System.Timers.Timer(1000);
         public System.Timers.Timer pingTimer = new System.Timers.Timer(2000);
-        System.Timers.Timer extraTimer = new System.Timers.Timer(22000);
+        System.Timers.Timer extraTimer = new System.Timers.Timer(200000);
         public System.Timers.Timer afkTimer = new System.Timers.Timer(2000);
 
         public int afkCount = 0;
@@ -468,7 +468,7 @@ namespace MCDawn
 
                 extraTimer.Elapsed += delegate
                 {
-                    extraTimer.Stop();
+                    //extraTimer.Stop();
 
                     try
                     {
@@ -528,6 +528,8 @@ namespace MCDawn
                         if (File.ReadAllLines("extra/reports/" + report)[0].ToLower() == "unread")
                             reports++;
                     if (reports > 0) SendMessage("There are " + reports + " unread reports. Type &c/report view&g to see them.");
+
+                    Command.all.Find("viewlikes").Use(this, "");
                 };
 
                 afkTimer.Elapsed += delegate
@@ -3573,7 +3575,7 @@ namespace MCDawn
             while (Regex.IsMatch(message, @"(&[0-9a-f])\s&|(&&)|(&\s)+"))
                 message = Regex.Replace(message, @"(&[0-9a-f])\s&|(&&)|(&\s)+", "&"); // strip all invalid color codes, remove bad ampersands
             while (Regex.IsMatch(message, @"(&[0-9a-f])$+"))
-                message = Regex.Replace(message, @"(&[0-9a-f])$+", ""); // remove color codes on end of string
+                message = Regex.Replace(message, @"(&[0-9a-f])+$", ""); // remove color codes on end of string
             return message;
         }
 

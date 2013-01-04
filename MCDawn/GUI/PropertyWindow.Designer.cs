@@ -163,8 +163,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.txtWOMIPAddress = new System.Windows.Forms.TextBox();
-            this.label69 = new System.Windows.Forms.Label();
             this.chkUseWOMPasswords = new System.Windows.Forms.CheckBox();
             this.chkUseWOM = new System.Windows.Forms.CheckBox();
             this.chkUseAntiGrief = new System.Windows.Forms.CheckBox();
@@ -201,6 +199,7 @@
             this.txtRestartTime = new System.Windows.Forms.TextBox();
             this.chkRestartTime = new System.Windows.Forms.CheckBox();
             this.grpThrottle = new System.Windows.Forms.GroupBox();
+            this.chkUseThrottle = new System.Windows.Forms.CheckBox();
             this.txtThrottleDesc = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
@@ -271,7 +270,7 @@
             this.btnDiscard = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.chkUseThrottle = new System.Windows.Forms.CheckBox();
+            this.chkEnableMapLiking = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.grpAdminSecurity.SuspendLayout();
@@ -1716,8 +1715,7 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage4.Controls.Add(this.txtWOMIPAddress);
-            this.tabPage4.Controls.Add(this.label69);
+            this.tabPage4.Controls.Add(this.chkEnableMapLiking);
             this.tabPage4.Controls.Add(this.chkUseWOMPasswords);
             this.tabPage4.Controls.Add(this.chkUseWOM);
             this.tabPage4.Controls.Add(this.chkUseAntiGrief);
@@ -1760,22 +1758,6 @@
             this.tabPage4.Size = new System.Drawing.Size(444, 458);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Misc";
-            // 
-            // txtWOMIPAddress
-            // 
-            this.txtWOMIPAddress.Location = new System.Drawing.Point(350, 90);
-            this.txtWOMIPAddress.Name = "txtWOMIPAddress";
-            this.txtWOMIPAddress.Size = new System.Drawing.Size(87, 21);
-            this.txtWOMIPAddress.TabIndex = 38;
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(266, 94);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(78, 13);
-            this.label69.TabIndex = 37;
-            this.label69.Text = "WOM Direct IP:";
             // 
             // chkUseWOMPasswords
             // 
@@ -2123,6 +2105,17 @@
             this.grpThrottle.TabIndex = 35;
             this.grpThrottle.TabStop = false;
             this.grpThrottle.Text = "Building Commands \"Throttle\"";
+            // 
+            // chkUseThrottle
+            // 
+            this.chkUseThrottle.AutoSize = true;
+            this.chkUseThrottle.Location = new System.Drawing.Point(156, 52);
+            this.chkUseThrottle.Name = "chkUseThrottle";
+            this.chkUseThrottle.Size = new System.Drawing.Size(91, 17);
+            this.chkUseThrottle.TabIndex = 39;
+            this.chkUseThrottle.Text = "Use Throttling";
+            this.chkUseThrottle.UseVisualStyleBackColor = true;
+            this.chkUseThrottle.CheckedChanged += new System.EventHandler(this.chkUseThrottle_CheckedChanged);
             // 
             // txtThrottleDesc
             // 
@@ -2832,16 +2825,15 @@
             this.toolTip.ToolTipTitle = "Information";
             this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
             // 
-            // chkUseThrottle
+            // chkEnableMapLiking
             // 
-            this.chkUseThrottle.AutoSize = true;
-            this.chkUseThrottle.Location = new System.Drawing.Point(156, 52);
-            this.chkUseThrottle.Name = "chkUseThrottle";
-            this.chkUseThrottle.Size = new System.Drawing.Size(91, 17);
-            this.chkUseThrottle.TabIndex = 39;
-            this.chkUseThrottle.Text = "Use Throttling";
-            this.chkUseThrottle.UseVisualStyleBackColor = true;
-            this.chkUseThrottle.CheckedChanged += new System.EventHandler(this.chkUseThrottle_CheckedChanged);
+            this.chkEnableMapLiking.AutoSize = true;
+            this.chkEnableMapLiking.Location = new System.Drawing.Point(269, 92);
+            this.chkEnableMapLiking.Name = "chkEnableMapLiking";
+            this.chkEnableMapLiking.Size = new System.Drawing.Size(110, 17);
+            this.chkEnableMapLiking.TabIndex = 37;
+            this.chkEnableMapLiking.Text = "Enable Map Liking";
+            this.chkEnableMapLiking.UseVisualStyleBackColor = true;
             // 
             // PropertyWindow
             // 
@@ -3155,8 +3147,7 @@
         private System.Windows.Forms.TextBox txtThrottleDesc;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.CheckBox chkUseWOMPasswords;
-        private System.Windows.Forms.TextBox txtWOMIPAddress;
-        private System.Windows.Forms.Label label69;
         private System.Windows.Forms.CheckBox chkUseThrottle;
+        private System.Windows.Forms.CheckBox chkEnableMapLiking;
     }
 }

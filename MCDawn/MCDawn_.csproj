@@ -118,6 +118,7 @@
     <Compile Include="Commands\Moderation\CmdMaintenence.cs" />
     <Compile Include="Commands\Building\CmdMiddle.cs" />
     <Compile Include="Commands\Moderation\CmdObUpdate.cs" />
+    <Compile Include="Commands\Other\CmdLike.cs" />
     <Compile Include="Commands\Other\CmdPlugin.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Moderation\CmdPass.cs" />
@@ -243,6 +244,8 @@
     <Compile Include="Commands\GameControl\Games\Spleef.cs" />
     <Compile Include="Commands\GameControl\State.cs" />
     <Compile Include="Commands\Other\CmdSetWomPass.cs" />
+    <Compile Include="Commands\Other\CmdUnLike.cs" />
+    <Compile Include="Commands\Other\CmdViewLikes.cs" />
     <Compile Include="Games\Fallout.cs" />
     <Compile Include="Games\PushBall.cs" />
     <Compile Include="GUI\AddRemoveRemote.cs">

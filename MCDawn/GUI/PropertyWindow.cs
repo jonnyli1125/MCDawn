@@ -634,9 +634,9 @@ namespace MCDawn.Gui
                                 try { chkUseWOMPasswords.Checked = bool.Parse(value); }
                                 catch { Server.s.Log("usewompasswords invalid! setting to default."); }
                                 break;
-                            case "womipaddress":
-                                if (value != "") txtWOMIPAddress.Text = value;
-                                else txtWOMIPAddress.Text = Server.GetIPAddress();
+                            case "enablemapliking":
+                                try { chkEnableMapLiking.Checked = bool.Parse(value); }
+                                catch { chkEnableMapLiking.Checked = true; Server.s.Log("enablemapliking invalid! setting to default."); }
                                 break;
                         }
                     }
@@ -829,10 +829,10 @@ namespace MCDawn.Gui
                     w.WriteLine("allow-ignore-ops = " + chkAllowIgnoreOps.Checked.ToString().ToLower());
                     w.WriteLine("wom-text = " + chkWomText.Checked.ToString().ToLower());
                     w.WriteLine("use-discourager = " + chkUseDiscourager.Checked.ToString().ToLower());
-                    if (chkUseThrottle.Checked) w.WriteLine("throttle = " + tbThrottle.Value);
-                    else w.WriteLine("throttle = 0");
+                    w.WriteLine("throttle = " + (chkUseThrottle.Checked ? tbThrottle.Value.ToString() : "0"));
                     w.WriteLine("usewompasswords = " + chkUseWOMPasswords.Checked.ToString().ToLower());
-                    w.WriteLine("womipaddress = " + txtWOMIPAddress.Text);
+                    w.WriteLine("womipaddress = " + Server.WOMIPAddress);
+                    w.WriteLine("enablemapliking = " + chkEnableMapLiking.Checked.ToString().ToLower());
                     w.WriteLine();
                     w.WriteLine("#Remote Console");
                     w.WriteLine("use-remote = " + Server.useRemote.ToString().ToLower());

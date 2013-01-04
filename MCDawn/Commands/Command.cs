@@ -301,6 +301,9 @@ namespace MCDawn
             all.Add(new CmdDome());
             all.Add(new CmdCone());
             all.Add(new CmdPyramid());
+            all.Add(new CmdLike());
+            all.Add(new CmdUnLike());
+            all.Add(new CmdViewLikes());
 
             //all.Add(new Commands.GameControl.CmdGame());
 

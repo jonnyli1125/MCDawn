@@ -291,6 +291,8 @@ namespace MCDawn
         public static bool useTimeRank = false;
         public static string timeRankCommand = "timerank";
 
+        public static bool enableMapLiking = true;
+
         public static bool useDiscourager = false;
 
         // Remote Console

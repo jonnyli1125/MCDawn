@@ -120,9 +120,6 @@
   <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="chkUseDiscourager.ToolTip" xml:space="preserve">
     <value>Choose to use the "discourager" system or not. This simply makes it hard for discouraged players to play around, coming up with a lot of errors and lag at times, generally creating an unpleasant experience for discouraged players.</value>
   </data>

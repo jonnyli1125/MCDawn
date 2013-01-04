@@ -3,6 +3,10 @@ MCDawn 1.0.1.9
 	-/rules - Works as intended from Console.
 	-/oprules - Works as intended from Console.
 	-/kick - Modified kick messages.
+-New Commands
+	-/like - "Like" a level.
+	-/unlike - Undoes your like.
+	-/viewlikes - Views how many likes have been given to a level.
 
 MCDawn 1.0.1.7/8
 -Critical update: Fixed bug with Name column in database.

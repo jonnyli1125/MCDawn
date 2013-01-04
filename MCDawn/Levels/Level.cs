@@ -107,6 +107,7 @@ namespace MCDawn
         public int timeLeft = 10;
         public bool allowguns = true;
         public Group speedHackRank = Group.findPerm(LevelPermission.Banned);
+        public int likes = 0;
 
         //Spleef
         public Spleef spleef = new Spleef();
@@ -903,8 +904,11 @@ namespace MCDawn
             // Allow email usernames
             MySQL.executeQuery("ALTER TABLE Block" + givenName + " MODIFY COLUMN Username VARCHAR(256)");
 
-            //CommandBlock
+            // CommandBlock
             MySQL.executeQuery("CREATE TABLE if not exists `Commandblocks" + givenName + "` (X SMALLINT UNSIGNED, Y SMALLINT UNSIGNED, Z SMALLINT UNSIGNED, Message CHAR(255));");
+            
+            // Map Likes
+            MySQL.executeQuery("CREATE TABLE if not exists `Likes" + givenName + "` (Username VARCHAR(256));");
 
             string path = "levels/" + givenName + ".lvl";
             if (File.Exists(path))
@@ -1070,11 +1074,14 @@ namespace MCDawn
 
                     level.CalculateShadows();
 
-                    Server.s.Log("Level \"" + level.name + "\" loaded.");
+                    level.likes = MySQL.fillData("SELECT * FROM Likes" + level.name).Rows.Count;
+
                     level.ctfgame.mapOn = level;
                     level.infection.level = level;
                     level.spleef.level = level;
                     level.pushBall.level = level;
+
+                    Server.s.Log("Level \"" + level.name + "\" loaded.");
 
                     if (Level.OnLevelLoadedEvent != null) Level.OnLevelLoadedEvent(givenName, phys);
                     return level;
