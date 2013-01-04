@@ -3,6 +3,7 @@ MCDawn 1.0.1.9
 	-/rules - Works as intended from Console.
 	-/oprules - Works as intended from Console.
 	-/kick - Modified kick messages.
+	-/undo - Doesn't cause game crashes when used on players with long usernames anymore.
 -New Commands
 	-/like - "Like" a level.
 	-/unlike - Undoes your like.
