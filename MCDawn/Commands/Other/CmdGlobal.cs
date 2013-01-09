@@ -84,7 +84,7 @@ namespace MCDawn
                 //Server.UpdateGlobalBan(); Server.UpdateOmniBan();
                 if (!Server.ignoreGlobal.Contains(pl.name.ToLower()) && (!pl.ignoreList.Contains(p.name.ToLower()) && p != null) && (!Server.GlobalBanned().Contains(p.name.ToLower()) && p != null) && (!pl.ignoreList.Contains(p.name.ToLower()) && p != null) && (!Server.OmniBanned().Contains(p.name.ToLower())) && p != null)
                 {
-                    if (p == null) { pl.SendMessage("<[Global] Console [&a" + Server.ZallState + Server.DefaultColor + "]: &f" + message); return; }
+                    if (p == null) { pl.SendMessage("<[Global] Console [&a" + Server.ZallState + "&g]: &f" + message); return; }
                     if (Server.devs.Contains(p.name.ToLower()) && p != null) { pl.SendMessage("<[Global] " + p.color + "[" + p.titlecolor + "Developer" + p.color + "] " + p.name + ": &f" + message); }
                     else if (Server.staff.Contains(p.name.ToLower()) && p != null) { pl.SendMessage("<[Global] " + p.color + "[" + p.titlecolor + "MCDawn Staff" + p.color + "] " + p.name + ": &f" + message); }
                     else if (Server.administration.Contains(p.name.ToLower()) && p != null) { pl.SendMessage("<[Global] " + p.color + "[" + p.titlecolor + "Administrator" + p.color + "] " + p.name + ": &f" + message); }
@@ -98,7 +98,7 @@ namespace MCDawn
             {
                 if (!Server.ignoreGlobal.Contains(pl.name.ToLower()))
                 {
-                    pl.SendMessage("<[Global] Console [&a" + Server.ZallState + Server.DefaultColor + "]: &f" + message);
+                    pl.SendMessage("<[Global] Console [&a" + Server.ZallState + "&g]: &f" + message);
                 }
             }
         }

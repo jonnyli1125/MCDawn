@@ -8,7 +8,7 @@ namespace MCDawn
     public class CmdModerate : Command
     {
         public override string name { get { return "moderate"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -21,13 +21,13 @@ namespace MCDawn
             if (Server.chatmod)
             {
                 Server.chatmod = false;
-                Player.GlobalChat(null, Server.DefaultColor + "Chat moderation has been disabled.  Everyone can now speak.", false);
+                Player.GlobalChat(null, "&gChat moderation has been disabled.  Everyone can now speak.", false);
                 Server.s.Log("Chat Moderation disabled.");
             }
             else
             {
                 Server.chatmod = true;
-                Player.GlobalChat(null, Server.DefaultColor + "Chat moderation engaged!  Silence the plebians!", false);
+                Player.GlobalChat(null, "&gChat moderation engaged!  Silence the plebians!", false);
                 Server.s.Log("Chat Moderation enabled.");
             }
         }

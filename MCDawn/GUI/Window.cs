@@ -394,9 +394,9 @@ namespace MCDawn.Gui
             else
             {
                 if (Server.consoleSound && Window.thisWindow.WindowState == FormWindowState.Minimized) consoleSound.Play();
-                s = Player.RemoveBadColors("&0" + s);
+                s = Player.RemoveBadColors("&0" + s.Replace("&g", "&0").Replace("%g", "&0"));
                 string nocolors = Player.RemoveAllColors(s);
-                if (!parseColors) { txtLog.AppendText(nocolors + Environment.NewLine); return; }
+                if (!parseColors) { txtLog.AppendText(nocolors + Environment.NewLine); ScrollToBottom(); return; }
                 txtLog.AppendText(nocolors + Environment.NewLine);
                 var sections = s.Split('&');
                 string done = txtLog.Text.Remove(txtLog.Text.Length - nocolors.Length - 1);
@@ -585,7 +585,7 @@ namespace MCDawn.Gui
                 {
                     case '#':
                         text = text.Remove(0, 1);
-                        Player.GlobalMessageOps("To Ops &f-" + Server.DefaultColor + " Console [&a" + Server.ZallState + Server.DefaultColor + "]&f- " + text);
+                        Player.GlobalMessageOps("To Ops &f-" + "&g Console [&a" + Server.ZallState + "&g]&f- " + text);
                         Server.s.Log("(OPs): Console: " + text);
                         //Server.s.OpLog("Console: " + text);
                         IRCBot.Say("Console: " + text, true);
@@ -594,7 +594,7 @@ namespace MCDawn.Gui
                         break;
                     case ';':
                         text = text.Remove(0, 1);
-                        Player.GlobalMessageAdmins("To Admins &f-" + Server.DefaultColor + " Console [&a" + Server.ZallState + Server.DefaultColor + "]&f- " + text);
+                        Player.GlobalMessageAdmins("To Admins &f-" + "&g Console [&a" + Server.ZallState + "&g]&f- " + text);
                         Server.s.Log("(Admins): Console: " + text);
                         //Server.s.AdminLog("Console: " + text);
                         //IRCBot.Say("Console: " + text, true);
@@ -614,11 +614,11 @@ namespace MCDawn.Gui
                         who.SendMessage("&bFrom Console: &f" + words[1]);
                         Server.s.Log("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                         if (!Server.devs.Contains(who.name.ToLower()))
-                            Player.GlobalMessageDevs("To Devs &f-" + Server.DefaultColor + "Console &b[>] " + who.color + who.name + "&f- " + words[1]);
+                            Player.GlobalMessageDevs("To Devs &f-" + "&gConsole &b[>] " + who.color + who.name + "&f- " + words[1]);
                         //AllServerChat.Say("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                         break;
                     default:
-                        Player.GlobalChat(null, "Console [&a" + Server.ZallState + Server.DefaultColor + "]: &f" + text, false);
+                        Player.GlobalChat(null, "Console [&a" + Server.ZallState + "&g]: &f" + text, false);
                         IRCBot.Say("Console [" + Server.ZallState + "]: " + text);
                         Server.s.Log("<CONSOLE> " + text);
                         //AllServerChat.Say("Console [" + Server.ZallState + "]: " + text);
@@ -636,7 +636,7 @@ namespace MCDawn.Gui
             {
                 if (txtAdminInput.Text == null || txtAdminInput.Text.Trim() == "") { return; }
                 string text = txtAdminInput.Text.Trim();
-                Player.GlobalMessageAdmins("To Admins &f-" + Server.DefaultColor + "Console [&a" + Server.ZallState + Server.DefaultColor + "]&f- " + text);
+                Player.GlobalMessageAdmins("To Admins &f-" + "&gConsole [&a" + Server.ZallState + "&g]&f- " + text);
                 //IRCBot.Say("Console [" + Server.ZallState + "]: " + text, true);
                 WriteAdminLine("<CONSOLE> " + text);
                 //AllServerChat.Say("(Admins) Console [" + Server.ZallState + "]: " + text);
@@ -651,7 +651,7 @@ namespace MCDawn.Gui
             {
                 if (txtOpInput.Text == null || txtOpInput.Text.Trim() == "") { return; }
                 string text = txtOpInput.Text.Trim();
-                Player.GlobalMessageOps("To Ops &f-" + Server.DefaultColor + "Console [&a" + Server.ZallState + Server.DefaultColor + "]&f- " + text);
+                Player.GlobalMessageOps("To Ops &f-" + "&gConsole [&a" + Server.ZallState + "&g]&f- " + text);
                 IRCBot.Say("Console [" + Server.ZallState + "]: " + text, true);
                 WriteOpLine("<CONSOLE> " + text);
                 //AllServerChat.Say("(OPs) Console [" + Server.ZallState + "]: " + text);

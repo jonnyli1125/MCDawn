@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdTnt : Command
     {
         public override string name { get { return "tnt"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Builder; } }
@@ -18,17 +18,17 @@ namespace MCDawn
 
             if (p.BlockAction == 13 || p.BlockAction == 14)
             {
-                p.BlockAction = 0; Player.SendMessage(p, "TNT mode is now &cOFF" + Server.DefaultColor + ".");
+                p.BlockAction = 0; Player.SendMessage(p, "TNT mode is now &cOFF" + "&g.");
             }
             else if (message.ToLower() == "small" || message == "")
             {
-                p.BlockAction = 13; Player.SendMessage(p, "TNT mode is now &aON" + Server.DefaultColor + ".");
+                p.BlockAction = 13; Player.SendMessage(p, "TNT mode is now &aON" + "&g.");
             }
             else if (message.ToLower() == "big")
             {
                 if (p.group.Permission > LevelPermission.AdvBuilder)
                 {
-                    p.BlockAction = 14; Player.SendMessage(p, "TNT mode is now &aON" + Server.DefaultColor + ".");
+                    p.BlockAction = 14; Player.SendMessage(p, "TNT mode is now &aON" + "&g.");
                 }
                 else
                 {

@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdGrantPass : Command
     {
         public override string name { get { return "grantpass"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -25,12 +25,12 @@ namespace MCDawn
             {
                 who.grantpassed = true;
                 Player.SendMessage(who, "You have been granted /setpass access.");
-                Player.SendMessage(p, "You have granted " + who.color + who.name + Server.DefaultColor + " /setpass access.");
+                Player.SendMessage(p, "You have granted " + who.color + who.name + "&g /setpass access.");
             }
         }
         public override void Help(Player p)
         {
-            Player.SendMessage(p, "&3/grantpass <player>" + Server.DefaultColor + " - Grant a player /setpass access.");
+            Player.SendMessage(p, "&3/grantpass <player>" + "&g - Grant a player /setpass access.");
         }
     }
 }

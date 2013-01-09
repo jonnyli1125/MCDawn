@@ -19,7 +19,7 @@ namespace MCDawn
     public class CmdTrust : Command
     {
         public override string name { get { return "trust"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "moderation"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -38,7 +38,7 @@ namespace MCDawn
             else
             {
                 who.ignoreGrief = !who.ignoreGrief;
-                Player.SendMessage(p, who.color + who.name + Server.DefaultColor + "'s trust status: " + who.ignoreGrief);
+                Player.SendMessage(p, who.color + who.name + "&g's trust status: " + who.ignoreGrief);
                 who.SendMessage("Your trust status was changed to: " + who.ignoreGrief);
             }
         }

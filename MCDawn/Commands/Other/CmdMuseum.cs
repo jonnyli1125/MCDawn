@@ -12,7 +12,7 @@ namespace MCDawn
     public class CmdMuseum : Command
     {
         public override string name { get { return "museum"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Guest; } }
@@ -124,13 +124,13 @@ namespace MCDawn
                     p.Loading = false;
 
                     if (message.IndexOf(' ') == -1)
-                        level.name = "&cMuseum " + Server.DefaultColor + "(" + message.Split(' ')[0] + ")";
+                        level.name = "&cMuseum " + "&g(" + message.Split(' ')[0] + ")";
                     else
-                        level.name = "&cMuseum " + Server.DefaultColor + "(" + message.Split(' ')[0] + " " + message.Split(' ')[1] + ")";
+                        level.name = "&cMuseum " + "&g(" + message.Split(' ')[0] + " " + message.Split(' ')[1] + ")";
 
                     if (!p.hidden)
                     {
-                        Player.GlobalChat(null, p.color + p.prefix + p.name + Server.DefaultColor + " went to the " + level.name, false);
+                        Player.GlobalChat(null, p.color + p.prefix + p.name + "&g went to the " + level.name, false);
                     }
 
                     GC.Collect();

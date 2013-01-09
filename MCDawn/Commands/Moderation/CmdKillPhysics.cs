@@ -17,7 +17,7 @@ namespace MCDawn
                 
                 if (message == "")
                 {
-                    Player.GlobalMessage("Physics are now &cOFF" + Server.DefaultColor + " on all levels.");
+                    Player.GlobalMessage("Physics are now &cOFF" + "&g on all levels.");
                     foreach (Level lvl in Server.levels)
                     {
                         if (lvl.physics > 0)

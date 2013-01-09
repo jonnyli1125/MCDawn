@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdDrop : Command
     {
         public override string name { get { return "drop"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "games"; } }
         public CmdDrop() { }
         public override bool museumUsable { get { return false; } }

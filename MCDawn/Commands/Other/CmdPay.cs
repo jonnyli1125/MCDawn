@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdPay : Command
     {
         public override string name { get { return "pay"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Banned; } }
@@ -30,7 +30,7 @@ namespace MCDawn
 
             who.money += amountPaid;
             p.money -= amountPaid;
-            Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " paid " + who.color + who.name + Server.DefaultColor + " " + amountPaid + " " + Server.moneys);
+            Player.GlobalMessage(p.color + p.name + "&g paid " + who.color + who.name + "&g " + amountPaid + " " + Server.moneys);
         }
         public override void Help(Player p)
         {

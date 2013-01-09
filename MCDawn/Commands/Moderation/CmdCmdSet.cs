@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdCmdSet : Command
     {
         public override string name { get { return "cmdset"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -34,7 +34,7 @@ namespace MCDawn
 
             GrpCommands.Save(GrpCommands.allowedCommands);
             GrpCommands.fillRanks();
-            Player.GlobalMessage("&d" + foundCmd.name + Server.DefaultColor + "'s permission was changed to " + Level.PermissionToName(newPerm));
+            Player.GlobalMessage("&d" + foundCmd.name + "&g's permission was changed to " + Level.PermissionToName(newPerm));
             Server.s.Log(foundCmd.name + "'s permission was changed to " + Level.PermissionToName(newPerm));
         }
         public override void Help(Player p)

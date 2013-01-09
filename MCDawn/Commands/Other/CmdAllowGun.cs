@@ -20,14 +20,14 @@ namespace MCDawn
                 if (where.allowguns)
                 {
                     where.allowguns = false;
-                    Player.GlobalMessage("Guns disabled on level &b" + where.name + Server.DefaultColor + ".");
+                    Player.GlobalMessage("Guns disabled on level &b" + where.name + "&g.");
                     where.Save();
                     foreach (Player pl in where.players) { if (pl.aiming) { Command.all.Find("gun").Use(pl, ""); } }
                 }
                 else
                 {
                     where.allowguns = true;
-                    Player.GlobalMessage("Guns enabled on level &b" + where.name + Server.DefaultColor + ".");
+                    Player.GlobalMessage("Guns enabled on level &b" + where.name + "&g.");
                     where.Save();
                 }
                 return;
@@ -40,14 +40,14 @@ namespace MCDawn
                 if (lvl.allowguns == true)
                 {
                     lvl.allowguns = false;
-                    Player.GlobalMessage("Guns disabled on level &b" + lvl.name + Server.DefaultColor + ".");
+                    Player.GlobalMessage("Guns disabled on level &b" + lvl.name + "&g.");
                     foreach (Player pl in lvl.players) { if (pl.aiming) { Command.all.Find("gun").Use(pl, ""); } }
                     lvl.Save();
                 }
                 else
                 {
                     lvl.allowguns = true;
-                    Player.GlobalMessage("Guns enabled on level &b" + lvl.name + Server.DefaultColor + ".");
+                    Player.GlobalMessage("Guns enabled on level &b" + lvl.name + "&g.");
                     lvl.Save();
                 }
             }
@@ -57,14 +57,14 @@ namespace MCDawn
                 if (p.level.allowguns == true)
                 {
                     p.level.allowguns = false;
-                    Player.GlobalMessageLevel(p.level, "Guns disabled on level &b" + p.level.name + Server.DefaultColor + ".");
+                    Player.GlobalMessageLevel(p.level, "Guns disabled on level &b" + p.level.name + "&g.");
                     foreach (Player pl in p.level.players) { if (pl.aiming) { Command.all.Find("gun").Use(pl, ""); } }
                     p.level.Save();
                 }
                 else
                 {
                     p.level.allowguns = true;
-                    Player.GlobalMessageLevel(p.level, "Guns enabled on level &b" + p.level.name + Server.DefaultColor + ".");
+                    Player.GlobalMessageLevel(p.level, "Guns enabled on level &b" + p.level.name + "&g.");
                     p.level.Save();
                 }
             }

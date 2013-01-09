@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdThrottle : Command
     {
         public override string name { get { return "throttle"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -38,7 +38,7 @@ namespace MCDawn
             Player.SendMessage(p, "/throttle <0-200> - Set speed throttle of cuboid and/or building commands.");
             Player.SendMessage(p, "1 is the slowest, 200 is the fastest.");
             Player.SendMessage(p, "If set to 0, throttling will be turned off.");
-            Player.SendMessage(p, "Current throttle is set to: &a" + Server.throttle + Server.DefaultColor + ".");
+            Player.SendMessage(p, "Current throttle is set to: &a" + Server.throttle + "&g.");
         }
     }
 }

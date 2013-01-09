@@ -25,14 +25,14 @@ namespace MCDawn
             if (who.warnings == 0) { Player.SendMessage(p, "That player has not been warned yet."); return; }
             if (p == null)
             {
-                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + "'s warning was revoked by the Console!");
+                Player.GlobalMessage(who.color + who.name + "&g's warning was revoked by the Console!");
                 if (message.Split(' ').Length > 1) { Player.GlobalMessage("Reason: " + reason); }
                 Server.s.Log(who.name + "'s warning was revoked by " + p.name + "!");
                 if (message.Split(' ').Length > 1) { Server.s.Log("Reason: " + reason); }
             }
             else
             {
-                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + "'s warning was revoked by " + p.color + p.name + Server.DefaultColor + "!");
+                Player.GlobalMessage(who.color + who.name + "&g's warning was revoked by " + p.color + p.name + "&g!");
                 if (message.Split(' ').Length > 1) { Player.GlobalMessage("Reason: " + reason); }
                 Server.s.Log(who.name + "'s warning was revoked by the Console!");
                 if (message.Split(' ').Length > 1) { Server.s.Log("Reason: " + reason); }

@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdSetSkin : Command
     {
         public override string name { get { return "setskin"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -19,27 +19,27 @@ namespace MCDawn
             if (message.Split(' ').Length == 2 && message.Split(' ')[1].ToLower().Trim() != "s") { Help(p); return; }
             if (message.Trim() == "") 
             { 
-                Player.GlobalMessage(p.color + p.name + Server.DefaultColor + "'s skin was reset to original skin.");
+                Player.GlobalMessage(p.color + p.name + "&g's skin was reset to original skin.");
                 Player.GlobalDie(p, false);
                 //Player.GlobalSpawn(p, p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1], false);
                 Player.SkinChange(p, p.color + p.name, p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1]);
             }
             else if (message.ToLower().Trim() == "s")
             {
-                Player.GlobalMessageAdmins("To Admins: " + p.color + p.name + Server.DefaultColor + "'s skin was reset to original skin.");
+                Player.GlobalMessageAdmins("To Admins: " + p.color + p.name + "&g's skin was reset to original skin.");
                 Player.GlobalDie(p, false);
                 //Player.GlobalSpawn(p, p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1], false);
                 Player.SkinChange(p, p.color + p.name, p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1]);
             }
             else if (message.Split(' ').Length == 2 && message.Split(' ')[1].ToLower().Trim() == "s")
             {
-                Player.GlobalMessageAdmins("To Admins: " + p.color + p.name + Server.DefaultColor + "'s skin set to the skin of " + message.Split(' ')[0] + ".");
+                Player.GlobalMessageAdmins("To Admins: " + p.color + p.name + "&g's skin set to the skin of " + message.Split(' ')[0] + ".");
                 Player.GlobalDie(p, false);
                 Player.SkinChange(p, p.color + message.Split(' ')[0], p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1]);
             }
             else
             {
-                Player.GlobalMessage(p.color + p.name + Server.DefaultColor + "'s skin set to the skin of " + message.Split(' ')[0] + ".");
+                Player.GlobalMessage(p.color + p.name + "&g's skin set to the skin of " + message.Split(' ')[0] + ".");
                 Player.GlobalDie(p, false);
                 Player.SkinChange(p, p.color + message, p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1]); // Cannot use marker, that messes up the whole thing... Unless we have 2 GlobalSpawn type things, and on player's movement have those constantly stay together, but I'm way too lazy to do that lol. That would still cause a retarded half-steve, half-skin effect, so basically, spawning skinned players with uncorresponding names is not possible, unless client side hax.
             }

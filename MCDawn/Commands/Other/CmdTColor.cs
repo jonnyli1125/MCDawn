@@ -22,7 +22,7 @@ namespace MCDawn
     public class CmdTColor : Command
     {
         public override string name { get { return "tcolor"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -42,7 +42,7 @@ namespace MCDawn
             if (args.Length == 1)
             {
                 who.titlecolor = "";
-                Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + " had their title color removed.", false);
+                Player.GlobalChat(who, who.color + who.name + "&g had their title color removed.", false);
                 MySQL.executeQuery("UPDATE Players SET title_color = '' WHERE Name = '" + who.originalName + "'");
                 who.SetPrefix();
                 return;
@@ -55,7 +55,7 @@ namespace MCDawn
                 else
                 {
                     MySQL.executeQuery("UPDATE Players SET title_color = '" + c.Name(color) + "' WHERE Name = '" + who.originalName + "'");
-                    Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + " had their title color changed to " + color + c.Name(color) + Server.DefaultColor + ".", false);
+                    Player.GlobalChat(who, who.color + who.name + "&g had their title color changed to " + color + c.Name(color) + "&g.", false);
                     who.titlecolor = color;
                     who.SetPrefix();
                 }

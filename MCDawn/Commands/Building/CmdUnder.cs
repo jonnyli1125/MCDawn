@@ -1,17 +1,5 @@
-/*-----------------------------------------------------------------------------------------------------
-This command was made by Jonny Li, also known as jonnyli1125, for use with MCDawn only.
-June 7. 2012
-Version 1.0
-----------------------------------------------------------------------------------------------------
-Licensed under a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
-http://creativecommons.org/licenses/by-nc-sa/3.0/
-
-You must attribute the work in the manner specified by the author or licensor.
-You may not use this work for commercial purposes.
-You may not alter, transform, or build upon this work.
-
-Any of the above conditions can be waived if you get written permission from the copyright holder.  
-----------------------------------------------------------------------------------------------------*/
+// This work is licensed to jonnyli1125 (Jonny Li) under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+// You may obtain a copy of the License at: http://creativecommons.org/licenses/by-nc-sa/3.0/
 
 using System;
 
@@ -20,7 +8,7 @@ namespace MCDawn
     public class CmdUnder : Command
     {
         public override string name { get { return "under"; } }
-        public override string[] aliases { get { return new string[] { "descend" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Guest; } }

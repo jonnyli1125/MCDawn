@@ -61,17 +61,17 @@ namespace MCDawn
 
                         if (Server.devs.Contains(pl.name.ToLower()) && !pl.devUnverified && !pl.unverified)
                         {
-                            if (pl.voice) devs += " " + "&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + "),";
+                            if (pl.voice) devs += " " + "&f+&g" + foundName + " (" + pl.level.name + "),";
                             else devs += " " + foundName + " (" + pl.level.name + "),";
                         }
                         else if (pl.unverified || pl.devUnverified)
                         {
-                            if (pl.voice) unverified += " " + "&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + "),";
+                            if (pl.voice) unverified += " " + "&f+&g" + foundName + " (" + pl.level.name + "),";
                             else unverified += " " + foundName + " (" + pl.level.name + "),";
                         }
                         else
                         {
-                            if (pl.voice) playerList.Find(grp => grp.group == pl.group).players.Add("&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + ")");
+                            if (pl.voice) playerList.Find(grp => grp.group == pl.group).players.Add("&f+&g" + foundName + " (" + pl.level.name + ")");
                             else playerList.Find(grp => grp.group == pl.group).players.Add(foundName + " (" + pl.level.name + ")");
                         }
                     }
@@ -80,7 +80,7 @@ namespace MCDawn
                     (Server.irc ? (" (" + IRCBot.GetChannelUsers(Server.ircChannel).Count + " users on IRC" + 
                     ((p == null || (p != null && p.group.Permission > Server.opchatperm)) ? ", " + 
                     IRCBot.GetChannelUsers(Server.ircOpChannel).Count + " users on OP IRC" : "") + ")") : "") + ".");
-                if (devs.Length > 0) { Player.SendMessage(p, ":&9Developers:" + Server.DefaultColor + devs.Trim(',')); }
+                if (devs.Length > 0) { Player.SendMessage(p, ":&9Developers:&g" + devs.Trim(',')); }
                 for (int i = playerList.Count - 1; i >= 0; i--)
                 {
                     groups groups = playerList[i];
@@ -93,8 +93,8 @@ namespace MCDawn
 
                     Player.SendMessage(p, appendString);
                 }
-                if (unverified.Length > 0) { Player.SendMessage(p, ":&3Admin Security System:" + Server.DefaultColor + unverified.Trim(',')); }
-                //if (devUnverified.Length > 0) { Player.SendMessage(p, ":&3Developer Security System:" + Server.DefaultColor + unverified.Trim(',')); }
+                if (unverified.Length > 0) { Player.SendMessage(p, ":&3Admin Security System:&g" + unverified.Trim(',')); }
+                //if (devUnverified.Length > 0) { Player.SendMessage(p, ":&3Developer Security System:&g" + unverified.Trim(',')); }
                 if (Server.irc)
                 {
                     Player.SendMessage(p, ":" + Server.IRCColour + "IRC: " + String.Join(", ", IRCBot.GetChannelUsers(Server.ircChannel).ToArray()).Trim());

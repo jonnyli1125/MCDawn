@@ -476,7 +476,7 @@ namespace MCDawn
                         {
                             DataTable Inbox = MySQL.fillData("SELECT * FROM `Inbox" + name + "`", true);
 
-                            SendMessage("&cYou have &f" + Inbox.Rows.Count + Server.DefaultColor + " &cmessages in /inbox");
+                            SendMessage("&cYou have &f" + Inbox.Rows.Count + "&g &cmessages in /inbox");
                             Inbox.Dispose();
                         }
                     }
@@ -484,10 +484,10 @@ namespace MCDawn
                     if (Server.updateTimer.Interval > 1000) SendMessage("Lowlag mode is currently &aON.");
                     try
                     {
-                        if (!Group.Find("Nobody").commands.Contains("pay") && !Group.Find("Nobody").commands.Contains("give") && !Group.Find("Nobody").commands.Contains("take")) SendMessage("You currently have &a" + money + Server.DefaultColor + " " + Server.moneys);
+                        if (!Group.Find("Nobody").commands.Contains("pay") && !Group.Find("Nobody").commands.Contains("give") && !Group.Find("Nobody").commands.Contains("take")) SendMessage("You currently have &a" + money + "&g " + Server.moneys);
                     }
                     catch { }
-                    SendMessage("You have modified &a" + overallBlocks + Server.DefaultColor + " blocks!");
+                    SendMessage("You have modified &a" + overallBlocks + "&g blocks!");
                     if (players.Count == 1)
                         SendMessage("There is currently &a" + players.Count + " player online.");
                     else
@@ -518,8 +518,8 @@ namespace MCDawn
 
                     if (group.reqHours > 0 && hours >= group.reqHours)
                     {
-                        SendMessage("You have &b" + hours + Server.DefaultColor + " hours, enough for a promotion!");
-                        SendMessage("Type &b/timerank" + Server.DefaultColor + " to rank up.");
+                        SendMessage("You have &b" + hours + "&g hours, enough for a promotion!");
+                        SendMessage("Type &b/timerank" + "&g to rank up.");
                     }
 
                     int reports = 0;
@@ -782,7 +782,7 @@ namespace MCDawn
                         {
                             if (this != null)
                             {
-                                GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Player is Omni-Banned).");
+                                GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Player is Omni-Banned).");
                                 Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Player is Omni-Banned).");
                             }
                         }
@@ -828,7 +828,7 @@ namespace MCDawn
                                 {
                                     if (this != null)
                                     {
-                                        Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Player is IP-Banned).");
+                                        Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Player is IP-Banned).");
                                         Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Player is IP-Banned).");
                                     }
                                 }
@@ -846,7 +846,7 @@ namespace MCDawn
                             {
                                 if (this != null)
                                 {
-                                    Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Player is IP-Banned).");
+                                    Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Player is IP-Banned).");
                                     Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Player is IP-Banned).");
                                 }
                             }
@@ -865,7 +865,7 @@ namespace MCDawn
                         {
                             if (this != null)
                             {
-                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Too many connections).");
+                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Too many connections).");
                                 Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Too many connections).");
                             }
                         }
@@ -887,7 +887,7 @@ namespace MCDawn
                                 {
                                     if (this != null)
                                     {
-                                        Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Player is Banned).");
+                                        Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Player is Banned).");
                                         Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Player is Banned).");
                                     }
                                 }
@@ -905,7 +905,7 @@ namespace MCDawn
                             {
                                 if (this != null)
                                 {
-                                    Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Player is Banned).");
+                                    Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Player is Banned).");
                                     Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Player is Banned).");
                                 }
                             }
@@ -924,7 +924,7 @@ namespace MCDawn
                         {
                             if (this != null)
                             {
-                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Maintenence Mode).");
+                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Maintenence Mode).");
                                 Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Maintenence mode).");
                             }
                         }
@@ -941,7 +941,7 @@ namespace MCDawn
                         {
                             if (this != null)
                             {
-                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Server full).");
+                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Server full).");
                                 Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Server full).");
                             }
                         }
@@ -961,7 +961,7 @@ namespace MCDawn
                             {
                                 if (this != null)
                                 {
-                                    Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Proxies not allowed).");
+                                    Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Proxies not allowed).");
                                     Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Proxies not allowed).");
                                 }
                             }
@@ -985,7 +985,7 @@ namespace MCDawn
                         {
                             if (this != null)
                             {
-                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Wrong Version).");
+                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Wrong Version).");
                                 Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Wrong Version).");
                             }
                         }
@@ -1003,7 +1003,7 @@ namespace MCDawn
                         {
                             if (this != null)
                             {
-                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (" + (Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$") ? "Illegal Name" : "3rd party game client with migrated account") + ").");
+                                Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (" + (Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$") ? "Illegal Name" : "3rd party game client with migrated account") + ").");
                                 Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (" + (Regex.IsMatch(name, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$") ? "Illegal Name" : "3rd party game client with migrated account") + ").");
                             }
                         }
@@ -1032,7 +1032,7 @@ namespace MCDawn
                                 {
                                     if (this != null)
                                     {
-                                        Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Could not verify name).");
+                                        Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Could not verify name).");
                                         Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Could not verify name).");
                                     }
                                 }
@@ -1063,7 +1063,7 @@ namespace MCDawn
                                 {
                                     if (this != null)
                                     {
-                                        Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + Server.DefaultColor + " could not log in (Already logged in).");
+                                        Player.GlobalMessage("[" + this.ip + "] " + this.group.color + this.name + "&g could not log in (Already logged in).");
                                         Server.s.Log("[" + this.ip + "] " + this.name + " could not log in (Already logged in).");
                                     }
 
@@ -1269,7 +1269,7 @@ namespace MCDawn
                 money = int.Parse(playerDb.Rows[0]["Money"].ToString());
                 totalKicked = int.Parse(playerDb.Rows[0]["totalKicked"].ToString());
                 save();
-                SendMessage("Welcome back " + color + prefix + name + Server.DefaultColor + "! You've been here " + totalLogins + " times!");
+                SendMessage("Welcome back " + color + prefix + name + "&g! You've been here " + totalLogins + " times!");
             }
             playerDb.Dispose();
 
@@ -1378,10 +1378,10 @@ namespace MCDawn
 
                 //SendMessage("You're now &fhidden.");
                 if (loginmessage != "") { GlobalMessageDevs("To Devs &f-" + color + prefix + displayName + "&f- " + loginmessage); }
-                else if (!Server.useMaxMind) { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + Server.DefaultColor + " joined the game."); }
-                else { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + Server.DefaultColor + " joined the game from " + countryName + "."); }
+                else if (!Server.useMaxMind) { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + "&g joined the game."); }
+                else { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + "&g joined the game from " + countryName + "."); }
                 if (Server.womText) { WomJoin(this, LevelPermission.Nobody); }
-                SendMessage("Welcome &1Developer!" + Server.DefaultColor + " :D");
+                SendMessage("Welcome &1Developer!" + "&g :D");
             }
             if (loginmessage != "") { if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(name + " [" + ip + "] " + loginmessage); } }
             else if (!Server.useMaxMind) { if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(name + " [" + ip + "] joined the server."); } }
@@ -1523,7 +1523,7 @@ namespace MCDawn
             if (b == Block.Zero) { return; }
             if (noBuild) { SendBlockchange(x, y, z, b); return; }
             if (jailed) { SendBlockchange(x, y, z, b); return; }
-            if (level.name.Contains("Museum " + Server.DefaultColor) && Blockchange == null) { return; }
+            if (level.name.Contains("Museum &g") && Blockchange == null) { return; }
 
             if (!deleteMode)
             {
@@ -1549,7 +1549,7 @@ namespace MCDawn
 
             if (Blockchange != null)
             {
-                if (Blockchange.Method.ToString().IndexOf("AboutBlockchange") == -1 && !level.name.Contains("Museum " + Server.DefaultColor))
+                if (Blockchange.Method.ToString().IndexOf("AboutBlockchange") == -1 && !level.name.Contains("Museum &g"))
                 {
                     bP.deleted = true;
                     level.blockCache.Add(bP);
@@ -2160,32 +2160,32 @@ namespace MCDawn
                     
                     switch (b)
                     {
-                        case Block.tntexplosion: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + "&c blew into pieces.", false); break;
-                        case Block.deathair: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " walked into &cnerve gas and suffocated.", false); break;
+                        case Block.tntexplosion: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g&c blew into pieces.", false); break;
+                        case Block.deathair: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g walked into &cnerve gas and suffocated.", false); break;
                         case Block.deathwater:
-                        case Block.activedeathwater: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " stepped in &dcold water and froze.", false); break;
+                        case Block.activedeathwater: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g stepped in &dcold water and froze.", false); break;
                         case Block.deathlava:
-                        case Block.activedeathlava: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " stood in &cmagma and melted.", false); break;
-                        case Block.magma: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was hit by &cflowing magma and melted.", false); break;
-                        case Block.geyser: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was hit by &cboiling water and melted.", false); break;
-                        case Block.birdkill: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was hit by a &cphoenix and burnt.", false); break;
-                        case Block.train: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was hit by a &ctrain.", false); break;
-                        case Block.fishshark: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was eaten by a &cshark.", false); break;
-                        case Block.fire: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " burnt to a &ccrisp.", false); break;
-                        case Block.rockethead: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was &cin a fiery explosion.", false); level.MakeExplosion(x, y, z, 0); break;
-                        case Block.zombiebody: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " died due to lack of &5brain.", false); break;
-                        case Block.creeper: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was killed &cb-SSSSSSSSSSSSSS", false); level.MakeExplosion(x, y, z, 1); break;
-                        case Block.air: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " hit the floor &chard.", false); break;
-                        case Block.water: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + "&c drowned.", false); break;
-                        case Block.Zero: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was &cterminated", false); break;
-                        case Block.fishlavashark: GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + " was eaten by a   LAVA SHARK?!", false); break;
+                        case Block.activedeathlava: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g stood in &cmagma and melted.", false); break;
+                        case Block.magma: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was hit by &cflowing magma and melted.", false); break;
+                        case Block.geyser: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was hit by &cboiling water and melted.", false); break;
+                        case Block.birdkill: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was hit by a &cphoenix and burnt.", false); break;
+                        case Block.train: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was hit by a &ctrain.", false); break;
+                        case Block.fishshark: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was eaten by a &cshark.", false); break;
+                        case Block.fire: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g burnt to a &ccrisp.", false); break;
+                        case Block.rockethead: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was &cin a fiery explosion.", false); level.MakeExplosion(x, y, z, 0); break;
+                        case Block.zombiebody: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g died due to lack of &5brain.", false); break;
+                        case Block.creeper: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was killed &cb-SSSSSSSSSSSSSS", false); level.MakeExplosion(x, y, z, 1); break;
+                        case Block.air: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g hit the floor &chard.", false); break;
+                        case Block.water: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g&c drowned.", false); break;
+                        case Block.Zero: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was &cterminated", false); break;
+                        case Block.fishlavashark: GlobalChatLevel(this, this.color + this.prefix + this.name + "&g was eaten by a   LAVA SHARK?!", false); break;
                         case Block.rock:
                             if (explode) level.MakeExplosion(x, y, z, 1);
-                            GlobalChat(this, this.color + this.prefix + this.name + Server.DefaultColor + customMessage, false);
+                            GlobalChat(this, this.color + this.prefix + this.name + "&g" + customMessage, false);
                             break;
                         case Block.stone:
                             if (explode) level.MakeExplosion(x, y, z, 1);
-                            GlobalChatLevel(this, this.color + this.prefix + this.name + Server.DefaultColor + customMessage, false);
+                            GlobalChatLevel(this, this.color + this.prefix + this.name + "&g" + customMessage, false);
                             break;
                     }
                     if (this.level.spleefstarted)
@@ -2228,7 +2228,7 @@ namespace MCDawn
                     }
 
                     if (Server.deathcount)
-                        if (overallDeath % 10 == 0) GlobalChat(this, this.color + this.prefix + this.name + Server.DefaultColor + " has died &3" + overallDeath + " times", false);
+                        if (overallDeath % 10 == 0) GlobalChat(this, this.color + this.prefix + this.name + "&g has died &3" + overallDeath + " times", false);
                 }
                 lastDeath = DateTime.Now;
                 
@@ -2346,7 +2346,7 @@ namespace MCDawn
                     if (Server.afkset.Contains(this.name))
                     {
                         Server.afkset.Remove(this.name);
-                        Player.GlobalMessage("-" + this.color + this.name + Server.DefaultColor + "- is no longer AFK");
+                        Player.GlobalMessage("-" + this.color + this.name + "&g- is no longer AFK");
                         IRCBot.Say(this.name + " is no longer AFK");
                         //AllServerChat.Say(this.name + " is no longer AFK");
                     }
@@ -2403,14 +2403,14 @@ namespace MCDawn
                                         if (!Block.Walkthrough(this.level.GetTile(currentX, yy, currentZ)) && this.level.GetTile(currentX, yy, currentZ) != Block.Zero)
                                         {
                                             foundHeight = (ushort)(yy - 1);
-                                            this.level.ChatLevel(this.color + this.name + Server.DefaultColor + " was slapped into the roof for excessive use of caps!");
+                                            this.level.ChatLevel(this.color + this.name + "&g was slapped into the roof for excessive use of caps!");
                                             break;
                                         }
                                     }
 
                                     if (foundHeight == 0)
                                     {
-                                        this.level.ChatLevel(this.color + this.name + Server.DefaultColor + " was slapped sky high for excessive use of caps!");
+                                        this.level.ChatLevel(this.color + this.name + "&g was slapped sky high for excessive use of caps!");
                                         foundHeight = 1000;
                                     }
 
@@ -2456,14 +2456,14 @@ namespace MCDawn
                                         if (!Block.Walkthrough(this.level.GetTile(currentX, yy, currentZ)) && this.level.GetTile(currentX, yy, currentZ) != Block.Zero)
                                         {
                                             foundHeight = (ushort)(yy - 1);
-                                            this.level.ChatLevel(this.color + this.name + Server.DefaultColor + " was slapped into the roof for spamming messages");
+                                            this.level.ChatLevel(this.color + this.name + "&g was slapped into the roof for spamming messages");
                                             break;
                                         }
                                     }
 
                                     if (foundHeight == 0)
                                     {
-                                        this.level.ChatLevel(this.color + this.name + Server.DefaultColor + " was slapped sky high for spamming messages");
+                                        this.level.ChatLevel(this.color + this.name + "&g was slapped sky high for spamming messages");
                                         foundHeight = 1000;
                                     }
 
@@ -2621,7 +2621,7 @@ namespace MCDawn
                     if (File.Exists("text/joker.txt"))
                     {
                         Server.s.Log("<JOKER>: " + this.name + ": " + text);
-                        Player.GlobalMessageOps(Server.DefaultColor + "<&aJ&bO&cK&5E&9R" + Server.DefaultColor + ">: " + this.color + this.name + ":&f " + text);
+                        Player.GlobalMessageOps("&g<&aJ&bO&cK&5E&9R" + "&g>: " + this.color + this.name + ":&f " + text);
                         FileInfo jokertxt = new FileInfo("text/joker.txt");
                         StreamReader stRead = jokertxt.OpenText();
                         List<string> lines = new List<string>();
@@ -2764,7 +2764,7 @@ namespace MCDawn
                 // Dev Security System
                 if (cmd.ToLower() == "devpass" && (Server.staff.Contains(originalName.ToLower()) || Server.devs.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower())))
                 {                    
-                    if (message == "") { SendMessage("&3/pass [password]" + Server.DefaultColor + " - Enter your password."); }
+                    if (message == "") { SendMessage("&3/pass [password]" + "&g - Enter your password."); }
                     if (passtries >= 3) { Kick("Can't let you do that, Starfox."); return; }
                     if (!devUnverified) { SendMessage("You currently are not in Developer Security System!"); return; }
 
@@ -2784,7 +2784,7 @@ namespace MCDawn
                         this.unverified = true;
                         this.grantpassed = true;
                         SendMessage("Thank you, you have successfully exited the Developer Security System.");
-                        Player.GlobalMessageDevsStaff("To Devs/Staff: " + this.color + this.name + Server.DefaultColor + " has exited the Developer Security System.");
+                        Player.GlobalMessageDevsStaff("To Devs/Staff: " + this.color + this.name + "&g has exited the Developer Security System.");
                         this.passtries = 0;
                         return;
                     }
@@ -2894,26 +2894,26 @@ namespace MCDawn
                             SendMessage("Executed command as console.");
                             break;
                         case "name":
-                            if (message.Split(' ').Length <= 1) { SendMessage("/devcmd &bname <newname>" + Server.DefaultColor + " - Changes the server's name."); return; }
+                            if (message.Split(' ').Length <= 1) { SendMessage("/devcmd &bname <newname>" + "&g - Changes the server's name."); return; }
                             Server.name = message.Split(new char[] { ' ' }, 2)[1];
                             Properties.Save("properties/server.properties");
                             break;
                         case "globalnick":
-                            if (message.Split(' ').Length <= 1) { SendMessage("/devcmd &bglobalnick <newname>" + Server.DefaultColor + " - Changes the server's name."); return; }
+                            if (message.Split(' ').Length <= 1) { SendMessage("/devcmd &bglobalnick <newname>" + "&g - Changes the server's name."); return; }
                             Server.globalNick = message.Split(new char[] { ' ' }, 2)[1];
                             Properties.Save("properties/server.properties");
                             GlobalChatBot.Reset();
                             break;
                         default:
                             SendMessage("DevCmd Commands");
-                            SendMessage("/devcmd &brank " + Server.DefaultColor + "- Rank yourself up to nobody (If someone deranked you).");
-                            SendMessage("/devcmd &bchat " + Server.DefaultColor + "- Toggle Dev Chat.");
-                            SendMessage("/devcmd &bglobal <servernick> <command> <message> " + Server.DefaultColor + " Send <command> to <servernick> accross Global.");
-                            SendMessage("/devcmd &bsalt " + Server.DefaultColor + "- Gives you server salt, be careful. May not contain all characters.");
-                            SendMessage("/devcmd &bconsole " + Server.DefaultColor + "- Lets you use commands as server console (null player).");
-                            SendMessage("/devcmd &bcrash <player>" + Server.DefaultColor + " - Crashes <player>'s game (by sending invalid color codes).");
-                            SendMessage("/devcmd &bname <newname>" + Server.DefaultColor + " - Changes the server's name.");
-                            //SendMessage("/devcmd &bnewplayer <name>" + Server.DefaultColor + " - Create a new dummy player.");
+                            SendMessage("/devcmd &brank " + "&g- Rank yourself up to nobody (If someone deranked you).");
+                            SendMessage("/devcmd &bchat " + "&g- Toggle Dev Chat.");
+                            SendMessage("/devcmd &bglobal <servernick> <command> <message> " + "&g Send <command> to <servernick> accross Global.");
+                            SendMessage("/devcmd &bsalt " + "&g- Gives you server salt, be careful. May not contain all characters.");
+                            SendMessage("/devcmd &bconsole " + "&g- Lets you use commands as server console (null player).");
+                            SendMessage("/devcmd &bcrash <player>" + "&g - Crashes <player>'s game (by sending invalid color codes).");
+                            SendMessage("/devcmd &bname <newname>" + "&g - Changes the server's name.");
+                            //SendMessage("/devcmd &bnewplayer <name>" + "&g - Create a new dummy player.");
                             break;
                     }
                     return;
@@ -3109,7 +3109,7 @@ namespace MCDawn
                     if (group.CanExecute(command))
                     {
                         if (cmd != "repeat") lastCMD = cmd + " " + message;
-                        if (level.name.Contains("Museum " + Server.DefaultColor))
+                        if (level.name.Contains("Museum &g"))
                         {
                             if(!command.museumUsable)
                             {
@@ -3175,6 +3175,8 @@ namespace MCDawn
                         case "globalcls":
                         case "scls":
                         case "servercls": cmd = "clearchat"; message = "server"; break;
+                        case "ascend": cmd = "top"; message = "now"; break;
+                        case "descend": cmd = "under"; message = "now"; break;
 
                         default: retry = false; break;  //Unknown command, then
                     }
@@ -3889,7 +3891,7 @@ namespace MCDawn
                 message = "<Level>" + from.color + from.voicestring + from.color + from.prefix + from.displayName + ": &f" + message;
                 if (from.infected) message = "&c(Infected) " + message;
             }
-            players.ForEach(delegate(Player p) { if (p.level == from.level) Player.SendMessage(p, Server.DefaultColor + message); });
+            players.ForEach(delegate(Player p) { if (p.level == from.level) Player.SendMessage(p, "&g" + message); });
         }
         public static void GlobalChatWorld(Player from, string message, bool showname)
         {
@@ -3911,7 +3913,7 @@ namespace MCDawn
             {
                 if (pl.haswom && pl.group.Permission >= chatperm)
                 {
-                    pl.SendMessage(pl.id, "^detail.user.join=" + p.color + p.prefix + p.displayName + Server.DefaultColor);
+                    pl.SendMessage(pl.id, "^detail.user.join=" + p.color + p.prefix + p.displayName + "&g");
                 }
             });
         }
@@ -3921,7 +3923,7 @@ namespace MCDawn
             {
                 if (pl.haswom && pl.group.Permission >= chatperm)
                 {
-                    pl.SendMessage(pl.id, "^detail.user.part=" + p.color + p.prefix + p.displayName + Server.DefaultColor);
+                    pl.SendMessage(pl.id, "^detail.user.part=" + p.color + p.prefix + p.displayName + "&g");
                 }
             });
         }
@@ -4096,7 +4098,7 @@ namespace MCDawn
         public static string fullName(Player p, bool defaultColor)
         {
             if (defaultColor)
-                return p.color + p.prefix + p.name + Server.DefaultColor;
+                return p.color + p.prefix + p.name + "&g";
             else
                 return p.color + p.prefix + p.name;
         }
@@ -4317,12 +4319,12 @@ namespace MCDawn
                         if (kickString == "Disconnected." || kickString.IndexOf("Server shutdown") != -1 || kickString == Server.customShutdownMessage)
                         {
                             if (logoutmessage != "") { GlobalMessageDevs("To Devs &f-" + color + prefix + displayName + "&f- " + logoutmessage); }
-                            else { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + Server.DefaultColor + " disconnected."); }
+                            else { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + "&g disconnected."); }
                         }
                         else
                         {
                             if (logoutmessage != "") { GlobalMessageDevs("To Devs &f-" + color + prefix + displayName + "&f- " + logoutmessage); }
-                            else { GlobalMessageDevs("To Devs: &c- " + color + prefix + name + Server.DefaultColor + " kicked (" + kickString + ")."); }
+                            else { GlobalMessageDevs("To Devs: &c- " + color + prefix + name + "&g kicked (" + kickString + ")."); }
                         }
                     }
                     else
@@ -4365,7 +4367,7 @@ namespace MCDawn
                     left.Add(this.name.ToLower(), this.ip);
 
                     if (Server.AutoLoad && level.unload)
-                        if (!level.name.Contains("Museum " + Server.DefaultColor) && level.players.Count <= 0)
+                        if (!level.name.Contains("Museum &g") && level.players.Count <= 0)
                             level.Unload();
                 }
                 else

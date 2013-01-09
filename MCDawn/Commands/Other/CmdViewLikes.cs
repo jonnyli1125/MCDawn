@@ -27,7 +27,7 @@ namespace MCDawn
                 string people = "";
                 int maxcount = (likes.Rows.Count < 3 ? likes.Rows.Count : 3);
                 for (int i = 0; i < maxcount; i++)
-                    people += Group.Find(Group.findPlayer(likes.Rows[i]["Username"].ToString().ToLower())).color + likes.Rows[i]["Username"].ToString() + Server.DefaultColor + (maxcount >= 2 && i == maxcount - 2 && (likes.Rows.Count == maxcount) ? " and " : (i == maxcount - 1 ? "" : ",") + (i == maxcount - 1 && likes.Rows.Count != maxcount ? "" : " "));
+                    people += Group.Find(Group.findPlayer(likes.Rows[i]["Username"].ToString().ToLower())).color + likes.Rows[i]["Username"].ToString() + "&g" + (maxcount >= 2 && i == maxcount - 2 && (likes.Rows.Count == maxcount) ? " and " : (i == maxcount - 1 ? "" : ",") + (i == maxcount - 1 && likes.Rows.Count != maxcount ? "" : " "));
                 if (maxcount != likes.Rows.Count)
                     people += " and " + (likes.Rows.Count - maxcount) + (likes.Rows.Count - maxcount == 1 ? " other person " : " others ");
                 people += (likes.Rows.Count == 1 ? "likes" : "like") + " this level.";

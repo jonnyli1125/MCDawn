@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdHRestore : Command
     {
         public override string name { get { return "hrestore"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "homes"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }

@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdMove : Command
     {
         public override string name { get { return "move"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Banned; } }
@@ -29,7 +29,7 @@ namespace MCDawn
 
                 Command.all.Find("goto").Use(who, where.name);
                 if (who.level == where)
-                    Player.SendMessage(p, "Sent " + who.color + who.name + Server.DefaultColor + " to " + where.name);
+                    Player.SendMessage(p, "Sent " + who.color + who.name + "&g to " + where.name);
                 else
                     Player.SendMessage(p, where.name + " is not loaded");
             }

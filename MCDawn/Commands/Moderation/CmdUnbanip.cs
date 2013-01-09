@@ -11,7 +11,7 @@ namespace MCDawn
         Regex regex = new Regex(@"^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\." +
                                 "([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])){3}$");
         public override string name { get { return "unbanip"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -68,7 +68,7 @@ namespace MCDawn
             if (!regex.IsMatch(message)) { Player.SendMessage(p, "Not a valid ip!"); return; }
             if (p != null) if (p.ip == message) { Player.SendMessage(p, "You shouldn't be able to use this command..."); return; }
             if (!Server.bannedIP.Contains(message)) { Player.SendMessage(p, message + " doesn't seem to be banned..."); return; }
-            Player.GlobalMessage(message + " got &8unip-banned" + Server.DefaultColor + "!");
+            Player.GlobalMessage(message + " got &8unip-banned" + "&g!");
             Server.bannedIP.Remove(message); Server.bannedIP.Save("banned-ip.txt", false);
             Server.s.Log("IP-UNBANNED: " + message.ToLower());
         }

@@ -136,7 +136,7 @@ namespace MCDawn
 
             mapOn.Blockchange(x, y, z, CTFTeam.GetColorBlock(team.color));
 
-            mapOn.ChatLevel(p.color + p.prefix + p.name + Server.DefaultColor + " has stolen the " + team.teamstring + " flag!");
+            mapOn.ChatLevel(p.color + p.prefix + p.name + "&g has stolen the " + team.teamstring + " flag!");
             p.hasflag = team;
             p.carryingFlag = true;
             team.holdingFlag = p;
@@ -153,7 +153,7 @@ namespace MCDawn
         {
             playerTeam.points++;
             mapOn.Blockchange(capturedTeam.tempFlagblock.x, capturedTeam.tempFlagblock.y, capturedTeam.tempFlagblock.z, capturedTeam.tempFlagblock.type);
-            mapOn.ChatLevel(p.color + p.prefix + p.name + Server.DefaultColor + " has captured the " + capturedTeam.teamstring + " flag!");
+            mapOn.ChatLevel(p.color + p.prefix + p.name + "&g has captured the " + capturedTeam.teamstring + " flag!");
 
             if (playerTeam.points >= maxPoints)
             {
@@ -169,7 +169,7 @@ namespace MCDawn
 
         public void DropFlag(Player p, CTFTeam team)
         {
-            mapOn.ChatLevel(p.color + p.prefix + p.name + Server.DefaultColor + " has dropped the " + team.teamstring + " flag!");
+            mapOn.ChatLevel(p.color + p.prefix + p.name + "&g has dropped the " + team.teamstring + " flag!");
             ushort x = (ushort)(p.pos[0] / 32);
             ushort y = (ushort)((p.pos[1] / 32) - 1);
             ushort z = (ushort)(p.pos[2] / 32);
@@ -193,7 +193,7 @@ namespace MCDawn
             {
                 if (p != null)
                 {
-                    mapOn.ChatLevel(p.color + p.prefix + p.name + Server.DefaultColor + " has returned the " + team.teamstring + " flag!");
+                    mapOn.ChatLevel(p.color + p.prefix + p.name + "&g has returned the " + team.teamstring + " flag!");
                 }
                 else
                 {
@@ -219,7 +219,7 @@ namespace MCDawn
             char[] temp = c.Name("&" + teamCol).ToCharArray();
             temp[0] = char.ToUpper(temp[0]);
             string tempstring = new string(temp);
-            workteam.teamstring = "&" + teamCol + tempstring + " team" + Server.DefaultColor;
+            workteam.teamstring = "&" + teamCol + tempstring + " team&g";
 
             teams.Add(workteam);
             

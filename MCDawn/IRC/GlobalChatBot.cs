@@ -93,8 +93,8 @@ namespace MCDawn
                         if (Server.staff.Contains(temp.Split(':')[0]) && !temp.StartsWith("[MCDawn Staff] ")) { temp = "[MCDawn Staff] " + temp; }
                         if (Server.administration.Contains(temp.Split(':')[0]) && !temp.StartsWith("[Administrator] ")) { temp = "[Administrator] " + temp; }
 
-                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage(Server.DefaultColor + ">[Global] &6" + storedNick + ": &f" + temp); }
-                        else { pl.SendMessage(Server.DefaultColor + ">[Global] " + Server.GlobalChatColour + storedNick + ": &f" + temp); }
+                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage("&g>[Global] &6" + storedNick + ": &f" + temp); }
+                        else { pl.SendMessage("&g>[Global] " + Server.GlobalChatColour + storedNick + ": &f" + temp); }
                     }
                 }
                 Server.s.Log(">[Global] " + storedNick + ": " + temp);
@@ -113,8 +113,8 @@ namespace MCDawn
                 {
                     if (!Server.ignoreGlobal.Contains(pl.name.ToLower()) && !pl.ignoreList.Contains(temp.Split(':')[0]) && !Server.GlobalBanned().Contains(e.Data.Nick.ToLower()) && !Server.GlobalBanned().Contains(temp.Split(':')[0]) && !pl.ignoreList.Contains(temp.Split(':')[0]) && !Server.OmniBanned().Contains(e.Data.Nick.ToLower()) && !Server.OmniBanned().Contains(temp.Split(':')[0]))
                     {
-                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage(Server.DefaultColor + ">[Global] &6*" + storedNick + " " + temp); }
-                        else { pl.SendMessage(Server.DefaultColor + ">[Global] " + Server.GlobalChatColour + "*" + storedNick + " " + temp); }
+                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage("&g>[Global] &6*" + storedNick + " " + temp); }
+                        else { pl.SendMessage("&g>[Global] " + Server.GlobalChatColour + "*" + storedNick + " " + temp); }
                     }
                 }
                 Server.s.Log(">[Global] *" + storedNick + " " + temp);
@@ -224,11 +224,11 @@ namespace MCDawn
             {
                 if (e.Data.Channel == devchannel)
                 {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has joined the Dev Global Chat Channel.");
+                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has joined the Dev Global Chat Channel.");
                 }
                 else
                 {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has joined the Global Chat Channel.");
+                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has joined the Global Chat Channel.");
                 }
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
@@ -242,11 +242,11 @@ namespace MCDawn
             {
                 if (e.Data.Channel == devchannel)
                 {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has left the Dev Global Chat Channel");
+                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has left the Dev Global Chat Channel");
                 }
                 else
                 {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has left the Global Chat Channel");
+                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has left the Global Chat Channel");
                 }
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
@@ -259,11 +259,11 @@ namespace MCDawn
             {
                 if (e.Data.Channel == devchannel)
                 {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has quit the Dev Global Chat Channel");
+                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has quit the Dev Global Chat Channel");
                 }
                 else
                 {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + Server.DefaultColor + " has quit the Global Chat Channel");
+                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has quit the Global Chat Channel");
                 }
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
@@ -280,7 +280,7 @@ namespace MCDawn
         {
             try
             {
-                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.OldNickname + Server.DefaultColor + " is now known as " + e.NewNickname + " on " + e.Data.Channel);
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.OldNickname + "&g is now known as " + e.NewNickname + " on " + e.Data.Channel);
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
             }
@@ -291,7 +291,7 @@ namespace MCDawn
             try
             {
                 if (e.Data.Channel == devchannel)
-                    Player.GlobalMessageDevsStaff("<[DevGlobal] *" + Server.GlobalChatColour + e.Data.Nick + " " + Server.DefaultColor + e.ActionMessage);
+                    Player.GlobalMessageDevsStaff("<[DevGlobal] *" + Server.GlobalChatColour + e.Data.Nick + " &g" + e.ActionMessage);
                 else
                     DisplayAction(e.ActionMessage, e);
             }

@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdAutoBuild : Command
     {
         public override string name { get { return "autobuild"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }

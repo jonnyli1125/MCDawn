@@ -7,7 +7,7 @@ namespace MCDawn
     class CmdCmdLoad : Command
     {
         public override string name { get { return "cmdload"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Nobody; } }

@@ -37,13 +37,13 @@ namespace MCDawn
             {
                 who.invincible = false;
                 if (Server.unCheapMessage)
-                    Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " " + Server.unCheapMessageGiven);
+                    Player.GlobalMessage(who.color + who.name + "&g " + Server.unCheapMessageGiven);
             }
             else
             {
                 who.invincible = true;
                 if (Server.cheapMessage)
-                    Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " " + Server.cheapMessageGiven);
+                    Player.GlobalMessage(who.color + who.name + "&g " + Server.cheapMessageGiven);
             }
         }
         public override void Help(Player p)

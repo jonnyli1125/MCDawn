@@ -6,7 +6,7 @@ namespace MCDawn
 	public class CmdJoker : Command
 	{
 		public override string name { get { return "joker"; } }
-		public override string[] aliases { get { return new string[] { "" }; } }
+		public override string[] aliases { get { return new string[] { }; } }
 		public override string type { get { return "mod"; } }
 		public override bool museumUsable { get { return true; } }
 		public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -51,7 +51,7 @@ namespace MCDawn
 				}
 				else
 				{
-					Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to joker a MCDawn Developer!");
+					Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to joker a MCDawn Developer!");
 				}
 				return;
 			}
@@ -60,14 +60,14 @@ namespace MCDawn
 			if (!who.joker)
 			{
 				who.joker = true;
-				if (stealth) { Player.GlobalMessageOps(who.color + who.name + Server.DefaultColor + " is now STEALTH joker'd. "); return; }
-				Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " is now a &aJ&bo&ck&5e&9r" + Server.DefaultColor + ".", false);
+				if (stealth) { Player.GlobalMessageOps(who.color + who.name + "&g is now STEALTH joker'd. "); return; }
+				Player.GlobalChat(null, who.color + who.name + "&g is now a &aJ&bo&ck&5e&9r" + "&g.", false);
 			}
 			else
 			{
 				who.joker = false;
-				if (stealth) { Player.GlobalMessageOps(who.color + who.name + Server.DefaultColor + " is now STEALTH Unjoker'd. "); return; }
-				Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " is no longer a &aJ&bo&ck&5e&9r" + Server.DefaultColor + ".", false);
+				if (stealth) { Player.GlobalMessageOps(who.color + who.name + "&g is now STEALTH Unjoker'd. "); return; }
+				Player.GlobalChat(null, who.color + who.name + "&g is no longer a &aJ&bo&ck&5e&9r" + "&g.", false);
 			}
 		}
 		public override void Help(Player p)

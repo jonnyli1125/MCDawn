@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdFollow : Command
     {
         public override string name { get { return "follow"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -16,7 +16,7 @@ namespace MCDawn
         {
             if (!p.canBuild)
             {
-                Player.SendMessage(p, "You're currently being &4possessed" + Server.DefaultColor + "!");
+                Player.SendMessage(p, "You're currently being &4possessed" + "&g!");
                 return;
             }
             try
@@ -69,7 +69,7 @@ namespace MCDawn
                         {
                             if (who != null)
                             {
-                                Player.SendMessage(p, "You have stopped following " + who.color + who.name + Server.DefaultColor + " and remained hidden.");
+                                Player.SendMessage(p, "You have stopped following " + who.color + who.name + "&g and remained hidden.");
                             }
                             else
                             {

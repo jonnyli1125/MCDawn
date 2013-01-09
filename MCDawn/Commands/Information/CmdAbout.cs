@@ -35,7 +35,7 @@ namespace MCDawn
 
             string message = "Block (" + x + "," + y + "," + z + "): ";
             message += "&f" + b + " = " + Block.Name(b);
-            Player.SendMessage(p, message + Server.DefaultColor + ".");
+            Player.SendMessage(p, message + "&g.");
             message = p.level.foundInfo(x, y, z);
             if (message != "") Player.SendMessage(p, "Physics information: &a" + message);
 
@@ -53,9 +53,9 @@ namespace MCDawn
                 Deleted = (bool)Blocks.Rows[i]["Deleted"];
 
                 if (!Deleted)
-                    Player.SendMessage(p, "&3Created by " + Server.FindColor(Username.Trim()) + Username.Trim() + Server.DefaultColor + ", using &3" + BlockUsed);
+                    Player.SendMessage(p, "&3Created by " + Server.FindColor(Username.Trim()) + Username.Trim() + "&g, using &3" + BlockUsed);
                 else
-                    Player.SendMessage(p, "&4Destroyed by " + Server.FindColor(Username.Trim()) + Username.Trim() + Server.DefaultColor + ", using &3" + BlockUsed);
+                    Player.SendMessage(p, "&4Destroyed by " + Server.FindColor(Username.Trim()) + Username.Trim() + "&g, using &3" + BlockUsed);
                 Player.SendMessage(p, "Date and time modified: &2" + TimePerformed);
             }
 
@@ -70,9 +70,9 @@ namespace MCDawn
                 BlockUsed = Block.Name(inCache[i].type);
 
                 if (!Deleted)
-                    Player.SendMessage(p, "&3Created by " + Server.FindColor(Username.Trim()) + Username.Trim() + Server.DefaultColor + ", using &3" + BlockUsed);
+                    Player.SendMessage(p, "&3Created by " + Server.FindColor(Username.Trim()) + Username.Trim() + "&g, using &3" + BlockUsed);
                 else
-                    Player.SendMessage(p, "&4Destroyed by " + Server.FindColor(Username.Trim()) + Username.Trim() + Server.DefaultColor + ", using &3" + BlockUsed);
+                    Player.SendMessage(p, "&4Destroyed by " + Server.FindColor(Username.Trim()) + Username.Trim() + "&g, using &3" + BlockUsed);
                 Player.SendMessage(p, "Date and time modified: &2" + TimePerformed);
             }
 

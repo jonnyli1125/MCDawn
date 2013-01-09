@@ -70,7 +70,7 @@ namespace MCDawn
             {
                 if (p.level == level)
                 {
-                    Player.SendMessage(p, color + name + Server.DefaultColor + ", the bot, has been added.");
+                    Player.SendMessage(p, color + name + "&g, the bot, has been added.");
                 }
             }
 

@@ -10,7 +10,7 @@ namespace MCDawn
     public class CmdWhoip : Command
     {
         public override string name { get { return "whoip"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "information"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }

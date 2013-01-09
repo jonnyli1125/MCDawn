@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdWarn : Command
     {
         public override string name { get { return "warn"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
         public override bool museumUsable { get { return false; } }
@@ -24,14 +24,14 @@ namespace MCDawn
             else { reason = message.Substring(message.IndexOf(' ') + 1).Trim(); }
             if (p == null)
             {
-                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was warned by the Console!");
+                Player.GlobalMessage(who.color + who.name + "&g was warned by the Console!");
                 if (message.Split(' ').Length > 1) { Player.GlobalMessage("Reason: " + reason); }
                 Server.s.Log(who.name + " was warned by Console!");
                 if (message.Split(' ').Length > 1) { Server.s.Log("Reason: " + reason); }
             }
             else
             {
-                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was warned by " + p.color + p.name + Server.DefaultColor + "!");
+                Player.GlobalMessage(who.color + who.name + "&g was warned by " + p.color + p.name + "&g!");
                 if (message.Split(' ').Length > 1) { Player.GlobalMessage("Reason: " + reason); }
                 Server.s.Log(who.name + " was warned by the Console!");
                 if (message.Split(' ').Length > 1) { Server.s.Log("Reason: " + reason); }

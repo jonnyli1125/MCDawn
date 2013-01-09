@@ -147,9 +147,9 @@ namespace MCDawn
         {
             foreach (playerAwards pA in playersAwards)
                 if (pA.playerName == playerName.ToLower())
-                    return "&f" + pA.awards.Count + "/" + allAwards.Count + " (" + Math.Round((double)((double)pA.awards.Count / allAwards.Count) * 100, 2) + "%)" + Server.DefaultColor;
+                    return "&f" + pA.awards.Count + "/" + allAwards.Count + " (" + Math.Round((double)((double)pA.awards.Count / allAwards.Count) * 100, 2) + "%)&g";
 
-            return "&f0/" + allAwards.Count + " (0%)" + Server.DefaultColor;
+            return "&f0/" + allAwards.Count + " (0%)&g";
         }
         public static bool addAward(string awardName, string awardDescription)
         {

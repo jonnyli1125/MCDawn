@@ -14,7 +14,7 @@ namespace MCDawn
     public class CmdSpleef : Command
     {
         public override string name { get { return "spleef"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "games"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -43,7 +43,7 @@ namespace MCDawn
                         Thread.Sleep(500);
                         Command.all.Find("save").Use(p, p.level.name + " spleefbackup");
                         Player.GlobalMessage("SPLEEF GAME STARTING IN 10 SECONDS!!");
-                        Player.GlobalMessage("TYPE &b/G " + p.level.name.ToUpper() + Server.DefaultColor + " TO JOIN!!");
+                        Player.GlobalMessage("TYPE &b/G " + p.level.name.ToUpper() + "&g TO JOIN!!");
                         p.level.spleef.Start();
                         p.level.spleefstarted = true;
                         break;

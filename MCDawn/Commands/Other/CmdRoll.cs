@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdRoll : Command
     {
         public override string name { get { return "roll"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -19,7 +19,7 @@ namespace MCDawn
             try { max = int.Parse(message.Split(' ')[1]); }
             catch { max = 7; }
 
-            Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " rolled a &a" + rand.Next(Math.Min(min, max), Math.Max(min, max) + 1).ToString() + Server.DefaultColor + " (" + Math.Min(min, max) + "|" + Math.Max(min, max) + ")");
+            Player.GlobalMessage(p.color + p.name + "&g rolled a &a" + rand.Next(Math.Min(min, max), Math.Max(min, max) + 1).ToString() + "&g (" + Math.Min(min, max) + "|" + Math.Max(min, max) + ")");
         }
         public override void Help(Player p)
         {

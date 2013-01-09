@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdSetPass : Command
     {
         public override string name { get { return "setpass"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Unverified; } }
@@ -30,7 +30,7 @@ namespace MCDawn
         }
         public override void Help(Player p)
         {
-            Player.SendMessage(p, "&3/setpass [password]" + Server.DefaultColor + " - Set your password.");
+            Player.SendMessage(p, "&3/setpass [password]" + "&g - Set your password.");
             Player.SendMessage(p, "NOTE: Passwords are case sensitive.");
         }
     }

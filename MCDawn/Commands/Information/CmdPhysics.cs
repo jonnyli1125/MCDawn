@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdPhysics : Command
     {
         public override string name { get { return "physics"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "information"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -18,7 +18,7 @@ namespace MCDawn
                 foreach (Level l in Server.levels)
                 {
                     if (l.physics > 0)
-                        Player.SendMessage(p, "&5" + l.name + Server.DefaultColor + " has physics at &b" + l.physics + Server.DefaultColor + ". &cChecks: " + l.lastCheck + "; Updates: " + l.lastUpdate);
+                        Player.SendMessage(p, "&5" + l.name + "&g has physics at &b" + l.physics + "&g. &cChecks: " + l.lastCheck + "; Updates: " + l.lastUpdate);
                 }
                 return;
             }
@@ -50,36 +50,36 @@ namespace MCDawn
                     {
                         case 0:
                             level.ClearPhysics();
-                            Player.GlobalMessage("Physics are now &cOFF" + Server.DefaultColor + " on &b" + level.name + Server.DefaultColor + ".");
+                            Player.GlobalMessage("Physics are now &cOFF" + "&g on &b" + level.name + "&g.");
                             Server.s.Log("Physics are now OFF on " + level.name + ".");
                             IRCBot.Say("Physics are now OFF on " + level.name + ".");
                             break;
 
                         case 1:
-                            Player.GlobalMessage("Physics are now &aNormal" + Server.DefaultColor + " on &b" + level.name + Server.DefaultColor + ".");
+                            Player.GlobalMessage("Physics are now &aNormal" + "&g on &b" + level.name + "&g.");
                             Server.s.Log("Physics are now ON on " + level.name + ".");
                             IRCBot.Say("Physics are now ON on " + level.name + ".");
                             break;
 
                         case 2:
-                            Player.GlobalMessage("Physics are now &aAdvanced" + Server.DefaultColor + " on &b" + level.name + Server.DefaultColor + ".");
+                            Player.GlobalMessage("Physics are now &aAdvanced" + "&g on &b" + level.name + "&g.");
                             Server.s.Log("Physics are now ADVANCED on " + level.name + ".");
                             IRCBot.Say("Physics are now ADVANCED on " + level.name + ".");
                             break;
 
                         case 3:
-                            Player.GlobalMessage("Physics are now &aHardcore" + Server.DefaultColor + " on &b" + level.name + Server.DefaultColor + ".");
+                            Player.GlobalMessage("Physics are now &aHardcore" + "&g on &b" + level.name + "&g.");
                             Server.s.Log("Physics are now HARDCORE on " + level.name + ".");
                             IRCBot.Say("Physics are now HARDCORE on " + level.name + ".");
                             break;
 
                         case 4:
-                            Player.GlobalMessage("Physics are now &aInstant" + Server.DefaultColor + " on &b" + level.name + Server.DefaultColor + ".");
+                            Player.GlobalMessage("Physics are now &aInstant" + "&g on &b" + level.name + "&g.");
                             Server.s.Log("Physics are now INSTANT on " + level.name + ".");
                             IRCBot.Say("Physics are now INSTANT on " + level.name + ".");
                             break;
                         case 5:
-                            Player.GlobalMessage("Physics are now &aDoors Only" + Server.DefaultColor + " on &b" + level.name + Server.DefaultColor + ".");
+                            Player.GlobalMessage("Physics are now &aDoors Only" + "&g on &b" + level.name + "&g.");
                             Server.s.Log("Physics are now DOORS ONLY on " + level.name + ".");
                             IRCBot.Say("Physics are now DOORS ONLY on " + level.name + ".");
                             break;

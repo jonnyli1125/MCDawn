@@ -44,7 +44,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.SendMessage(p, who.color + who.name + Server.DefaultColor + " is currently invisible and hidden!");
+                    Player.SendMessage(p, who.color + who.name + "&g is currently invisible and hidden!");
                 }
             }
             else
@@ -55,7 +55,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.SendMessage(p, who.color + who.name + Server.DefaultColor + " is currently visible to other players!");
+                    Player.SendMessage(p, who.color + who.name + "&g is currently visible to other players!");
                 }
             }
         }

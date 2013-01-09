@@ -19,14 +19,14 @@ namespace MCDawn
             {
                 foreach (Player pl in Player.players)
                 {
-                    Player.SendMessage(p, pl.color + pl.name + Server.DefaultColor + " last used \"" + pl.lastCMD + "\"");
+                    Player.SendMessage(p, pl.color + pl.name + "&g last used \"" + pl.lastCMD + "\"");
                 }
             }
             else
             {
                 Player who = Player.Find(message);
                 if (who == null) { Player.SendMessage(p, "Could not find player entered"); return; }
-                Player.SendMessage(p, who.color + who.name + Server.DefaultColor + " last used \"" + who.lastCMD + "\"");
+                Player.SendMessage(p, who.color + who.name + "&g last used \"" + who.lastCMD + "\"");
             }
         }
         public override void Help(Player p)

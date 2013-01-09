@@ -33,7 +33,7 @@ namespace MCDawn
                 p.color = "&" + color;
                 p.prefix = p.color + "[" + c.Name("&" + color).ToUpper() + "] ";
                 players.Add(p);
-                level.ChatLevel(p.color + p.prefix + p.name + Server.DefaultColor + "&e has joined the " + teamstring + ".");
+                level.ChatLevel(p.color + p.prefix + p.name + "&g&e has joined the " + teamstring + ".");
                 Player.GlobalSpawn(p, p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1], false);
                 if (level.pushBallStarted)
                 {
@@ -51,7 +51,7 @@ namespace MCDawn
                 p.color = p.PushBalltempcolor;
                 p.prefix = p.PushBalltempprefix;
                 players.Remove(p);
-                level.ChatLevel(p.color + p.prefix + p.name + Server.DefaultColor + "&e has left the " + teamstring + ".");
+                level.ChatLevel(p.color + p.prefix + p.name + "&g&e has left the " + teamstring + ".");
                 Player.GlobalSpawn(p, p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1], false);
             }
         }

@@ -19,7 +19,7 @@ namespace MCDawn
     public class CmdInfo : Command
     {
         public override string name { get { return "info"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "information"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Banned; } }
@@ -33,7 +33,7 @@ namespace MCDawn
             }
             else
             {
-                Player.SendMessage(p, "This server runs on &bMCDawn" + Server.DefaultColor + ", a Minecraft Classic Server Software that is created by the MCDawn Dev Team. Using MCLawl as a basis, it is actively developed with numerous administration tools and options made for server owners, admins, and operators. Whilst providing a quality set of moderation tools, MCDawn simultaneously offers a unique experience for players in-game with a wide variety of blocks and commands for excellent builders.");
+                Player.SendMessage(p, "This server runs on &bMCDawn" + "&g, a Minecraft Classic Server Software that is created by the MCDawn Dev Team. Using MCLawl as a basis, it is actively developed with numerous administration tools and options made for server owners, admins, and operators. Whilst providing a quality set of moderation tools, MCDawn simultaneously offers a unique experience for players in-game with a wide variety of blocks and commands for excellent builders.");
                 Player.SendMessage(p, "This server's version: &a" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
                 TimeSpan up = DateTime.Now - Server.timeOnline;
@@ -48,7 +48,7 @@ namespace MCDawn
                 else upTime += up.Seconds + " seconds";
                 Player.SendMessage(p, upTime);
 
-                if (Server.updateTimer.Interval > 100) Player.SendMessage(p, "Server is currently in &5Low Lag" + Server.DefaultColor + " mode.");
+                if (Server.updateTimer.Interval > 100) Player.SendMessage(p, "Server is currently in &5Low Lag" + "&g mode.");
             }
         }
         public override void Help(Player p)

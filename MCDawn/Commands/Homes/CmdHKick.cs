@@ -22,8 +22,8 @@ namespace MCDawn
             if (who == p) { Player.SendMessage(p, "Why kick yourself?"); return; }
             if (who.group.Permission >= LevelPermission.Operator) { Player.SendMessage(p, "Cannot kick Operators from your map."); }
             Command.all.Find("main").Use(who, "");
-            Player.SendMessage(p, "Kicked " + who.color + who.name + Server.DefaultColor + " from your home map.");
-            Player.SendMessage(who, "You were kicked from the home map of " + p.color + p.name + Server.DefaultColor + "!");
+            Player.SendMessage(p, "Kicked " + who.color + who.name + "&g from your home map.");
+            Player.SendMessage(who, "You were kicked from the home map of " + p.color + p.name + "&g!");
         }
 
         public override void Help(Player p)

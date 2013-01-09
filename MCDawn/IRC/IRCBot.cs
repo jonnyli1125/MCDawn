@@ -146,11 +146,11 @@ namespace MCDawn
             Server.s.Log(e.Data.Nick + " has joined channel " + e.Data.Channel);
             if (e.Data.Channel == opchannel)
             {
-                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + Server.DefaultColor + " has joined the operator channel", false);
+                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has joined the operator channel", false);
             }
             else
             {
-                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + Server.DefaultColor + " has joined the channel", false);
+                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has joined the channel", false);
             }
             irc.RfcNames(channel);
             irc.RfcNames(opchannel);
@@ -161,11 +161,11 @@ namespace MCDawn
             Server.s.Log(e.Data.Nick + " has left channel " + e.Data.Channel);
             if (e.Data.Channel == opchannel)
             {
-                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + Server.DefaultColor + " has left the operator channel", false);
+                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has left the operator channel", false);
             }
             else
             {
-                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + Server.DefaultColor + " has left the channel", false);
+                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has left the channel", false);
             }
             irc.RfcNames(channel);
             irc.RfcNames(opchannel);
@@ -173,7 +173,7 @@ namespace MCDawn
         void OnQuit(object sender, QuitEventArgs e)
         {
             Server.s.Log(e.Data.Nick + " has left IRC");
-            Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + Server.DefaultColor + " has left IRC", false);
+            Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has left IRC", false);
             irc.RfcNames(channel);
             irc.RfcNames(opchannel);
         }
@@ -356,21 +356,21 @@ namespace MCDawn
         {
             if (e.NewNickname.ToLower().Contains("afk"))
             {
-                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + Server.DefaultColor + " is AFK");
+                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + "&g is AFK");
                 Server.afkset.Add(e.OldNickname);
             }
             else if (e.NewNickname.ToLower().Contains("away"))
             {
-                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + Server.DefaultColor + " is Away");
+                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + "&g is Away");
                 Server.afkset.Add(e.OldNickname);
             }
             else if (Server.afkset.Contains(e.NewNickname))
             {
-                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.NewNickname + Server.DefaultColor + " is no longer away");
+                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.NewNickname + "&g is no longer away");
                 Server.afkset.Remove(e.NewNickname);
             }
             else
-                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + Server.DefaultColor + " is now known as " + e.NewNickname);
+                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + "&g is now known as " + e.NewNickname);
 
             irc.RfcNames(channel);
             irc.RfcNames(opchannel);

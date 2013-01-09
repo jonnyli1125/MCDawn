@@ -64,7 +64,7 @@ namespace MCDawn
                     {
                         message = "http://" + message;
                     }
-                    Player.SendMessage(p, "Downloading file from: &f" + message + Server.DefaultColor + ", please wait.");
+                    Player.SendMessage(p, "Downloading file from: &f" + message + "&g, please wait.");
                     web.DownloadFile(message, "extra/images/tempImage_" + p.name + ".bmp");
                     web.Dispose();
                     Player.SendMessage(p, "Download complete.");
@@ -299,9 +299,9 @@ namespace MCDawn
             Player.SendMessage(p, "/imageprint <switch> <localfile> - Print local file in extra/images/ folder.  Must be type .bmp, type filename without extension.");
             Player.SendMessage(p, "/imageprint <switch> <imgurfile.extension> - Print IMGUR stored file.  Example: /i piCCm.gif will print www.imgur.com/piCCm.gif. Case-sensitive");
             Player.SendMessage(p, "/imageprint <switch> <webfile> - Print web file in format domain.com/folder/image.jpg. Does not need http:// or www.");
-            Player.SendMessage(p, "Available switches: (&f1" + Server.DefaultColor + ") 2-Layer Color image, (&f2" + Server.DefaultColor + ") 1-Layer Color Image, (&f3" + Server.DefaultColor + ") 2-Layer Grayscale, (&f4" + Server.DefaultColor + ") 1-Layer Grayscale, (%f5" + Server.DefaultColor + ") Black and White, (&f6" + Server.DefaultColor + ") Mathematical Grayscale");
+            Player.SendMessage(p, "Available switches: (&f1" + "&g) 2-Layer Color image, (&f2" + "&g) 1-Layer Color Image, (&f3" + "&g) 2-Layer Grayscale, (&f4" + "&g) 1-Layer Grayscale, (%f5" + "&g) Black and White, (&f6" + "&g) Mathematical Grayscale");
             Player.SendMessage(p, "Local filetypes: .bmp.   Remote Filetypes: .gif .png .jpg .bmp.  PNG and GIF may use transparency");
-            Player.SendMessage(p, "Use switch (&flayer" + Server.DefaultColor + ") or (&fl" + Server.DefaultColor + ") to print horizontally.");
+            Player.SendMessage(p, "Use switch (&flayer" + "&g) or (&fl" + "&g) to print horizontally.");
         }
 
         public struct CatchPos { public ushort x, y, z; }

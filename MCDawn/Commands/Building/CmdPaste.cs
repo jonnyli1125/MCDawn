@@ -28,7 +28,7 @@ namespace MCDawn
         public override void Help(Player p)
         {
             Player.SendMessage(p, "/paste - Pastes the stored copy.");
-            Player.SendMessage(p, "&4BEWARE: " + Server.DefaultColor + "The blocks will always be pasted in a set direction");
+            Player.SendMessage(p, "&4BEWARE: " + "&gThe blocks will always be pasted in a set direction");
         }
 
         public void Blockchange1(Player p, ushort x, ushort y, ushort z, byte type)

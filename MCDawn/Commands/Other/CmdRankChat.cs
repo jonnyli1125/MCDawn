@@ -35,7 +35,7 @@ namespace MCDawn
                     rankName = rankName.ToUpper() + getname.Remove(0, 1);
                     if (p == null)
                     {
-                        Player.GlobalMessageRank(otherRank, otherRank.color + "To " + rankName + " &f-" + Server.DefaultColor + "Console [&a" + Server.ZallState + Server.DefaultColor + "]&f- " + text[1]);
+                        Player.GlobalMessageRank(otherRank, otherRank.color + "To " + rankName + " &f-" + "&gConsole [&a" + Server.ZallState + "&g]&f- " + text[1]);
                         Server.s.Log("(" + rankName + "): CONSOLE: " + text[1]);
                         return;
                     }

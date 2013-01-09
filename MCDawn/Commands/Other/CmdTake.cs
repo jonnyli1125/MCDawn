@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdTake : Command
     {
         public override string name { get { return "take"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -28,7 +28,7 @@ namespace MCDawn
             if (amountTaken < 0) { Player.SendMessage(p, "Cannot take negative " + Server.moneys); return; }
 
             who.money -= amountTaken;
-            Player.GlobalMessage(who.color + who.prefix + who.name + Server.DefaultColor + " was rattled down for " + amountTaken + " " + Server.moneys);
+            Player.GlobalMessage(who.color + who.prefix + who.name + "&g was rattled down for " + amountTaken + " " + Server.moneys);
         }
         public override void Help(Player p)
         {

@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdTitle : Command
     {
         public override string name { get { return "title"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -32,7 +32,7 @@ namespace MCDawn
             {
                 who.title = "";
                 who.SetPrefix();
-                Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + " had their title removed.", false);
+                Player.GlobalChat(who, who.color + who.name + "&g had their title removed.", false);
                 query = "UPDATE Players SET Title = '' WHERE Name = '" + who.originalName + "'";
                 MySQL.executeQuery(query);
                 return;
@@ -55,8 +55,8 @@ namespace MCDawn
             }
 
             if (newTitle != "")
-                Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + " was given the title of &b[" + newTitle + "]", false);
-            else Player.GlobalChat(who, who.color + who.prefix + who.name + Server.DefaultColor + " had their title removed.", false);
+                Player.GlobalChat(who, who.color + who.name + "&g was given the title of &b[" + newTitle + "]", false);
+            else Player.GlobalChat(who, who.color + who.prefix + who.name + "&g had their title removed.", false);
 
             if (newTitle == "")
             {

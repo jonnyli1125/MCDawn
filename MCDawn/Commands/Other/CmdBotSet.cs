@@ -6,7 +6,7 @@ namespace MCDawn
 	public class CmdBotSet : Command
 	{
 		public override string name { get { return "botset"; } }
-		public override string[] aliases { get { return new string[] { "" }; } }
+		public override string[] aliases { get { return new string[] { }; } }
 		public override string type { get { return "other"; } }
 		public override bool museumUsable { get { return false; } }
 		public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
@@ -26,7 +26,7 @@ namespace MCDawn
 					pB.kill = false;
 					pB.hunt = false;
 					pB.AIName = "";
-					Player.SendMessage(p, pB.color + pB.name + Server.DefaultColor + "'s AI was turned off.");
+					Player.SendMessage(p, pB.color + pB.name + "&g's AI was turned off.");
 					return;
 				}
 				else if (message.Split(' ').Length != 2)
@@ -45,14 +45,14 @@ namespace MCDawn
 					try { Pb.Waypoints.Clear(); }
 					catch { }
 					Pb.AIName = "";
-					if (p != null) Player.GlobalChatLevel(p, Pb.color + Pb.name + Server.DefaultColor + "'s hunt instinct: " + Pb.hunt, false);
+					if (p != null) Player.GlobalChatLevel(p, Pb.color + Pb.name + "&g's hunt instinct: " + Pb.hunt, false);
 					return;
 				}
 				else if (foundPath == "kill")
 				{
 					if (p.group.Permission < LevelPermission.Operator) { Player.SendMessage(p, "Only an OP may toggle killer instinct."); return; }
 					Pb.kill = !Pb.kill;
-					if (p != null) Player.GlobalChatLevel(p, Pb.color + Pb.name + Server.DefaultColor + "'s kill instinct: " + Pb.kill, false);
+					if (p != null) Player.GlobalChatLevel(p, Pb.color + Pb.name + "&g's kill instinct: " + Pb.kill, false);
 					return;
 				}
 
@@ -110,7 +110,7 @@ namespace MCDawn
 				catch { Player.SendMessage(p, "AI file corrupt."); return; }
 
 				Pb.AIName = foundPath;
-				if (p != null) Player.GlobalChatLevel(p, Pb.color + Pb.name + Server.DefaultColor + "'s AI is now set to " + foundPath, false);
+				if (p != null) Player.GlobalChatLevel(p, Pb.color + Pb.name + "&g's AI is now set to " + foundPath, false);
 			}
 			catch { Player.SendMessage(p, "Error"); return; }
 		}

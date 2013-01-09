@@ -5,7 +5,7 @@ namespace MCDawn
     class CmdAgree : Command
     {
         public override string name { get { return "agree"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Banned; } }
@@ -22,7 +22,7 @@ namespace MCDawn
             if (!p.readRules) { p.SendMessage("You must read the rules before agreeing to them!"); return; }
 
             message = message.Split(' ')[0];
-            Player.GlobalMessageOps("To Ops: " + p.color + p.name + Server.DefaultColor + " agreed to the rules.");
+            Player.GlobalMessageOps("To Ops: " + p.color + p.name + "&g agreed to the rules.");
             p.SendMessage("Thank you for agreeing to the rules!");
             Server.s.Log(p.name + " agreed to the rules.");
             p.AgreeToRules();

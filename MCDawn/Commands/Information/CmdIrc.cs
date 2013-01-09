@@ -24,12 +24,12 @@ namespace MCDawn
                 string ircdetails = "";
                 if (Server.irc)
                 {
-                    hasirc = "&aEnabled" + Server.DefaultColor + ".";
+                    hasirc = "&aEnabled" + "&g.";
                     ircdetails = Server.ircServer + " > " + Server.ircChannel;
                 }
                 else
                 {
-                    hasirc = "&cDisabled" + Server.DefaultColor + ".";
+                    hasirc = "&cDisabled" + "&g.";
                 }
                 Player.SendMessage(p, "IRC is " + hasirc);
                 if (ircdetails != "")

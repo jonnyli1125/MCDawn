@@ -371,8 +371,8 @@ namespace MCDawn
             Server.levels.Remove(this);
             if (this != null)
             {
-                if (stealth) { Player.GlobalMessageAdmins("To Admins: &3" + name + Server.DefaultColor + " was stealth unloaded."); }
-                else { Player.GlobalMessage("&3" + name + Server.DefaultColor + " was unloaded."); }
+                if (stealth) { Player.GlobalMessageAdmins("To Admins: &3" + name + "&g was stealth unloaded."); }
+                else { Player.GlobalMessage("&3" + name + "&g was unloaded."); }
                 Server.s.Log(name + " was unloaded.");
                 return true;
             }

@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdHighlight : Command
     {
         public override string name { get { return "highlight"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
@@ -114,7 +114,7 @@ namespace MCDawn
 
                 if (FoundUser)
                 {
-                    Player.SendMessage(p, "Now highlighting &b" + seconds + Server.DefaultColor + " seconds for " + Server.FindColor(message.Split(' ')[0]) + message.Split(' ')[0]);
+                    Player.SendMessage(p, "Now highlighting &b" + seconds + "&g seconds for " + Server.FindColor(message.Split(' ')[0]) + message.Split(' ')[0]);
                     Player.SendMessage(p, "&cUse /reveal to un-highlight");
                 }
                 else

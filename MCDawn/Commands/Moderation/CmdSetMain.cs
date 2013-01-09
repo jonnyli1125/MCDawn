@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdSetMain : Command
     {
         public override string name { get { return "setmain"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }

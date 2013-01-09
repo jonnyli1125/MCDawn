@@ -39,14 +39,14 @@ namespace MCDawn
                                  if (!Block.Walkthrough(p.level.GetTile(currentX, yy, currentZ)) && p.level.GetTile(currentX, yy, currentZ) != Block.Zero)
                                  {
                                     foundHeight = (ushort)(yy - 1);
-                                     p.level.ChatLevel(p.color + p.name + Server.DefaultColor + " was slapped into the roof for excessive use of swear words!");
+                                     p.level.ChatLevel(p.color + p.name + "&g was slapped into the roof for excessive use of swear words!");
                                      break;
                                  }
                              }
  
                              if (foundHeight == 0)
                              {
-                                p.level.ChatLevel(p.color + p.name + Server.DefaultColor + " was slapped sky high for excessive use of swear words!");
+                                p.level.ChatLevel(p.color + p.name + "&g was slapped sky high for excessive use of swear words!");
                                 foundHeight = 1000;
                              }
 
@@ -58,7 +58,7 @@ namespace MCDawn
             if (Server.swearWarnPlayer && p != null)
             {
                 Player.SendMessage(p, "&cYou have been warned for using a swear word!");
-                Player.GlobalMessageOps("To Ops: Warned " + p.color + p.name + Server.DefaultColor + " for using a swear word!");
+                Player.GlobalMessageOps("To Ops: Warned " + p.color + p.name + "&g for using a swear word!");
                 Server.s.Log("Warned " + p.name + " for using a swear word!");
             }
         }

@@ -87,7 +87,7 @@ namespace MCDawn
             {
                 for (i = 0; i < Messages.Rows.Count; i++)
                     p.SendBlockchange((ushort)Messages.Rows[i]["X"], (ushort)Messages.Rows[i]["Y"], (ushort)Messages.Rows[i]["Z"], Block.MsgWhite);
-                Player.SendMessage(p, "Now showing &a" + i.ToString() + Server.DefaultColor + " CommandBlocks.");
+                Player.SendMessage(p, "Now showing &a" + i.ToString() + "&g CommandBlocks.");
             }
             else
             {

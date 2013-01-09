@@ -167,12 +167,12 @@ namespace MCDawn
                 if (!Server.useMaxMind)
                 {
                     Server.s.Log("Remote Console user " + name + " connected.");
-                    Player.GlobalMessageAdmins("To Admins: Remote Console user &a" + name + Server.DefaultColor + " connected.");
+                    Player.GlobalMessageAdmins("To Admins: Remote Console user &a" + name + "&g connected.");
                 }
                 else
                 {
                     Server.s.Log("Remote Console user " + name + " connected from " + Server.iploopup.getCountry(IPAddress.Parse(ip)).getName() + ".");
-                    Player.GlobalMessageAdmins("To Admins: Remote Console user &a" + name + Server.DefaultColor + " connected from " + Server.iploopup.getCountry(IPAddress.Parse(ip)).getName() + ".");
+                    Player.GlobalMessageAdmins("To Admins: Remote Console user &a" + name + "&g connected from " + Server.iploopup.getCountry(IPAddress.Parse(ip)).getName() + ".");
                 }
 
                 Server.s.OnLog += SendMessage;
@@ -218,7 +218,7 @@ namespace MCDawn
                     Server.s.Log("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                     if (!Server.devs.Contains(who.name.ToLower()))
                     {
-                        Player.GlobalMessageDevs("To Devs &f-" + Server.DefaultColor + "Remote Console &b[>] " + who.color + who.name + "&f- " + words[1]);
+                        Player.GlobalMessageDevs("To Devs &f-" + "&gRemote Console &b[>] " + who.color + who.name + "&f- " + words[1]);
                     }
                 }
                 if (text[0] == '#')
@@ -226,7 +226,7 @@ namespace MCDawn
                     string newtext = text;
                     if (text[0] == '#') newtext = text.Remove(0, 1).Trim();
 
-                    Player.GlobalMessageOps("To Ops &f-Remote Console [&a" + name + Server.DefaultColor + "]&f- " + newtext);
+                    Player.GlobalMessageOps("To Ops &f-Remote Console [&a" + name + "&g]&f- " + newtext);
                     Server.s.Log("(OPs): Remote Console [" + name + "] " + newtext);
                     IRCBot.Say(name + ": " + newtext, true);
                     try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteOpLine("<REMOTE CONSOLE [" + name + "]> " + newtext); } }
@@ -237,7 +237,7 @@ namespace MCDawn
                 {
                     string newtext = text;
                     if (text[0] == ';') newtext = text.Remove(0, 1).Trim();
-                    Player.GlobalMessageAdmins("To Admins &f-Remote Console [&a" + name + Server.DefaultColor + "]&f- " + newtext);
+                    Player.GlobalMessageAdmins("To Admins &f-Remote Console [&a" + name + "&g]&f- " + newtext);
                     Server.s.Log("(Admins): Remote Console [" + name + "]: " + newtext);
                     try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteAdminLine("<REMOTE CONSOLE [" + name + "]> " + newtext); } }
                     catch { }
@@ -247,7 +247,7 @@ namespace MCDawn
                 }
 
             chat:
-                Player.GlobalChat(null, "Remote Console [&a" + name + Server.DefaultColor + "]:&f " + text, false);
+                Player.GlobalChat(null, "Remote Console [&a" + name + "&g]:&f " + text, false);
                 IRCBot.Say("Remote Console [" + name + "]: " + text);
                 Server.s.Log("<REMOTE CONSOLE [" + name + "]> " + text);
             }
@@ -276,7 +276,7 @@ namespace MCDawn
                 if (loggedIn)
                 {
                     Server.s.Log("Remote Console user " + name + " disconnected.");
-                    Player.GlobalMessageAdmins("To Admins: Remote Console user &a" + name + Server.DefaultColor + " disconnected.");
+                    Player.GlobalMessageAdmins("To Admins: Remote Console user &a" + name + "&g disconnected.");
                     remotes.Remove(this);
                 }
                 else { Server.s.Log("Remote Console at " + ip + " disconnected."); }

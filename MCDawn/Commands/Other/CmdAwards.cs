@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdAwards : Command
     {
         public override string name { get { return "awards"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Banned; } }
@@ -106,7 +106,7 @@ namespace MCDawn
                 max = awardList.Count;
 
             if (foundPlayer != "")
-                Player.SendMessage(p, Server.FindColor(foundPlayer) + foundPlayer + Server.DefaultColor + " has the following awards:");
+                Player.SendMessage(p, Server.FindColor(foundPlayer) + foundPlayer + "&g has the following awards:");
             else
                 Player.SendMessage(p, "Awards available: ");
 

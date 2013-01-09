@@ -35,7 +35,7 @@ namespace MCDawn
 
             if (foundLevel == null) { Player.SendMessage(p, "Could not find specified level."); return; }
 
-            Player.SendMessage(p, "&b" + foundLevel.name + Server.DefaultColor + ": Width=" + foundLevel.width.ToString() + " Height=" + foundLevel.depth.ToString() + " Depth=" + foundLevel.height.ToString());
+            Player.SendMessage(p, "&b" + foundLevel.name + "&g: Width=" + foundLevel.width.ToString() + " Height=" + foundLevel.depth.ToString() + " Depth=" + foundLevel.height.ToString());
             // Level is locked/unlocked
             if (foundLevel.locked == true) { Player.SendMessage(p, "Map is &cLocked"); }
             else { Player.SendMessage(p, "Map is &2Unlocked"); }
@@ -45,12 +45,12 @@ namespace MCDawn
 
             switch (foundLevel.physics)
             {
-                case 0: Player.SendMessage(p, "Physics are &cOFF" + Server.DefaultColor + " on &b" + foundLevel.name); break;
-                case 1: Player.SendMessage(p, "Physics are &aNormal" + Server.DefaultColor + " on &b" + foundLevel.name); break;
-                case 2: Player.SendMessage(p, "Physics are &aAdvanced" + Server.DefaultColor + " on &b" + foundLevel.name); break;
-                case 3: Player.SendMessage(p, "Physics are &aHardcore" + Server.DefaultColor + " on &b" + foundLevel.name); break;
-                case 4: Player.SendMessage(p, "Physics are &aInstant" + Server.DefaultColor + " on &b" + foundLevel.name); break;
-                case 5: Player.SendMessage(p, "Physics are &aDoors Only" + Server.DefaultColor + " on &b" + foundLevel.name); break;
+                case 0: Player.SendMessage(p, "Physics are &cOFF" + "&g on &b" + foundLevel.name); break;
+                case 1: Player.SendMessage(p, "Physics are &aNormal" + "&g on &b" + foundLevel.name); break;
+                case 2: Player.SendMessage(p, "Physics are &aAdvanced" + "&g on &b" + foundLevel.name); break;
+                case 3: Player.SendMessage(p, "Physics are &aHardcore" + "&g on &b" + foundLevel.name); break;
+                case 4: Player.SendMessage(p, "Physics are &aInstant" + "&g on &b" + foundLevel.name); break;
+                case 5: Player.SendMessage(p, "Physics are &aDoors Only" + "&g on &b" + foundLevel.name); break;
             }
 
             try
@@ -65,7 +65,7 @@ namespace MCDawn
             if (Directory.Exists(@Server.backupLocation + "/" + foundLevel.name))
             {
                 int latestBackup = Directory.GetDirectories(@Server.backupLocation + "/" + foundLevel.name).Length;
-                Player.SendMessage(p, "Latest backup: &a" + latestBackup + Server.DefaultColor + " at &a" + Directory.GetCreationTime(@Server.backupLocation + "/" + foundLevel.name + "/" + latestBackup).ToString("yyyy-MM-dd HH:mm:ss")); // + Directory.GetCreationTime(@Server.backupLocation + "/" + latestBackup + "/").ToString("yyyy-MM-dd HH:mm:ss"));
+                Player.SendMessage(p, "Latest backup: &a" + latestBackup + "&g at &a" + Directory.GetCreationTime(@Server.backupLocation + "/" + foundLevel.name + "/" + latestBackup).ToString("yyyy-MM-dd HH:mm:ss")); // + Directory.GetCreationTime(@Server.backupLocation + "/" + latestBackup + "/").ToString("yyyy-MM-dd HH:mm:ss"));
             }
             else
             {

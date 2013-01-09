@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdMode : Command
     {
         public override string name { get { return "mode"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Guest; } }
@@ -18,7 +18,7 @@ namespace MCDawn
             {
                 if (p.modeType != 0)
                 {
-                    Player.SendMessage(p, "&b" + Block.Name(p.modeType)[0].ToString().ToUpper() + Block.Name(p.modeType).Remove(0, 1).ToLower() + Server.DefaultColor + " mode: &cOFF");
+                    Player.SendMessage(p, "&b" + Block.Name(p.modeType)[0].ToString().ToUpper() + Block.Name(p.modeType).Remove(0, 1).ToLower() + "&g mode: &cOFF");
                     p.modeType = 0;
                     p.BlockAction = 0;
                 }
@@ -36,7 +36,7 @@ namespace MCDawn
 
                 if (p.modeType == b)
                 {
-                    Player.SendMessage(p, "&b" + Block.Name(p.modeType)[0].ToString().ToUpper() + Block.Name(p.modeType).Remove(0, 1).ToLower() + Server.DefaultColor + " mode: &cOFF");
+                    Player.SendMessage(p, "&b" + Block.Name(p.modeType)[0].ToString().ToUpper() + Block.Name(p.modeType).Remove(0, 1).ToLower() + "&g mode: &cOFF");
                     p.modeType = 0;
                     p.BlockAction = 0;
                 }
@@ -44,7 +44,7 @@ namespace MCDawn
                 {
                     p.BlockAction = 6;
                     p.modeType = b;
-                    Player.SendMessage(p, "&b" + Block.Name(p.modeType)[0].ToString().ToUpper() + Block.Name(p.modeType).Remove(0, 1).ToLower() + Server.DefaultColor + " mode: &aON");
+                    Player.SendMessage(p, "&b" + Block.Name(p.modeType)[0].ToString().ToUpper() + Block.Name(p.modeType).Remove(0, 1).ToLower() + "&g mode: &aON");
                 }
             }
         }

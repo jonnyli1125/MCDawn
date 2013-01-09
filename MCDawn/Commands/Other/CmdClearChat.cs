@@ -51,7 +51,7 @@ namespace MCDawn
                         if (p != null)
                         {
                             Server.s.Log("Server chat has been cleared by " + p.name + ".");
-                            Player.GlobalChat(null, "Server chat has been cleared by " + p.color + p.name + Server.DefaultColor + ".", false);
+                            Player.GlobalChat(null, "Server chat has been cleared by " + p.color + p.name + "&g.", false);
                         }
                         else
                         {

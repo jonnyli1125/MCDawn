@@ -36,14 +36,14 @@ namespace MCDawn
             if (who.handcuffed == true)
             {
                 who.handcuffed = false;
-                if (p != null) Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " had their handcuffs taken off by " + p.color + p.name + Server.DefaultColor + "!");
-                else Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " had their handcuffs taken off by the Console!");
+                if (p != null) Player.GlobalMessage(who.color + who.name + "&g had their handcuffs taken off by " + p.color + p.name + "&g!");
+                else Player.GlobalMessage(who.color + who.name + "&g had their handcuffs taken off by the Console!");
             }
             else
             {
                 who.handcuffed = true;
-                if (p != null) Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was handcuffed by " + p.color + p.name + Server.DefaultColor + "!");
-                else Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was handcuffed by the Console!");
+                if (p != null) Player.GlobalMessage(who.color + who.name + "&g was handcuffed by " + p.color + p.name + "&g!");
+                else Player.GlobalMessage(who.color + who.name + "&g was handcuffed by the Console!");
             }
         }
         public override void Help(Player p)

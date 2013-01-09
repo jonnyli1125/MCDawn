@@ -22,7 +22,7 @@ namespace MCDawn
                 {
                     if (p.cmdBind[i] != null)
                     {
-                        Player.SendMessage(p, "&c/" + i + Server.DefaultColor + " bound to &b" + p.cmdBind[i] + " " + p.messageBind[i]);
+                        Player.SendMessage(p, "&c/" + i + "&g bound to &b" + p.cmdBind[i] + " " + p.messageBind[i]);
                         OneFound = true;
                     }
                 }

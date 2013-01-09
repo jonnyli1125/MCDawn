@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdTp : Command
     {
         public override string name { get { return "tp"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Builder; } }
@@ -46,7 +46,7 @@ namespace MCDawn
                 {
                     if (who.Loading)
                     {
-                        Player.SendMessage(p, "Waiting for " + who.color + who.name + Server.DefaultColor + " to spawn...");
+                        Player.SendMessage(p, "Waiting for " + who.color + who.name + "&g to spawn...");
                         while (who.Loading) { }
                     }
                     while (p.Loading) { }  //Wait for player to spawn in new map

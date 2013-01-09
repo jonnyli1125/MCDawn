@@ -27,18 +27,18 @@ namespace MCDawn
                         }
                         else
                         {
-                            Player.SendMessage(p, "Use &b/help ranks" + Server.DefaultColor + " for a list of ranks.");
-                            Player.SendMessage(p, "Use &b/help build" + Server.DefaultColor + " for a list of building commands.");
-                            Player.SendMessage(p, "Use &b/help mod" + Server.DefaultColor + " for a list of moderation commands.");
-                            Player.SendMessage(p, "Use &b/help homes" + Server.DefaultColor + " for a list of home commands.");
-                            Player.SendMessage(p, "Use &b/help games" + Server.DefaultColor + " for a list of game commands.");
-                            Player.SendMessage(p, "Use &b/help colors" + Server.DefaultColor + " for a list of chat colors.");
-                            Player.SendMessage(p, "Use &b/help groups" + Server.DefaultColor + " for a list of player group commands.");
-                            Player.SendMessage(p, "Use &b/help information" + Server.DefaultColor + " for a list of information commands.");
-                            Player.SendMessage(p, "Use &b/help other" + Server.DefaultColor + " for a list of other commands.");
-                            Player.SendMessage(p, "Use &b/help old" + Server.DefaultColor + " to view the Old help menu.");
-                            Player.SendMessage(p, "Use &b/help [command] or /help [block] " + Server.DefaultColor + "to view more info.");
-                            if (p != null && Server.devs.Contains(p.name.ToLower())) { Player.SendMessage(p, "Use &b/devcmd help" + Server.DefaultColor + " for a list of DevCmd commands."); }
+                            Player.SendMessage(p, "Use &b/help ranks" + "&g for a list of ranks.");
+                            Player.SendMessage(p, "Use &b/help build" + "&g for a list of building commands.");
+                            Player.SendMessage(p, "Use &b/help mod" + "&g for a list of moderation commands.");
+                            Player.SendMessage(p, "Use &b/help homes" + "&g for a list of home commands.");
+                            Player.SendMessage(p, "Use &b/help games" + "&g for a list of game commands.");
+                            Player.SendMessage(p, "Use &b/help colors" + "&g for a list of chat colors.");
+                            Player.SendMessage(p, "Use &b/help groups" + "&g for a list of player group commands.");
+                            Player.SendMessage(p, "Use &b/help information" + "&g for a list of information commands.");
+                            Player.SendMessage(p, "Use &b/help other" + "&g for a list of other commands.");
+                            Player.SendMessage(p, "Use &b/help old" + "&g to view the old help menu.");
+                            Player.SendMessage(p, "Use &b/help [command] or /help [block] " + "&gto view more info.");
+                            if (p != null && Server.devs.Contains(p.name.ToLower())) { Player.SendMessage(p, "Use &b/devcmd help" + "&g for a list of DevCmd commands."); }
                         } break;
                     case "ranks":
                         message = "";
@@ -141,7 +141,7 @@ namespace MCDawn
                         {
                             if (p == null || p.group.commands.All().Contains(comm))
                             {
-                                if (comm.shortcut != "") message += ", &b" + comm.shortcut + " " + Server.DefaultColor + "[" + comm.name + "]";
+                                if (comm.shortcut != "") message += ", &b" + comm.shortcut + " " + "&g[" + comm.name + "]";
                             }
                         }
                         Player.SendMessage(p, "Available shortcuts:");
@@ -202,19 +202,7 @@ namespace MCDawn
                             cmd.Help(p);
                             string foundRank = Level.PermissionToName(GrpCommands.allowedCommands.Find(grpComm => grpComm.commandName == cmd.name).lowestRank);
                             Player.SendMessage(p, "Rank needed: " + getColor(cmd.name) + foundRank);
-                            int count = 0; string aliases = "";
-                            // Le foreach no work for some reason, so I did le old fashioned for loop :P
-                            for (int i = 0; i < cmd.aliases.Length; i++) 
-                            { 
-                                if (cmd.aliases[i] != "") 
-                                {
-                                    count++;
-                                    if (i + 1 < cmd.aliases.Length) { aliases += cmd.aliases[i] + ", "; }
-                                    else { aliases += cmd.aliases[i]; }
-                                } 
-                            }
-                            if (count > 0) { Player.SendMessage(p, "Aliases: &a" + aliases); }
-                            else { Player.SendMessage(p, "Aliases: &anone"); }
+                            Player.SendMessage(p, "Aliases: &a" + ((new List<string>(cmd.aliases).Where(s => !String.IsNullOrEmpty(s)).Distinct().ToList().Count > 0) ? String.Join(", ", cmd.aliases) : "none"));
                             return;
                         }
                         byte b = Block.Byte(message);

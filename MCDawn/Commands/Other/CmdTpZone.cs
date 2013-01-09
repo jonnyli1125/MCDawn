@@ -8,7 +8,7 @@ namespace MCDawn
     public class CmdTpZone : Command
     {
         public override string name { get { return "tpzone"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Builder; } }

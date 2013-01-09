@@ -43,7 +43,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to tempban a MCDawn Developer!");
+                    Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to tempban a MCDawn Developer!");
                 }
                 return;
             }
@@ -56,7 +56,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to tempban a MCDawn Staff Member!");
+                    Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to tempban a MCDawn Staff Member!");
                 }
                 return;
             }
@@ -68,7 +68,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to tempban a MCDawn Administrator!");
+                    Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to tempban a MCDawn Administrator!");
                 }
                 return;
             }

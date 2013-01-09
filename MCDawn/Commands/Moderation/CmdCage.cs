@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdCage : Command
     {
         public override string name { get { return "cage"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -20,7 +20,7 @@ namespace MCDawn
             if (Server.devs.Contains(who.name.ToLower()))
             {
                 Player.SendMessage(p, "Woah!! You can't cage a MCDawn Developer!");
-                if (p != null) { Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to cage a MCDawn Developer!"); }
+                if (p != null) { Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to cage a MCDawn Developer!"); }
                 else { Player.GlobalMessage("The Console is crazy! Trying to cage a MCDawn Developer!"); }
                 return;
             }

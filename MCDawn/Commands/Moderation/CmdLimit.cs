@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdLimit : Command
     {
         public override string name { get { return "limit"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -23,7 +23,7 @@ namespace MCDawn
             if (foundGroup != null)
             {
                 foundGroup.maxBlocks = newLimit;
-                Player.GlobalChat(null, foundGroup.color + foundGroup.name + Server.DefaultColor + "'s building limits were set to &b" + newLimit, false);
+                Player.GlobalChat(null, foundGroup.color + foundGroup.name + "&g's building limits were set to &b" + newLimit, false);
                 Group.saveGroups(Group.GroupList);
             }
             else

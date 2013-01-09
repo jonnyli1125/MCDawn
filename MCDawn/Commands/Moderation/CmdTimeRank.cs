@@ -52,9 +52,9 @@ namespace MCDawn
             }
             else 
             {
-                p.SendMessage("The next rank requires &b" + p.group.reqHours + Server.DefaultColor + " hours.");
-                p.SendMessage("You currently have &b" + hours + Server.DefaultColor + " hours.");
-                p.SendMessage("Type &b/timerank hours" + Server.DefaultColor + " for the required hours for every rank.");
+                p.SendMessage("The next rank requires &b" + p.group.reqHours + "&g hours.");
+                p.SendMessage("You currently have &b" + hours + "&g hours.");
+                p.SendMessage("Type &b/timerank hours" + "&g for the required hours for every rank.");
             }
 
         }

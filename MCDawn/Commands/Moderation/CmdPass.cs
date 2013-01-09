@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdPass : Command
     {
         public override string name { get { return "pass"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Unverified; } }
@@ -28,15 +28,15 @@ namespace MCDawn
             {
                 p.unverified = false;
                 p.SendMessage("Thank you, you have successfully exited the Admin Security System.");
-                if (p.group.Permission >= Server.adminchatperm) { Player.GlobalMessageAdmins("To Admins: " + p.color + p.name + Server.DefaultColor + " has exited the Admin Security System."); }
-                else { Player.GlobalMessageOps("To Ops: " + p.color + p.name + Server.DefaultColor + " has exited the Admin Security System."); }
+                if (p.group.Permission >= Server.adminchatperm) { Player.GlobalMessageAdmins("To Admins: " + p.color + p.name + "&g has exited the Admin Security System."); }
+                else { Player.GlobalMessageOps("To Ops: " + p.color + p.name + "&g has exited the Admin Security System."); }
                 p.passtries = 0;
                 return;
             }
         }
         public override void Help(Player p)
         {
-            Player.SendMessage(p, "&3/pass [password]" + Server.DefaultColor + " - Enter your password.");
+            Player.SendMessage(p, "&3/pass [password]" + "&g - Enter your password.");
         }
     }
 }

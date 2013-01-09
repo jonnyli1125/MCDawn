@@ -212,7 +212,7 @@ namespace MCDawn
             char[] temp = c.Name("&" + teamCol).ToCharArray();
             temp[0] = char.ToUpper(temp[0]);
             string tempstring = new string(temp);
-            workteam.teamstring = "&" + teamCol + tempstring + " team" + Server.DefaultColor;
+            workteam.teamstring = "&" + teamCol + tempstring + " team&g";
 
             pushBallTeams.Add(workteam);
 

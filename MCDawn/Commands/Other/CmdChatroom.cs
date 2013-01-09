@@ -69,8 +69,8 @@ namespace MCDawn
                     if (!pub) { Player.SendMessage(p, "Chatroom is invite only."); return; }
                     if (p.chatroom != "") { Command.all.Find("chatroom").Use(p, "leave"); }
                     p.chatroom = message.Split(' ')[1];
-                    Player.SendMessage(p, "Joined chatroom &b" + p.chatroom + Server.DefaultColor + ".");
-                    Player.ChatroomMessage(p.chatroom, "&b<" + p.chatroom + "> " + p.color + p.displayName + Server.DefaultColor + " joined the chatroom.");
+                    Player.SendMessage(p, "Joined chatroom &b" + p.chatroom + "&g.");
+                    Player.ChatroomMessage(p.chatroom, "&b<" + p.chatroom + "> " + p.color + p.displayName + "&g joined the chatroom.");
                     break;
                 case "leave":
                     if (p.chatroom.ToLower() == "map" || p.chatroom.ToLower() == "level" || p.chatroom.ToLower() == "world") { if (p.levelchat) { Command.all.Find("private").Use(p, ""); } return; }
@@ -86,8 +86,8 @@ namespace MCDawn
                             newOp.chatroomOp = true;
                         }
                     }*/
-                    Player.ChatroomMessage(p.chatroom, "&b<" + p.chatroom + "> " + p.color + p.displayName + Server.DefaultColor + " left the chatroom.");
-                    Player.SendMessage(p, "Left chatroom &b" + p.chatroom + Server.DefaultColor + ".");
+                    Player.ChatroomMessage(p.chatroom, "&b<" + p.chatroom + "> " + p.color + p.displayName + "&g left the chatroom.");
+                    Player.SendMessage(p, "Left chatroom &b" + p.chatroom + "&g.");
                     p.chatroom = "";
                     break;
                 case "invite":
@@ -96,15 +96,15 @@ namespace MCDawn
                     if (who == null) { Player.SendMessage(p, "Player could not be found."); return; }
                     if (p.chatroom[0] != '!') { Player.SendMessage(p, "Chatroom is public, invites are disabled."); return; }
                     who.chatroomInvite = p.chatroom;
-                    Player.SendMessage(who, "You have recieved an invite to join the chatroom &b" + p.chatroom.Remove(0, 1) + Server.DefaultColor + ". Type &1/chatroom accept" + Server.DefaultColor  + " to accept this invitation.");
-                    Player.SendMessage(p, "Invite sent to " + who.color + who.name + Server.DefaultColor + ".");
+                    Player.SendMessage(who, "You have recieved an invite to join the chatroom &b" + p.chatroom.Remove(0, 1) + "&g. Type &1/chatroom accept&g to accept this invitation.");
+                    Player.SendMessage(p, "Invite sent to " + who.color + who.name + "&g.");
                     break;
                 case "accept":
                     if (p.chatroomInvite == "") { Player.SendMessage(p, "Nobody has sent a chatroom invite to you."); return; }
                     if (p.chatroom != "") { Command.all.Find("chatroom").Use(p, "leave"); }
                     p.chatroom = p.chatroomInvite;
-                    Player.SendMessage(p, "Joined chatroom &b" + p.chatroom + Server.DefaultColor + ".");
-                    Player.ChatroomMessage(p.chatroom, "&b<" + p.chatroom + "> " + p.color + p.displayName + Server.DefaultColor + " joined the chatroom.");
+                    Player.SendMessage(p, "Joined chatroom &b" + p.chatroom + "&g.");
+                    Player.ChatroomMessage(p.chatroom, "&b<" + p.chatroom + "> " + p.color + p.displayName + "&g joined the chatroom.");
                     break;
                 /*case "register": // Meh... lol, couldnt get teh OP/Admin derps fixed, so, removing for nao.
                     if (p.chatroom == "") { Player.SendMessage(p, "You are not currently in a chatroom."); return; } 
@@ -112,7 +112,7 @@ namespace MCDawn
                     if (!File.Exists("extra/chatrooms/" + p.chatroom.ToLower() + ".txt"))
                     {
                         File.WriteAllText("extra/chatrooms/" + p.chatroom.ToLower() + ".txt", p.name + " admin");
-                        Player.SendMessage(p, "You have registered the chatroom &b" + p.chatroom + Server.DefaultColor + ".");
+                        Player.SendMessage(p, "You have registered the chatroom &b" + p.chatroom + "&g.");
                         Server.s.Log(p.name + " registered the chatroom " + p.chatroom + ".");
                     }
                     else { Player.SendMessage(p, "This chatroom is already registered."); return; }
@@ -134,7 +134,7 @@ namespace MCDawn
                             }
                         }
                         File.Delete("extra/chatrooms/" + p.chatroom.ToLower() + ".txt");
-                        Player.SendMessage(p, "You have dropped the chatroom &b" + p.chatroom + Server.DefaultColor + ".");
+                        Player.SendMessage(p, "You have dropped the chatroom &b" + p.chatroom + "&g.");
                         Server.s.Log(p.name + " dropped the chatroom " + p.chatroom + ".");
                     }
                     else { Player.SendMessage(p, "This chatroom hasn't been registered."); return; }
@@ -173,7 +173,7 @@ namespace MCDawn
                     Player who = Player.Find(message.Split(' ')[1]);
                     if (who == null) { Player.SendMessage(p, "Player could not be found."); return; }
                     if (who.group.Permission >= p.group.Permission || (Server.devs.Contains(who.name.ToLower()) || Server.staff.Contains(who.name.ToLower()) || Server.administration.Contains(who.name.ToLower()))) { Player.SendMessage(p, "Cannot kick players of higher or equal rank."); return; }
-                    Player.SendMessage(who, "You have been kicked from chatroom &b" + who.chatroom  + Server.DefaultColor + " by " + Player.ChatroomName(p) + Server.DefaultColor + ".");
+                    Player.SendMessage(who, "You have been kicked from chatroom &b" + who.chatroom  + "&g by " + Player.ChatroomName(p) + "&g.");
                     who.chatroom = "";
                     Player.ChatroomMessage(p.chatroom, who.color + who.name + " has been kicked from the chatroom by " + Player.ChatroomName(p));
                     break;
@@ -183,7 +183,7 @@ namespace MCDawn
                     Player who2 = Player.Find(message.Split(' ')[1]); // Don't judge me, I'm lazy and I wrote it wrong, lol :/
                     if (who2 == null) { Player.SendMessage(p, "Player could not be found."); return; }
                     if (who2.group.Permission >= p.group.Permission || (Server.devs.Contains(who2.name.ToLower()) || Server.staff.Contains(who2.name.ToLower()) || Server.administration.Contains(who2.name.ToLower()))) { Player.SendMessage(p, "Cannot ban players of higher or equal rank."); return; }
-                    Player.SendMessage(who2, "You have been banned from chatroom &b" + who2.chatroom  + Server.DefaultColor + " by " + Player.ChatroomName(p) + Server.DefaultColor + ".");
+                    Player.SendMessage(who2, "You have been banned from chatroom &b" + who2.chatroom  + "&g by " + Player.ChatroomName(p) + "&g.");
                     who2.chatroom = "";
                     Player.ChatroomMessage(p.chatroom, who2.color + who2.name + " has been banned from the chatroom by " + Player.ChatroomName(p));
                     string[] peoples = File.ReadAllLines("extra/chatrooms/" + p.chatroom.ToLower() + ".txt");
@@ -198,7 +198,7 @@ namespace MCDawn
                     if (!p.chatroomOp && !p.chatroomAdmin) { Player.SendMessage(p, "Must be Channel Admin to use this."); return; }
                     Player plr2 = Player.Find(message.Split(' ')[1]); // Don't judge me, I'm lazy and I wrote it wrong, lol :/
                     if (plr2 == null) { Player.SendMessage(p, "Player could not be found."); return; }
-                    Player.SendMessage(plr2, "You have been unbanned from chatroom &b" + plr2.chatroom  + Server.DefaultColor + " by " + Player.ChatroomName(p) + Server.DefaultColor + ".");
+                    Player.SendMessage(plr2, "You have been unbanned from chatroom &b" + plr2.chatroom  + "&g by " + Player.ChatroomName(p) + "&g.");
                     Player.ChatroomMessage(p.chatroom, plr2.color + plr2.name + " has been unbanned from the chatroom by " + Player.ChatroomName(p));
                     string[] ppls = File.ReadAllLines("extra/chatrooms/" + p.chatroom.ToLower() + ".txt");
                     List<string> list = new List<string>();

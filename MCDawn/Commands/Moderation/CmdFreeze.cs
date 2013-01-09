@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdFreeze : Command
     {
         public override string name { get { return "freeze"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -27,7 +27,7 @@ namespace MCDawn
                 {
                     Player.SendMessage(p, "Woah!! You can't freeze a MCDawn Developer!");
                     if (p != null)
-                        Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to freeze a MCDawn Developer!");
+                        Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to freeze a MCDawn Developer!");
                     else
                         Player.GlobalMessage("The Console is crazy! Trying to freeze a MCDawn Developer!");
                     continue;
@@ -39,18 +39,18 @@ namespace MCDawn
                 {
                     who.frozen = true;
                     if (p != null) 
-                        Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " has been &bfrozen" + Server.DefaultColor + " by " + p.color + p.name + Server.DefaultColor + ".", false);
+                        Player.GlobalChat(null, who.color + who.name + "&g has been &bfrozen" + "&g by " + p.color + p.name + "&g.", false);
                     else
-                        Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " has been &bfrozen by the Console.", false);
+                        Player.GlobalChat(null, who.color + who.name + "&g has been &bfrozen by the Console.", false);
                     froze++;
                 }
                 else
                 {
                     who.frozen = false;
                     if (p != null)
-                        Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " has been &adefrosted" + Server.DefaultColor + " by " + p.color + p.name + Server.DefaultColor + ".", false);
+                        Player.GlobalChat(null, who.color + who.name + "&g has been &adefrosted" + "&g by " + p.color + p.name + "&g.", false);
                     else
-                        Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " has been &adefrosted by the Console.", false);
+                        Player.GlobalChat(null, who.color + who.name + "&g has been &adefrosted by the Console.", false);
                     defroze++;
                 }
             }

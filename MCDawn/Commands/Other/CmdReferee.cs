@@ -37,13 +37,13 @@ namespace MCDawn
                 {
                     if (who.infected) { who.level.infection.ToHuman(p); }
                     who.referee = false;
-                    Player.GlobalChat(p, who.color + who.name + Server.DefaultColor + " is no longer a referee!", false);
+                    Player.GlobalChat(p, who.color + who.name + "&g is no longer a referee!", false);
                 }
                 else
                 {
                     if (who.infected) { who.level.infection.ToHuman(p); }
                     who.referee = true;
-                    Player.GlobalChat(p, who.color + who.name + Server.DefaultColor + " is now a referee!", false);
+                    Player.GlobalChat(p, who.color + who.name + "&g is now a referee!", false);
                 }
                 who.UpdateDetail();
                 who.level.infection.Check();
@@ -55,13 +55,13 @@ namespace MCDawn
             {
                 who.referee = false;
                 if (who.title.ToLower() == "referee" || who.title.ToLower() == "ref") { who.title = oldtitle; }
-                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " is no longer referee.");
+                Player.GlobalMessage(who.color + who.name + "&g is no longer referee.");
             }
             else
             {
                 who.referee = true;
                 if (who.title.ToLower() != "referee" && who.title.ToLower() != "ref") { who.title = "Referee"; }
-                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " is now referee.");
+                Player.GlobalMessage(who.color + who.name + "&g is now referee.");
             }
         }
         public override void Help(Player p)

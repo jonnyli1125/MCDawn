@@ -178,12 +178,12 @@ namespace MCDawn_.Gui
                     who.SendMessage("&bFrom Console: &f" + words[1]);
                     Server.s.Log("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                     if (!Server.devs.Contains(who.name.ToLower()))
-                        Player.GlobalMessageDevs("To Devs &f-" + Server.DefaultColor + "Console &b[>] " + who.color + who.name + "&f- " + words[1]);
+                        Player.GlobalMessageDevs("To Devs &f-" + "&gConsole &b[>] " + who.color + who.name + "&f- " + words[1]);
                     //AllServerChat.Say("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                     break;
                 case '#':
                     st = s.Remove(0, 1);
-                    Player.GlobalMessageOps("To Ops &f-" + Server.DefaultColor + " Console [&a" + Server.ZallState + Server.DefaultColor + "]&f- " + st);
+                    Player.GlobalMessageOps("To Ops &f-" + "&g Console [&a" + Server.ZallState + "&g]&f- " + st);
                     Server.s.Log("(OPs): Console: " + st);
                     //Server.s.OpLog("Console: " + text);
                     IRCBot.Say("Console [" + Server.ZallState + "]: " + st, true);
@@ -191,14 +191,14 @@ namespace MCDawn_.Gui
                     break;
                 case ';':
                     st = s.Remove(0, 1);
-                    Player.GlobalMessageAdmins("To Admins &f-" + Server.DefaultColor + " Console [&a" + Server.ZallState + Server.DefaultColor + "]&f- " + st);
+                    Player.GlobalMessageAdmins("To Admins &f-" + "&g Console [&a" + Server.ZallState + "&g]&f- " + st);
                     Server.s.Log("(Admins): Console: " + st);
                     //Server.s.OpLog("Console: " + text);
                     //IRCBot.Say("Console [" + Server.ZallState + "]: " + st, true);
                     //AllServerChat.Say("(Admins) Console [" + Server.ZallState + "]: " + st);
                     break;
                 default:
-                    Player.GlobalChat(null, "Console [&a" + Server.ZallState + Server.DefaultColor + "]: &f" + s, false);
+                    Player.GlobalChat(null, "Console [&a" + Server.ZallState + "&g]: &f" + s, false);
                     Server.s.Log("<CONSOLE> " + s);
                     IRCBot.Say("Console [" + Server.ZallState + "]: " + s);
                     break;

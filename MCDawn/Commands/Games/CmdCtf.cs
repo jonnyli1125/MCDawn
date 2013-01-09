@@ -8,7 +8,7 @@ namespace MCDawn
     public class CmdCTF : Command
     {
         public override string name { get { return "ctf"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "games"; } }
         public override bool museumUsable { get { return false; } }
         public CmdCTF() { }
@@ -133,7 +133,7 @@ namespace MCDawn
                     }
                     p.level.ctfmode = false;
                     p.level.ctfgame.gameOn = false;
-                    p.level.ChatLevel(p.color + p.name + Server.DefaultColor + " has ended the game");
+                    p.level.ChatLevel(p.color + p.name + "&g has ended the game");
                 }
                 else if (message.ToLower() == "ff")
                 {

@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdStairs : Command
     {
         public override string name { get { return "stairs"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }

@@ -30,21 +30,21 @@ namespace MCDawn
                 if (Server.devs.Contains(message.ToLower()))
                 {
                     Player.SendMessage(p, "Woah!! You can't ban a MCDawn Developer!");
-                    if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Developer!");
+                    if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Developer!");
                     else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Developer!");
                     return;
                 }
                 if (Server.staff.Contains(message.ToLower()))
                 {
                     Player.SendMessage(p, "Woah!! You can't ban a MCDawn Staff Member!");
-                    if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Staff Member!");
+                    if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Staff Member!");
                     else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Staff Member!");
                     return;
                 }
                 if (Server.administration.Contains(message.ToLower()))
                 {
                     Player.SendMessage(p, "Woah!! You can't ban a MCDawn Administrator!");
-                    if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Administrator!");
+                    if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Administrator!");
                     else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Administrator!");
                     return;
                 }
@@ -118,21 +118,21 @@ namespace MCDawn
                     if (Server.devs.Contains(dev.ToLower()))
                     {
                         Player.SendMessage(p, "Woah!! You can't ban a MCDawn Developer!");
-                        if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Developer!");
+                        if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Developer!");
                         else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Developer!");
                         return;
                     }
                     if (Server.staff.Contains(dev.ToLower()))
                     {
                         Player.SendMessage(p, "Woah!! You can't ban a MCDawn Staff Member!");
-                        if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Staff Member!");
+                        if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Staff Member!");
                         else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Staff Member!");
                         return;
                     }
                     if (Server.administration.Contains(dev.ToLower()))
                     {
                         Player.SendMessage(p, "Woah!! You can't ban a MCDawn Administrator!");
-                        if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Administrator!");
+                        if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Administrator!");
                         else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Administrator!");
                         return;
                     }
@@ -149,21 +149,21 @@ namespace MCDawn
                     if (Server.devs.Contains(opname.ToLower()))
                     {
                         Player.SendMessage(p, "Woah!! You can't ban a MCDawn Developer!");
-                        if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Developer!");
+                        if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Developer!");
                         else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Developer!");
                         return;
                     }
                     if (Server.staff.Contains(opname.ToLower()))
                     {
                         Player.SendMessage(p, "Woah!! You can't ban a MCDawn Staff Member!");
-                        if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Staff Member!");
+                        if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Staff Member!");
                         else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Staff Member!");
                         return;
                     }
                     if (Server.administration.Contains(opname.ToLower()))
                     {
                         Player.SendMessage(p, "Woah!! You can't ban a MCDawn Administrator!");
-                        if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to ban a MCDawn Administrator!");
+                        if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to ban a MCDawn Administrator!");
                         else Player.GlobalMessage("The Console is crazy! Trying to ban a MCDawn Administrator!");
                         return;
                     }
@@ -177,7 +177,7 @@ namespace MCDawn
                             if (grp.Permission >= p.group.Permission)
                             {
                                 Player.SendMessage(p, "You can only IP-ban IPs of players with a lower rank.");
-                                Player.SendMessage(p, Server.DefaultColor + opname + "(" + grp.color + grp.name + Server.DefaultColor + ") also has the IP of " + message + ".");
+                                Player.SendMessage(p, "&g" + opname + "(" + grp.color + grp.name + "&g) also has the IP of " + message + ".");
                                 Server.s.Log(p.name + " attempted to IP-ban " + message + " [Player " + opname + "(" + grp.name + ") also has the IP of " + message + "]");
                                 return;
                             }
@@ -192,13 +192,13 @@ namespace MCDawn
             {
                 IRCBot.Say(message.ToLower() + " is now ip-banned by " + p.name + ".");
                 Server.s.Log("IP-BANNED: " + message.ToLower() + " by " + p.name + ".");
-                Player.GlobalMessage(message + " is now &8ip-banned" + Server.DefaultColor + " by " + p.color + p.name + Server.DefaultColor + ".");
+                Player.GlobalMessage(message + " is now &8ip-banned" + "&g by " + p.color + p.name + "&g.");
             }
             else
             {
                 IRCBot.Say(message.ToLower() + " is now ip-banned by Console.");
                 Server.s.Log("IP-BANNED: " + message.ToLower() + " by Console.");
-                Player.GlobalMessage(message + " is now &8ip-banned" + Server.DefaultColor + " by Console.");
+                Player.GlobalMessage(message + " is now &8ip-banned" + "&g by Console.");
             }
             Server.bannedIP.Add(message);
             Server.bannedIP.Save("banned-ip.txt", false);

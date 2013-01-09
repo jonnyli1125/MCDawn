@@ -38,7 +38,7 @@ namespace MCDawn
             {
                 if (who.Loading)
                 {
-                    Player.SendMessage(p, "Waiting for " + who.color + who.name + Server.DefaultColor + " to spawn...");
+                    Player.SendMessage(p, "Waiting for " + who.color + who.name + "&g to spawn...");
                     while (who.Loading) { }
                 }
                 while (p.Loading) { }  //Wait for player to spawn in new map

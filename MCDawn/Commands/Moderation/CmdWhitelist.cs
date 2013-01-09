@@ -42,22 +42,22 @@ namespace MCDawn
                     case "add":
                         if (Server.whiteList.Contains(player))
                         {
-                            Player.SendMessage(p, "&f" + player + Server.DefaultColor + " is already on the whitelist!");
+                            Player.SendMessage(p, "&f" + player + "&g is already on the whitelist!");
                             break;
                         }
                         Server.whiteList.Add(player);
-                        Player.GlobalMessageOps(p.color + p.prefix + p.name + Server.DefaultColor + " added &f" + player + Server.DefaultColor + " to the whitelist.");
+                        Player.GlobalMessageOps(p.color + p.prefix + p.name + "&g added &f" + player + "&g to the whitelist.");
                         Server.whiteList.Save("whitelist.txt");
                         Server.s.Log("WHITELIST: Added " + player);
                         break;
                     case "del":
                         if (!Server.whiteList.Contains(player))
                         {
-                            Player.SendMessage(p, "&f" + player + Server.DefaultColor + " is not on the whitelist!");
+                            Player.SendMessage(p, "&f" + player + "&g is not on the whitelist!");
                             break;
                         }
                         Server.whiteList.Remove(player);
-                        Player.GlobalMessageOps(p.color + p.prefix + p.name + Server.DefaultColor + " removed &f" + player + Server.DefaultColor + " from the whitelist.");
+                        Player.GlobalMessageOps(p.color + p.prefix + p.name + "&g removed &f" + player + "&g from the whitelist.");
                         Server.whiteList.Save("whitelist.txt");
                         Server.s.Log("WHITELIST: Removed " + player);
                         break;

@@ -66,8 +66,8 @@ namespace MCDawn
 
                     if (!p.hidden)
                     {
-                        Player.GlobalChat(p, p.color + p.name + Server.DefaultColor + " went to &b" + foundLevel.name, false);
-                        if (Server.womText) { Player.WomGlobalMessage(p.color + p.name + Server.DefaultColor + " went to &b" + foundLevel.name); }
+                        Player.GlobalChat(p, p.color + p.name + "&g went to &b" + foundLevel.name, false);
+                        if (Server.womText) { Player.WomGlobalMessage(p.color + p.name + "&g went to &b" + foundLevel.name); }
                     }
 
                     p.Loading = false;

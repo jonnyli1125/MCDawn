@@ -56,12 +56,12 @@ namespace MCDawn
                         Player.SendMessage(p, "Cannot change the rank of someone equal or higher to yourself."); return;
                     }
                 }
-                Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + "'s rank was temporarily set to " + newRank.color + newRank.name, false);
+                Player.GlobalChat(who, who.color + who.name + "&g's rank was temporarily set to " + newRank.color + newRank.name, false);
                 Player.GlobalChat(null, "&6" + msgGave, false);
                 who.group = newRank;
                 who.color = who.group.color;
                 Player.GlobalDie(who, false);
-                who.SendMessage("You are now tempranked " + newRank.color + newRank.name + Server.DefaultColor + ", type /help for your new set of commands.");
+                who.SendMessage("You are now tempranked " + newRank.color + newRank.name + "&g, type /help for your new set of commands.");
                 Player.GlobalSpawn(who, who.pos[0], who.pos[1], who.pos[2], who.rot[0], who.rot[1], false);
                 MCDawn.Gui.Window.thisWindow.UpdateClientList(Player.players);
             }

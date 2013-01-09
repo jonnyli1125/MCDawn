@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdSlap : Command
     {
         public override string name { get { return "slap"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
@@ -39,7 +39,7 @@ namespace MCDawn
             if (Server.devs.Contains(who.originalName.ToLower()))
             {
                 Player.SendMessage(p, "Woah!! You can't slap a MCDawn Developer!");
-                if (p != null) { Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to slap a MCDawn Developer!"); }
+                if (p != null) { Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to slap a MCDawn Developer!"); }
                 else { Player.GlobalMessage("The Console is crazy! Trying to slap a MCDawn Developer!"); }
                 return;
             }
@@ -64,7 +64,7 @@ namespace MCDawn
                     if (!Block.Walkthrough(p.level.GetTile(currentX, yy, currentZ)) && p.level.GetTile(currentX, yy, currentZ) != Block.Zero)
                     {
                         foundHeight = (ushort)(yy - 1);
-                        Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was slapped into the roof by " + p.color + p.name);
+                        Player.GlobalMessage(who.color + who.name + "&g was slapped into the roof by " + p.color + p.name);
                         break;
                     }
                 }
@@ -73,7 +73,7 @@ namespace MCDawn
                     if (!Block.Walkthrough(who.level.GetTile(currentX, yy, currentZ)) && who.level.GetTile(currentX, yy, currentZ) != Block.Zero)
                     {
                         foundHeight = (ushort)(yy - 1);
-                        Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was slapped into the roof by the Console.");
+                        Player.GlobalMessage(who.color + who.name + "&g was slapped into the roof by the Console.");
                         break;
                     }
                 }
@@ -82,11 +82,11 @@ namespace MCDawn
             {
                 if (p != null)
                 {
-                    Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was slapped sky high by " + p.color + p.name);
+                    Player.GlobalMessage(who.color + who.name + "&g was slapped sky high by " + p.color + p.name);
                 }
                 else
                 {
-                    Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " was slapped sky high by the Console.");
+                    Player.GlobalMessage(who.color + who.name + "&g was slapped sky high by the Console.");
                 }
                 foundHeight = 1000;
             }

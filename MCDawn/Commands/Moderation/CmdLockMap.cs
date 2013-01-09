@@ -27,13 +27,13 @@ namespace MCDawn
                     if (lvl.locked == true)
                     {
                         lvl.locked = false;
-                        Player.GlobalMessage("&b" + lvl.name + Server.DefaultColor + " level unlocked");
+                        Player.GlobalMessage("&b" + lvl.name + "&g level unlocked");
                         lvl.Save();
                     }
                     else
                     {
                         lvl.locked = true;
-                        Player.GlobalMessage("&b" + lvl.name + Server.DefaultColor + " level locked");
+                        Player.GlobalMessage("&b" + lvl.name + "&g level locked");
                         lvl.Save();
                     }
                 }
@@ -49,13 +49,13 @@ namespace MCDawn
                     if (lvl.locked == true)
                     {
                         lvl.locked = false;
-                        Player.GlobalMessage("&b" + lvl.name + Server.DefaultColor + " level unlocked");
+                        Player.GlobalMessage("&b" + lvl.name + "&g level unlocked");
                         lvl.Save();
                     }
                     else
                     {
                         lvl.locked = true;
-                        Player.GlobalMessage("&b" + lvl.name + Server.DefaultColor + " level locked");
+                        Player.GlobalMessage("&b" + lvl.name + "&g level locked");
                         lvl.Save();
                     }
                 }

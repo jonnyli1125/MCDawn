@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdWhowas : Command
     {
         public override string name { get { return "whowas"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "information"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Banned; } }
@@ -18,7 +18,7 @@ namespace MCDawn
             Player pl = Player.Find(message); 
             if (pl != null && !pl.hidden)
             { 
-                Player.SendMessage(p, pl.color + pl.name + Server.DefaultColor + " is online, using /whois instead."); 
+                Player.SendMessage(p, pl.color + pl.name + "&g is online, using /whois instead."); 
                 Command.all.Find("whois").Use(p, message);
                 return; 
             }
@@ -28,32 +28,32 @@ namespace MCDawn
             string FoundRank = Group.findPlayer(message.ToLower());
 
             DataTable playerDb = MySQL.fillData("SELECT * FROM Players WHERE Name='" + message + "'");
-            if (playerDb.Rows.Count == 0) { Player.SendMessage(p, Group.Find(FoundRank).color + message + Server.DefaultColor + " has the rank of " + Group.Find(FoundRank).color + FoundRank); return; }
+            if (playerDb.Rows.Count == 0) { Player.SendMessage(p, Group.Find(FoundRank).color + message + "&g has the rank of " + Group.Find(FoundRank).color + FoundRank); return; }
 
-            Player.SendMessage(p, Group.Find(FoundRank).color + playerDb.Rows[0]["Title"] + " " + message + Server.DefaultColor + " has :");
+            Player.SendMessage(p, Group.Find(FoundRank).color + playerDb.Rows[0]["Title"] + " " + message + "&g has :");
             Player.SendMessage(p, "> > the rank of \"" + Group.Find(FoundRank).color + FoundRank);
             Player.SendMessage(p, "> > the display name of " + playerDb.Rows[0]["displayName"]);
-            Player.SendMessage(p, "> > &a" + playerDb.Rows[0]["Money"] + Server.DefaultColor + " " + Server.moneys);
-            Player.SendMessage(p, "> > &cdied &a" + playerDb.Rows[0]["TotalDeaths"] + Server.DefaultColor + " times");
-            Player.SendMessage(p, "> > &bmodified &a" + playerDb.Rows[0]["totalBlocks"] + Server.DefaultColor + " blocks.");
+            Player.SendMessage(p, "> > &a" + playerDb.Rows[0]["Money"] + "&g " + Server.moneys);
+            Player.SendMessage(p, "> > &cdied &a" + playerDb.Rows[0]["TotalDeaths"] + "&g times");
+            Player.SendMessage(p, "> > &bmodified &a" + playerDb.Rows[0]["totalBlocks"] + "&g blocks.");
             //int ratio = (int)(Math.Round((decimal)(1 / (Math.Min(Convert.ToInt64(playerDb.Rows[0]["destroyedBlocks"].ToString()), (Convert.ToInt64(playerDb.Rows[0]["totalBlocks"].ToString()) - Convert.ToInt64(playerDb.Rows[0]["destroyedBlocks"].ToString()))) / Math.Max(Convert.ToInt64(playerDb.Rows[0]["destroyedBlocks"].ToString()), (Convert.ToInt64(playerDb.Rows[0]["totalBlocks"].ToString()) - Convert.ToInt64(playerDb.Rows[0]["destroyedBlocks"].ToString())))))));
             Int64 builtBlocks = 0;
             try { builtBlocks = Convert.ToInt64(playerDb.Rows[0]["totalBlocks"].ToString()) - Convert.ToInt64(playerDb.Rows[0]["destroyedBlocks"].ToString()); }
             catch { builtBlocks = 0; }
             if (builtBlocks < 0) { builtBlocks = 0; }
-            try { Player.SendMessage(p, "> > destroyed &a" + playerDb.Rows[0]["destroyedBlocks"].ToString() + Server.DefaultColor + " blocks, and built &a" + builtBlocks + Server.DefaultColor + "."); }
+            try { Player.SendMessage(p, "> > destroyed &a" + playerDb.Rows[0]["destroyedBlocks"].ToString() + "&g blocks, and built &a" + builtBlocks + "&g."); }
             catch { }
             Player.SendMessage(p, "> > was last seen on &a" + playerDb.Rows[0]["LastLogin"]);
             try { if (Server.useMaxMind) { Player.SendMessage(p, "> > last logged in from country &a" + playerDb.Rows[0]["countryName"]); } }
             catch { }
             Player.SendMessage(p, "> > " + TimeSpent(playerDb.Rows[0]["TimeSpent"].ToString()));
             Player.SendMessage(p, "> > first logged into the server on &a" + playerDb.Rows[0]["FirstLogin"]);
-            Player.SendMessage(p, "> > logged in &a" + playerDb.Rows[0]["totalLogin"] + Server.DefaultColor + " times, &c" + playerDb.Rows[0]["totalKicked"] + Server.DefaultColor + " of which ended in a kick.");
+            Player.SendMessage(p, "> > logged in &a" + playerDb.Rows[0]["totalLogin"] + "&g times, &c" + playerDb.Rows[0]["totalKicked"] + "&g of which ended in a kick.");
             Player.SendMessage(p, "> > " + Awards.awardAmount(message) + " awards");
             if (playerDb.Rows[0]["HasWOM"].ToString().Trim() == "")
-                Player.SendMessage(p, "> > last logged in without &cWOM Game Client" + Server.DefaultColor + ".");
+                Player.SendMessage(p, "> > last logged in without &cWOM Game Client" + "&g.");
             else
-                Player.SendMessage(p, "> > last logged in using &aWOM Game Client" + Server.DefaultColor + ", Version &a" + playerDb.Rows[0]["HasWOM"].ToString().Trim() + Server.DefaultColor + ".");
+                Player.SendMessage(p, "> > last logged in using &aWOM Game Client" + "&g, Version &a" + playerDb.Rows[0]["HasWOM"].ToString().Trim() + "&g.");
             // Last ranked/banned reason:
             string lastRankReason = playerDb.Rows[0]["lastRankReason"].ToString();
             if (lastRankReason.ToLower() != "none" && !String.IsNullOrEmpty(lastRankReason))
@@ -76,11 +76,11 @@ namespace MCDawn
                 if (Server.whiteList.Contains(message.ToLower()))
                     Player.SendMessage(p, "> > Player is &fWhitelisted");
             if (Server.devs.Contains(message.ToLower()))
-                Player.SendMessage(p, Server.DefaultColor + "> > Player is a &9Developer");
+                Player.SendMessage(p, "&g> > Player is a &9Developer");
             if (Server.staff.Contains(message.ToLower()))
-                Player.SendMessage(p, Server.DefaultColor + "> > Player is a member of &4MCDawn Staff");
+                Player.SendMessage(p, "&g> > Player is a member of &4MCDawn Staff");
             if (Server.administration.Contains(message.ToLower()))
-                Player.SendMessage(p, Server.DefaultColor + "> > Player is a &6MCDawn Administrator");
+                Player.SendMessage(p, "&g> > Player is a &6MCDawn Administrator");
             playerDb.Dispose();
         }
         public override void Help(Player p)

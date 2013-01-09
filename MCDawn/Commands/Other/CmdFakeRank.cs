@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdFakeRank : Command
     {
         public override string name { get { return "fakerank"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -34,35 +34,35 @@ namespace MCDawn
                 {
                     if (p != null)
                     {
-                        Player.GlobalMessage(foundName + " &f(offline)" + Server.DefaultColor + " is now &8banned" + Server.DefaultColor + " by " + p.color + p.name + Server.DefaultColor + ".");
+                        Player.GlobalMessage(foundName + " &f(offline)" + "&g is now &8banned" + "&g by " + p.color + p.name + "&g.");
                     }
                     else
                     {
-                        Player.GlobalMessage(foundName + " &f(offline)" + Server.DefaultColor + " is now &8banned" + Server.DefaultColor + " by Console.");
+                        Player.GlobalMessage(foundName + " &f(offline)" + "&g is now &8banned" + "&g by Console.");
                     }
                     return;
                 }
 
                 Group oldGroup = Group.findPlayerGroup(foundName);
 
-                Player.GlobalMessage(foundName + " &f(offline)" + Server.DefaultColor + "'s rank was set to " + newRank.color + newRank.name);
+                Player.GlobalMessage(foundName + " &f(offline)" + "&g's rank was set to " + newRank.color + newRank.name);
                 Player.GlobalChat(null, "&6Reason: &f" + msgGave, false);
             }
             else
             {
                 if (newRank == bannedGroup) {
                     if (p != null)
-                        Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + " is now &8banned" + Server.DefaultColor + " by " + p.color + p.name + Server.DefaultColor + ".", false);
+                        Player.GlobalChat(who, who.color + who.name + "&g is now &8banned" + "&g by " + p.color + p.name + "&g.", false);
                     else
-                        Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + " is now &8banned" + Server.DefaultColor + " by Console.", false);
+                        Player.GlobalChat(who, who.color + who.name + "&g is now &8banned" + "&g by Console.", false);
                     Player.GlobalChat(null, "&6Reason: &f" + msgGave, false); 
                     return;
                 }
-                Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + "'s rank was set to " + newRank.color + newRank.name, false);
+                Player.GlobalChat(who, who.color + who.name + "&g's rank was set to " + newRank.color + newRank.name, false);
                 Player.GlobalChat(null, "&6Reason: &f" + msgGave, false);
                 who.color = who.group.color;
                 Player.GlobalDie(who, false);
-                who.SendMessage("You are now ranked " + newRank.color + newRank.name + Server.DefaultColor + ", type /help for your new set of commands.");
+                who.SendMessage("You are now ranked " + newRank.color + newRank.name + "&g, type /help for your new set of commands.");
                 Player.GlobalSpawn(who, who.pos[0], who.pos[1], who.pos[2], who.rot[0], who.rot[1], false);
             }
         }

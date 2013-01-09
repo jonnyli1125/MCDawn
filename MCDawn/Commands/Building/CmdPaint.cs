@@ -29,8 +29,8 @@ namespace MCDawn
         public override void Use(Player p, string message)
         {
             if (message != "") { Help(p); return; }
-            p.painting = !p.painting; if (p.painting) { Player.SendMessage(p, "Painting mode: &aON" + Server.DefaultColor + "."); }
-            else { Player.SendMessage(p, "Painting mode: &cOFF" + Server.DefaultColor + "."); }
+            p.painting = !p.painting; if (p.painting) { Player.SendMessage(p, "Painting mode: &aON" + "&g."); }
+            else { Player.SendMessage(p, "Painting mode: &cOFF" + "&g."); }
             p.BlockAction = 0;
         }
         public override void Help(Player p)

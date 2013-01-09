@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdAward : Command
     {
         public override string name { get { return "award"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -43,7 +43,7 @@ namespace MCDawn
             {
                 if (Awards.giveAward(foundPlayer, awardName))
                 {
-                    Player.GlobalChat(p, Server.FindColor(foundPlayer) + foundPlayer + Server.DefaultColor + " was awarded: &b" + Awards.camelCase(awardName), false);
+                    Player.GlobalChat(p, Server.FindColor(foundPlayer) + foundPlayer + "&g was awarded: &b" + Awards.camelCase(awardName), false);
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace MCDawn
             {
                 if (Awards.takeAward(foundPlayer, awardName))
                 {
-                    Player.GlobalChat(p, Server.FindColor(foundPlayer) + foundPlayer + Server.DefaultColor + " had their &b" + Awards.camelCase(awardName) + Server.DefaultColor + " award removed", false);
+                    Player.GlobalChat(p, Server.FindColor(foundPlayer) + foundPlayer + "&g had their &b" + Awards.camelCase(awardName) + "&g award removed", false);
                 }
                 else
                 {

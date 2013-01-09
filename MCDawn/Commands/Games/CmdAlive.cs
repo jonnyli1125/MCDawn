@@ -8,7 +8,7 @@ namespace MCDawn
     public class CmdAlive : Command
     {
         public override string name { get { return "alive"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "games"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Guest; } }
@@ -21,7 +21,7 @@ namespace MCDawn
             }
             else
             {
-                Player.SendMessage(p, "The current &aAlive " + Server.DefaultColor + "players are ");
+                Player.SendMessage(p, "The current &aAlive " + "&gplayers are ");
                 p.level.humans.ForEach(delegate(Player player)
                 {
                     Player.SendMessage(p, player.color + player.name);

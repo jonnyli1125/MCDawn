@@ -32,11 +32,11 @@ namespace MCDawn
                         {
                             if (pl.group.Permission >= Server.opchatperm && (pl.group.CanExecute(promote) || pl.group.CanExecute(setrank)))
                             {
-                                Player.SendMessage(pl, "To Ops: " + p.color + p.name + Server.DefaultColor + " has been added to the review queue.");
+                                Player.SendMessage(pl, "To Ops: " + p.color + p.name + "&g has been added to the review queue.");
                                 Player.SendMessage(pl, " Type &3/review next");
                             }
                         }
-                        //Player.GlobalMessageOps("To Ops: " + p.color + p.name + Server.DefaultColor + " has been added to the review queue.");
+                        //Player.GlobalMessageOps("To Ops: " + p.color + p.name + "&g has been added to the review queue.");
                         //Player.GlobalMessageOps(" Type &3/review next");
                         p.usereview = false;
                     }
@@ -105,7 +105,7 @@ namespace MCDawn
                         }
                         Server.reviewlist.Remove(user[0]);
                         Command.all.Find("tp").Use(p, who.name);
-                        Player.GlobalMessageOps("To Ops: &3REVIEW: " + p.color + p.name + Server.DefaultColor + " is currently reviewing " + who.color + who.name);
+                        Player.GlobalMessageOps("To Ops: &3REVIEW: " + p.color + p.name + "&g is currently reviewing " + who.color + who.name);
                         Player.SendMessage(p, "You are reviewing " + who.group.color + user[0] + " (" + who.group.name + ")");
                         Player.SendMessage(p, "If you dont like the build, you may decline with &4/decline <player>.");
                         Player.SendMessage(who, "Your build is currently being reviewed by " + p.color + p.name + ".");
@@ -114,7 +114,7 @@ namespace MCDawn
                     else 
                     { 
                         Player.SendMessage(p, "Command reserved for OP+ Only. ");
-                        Player.SendMessage(p, "NOTE: You must have permissions for &4/promote " + Server.DefaultColor + " or &4/setrank " + Server.DefaultColor + " to use &3/review next."); 
+                        Player.SendMessage(p, "NOTE: You must have permissions for &4/promote " + "&g or &4/setrank " + "&g to use &3/review next."); 
                     }
                     break;
 

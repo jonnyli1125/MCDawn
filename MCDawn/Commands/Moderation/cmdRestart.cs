@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdRestart : Command
     {
         public override string name { get { return "restart"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }

@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdHollow : Command
     {
         public override string name { get { return "hollow"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Builder; } }

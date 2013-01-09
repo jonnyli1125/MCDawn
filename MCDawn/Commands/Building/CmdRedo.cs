@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdRedo : Command
     {
         public override string name { get { return "redo"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Guest; } }

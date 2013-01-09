@@ -338,7 +338,7 @@ namespace MCDawn
             {
                 if (!skipExtra || (grp.Permission > LevelPermission.Guest && grp.Permission < LevelPermission.Nobody))
                     if (includeColor) {
-                        returnString += ", " + grp.color + grp.name + Server.DefaultColor;
+                        returnString += ", " + grp.color + grp.name + "&g";
                     } else if (permissions) {
                         returnString += ", " + ((int)grp.Permission).ToString();
                     } else

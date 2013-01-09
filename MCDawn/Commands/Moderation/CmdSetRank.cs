@@ -50,7 +50,7 @@ namespace MCDawn
                 newRank.playerList.Save();
 
                 msgGave = msgGave.Trim();
-                Player.GlobalMessage(foundName + " &f(offline)" + Server.DefaultColor + "'s rank was set to " + newRank.color + newRank.name);
+                Player.GlobalMessage(foundName + " &f(offline)" + "&g's rank was set to " + newRank.color + newRank.name);
                 MySQL.executeQuery("UPDATE Players SET lastRankReason = '[" + DateTime.Now.ToString() + "] " + msgGave.Replace("'", "\\'") + "' WHERE Name = '" + foundName + "'");
                 Player.GlobalChat(null, "&6Reason: &f" + msgGave, false);
             }
@@ -78,12 +78,12 @@ namespace MCDawn
                 newRank.playerList.Save();
 
                 msgGave = msgGave.Trim();
-                Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + "'s rank was set to " + newRank.color + newRank.name, false);
+                Player.GlobalChat(who, who.color + who.name + "&g's rank was set to " + newRank.color + newRank.name, false);
                 Player.GlobalChat(null, "&6Reason: &f" + msgGave, false);
                 who.group = newRank;
                 who.color = who.group.color;
                 Player.GlobalDie(who, false);
-                who.SendMessage("You are now ranked " + newRank.color + newRank.name + Server.DefaultColor + ", type /help for your new set of commands.");
+                who.SendMessage("You are now ranked " + newRank.color + newRank.name + "&g, type /help for your new set of commands.");
                 Player.GlobalSpawn(who, who.pos[0], who.pos[1], who.pos[2], who.rot[0], who.rot[1], false);
                 try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.UpdateClientList(Player.players); } }
                 catch { }

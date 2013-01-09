@@ -19,7 +19,7 @@ namespace MCDawn
             Player who = Player.Find(message);
             if (message == "") { who = p; }
             if (who == null) { p.SendMessage("Player could not be found."); return; }
-            p.SendMessage(who.color + who.name + Server.DefaultColor + " currently has " + who.money + " " + Server.moneys);
+            p.SendMessage(who.color + who.name + "&g currently has " + who.money + " " + Server.moneys);
         }
         public override void Help(Player p)
         {

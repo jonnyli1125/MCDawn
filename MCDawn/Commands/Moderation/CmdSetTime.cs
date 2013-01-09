@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdSetTime : Command
     {
         public override string name { get { return "settime"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -58,9 +58,9 @@ namespace MCDawn
                 MySQL.executeQuery("UPDATE Players SET TimeSpent = '" + who.timeSpent + "' WHERE Name = '" + who.originalName + "'");
                 if (who != p)
                 {
-                    Player.SendMessage(p, who.color + who.name + Server.DefaultColor + "'s time spent was set at: &a" + days + " Days, " + hours + " Hours, " + minutes + " Minutes.");
-                    if (p != null) { Player.SendMessage(who, "Your time spent was set at: &a" + days + " Days, " + hours + " Hours, " + minutes + " Minutes " + Server.DefaultColor  +"by " + p.color + p.name + Server.DefaultColor + "."); }
-                    else { Player.SendMessage(who, "Your time spent was set at: &a" + days + " Days, " + hours + " Hours, " + minutes + " Minutes " + Server.DefaultColor + "by the Console."); }
+                    Player.SendMessage(p, who.color + who.name + "&g's time spent was set at: &a" + days + " Days, " + hours + " Hours, " + minutes + " Minutes.");
+                    if (p != null) { Player.SendMessage(who, "Your time spent was set at: &a" + days + " Days, " + hours + " Hours, " + minutes + " Minutes " + "&gby " + p.color + p.name + "&g."); }
+                    else { Player.SendMessage(who, "Your time spent was set at: &a" + days + " Days, " + hours + " Hours, " + minutes + " Minutes " + "&gby the Console."); }
                 }
                 else { Player.SendMessage(p, "Your time spent was set at: &a" + days + " Days, " + hours + " Hours, " + minutes + " Minutes."); }
             }

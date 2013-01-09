@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdP2P : Command
     {
         public override string name { get { return "p2p"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -36,7 +36,7 @@ namespace MCDawn
             {
                 if (target.Loading)
                 {
-                    Player.SendMessage(p, "Waiting for " + target.color + target.name + Server.DefaultColor + " to spawn...");
+                    Player.SendMessage(p, "Waiting for " + target.color + target.name + "&g to spawn...");
                     while (target.Loading) { }
                 }
                 while (toSend.Loading) { }  //Wait for player to spawn in new map

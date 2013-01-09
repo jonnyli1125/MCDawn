@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdInfect : Command
     {
         public override string name { get { return "infect"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "games"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -23,7 +23,7 @@ namespace MCDawn
             }
             if (who.infected)
             {
-                p.SendMessage(who.color + who.name + Server.DefaultColor + " is already infected!");
+                p.SendMessage(who.color + who.name + "&g is already infected!");
             }
             else
             {

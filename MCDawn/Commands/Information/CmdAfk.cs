@@ -7,7 +7,7 @@ namespace MCDawn
     class CmdAfk : Command
     {
         public override string name { get { return "afk"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "information"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Guest; } }
@@ -28,7 +28,7 @@ namespace MCDawn
                     {
                         message = "";
                     }
-                    Player.GlobalMessage("-" + p.color + p.name + Server.DefaultColor + "- is AFK " + message);
+                    Player.GlobalMessage("-" + p.color + p.name + "&g- is AFK " + message);
                     IRCBot.Say(p.name + " is AFK " + message);
                     //AllServerChat.Say(p.name + " is AFK " + message);
                     //if (!p.afkTimer.Enabled) { p.afkTimer.Start(); }
@@ -39,7 +39,7 @@ namespace MCDawn
                 else
                 {
                     Server.afkset.Remove(p.name);
-                    Player.GlobalMessage("-" + p.color + p.name + Server.DefaultColor + "- is no longer AFK");
+                    Player.GlobalMessage("-" + p.color + p.name + "&g- is no longer AFK");
                     IRCBot.Say(p.name + " is no longer AFK");
                     //AllServerChat.Say(p.name + " is no longer AFK " + message);
                     return;

@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdColor : Command
     {
         public override string name { get { return "color"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -24,7 +24,7 @@ namespace MCDawn
                 if (message.Substring(pos + 1) == "del")
                 {
                     MySQL.executeQuery("UPDATE Players SET color = '' WHERE name = '" + who.originalName + "'");
-                    Player.GlobalChat(who, who.color + "*" + Name(who.name) + " color reverted to " + who.group.color + "their group's default" + Server.DefaultColor + ".", false);
+                    Player.GlobalChat(who, who.color + "*" + Name(who.name) + " color reverted to " + who.group.color + "their group's default" + "&g.", false);
                     who.color = who.group.color;
 
                     Player.GlobalDie(who, false);
@@ -42,7 +42,7 @@ namespace MCDawn
                     //                  c.Name(color) + "&e.", false);
                     MySQL.executeQuery("UPDATE Players SET color = '" + c.Name(color) + "' WHERE name = '" + who.originalName + "'");
 
-                    Player.GlobalChat(who, who.color + "*" + Name(who.name) + " color changed to " + color + c.Name(color) + Server.DefaultColor + ".", false);
+                    Player.GlobalChat(who, who.color + "*" + Name(who.name) + " color changed to " + color + c.Name(color) + "&g.", false);
                     who.color = color;
 
                     Player.GlobalDie(who, false);
@@ -56,7 +56,7 @@ namespace MCDawn
                 {
                     MySQL.executeQuery("UPDATE Players SET color = '' WHERE name = '" + p.originalName + "'");
 
-                    Player.GlobalChat(p, p.color + "*" + Name(p.name) + " color reverted to " + p.group.color + "their group's default" + Server.DefaultColor + ".", false);
+                    Player.GlobalChat(p, p.color + "*" + Name(p.name) + " color reverted to " + p.group.color + "their group's default" + "&g.", false);
                     p.color = p.group.color;
 
                     Player.GlobalDie(p, false);
@@ -71,7 +71,7 @@ namespace MCDawn
                 {
                     MySQL.executeQuery("UPDATE Players SET color = '" + c.Name(color) + "' WHERE name = '" + p.originalName + "'");
 
-                    Player.GlobalChat(p, p.color + "*" + Name(p.name) + " color changed to " + color + c.Name(color) + Server.DefaultColor + ".", false);
+                    Player.GlobalChat(p, p.color + "*" + Name(p.name) + " color changed to " + color + c.Name(color) + "&g.", false);
                     p.color = color;
 
                     Player.GlobalDie(p, false);
@@ -89,8 +89,8 @@ namespace MCDawn
         static string Name(string name)
         {
             string ch = name[name.Length - 1].ToString().ToLower();
-            if (ch == "s" || ch == "x") { return name + Server.DefaultColor + "'"; }
-            else { return name + Server.DefaultColor + "'s"; }
+            if (ch == "s" || ch == "x") { return name + "&g'"; }
+            else { return name + "&g's"; }
         }
     }
 }

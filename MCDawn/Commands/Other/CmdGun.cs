@@ -8,7 +8,7 @@ namespace MCDawn
     public class CmdGun : Command
     {
         public override string name { get { return "gun"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
@@ -261,7 +261,7 @@ namespace MCDawn
                                                     pl.health = pl.health - 25;
                                                     if (pl.health > 0)
                                                     {
-                                                        pl.SendMessage("You have been shot!  You have &c" + pl.health + Server.DefaultColor + " health remaining.");
+                                                        pl.SendMessage("You have been shot!  You have &c" + pl.health + "&g health remaining.");
                                                         comeOut = true;
                                                         break;
                                                     }

@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdIgnore : Command
     {
         public override string name { get { return "ignore"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Guest; } }

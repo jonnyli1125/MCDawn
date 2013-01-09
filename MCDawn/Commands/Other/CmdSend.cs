@@ -9,7 +9,7 @@ namespace MCDawn
     public class CmdSend : Command
     {
         public override string name { get { return "send"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Builder; } }
@@ -33,7 +33,7 @@ namespace MCDawn
             //DB
 
             Player.SendMessage(p, "Message sent to &5" + whoTo + ".");
-            if (who != null) who.SendMessage("Message recieved from &5" + p.name + Server.DefaultColor + ".");
+            if (who != null) who.SendMessage("Message recieved from &5" + p.name + "&g.");
         }
         public override void Help(Player p)
         {

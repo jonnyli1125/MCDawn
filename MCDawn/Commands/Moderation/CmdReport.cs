@@ -95,8 +95,8 @@ namespace MCDawn
                     "Reason: &c" + message.Substring(message.IndexOf(" ") + 1).Trim()
                 });
                 Player.SendMessage(p, "Your report has been sent to the operators.");
-                Player.GlobalMessageOps("To Ops: " + p.color + p.name + Server.DefaultColor + " has submitted a report.");
-                Player.GlobalMessageOps("Type &c/report view " + newID + Server.DefaultColor + " to view.");
+                Player.GlobalMessageOps("To Ops: " + p.color + p.name + "&g has submitted a report.");
+                Player.GlobalMessageOps("Type &c/report view " + newID + "&g to view.");
             }
         }
 

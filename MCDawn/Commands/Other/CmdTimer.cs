@@ -7,7 +7,7 @@ namespace MCDawn
     public class CmdTimer : Command
     {
         public override string name { get { return "timer"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -33,10 +33,10 @@ namespace MCDawn
 
             if (TotalTime > 300) { Player.SendMessage(p, "Cannot have more than 5 minutes in a timer"); return; }
 
-            Player.GlobalChatLevel(p, Server.DefaultColor + "Timer lasting for " + TotalTime + " seconds has started.", false);
+            Player.GlobalChatLevel(p, "&gTimer lasting for " + TotalTime + " seconds has started.", false);
             TotalTime = (int)(TotalTime / 5);
 
-            Player.GlobalChatLevel(p, Server.DefaultColor + message, false);
+            Player.GlobalChatLevel(p, message, false);
 
             p.cmdTimer = true;
             messageTimer.Elapsed += delegate
@@ -49,7 +49,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.GlobalChatLevel(p, Server.DefaultColor + message, false);
+                    Player.GlobalChatLevel(p, message, false);
                     Player.GlobalChatLevel(p, "Timer has " + (TotalTime * 5) + " seconds remaining.", false);
                 }
             };

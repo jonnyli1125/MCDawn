@@ -21,13 +21,13 @@ namespace MCDawn
             {
                 who.nocaps = false;
                 Player.SendMessage(who, "You are now able to use capitals in chat messages.");
-                Player.SendMessage(p, "Allowed caps permissions from " + who.color + who.name + Server.DefaultColor + ".");
+                Player.SendMessage(p, "Allowed caps permissions from " + who.color + who.name + "&g.");
             }
             else
             {
                 who.nocaps = true;
                 Player.SendMessage(who, "You are no longer able to use capitals in chat messages.");
-                Player.SendMessage(p, "Removed caps permissions from " + who.color + who.name + Server.DefaultColor + ".");
+                Player.SendMessage(p, "Removed caps permissions from " + who.color + who.name + "&g.");
             }
         }
         public override void Help(Player p)

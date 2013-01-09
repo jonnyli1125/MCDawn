@@ -9,7 +9,7 @@ namespace MCDawn
     public class CmdMessageBlock : Command
     {
         public override string name { get { return "mb"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
@@ -93,7 +93,7 @@ namespace MCDawn
             {
                 for (i = 0; i < Messages.Rows.Count; i++)
                     p.SendBlockchange((ushort)Messages.Rows[i]["X"], (ushort)Messages.Rows[i]["Y"], (ushort)Messages.Rows[i]["Z"], Block.MsgWhite);
-                Player.SendMessage(p, "Now showing &a" + i.ToString() + Server.DefaultColor + " MBs.");
+                Player.SendMessage(p, "Now showing &a" + i.ToString() + "&g MBs.");
             }
             else
             {

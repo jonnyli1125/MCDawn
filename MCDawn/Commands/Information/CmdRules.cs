@@ -6,7 +6,7 @@ namespace MCDawn
     class CmdRules : Command
     {
         public override string name { get { return "rules"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "information"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Banned; } }
@@ -46,8 +46,8 @@ namespace MCDawn
                     if (Server.agreePass.Split(' ').Length > 1) { Server.agreePass = Server.agreePass.Split(' ')[0]; }
                     if (who != p) { p.SendMessage("Sent /rules to " + who.color + who.name); }
                     if (Server.agreeToRules && Server.agreedToRules.Contains(who.name)) { Clear(who); who.SendMessage("You have already agreed to the rules."); return; }
-                    if (Server.agreeToRules && Server.agreePass == "") { Clear(who); who.SendMessage("If you agree to the rules, please type &b/agree" + Server.DefaultColor + ". If not, type &b/disagree" + Server.DefaultColor + "."); }
-                    if (Server.agreeToRules && Server.agreePass.Length > 0) { Clear(who); who.SendMessage("If you agree to the rules, please type &b/agree " + Server.agreePass + Server.DefaultColor + ". If not, type &b/disagree" + Server.DefaultColor + "."); }
+                    if (Server.agreeToRules && Server.agreePass == "") { Clear(who); who.SendMessage("If you agree to the rules, please type &b/agree" + "&g. If not, type &b/disagree" + "&g."); }
+                    if (Server.agreeToRules && Server.agreePass.Length > 0) { Clear(who); who.SendMessage("If you agree to the rules, please type &b/agree " + Server.agreePass + "&g. If not, type &b/disagree" + "&g."); }
                     if (!p.readRules) { p.readRules = true; }
                 }
             }

@@ -28,7 +28,7 @@ namespace MCDawn
             if (amountGiven < 0) { Player.SendMessage(p, "Cannot give someone negative " + Server.moneys); return; }
 
             who.money += amountGiven;
-            Player.GlobalMessage(who.color + who.prefix + who.name + Server.DefaultColor + " was given " + amountGiven + " " + Server.moneys);
+            Player.GlobalMessage(who.color + who.prefix + who.name + "&g was given " + amountGiven + " " + Server.moneys);
         }
         public override void Help(Player p)
         {

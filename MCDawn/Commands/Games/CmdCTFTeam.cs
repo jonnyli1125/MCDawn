@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdCTFTeam : Command
     {
         public override string name { get { return "ctfteam"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "games"; } }
         public CmdCTFTeam() { }
         public override bool museumUsable { get { return false; } }

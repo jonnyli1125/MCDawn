@@ -25,7 +25,7 @@ namespace MCDawn
                     {
                         count++;
                         unchecked { pl.SendPos((byte)-1, p.pos[0], p.pos[1], p.pos[2], p.rot[0], 0); }
-                        pl.SendMessage("You were summoned by " + p.color + p.name + Server.DefaultColor + ".");
+                        pl.SendMessage("You were summoned by " + p.color + p.name + "&g.");
                         return;
                     }
                     if (pl.level != p.level && pl != p && p.group.Permission > pl.group.Permission)
@@ -55,7 +55,7 @@ namespace MCDawn
             if (who.level.zombiegame == true && p.level != who.level) { Player.SendMessage(p, "Infection is active on that map, you can't go to it!"); return; }
             if (p.level.spleefstarted == true && p.level != who.level) { Player.SendMessage(p, "You can't leave a Spleef game!"); return; }
             if (who.level.spleefstarted == true && p.level != who.level) { Player.SendMessage(p, "Spleef is active on that map, you can't go to it!"); return; }
-            if (p.level.permissionvisit > who.group.Permission) { p.SendMessage(who.color + who.name + Server.DefaultColor + " is not allowed to come to this map"); return; }
+            if (p.level.permissionvisit > who.group.Permission) { p.SendMessage(who.color + who.name + "&g is not allowed to come to this map"); return; }
             if (p.level != who.level)
             {
                 Level where = p.level;
@@ -66,7 +66,7 @@ namespace MCDawn
             else
             {
                 unchecked { who.SendPos((byte)-1, p.pos[0], p.pos[1], p.pos[2], p.rot[0], 0); }
-                who.SendMessage("You were summoned by " + p.color + p.name + Server.DefaultColor + ".");
+                who.SendMessage("You were summoned by " + p.color + p.name + "&g.");
             }
         }
         public override void Help(Player p)

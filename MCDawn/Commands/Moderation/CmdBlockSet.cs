@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdBlockSet : Command
     {
         public override string name { get { return "blockset"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -30,7 +30,7 @@ namespace MCDawn
 
             Block.SaveBlocks(Block.BlockList);
 
-            Player.GlobalMessage("&d" + Block.Name(foundBlock) + Server.DefaultColor + "'s permission was changed to " + Level.PermissionToName(newPerm));
+            Player.GlobalMessage("&d" + Block.Name(foundBlock) + "&g's permission was changed to " + Level.PermissionToName(newPerm));
         }
         public override void Help(Player p)
         {

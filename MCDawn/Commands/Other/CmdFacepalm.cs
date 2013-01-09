@@ -18,7 +18,7 @@ namespace MCDawn
         {
             if (message != "") { Help(p); return; }
             if (p == null) { Player.GlobalMessage("The Console facepalmed."); }
-            else { Player.GlobalMessage(p.color + p.prefix + p.name + Server.DefaultColor + " facepalmed."); }
+            else { Player.GlobalMessage(p.color + p.prefix + p.name + "&g facepalmed."); }
         }
 
         public override void Help(Player p) { Player.SendMessage(p, "/facepalm - Feel free to use when you feel like facepalming. XD"); }

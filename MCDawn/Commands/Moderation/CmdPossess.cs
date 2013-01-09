@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdPossess : Command
     {
         public override string name { get { return "possess"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -46,7 +46,7 @@ namespace MCDawn
                         }
                         p.invincible = false;
                         Command.all.Find("hide").Use(p, "s");
-                        Player.SendMessage(p, "Stopped possessing " + who.color + who.name + Server.DefaultColor + ".");
+                        Player.SendMessage(p, "Stopped possessing " + who.color + who.name + "&g.");
                         return;
                     }
                 }
@@ -74,7 +74,7 @@ namespace MCDawn
                     }
                     p.invincible = false;
                     Command.all.Find("hide").Use(p, "s");
-                    Player.SendMessage(p, "Stopped possessing " + who.color + who.name + Server.DefaultColor + ".");
+                    Player.SendMessage(p, "Stopped possessing " + who.color + who.name + "&g.");
                     return;
                 }
                 else
@@ -133,7 +133,7 @@ namespace MCDawn
                     }
                     p.SendDie(who.id);
                     who.canBuild = false;
-                    Player.SendMessage(p, "Successfully possessed " + who.color + who.name + Server.DefaultColor + ".");
+                    Player.SendMessage(p, "Successfully possessed " + who.color + who.name + "&g.");
                 }
             }
             catch (Exception e)

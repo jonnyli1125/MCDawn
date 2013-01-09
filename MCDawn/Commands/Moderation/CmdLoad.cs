@@ -110,10 +110,10 @@ namespace MCDawn
 
 				if (p != null)
 				{
-					if (p.hidden) { Player.GlobalMessageAdmins("To Admins: Level &3" + level.name + Server.DefaultColor + " stealth loaded."); }
-					else { Player.GlobalMessage("Level &3" + level.name + Server.DefaultColor + " loaded."); }
+					if (p.hidden) { Player.GlobalMessageAdmins("To Admins: Level &3" + level.name + "&g stealth loaded."); }
+					else { Player.GlobalMessage("Level &3" + level.name + "&g loaded."); }
 				}
-				else { Player.GlobalMessage("Level &3" + level.name + Server.DefaultColor + " loaded."); }
+				else { Player.GlobalMessage("Level &3" + level.name + "&g loaded."); }
 				try
 				{
 					int temp = int.Parse(phys);

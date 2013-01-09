@@ -29,7 +29,7 @@ namespace MCDawn
             else
             {
                 who.displayName = who.originalName;
-                Player.GlobalChat(who, who.color + who.prefix + who.displayName + Server.DefaultColor + " has reverted their display name to their original name.", false);
+                Player.GlobalChat(who, who.color + who.prefix + who.displayName + "&g has reverted their display name to their original name.", false);
                 query = "UPDATE Players SET displayName = '" + who.originalName + "' WHERE Name = '" + who.originalName + "'";
                 MySQL.executeQuery(query);
                 Player.GlobalDie(p, false);
@@ -43,7 +43,7 @@ namespace MCDawn
                 if (Server.devs.Contains(who.originalName.ToLower()) || Server.devs.Contains(NoColors(newName).Trim().ToLower())) { Player.SendMessage(p, "Can't let you do that, starfox."); return; }
             }
 
-            if (newName != "") Player.GlobalChat(who, who.color + who.displayName + Server.DefaultColor + " has changed their display name to " + newName + Server.DefaultColor + ".", false);
+            if (newName != "") Player.GlobalChat(who, who.color + who.displayName + "&g has changed their display name to " + newName + "&g.", false);
 
             if (newName == "")
             {

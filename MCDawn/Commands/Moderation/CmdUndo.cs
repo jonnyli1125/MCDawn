@@ -98,8 +98,8 @@ namespace MCDawn
                     catch { }
                 }
 
-                if (p != who) Player.GlobalChat(p, "Undid " + who.color + who.name + Server.DefaultColor + "'s actions in the past &b" + seconds + " seconds.", false);
-                else Player.SendMessage(p, "Undid your actions for in the past &b" + seconds + Server.DefaultColor + " seconds.");
+                if (p != who) Player.GlobalChat(p, "Undid " + who.color + who.name + "&g's actions in the past &b" + seconds + " seconds.", false);
+                else Player.SendMessage(p, "Undid your actions for in the past &b" + seconds + "&g seconds.");
                 return;
             }
             else if (message.Split(' ')[0].ToLower() == "physics")
@@ -164,7 +164,7 @@ namespace MCDawn
                 }
 
                 //Command.all.Find("physics").Use(p, curPhysics.ToString()); 
-                Player.GlobalMessage("Physics were undone &b" + seconds + Server.DefaultColor + " seconds");
+                Player.GlobalMessage("Physics were undone &b" + seconds + "&g seconds");
             }
             else
             {
@@ -207,7 +207,7 @@ namespace MCDawn
                         FoundUser = true;
                     }
                     
-                    if (FoundUser) Player.GlobalChat(p, "Undid " + Server.FindColor(message.Split(' ')[0]) + message.Split(' ')[0] + Server.DefaultColor + "'s actions for the past &b" + seconds + " seconds.", false);
+                    if (FoundUser) Player.GlobalChat(p, "Undid " + Server.FindColor(message.Split(' ')[0]) + message.Split(' ')[0] + "&g's actions for the past &b" + seconds + " seconds.", false);
                     else Player.SendMessage(p, "Could not find player specified.");
                 }
                 catch (Exception e)

@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdUnban : Command
     {
         public override string name { get { return "unban"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -39,7 +39,7 @@ namespace MCDawn
                     Player.SendMessage(p, "Player is not banned.");
                     return;
                 }
-                Player.GlobalMessage(message + " &8(banned)" + Server.DefaultColor + " is now " + Group.standard.color + Group.standard.name + Server.DefaultColor + "!");
+                Player.GlobalMessage(message + " &8(banned)" + "&g is now " + Group.standard.color + Group.standard.name + "&g!");
                 Group.findPerm(LevelPermission.Banned).playerList.Remove(message);
             }
             else
@@ -51,14 +51,14 @@ namespace MCDawn
                         if (tban.name == who.name)
                         {
                             Server.tempBans.Remove(tban);
-                            Player.GlobalMessage(who.color + who.prefix + who.name + Server.DefaultColor + "has had their temporary ban lifted.");
+                            Player.GlobalMessage(who.color + who.prefix + who.name + "&ghas had their temporary ban lifted.");
                             return;
                         }
                     }
                     Player.SendMessage(p, "Player is not banned.");
                     return;
                 }
-                Player.GlobalChat(who, who.color + who.prefix + who.name + Server.DefaultColor + " is now " + Group.standard.color + Group.standard.name + Server.DefaultColor + "!", false);
+                Player.GlobalChat(who, who.color + who.prefix + who.name + "&g is now " + Group.standard.color + Group.standard.name + "&g!", false);
                 who.group = Group.standard; who.color = who.group.color; Player.GlobalDie(who, false);
                 Player.GlobalSpawn(who, who.pos[0], who.pos[1], who.pos[2], who.rot[0], who.rot[1], false);
                 Group.findPerm(LevelPermission.Banned).playerList.Remove(message);

@@ -3,6 +3,8 @@ MCDawn 1.0.2.0
 	-/properties (/prop) <set/get> [property] [value] - Manages your server.properties file.
 -Mini-Console window in GUI removed
 -Console (GUI and CLI) can now read Minecraft chat color codes. This is toggle-able.
+-Default main level size for first startups is now 128/128/128.
+-For custom commands and plugins, usage of &g/%g color code is encouraged, instead of the old Server.DefaultColor.
 
 MCDawn 1.0.1.9
 -Updated Commands

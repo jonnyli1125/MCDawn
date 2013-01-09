@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdTBracket : Command
     {
         public override string name { get { return "tbracket"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -26,7 +26,7 @@ namespace MCDawn
                 if (args.Length == 1)
                 {
                     who.titlebracket = 0;
-                    Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + " had their title bracket set to default.", false);
+                    Player.GlobalChat(who, who.color + who.name + "&g had their title bracket set to default.", false);
                     MySQL.executeQuery("UPDATE Players SET titleBracket = 0 WHERE Name = '" + who.name + "'");
                     who.SetPrefix();
                     return;
@@ -67,7 +67,7 @@ namespace MCDawn
                         MySQL.executeQuery("UPDATE Players SET titleBracket = " + bracket + " WHERE Name = '" + who.name + "'");
                         who.titlebracket = bracket;
                         who.SetPrefix();
-                        Player.GlobalChat(who, who.color + who.name + Server.DefaultColor + " had their title bracket changed to " + who.tbracketstart + " and " + who.tbracketend + Server.DefaultColor + ".", false);
+                        Player.GlobalChat(who, who.color + who.name + "&g had their title bracket changed to " + who.tbracketstart + " and " + who.tbracketend + "&g.", false);
                         who.titlebracket = bracket;
                         who.SetPrefix();
                     }

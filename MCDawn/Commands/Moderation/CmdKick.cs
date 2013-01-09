@@ -27,7 +27,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to kick a MCDawn Developer!");
+                    Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to kick a MCDawn Developer!");
                 }
                 return;
             }
@@ -40,7 +40,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to kick a MCDawn Staff Member!");
+                    Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to kick a MCDawn Staff Member!");
                 }
                 return;
             }
@@ -53,7 +53,7 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to kick a MCDawn Administrator!");
+                    Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to kick a MCDawn Administrator!");
                 }
                 return;
             }
@@ -70,7 +70,7 @@ namespace MCDawn
                 }
                 else if (who.group.Permission >= p.group.Permission && p != null) 
                 { 
-                    Player.GlobalChat(p, p.color + p.name + Server.DefaultColor + " tried to kick " + who.color + who.name + " but failed.", false); 
+                    Player.GlobalChat(p, p.color + p.name + "&g tried to kick " + who.color + who.name + " but failed.", false); 
                     return; 
                 }
             who.Kick("Kicked by " + (p == null ? "Console" : p.name) + " - " + message);

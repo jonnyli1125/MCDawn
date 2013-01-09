@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdAwardMod : Command
     {
         public override string name { get { return "awardmod"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -52,7 +52,7 @@ namespace MCDawn
         {
             Player.SendMessage(p, "/awardmod <add/del> [award name] : [description]");
             Player.SendMessage(p, "Adds or deletes a reward with the name [award name]");
-            Player.SendMessage(p, "&b/awardmod add Bomb joy : Bomb lots of people" + Server.DefaultColor + " is an example");
+            Player.SendMessage(p, "&b/awardmod add Bomb joy : Bomb lots of people" + "&g is an example");
         }
     }
 }

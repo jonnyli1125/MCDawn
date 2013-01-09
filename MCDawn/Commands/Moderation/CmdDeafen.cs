@@ -39,12 +39,12 @@ namespace MCDawn
             if (who.deafened == true)
             {
                 who.deafened = false;
-                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " has been undeafened");
+                Player.GlobalMessage(who.color + who.name + "&g has been undeafened");
             }
             else
             {
                 who.deafened = true;
-                Player.GlobalMessage(who.color + who.name + Server.DefaultColor + " has been deafened");
+                Player.GlobalMessage(who.color + who.name + "&g has been deafened");
             }
         }
         public override void Help(Player p)

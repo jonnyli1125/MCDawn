@@ -9,7 +9,7 @@ namespace MCDawn
     public class CmdInbox : Command
     {
         public override string name { get { return "inbox"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "information"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Guest; } }
@@ -28,7 +28,7 @@ namespace MCDawn
 
                     for (int i = 0; i < Inbox.Rows.Count; ++i)
                     {
-                        Player.SendMessage(p, i + ": From &5" + Inbox.Rows[i]["PlayerFrom"].ToString() + Server.DefaultColor + " at &a" + Inbox.Rows[i]["TimeSent"].ToString());
+                        Player.SendMessage(p, i + ": From &5" + Inbox.Rows[i]["PlayerFrom"].ToString() + "&g at &a" + Inbox.Rows[i]["TimeSent"].ToString());
                     }
                     Inbox.Dispose();
                 }
@@ -88,7 +88,7 @@ namespace MCDawn
                         Player.SendMessage(p, "\"" + FoundRecord + "\" does not exist."); Inbox.Dispose(); return;
                     }
 
-                    Player.SendMessage(p, "Message from &5" + Inbox.Rows[FoundRecord]["PlayerFrom"] + Server.DefaultColor + " sent at &a" + Inbox.Rows[FoundRecord]["TimeSent"] + ":");
+                    Player.SendMessage(p, "Message from &5" + Inbox.Rows[FoundRecord]["PlayerFrom"] + "&g sent at &a" + Inbox.Rows[FoundRecord]["TimeSent"] + ":");
                     Player.SendMessage(p, Inbox.Rows[FoundRecord]["Contents"].ToString());
                     Inbox.Dispose();
                 }

@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdXban : Command
     {
         public override string name { get { return "xban"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
@@ -21,21 +21,21 @@ namespace MCDawn
             if (Server.devs.Contains(who == null ? msg.ToLower() : who.originalName.ToLower()))
             {
                 Player.SendMessage(p, "Woah!! You can't Xban a MCDawn Developer!");
-                if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to Xban a MCDawn Developer!");
+                if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to Xban a MCDawn Developer!");
                 else Player.GlobalMessage("The Console is crazy! Trying to Xban a MCDawn Developer!");
                 return;
             }
             if (Server.staff.Contains(who == null ? msg.ToLower() : who.originalName.ToLower()))
             {
                 Player.SendMessage(p, "Woah!! You can't Xban a MCDawn Staff Member!");
-                if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to Xban a MCDawn Staff Member!");
+                if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to Xban a MCDawn Staff Member!");
                 else Player.GlobalMessage("The Console is crazy! Trying to Xban a MCDawn Staff Member!");
                 return;
             }
             if (Server.administration.Contains(who == null ? msg.ToLower() : who.originalName.ToLower()))
             {
                 Player.SendMessage(p, "Woah!! You can't Xban a MCDawn Administrator!");
-                if (p != null) Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to Xban a MCDawn Administrator!");
+                if (p != null) Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to Xban a MCDawn Administrator!");
                 else Player.GlobalMessage("The Console is crazy! Trying to Xban a MCDawn Administrator!");
                 return;
             }

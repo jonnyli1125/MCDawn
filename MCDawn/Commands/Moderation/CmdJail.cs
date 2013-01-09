@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdJail : Command
     {
         public override string name { get { return "jail"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -34,7 +34,7 @@ namespace MCDawn
                         }
                         else
                         {
-                            Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to jail a MCDawn Developer!");
+                            Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to jail a MCDawn Developer!");
                         }
                         return;
                     }
@@ -47,7 +47,7 @@ namespace MCDawn
                         }
                         else
                         {
-                            Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to jail a MCDawn Staff Member!");
+                            Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to jail a MCDawn Staff Member!");
                         }
                         return;
                     }
@@ -60,7 +60,7 @@ namespace MCDawn
                         }
                         else
                         {
-                            Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to jail a MCDawn Administrator!");
+                            Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to jail a MCDawn Administrator!");
                         }
                         return;
                     }
@@ -71,12 +71,12 @@ namespace MCDawn
                         Player.GlobalDie(who, false);
                         Player.GlobalSpawn(who, p.level.jailx, p.level.jaily, p.level.jailz, p.level.jailrotx, p.level.jailroty, true);
                         who.jailed = true;
-                        Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " was &8jailed", false);
+                        Player.GlobalChat(null, who.color + who.name + "&g was &8jailed", false);
                     }
                     else
                     {
                         who.jailed = false;
-                        Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " was &afreed" + Server.DefaultColor + " from jail", false);
+                        Player.GlobalChat(null, who.color + who.name + "&g was &afreed" + "&g from jail", false);
                     }
                 }
                 else

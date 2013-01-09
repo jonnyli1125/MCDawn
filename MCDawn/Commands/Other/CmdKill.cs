@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdKill : Command
     {
         public override string name { get { return "kill"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -29,7 +29,7 @@ namespace MCDawn
                     }
                     else
                     {
-                        Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to kill a Developer!");
+                        Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to kill a Developer!");
                     }
                     return;
                 }
@@ -54,7 +54,7 @@ namespace MCDawn
                     }
                     else
                     {
-                        Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to kill a Developer!");
+                        Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to kill a Developer!");
                     }
                     return;
                 }

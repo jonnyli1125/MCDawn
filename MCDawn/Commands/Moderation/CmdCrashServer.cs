@@ -14,7 +14,7 @@ namespace MCDawn
         public override void Use(Player p, string message)
         {
             if (message != "") { Help(p); return; }
-            Player.GlobalMessageOps(p.color + p.name + Server.DefaultColor + " used &b/crashserver");
+            Player.GlobalMessageOps(p.color + p.name + "&g used &b/crashserver");
             p.Kick("Server crash! Error code 0x0005A4");
         }
         public override void Help(Player p)

@@ -769,7 +769,7 @@ namespace MCDawn
                     w.WriteLine("Pooling = " + Server.MySQLPooling);
                     w.WriteLine();
                     w.WriteLine("#Colors");
-                    w.WriteLine("defaultColor = " + Server.DefaultColor);
+                    w.WriteLine("defaultColor = &g");
                     w.WriteLine("irc-color = " + Server.IRCColour);
                     w.WriteLine();
                     w.WriteLine("#Running on mono?");

@@ -6,7 +6,7 @@ namespace MCDawn
     public class CmdBots : Command
     {
         public override string name { get { return "bots"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "other"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Builder; } }
@@ -24,7 +24,7 @@ namespace MCDawn
                 if (Pb.kill) message += "-kill";
             }
 
-            if (message != "") Player.SendMessage(p, "&1Bots: " + Server.DefaultColor + message.Remove(0, 2));
+            if (message != "") Player.SendMessage(p, "&1Bots: &g" + message.Remove(0, 2));
             else Player.SendMessage(p, "No bots are alive.");
         }
         public override void Help(Player p)

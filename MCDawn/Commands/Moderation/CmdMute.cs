@@ -5,7 +5,7 @@ namespace MCDawn
     public class CmdMute : Command
     {
         public override string name { get { return "mute"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "mod"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.Operator; } }
@@ -29,14 +29,14 @@ namespace MCDawn
                 }
                 else
                 {
-                    Player.GlobalMessage(p.color + p.name + Server.DefaultColor + " is crazy! Trying to mute a MCDawn Developer!");
+                    Player.GlobalMessage(p.color + p.name + "&g is crazy! Trying to mute a MCDawn Developer!");
                 }
                 return;
             }
             if (who.muted)
             {
                 who.muted = false;
-                Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " has been &bun-muted", false);
+                Player.GlobalChat(null, who.color + who.name + "&g has been &bun-muted", false);
             }
             else
             {
@@ -45,7 +45,7 @@ namespace MCDawn
                     if (who != p) if (who.group.Permission > p.group.Permission) { Player.SendMessage(p, "Cannot mute someone of a higher rank."); return; }
                 }
                 who.muted = true;
-                Player.GlobalChat(null, who.color + who.name + Server.DefaultColor + " has been &8muted", false);
+                Player.GlobalChat(null, who.color + who.name + "&g has been &8muted", false);
             }
         }
         public override void Help(Player p)

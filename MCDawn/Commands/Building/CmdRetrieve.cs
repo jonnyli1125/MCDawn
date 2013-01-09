@@ -9,7 +9,7 @@ namespace MCDawn
     public class CmdRetrieve : Command
     {
         public override string name { get { return "retrieve"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return false; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
@@ -138,7 +138,7 @@ namespace MCDawn
                                 }
                                 else readFirst = true;
                             }
-                            Player.SendMessage(p, "&f" + message + Server.DefaultColor + " has been placed copybuffer.  Paste away!");
+                            Player.SendMessage(p, "&f" + message + "&g has been placed copybuffer.  Paste away!");
                         }
                         else
                         {

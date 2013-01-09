@@ -16,7 +16,7 @@ namespace MCDawn
             if (message.Trim() == "")
             {
                 Player.SendMessage(p, "There are " + Remote.remotes.Count + " remote consoles online.");
-                Remote.remotes.ForEach(delegate(Remote r) { Player.SendMessage(p, r.username + " [&a" + r.name + Server.DefaultColor + "]"); });
+                Remote.remotes.ForEach(delegate(Remote r) { Player.SendMessage(p, r.username + " [&a" + r.name + "&g]"); });
                 return;
             }
             else if (message.Split(' ')[0].ToLower() == "kick")

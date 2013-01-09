@@ -9,7 +9,7 @@ namespace MCDawn
     public class CmdStore : Command
     {
         public override string name { get { return "store"; } }
-        public override string[] aliases { get { return new string[] { "" }; } }
+        public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "build"; } }
         public override bool museumUsable { get { return true; } }
         public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
@@ -26,7 +26,7 @@ namespace MCDawn
                 {
                     if (File.Exists("extra/copy/" + message + ".copy"))
                     {
-                        Player.SendMessage(p, "File: &f" + message + Server.DefaultColor + " already exists.  Delete first");
+                        Player.SendMessage(p, "File: &f" + message + "&g already exists.  Delete first");
                         return;
                     }
                     else
@@ -76,7 +76,7 @@ namespace MCDawn
                                     File.Move("extra/copy/" + message + ".copy", "extra/copyBackup/" + message + ".copy");
                                 }
                                 catch { }
-                                Player.SendMessage(p, "File &f" + message + Server.DefaultColor + " has been deleted.");
+                                Player.SendMessage(p, "File &f" + message + "&g has been deleted.");
                                 list.Remove(result);
                                 File.Delete("extra/copy/index.copydb");
                                 StreamWriter sW = new StreamWriter(File.Create("extra/copy/index.copydb"));

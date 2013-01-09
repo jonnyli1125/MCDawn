@@ -66,13 +66,13 @@ namespace MCDawn
                 if (count == 1 && exec)
                 {
                     all.Find(words[1]).Use(plr, "");
-                    Player.SendMessage(p, "You have successfully sent the command to " + plr.color + plr.name + Server.DefaultColor + ".");
+                    Player.SendMessage(p, "You have successfully sent the command to " + plr.color + plr.name + "&g.");
                     return;
                 }
                 if (count > 1 && exec)
                 {
                     all.Find(words[1]).Use(plr, words[2]);
-                    Player.SendMessage(p, "You have successfully sent the command to " + plr.color + plr.name + Server.DefaultColor + ".");
+                    Player.SendMessage(p, "You have successfully sent the command to " + plr.color + plr.name + "&g.");
                     return;
                 }
             }

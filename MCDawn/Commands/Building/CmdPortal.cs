@@ -61,13 +61,13 @@ namespace MCDawn
             p.blockchangeObject = portalPos;
             if (portalPos.Multi.ToLower() != "cuboid") 
             { 
-                Player.SendMessage(p, "Place a the &aEntry block" + Server.DefaultColor + " for the portal"); 
+                Player.SendMessage(p, "Place a the &aEntry block" + "&g for the portal"); 
                 p.ClearBlockchange();
                 p.Blockchange += new Player.BlockchangeEventHandler(EntryChange);
             }
             else 
             { 
-                Player.SendMessage(p, "Place two blocks" + Server.DefaultColor + " to determine the edges.");
+                Player.SendMessage(p, "Place two blocks" + "&g to determine the edges.");
                 p.ClearBlockchange();
                 p.Blockchange += new Player.BlockchangeEventHandler(portalCuboid1);
             }
@@ -204,7 +204,7 @@ namespace MCDawn
                 if (pos.portMapName == p.level.name) p.SendBlockchange(pos.x, pos.y, pos.z, bp.type);
             }
 
-            Player.SendMessage(p, "&3Exit" + Server.DefaultColor + " block placed");
+            Player.SendMessage(p, "&3Exit" + "&g block placed");
 
             if (p.staticCommands) { bp.port.Clear(); p.blockchangeObject = bp; p.Blockchange += new Player.BlockchangeEventHandler(EntryChange); }
         }
@@ -229,7 +229,7 @@ namespace MCDawn
                     p.SendBlockchange((ushort)Portals.Rows[i]["EntryX"], (ushort)Portals.Rows[i]["EntryY"], (ushort)Portals.Rows[i]["EntryZ"], Block.blue_portal);
                 }
 
-                Player.SendMessage(p, "Now showing &a" + i.ToString() + Server.DefaultColor + " portals.");
+                Player.SendMessage(p, "Now showing &a" + i.ToString() + "&g portals.");
             }
             else
             {
