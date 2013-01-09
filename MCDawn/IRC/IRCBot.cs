@@ -34,6 +34,7 @@ namespace MCDawn
                 irc.OnQueryMessage += new IrcEventHandler(OnPrivMsg);
                 irc.OnNames += new NamesEventHandler(OnNames);
                 irc.OnChannelAction += new ActionEventHandler(OnAction);
+                irc.OnKick += new KickEventHandler(OnKick);
 
                 // Attempt to connect to the IRC server
                 try { irc.Connect(server, Server.ircPort); }
@@ -100,17 +101,18 @@ namespace MCDawn
         // On public channel message
         void OnChanMessage(object sender, IrcEventArgs e)
         {
-            string temp = e.Data.Message; string storedNick = e.Data.Nick;
+            // TODO: make this irctominecraftcolor shit work
+            string temp = IRCColor.IRCToMinecraftColor(e.Data.Message); string storedNick = e.Data.Nick;
 
             if (e.Data.Message[0] == '!') { OnCommand(sender, e); return; } 
             if (e.Data.Channel == opchannel)
             {
-                Server.s.Log("[(Op) IRC] " + e.Data.Nick + ": " + temp);
+                Server.s.Log(Server.IRCColour + "[(Op) IRC] " + e.Data.Nick + ": &0" + temp);
                 Player.GlobalMessageOps(Server.IRCColour + "[(Op) IRC] " + storedNick + ": &f" + temp);
             }
             else
             {
-                Server.s.Log("[IRC] " + e.Data.Nick + ": " + temp);
+                Server.s.Log(Server.IRCColour + "[IRC] " + e.Data.Nick + ": &0" + temp);
                 Player.GlobalChat(null, Server.IRCColour + "[IRC] " + storedNick + ": &f" + temp, false);
             }
 
@@ -143,58 +145,36 @@ namespace MCDawn
         // When someone joins the IRC
         void OnJoin(object sender, JoinEventArgs e)
         {
-            Server.s.Log(e.Data.Nick + " has joined channel " + e.Data.Channel);
-            if (e.Data.Channel == opchannel)
-            {
-                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has joined the operator channel", false);
-            }
-            else
-            {
-                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has joined the channel", false);
-            }
+            Server.s.Log(Server.IRCColour + e.Data.Nick + "&g has joined the " + (e.Data.Channel == opchannel ? "operator " : "") + "channel");
+            Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has joined the " + (e.Data.Channel == opchannel ? "operator " : "") + "channel", false);
             irc.RfcNames(channel);
             irc.RfcNames(opchannel);
         }
         // When someone leaves the IRC
         void OnPart(object sender, PartEventArgs e)
         {
-            Server.s.Log(e.Data.Nick + " has left channel " + e.Data.Channel);
-            if (e.Data.Channel == opchannel)
-            {
-                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has left the operator channel", false);
-            }
-            else
-            {
-                Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has left the channel", false);
-            }
+            Server.s.Log(Server.IRCColour + e.Data.Nick + "&g has left the " + (e.Data.Channel == opchannel ? "operator " : "") + "channel" + (!String.IsNullOrEmpty(e.PartMessage) ? " (" + e.PartMessage + ")" : ""));
+            Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has left the " + (e.Data.Channel == opchannel ? "operator " : "") + "channel" + (!String.IsNullOrEmpty(e.PartMessage) ? " (" + e.PartMessage + ")" : ""), false);
             irc.RfcNames(channel);
             irc.RfcNames(opchannel);
         }
         void OnQuit(object sender, QuitEventArgs e)
         {
-            Server.s.Log(e.Data.Nick + " has left IRC");
-            Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has left IRC", false);
+            Server.s.Log(Server.IRCColour + e.Data.Nick + "&g has quit IRC" + (!String.IsNullOrEmpty(e.QuitMessage) ? " (" + e.QuitMessage + ")" : ""));
+            Player.GlobalChat(null, Server.IRCColour + e.Data.Nick + "&g has quit IRC" + (!String.IsNullOrEmpty(e.QuitMessage) ? " (" + e.QuitMessage + ")" : ""), false);
             irc.RfcNames(channel);
             irc.RfcNames(opchannel);
         }
         void OnPrivMsg(object sender, IrcEventArgs e)
         {
-            Server.s.Log("[IRC] " + e.Data.Nick + " [>] Console: " + e.Data.Message);
+            Server.s.Log(Server.IRCColour + "[IRC] " + e.Data.Nick + "&b to Console: &g" + e.Data.Message);
             if (Server.ircControllers.Contains(e.Data.Nick))
             {
                 string cmd;
                 string msg;
                 int len = e.Data.Message.Split(' ').Length;
                 cmd = e.Data.Message.Split(' ')[0];
-                if (len > 1)
-                {
-                    msg = e.Data.Message.Substring(e.Data.Message.IndexOf(' ')).Trim();
-                }
-                else
-                {
-                    msg = "";
-                }
-
+                msg = (len > 1) ? e.Data.Message.Substring(e.Data.Message.IndexOf(' ')).Trim() : "";
                 if (msg != "" || cmd == "restart" || cmd == "update")
                 {
                     Server.s.Log(cmd + " : " + msg);
@@ -354,29 +334,32 @@ namespace MCDawn
         }
         void OnNickChange(object sender, NickChangeEventArgs e)
         {
-            if (e.NewNickname.ToLower().Contains("afk"))
-            {
-                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + "&g is AFK");
-                Server.afkset.Add(e.OldNickname);
-            }
-            else if (e.NewNickname.ToLower().Contains("away"))
-            {
-                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + "&g is Away");
-                Server.afkset.Add(e.OldNickname);
-            }
-            else if (Server.afkset.Contains(e.NewNickname))
-            {
-                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.NewNickname + "&g is no longer away");
-                Server.afkset.Remove(e.NewNickname);
-            }
-            else
-                Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + "&g is now known as " + e.NewNickname);
-
+            Player.GlobalMessage(Server.IRCColour + "[IRC] " + e.OldNickname + "&g is now known as " + e.NewNickname);
+            Server.s.Log(Server.IRCColour + "[IRC] " + e.OldNickname + "&g is now known as " + e.NewNickname);
             irc.RfcNames(channel);
             irc.RfcNames(opchannel);
         }
-        void OnAction(object sender, ActionEventArgs e) { Player.GlobalMessage(Server.IRCColour + "*" + e.Data.Nick + " " + e.ActionMessage); }
-
+        void OnAction(object sender, ActionEventArgs e)
+        {
+            string temp = IRCColor.IRCToMinecraftColor(e.ActionMessage); string storedNick = e.Data.Nick;
+            if (e.Data.Channel == opchannel)
+            {
+                Server.s.Log(Server.IRCColour + "[(Op) IRC] *" + e.Data.Nick + " " + temp);
+                Player.GlobalMessageOps(Server.IRCColour + "[(Op) IRC] *" + storedNick + " " + temp);
+            }
+            else
+            {
+                Server.s.Log(Server.IRCColour + "[IRC] *" + e.Data.Nick + " " + temp);
+                Player.GlobalChat(null, Server.IRCColour + "[IRC] *" + storedNick + " " + temp, false);
+            }
+        }
+        void OnKick(object sender, KickEventArgs e)
+        {
+            Player.GlobalMessage(Server.IRCColour + e.Data.Nick + " was kicked from the " + (e.Data.Channel == opchannel ? "operator " : "") + "channel (" + e.KickReason + ")");
+            Server.s.Log(Server.IRCColour + e.Data.Nick + " was kicked from the " + (e.Data.Channel == opchannel ? "operator " : "") + "channel (" + e.KickReason + ")");
+            irc.RfcNames(channel);
+            irc.RfcNames(opchannel);
+        }
 
         /// <summary>
         /// A simple say method for use outside the bot class
@@ -384,21 +367,11 @@ namespace MCDawn
         /// <param name="msg">what to send</param>
         public static void Say(string msg, bool opchat = false)
         {
-            msg = Regex.Replace(msg, @"&[0-9a-g]|%[0-9a-g]|&\s|&&+?", "");
-            if (irc != null && irc.IsConnected && Server.irc)
-                if (opchat == false)
-                    irc.SendMessage(SendType.Message, channel, msg);
-                else
-                    irc.SendMessage(SendType.Message, opchannel, msg);
-        }
-        public static bool IsConnected()
-        {
-            if (irc.IsConnected)
-                return true;
-            else
-                return false;
+            if (IsConnected() && Server.irc)
+                irc.SendMessage(SendType.Message, (opchat ? opchannel : channel), IRCColor.MinecraftToIRCColor(Player.RemoveBadColors(msg)));
         }
 
+        public static bool IsConnected() { return (irc == null) ? false : irc.IsConnected; }
 
         public static void Reset()
         {

@@ -31,7 +31,6 @@ namespace MCDawn
                 globalchat.OnQuit += new QuitEventHandler(OnQuit);
                 globalchat.OnNickChange += new NickChangeEventHandler(OnNickChange);
                 globalchat.OnDisconnected += new EventHandler(OnDisconnected);
-                globalchat.OnQueryMessage += new IrcEventHandler(OnPrivMsg);
                 globalchat.OnNames += new NamesEventHandler(OnNames);
                 globalchat.OnChannelAction += new ActionEventHandler(OnAction);
 
@@ -93,11 +92,11 @@ namespace MCDawn
                         if (Server.staff.Contains(temp.Split(':')[0]) && !temp.StartsWith("[MCDawn Staff] ")) { temp = "[MCDawn Staff] " + temp; }
                         if (Server.administration.Contains(temp.Split(':')[0]) && !temp.StartsWith("[Administrator] ")) { temp = "[Administrator] " + temp; }
 
-                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage("&g>[Global] &6" + storedNick + ": &f" + temp); }
-                        else { pl.SendMessage("&g>[Global] " + Server.GlobalChatColour + storedNick + ": &f" + temp); }
+                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage(">[Global] &6" + storedNick + ": &f" + temp); }
+                        else { pl.SendMessage(">[Global] " + Server.GlobalChatColour + storedNick + ": &f" + temp); }
                     }
                 }
-                Server.s.Log(">[Global] " + storedNick + ": " + temp);
+                Server.s.Log(">[Global] " + Server.GlobalChatColour + storedNick + ": &0" + temp);
                 try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteGlobalLine(">[Global] " + storedNick + ": " + temp); } }
                 catch { }
             }
@@ -113,11 +112,11 @@ namespace MCDawn
                 {
                     if (!Server.ignoreGlobal.Contains(pl.name.ToLower()) && !pl.ignoreList.Contains(temp.Split(':')[0]) && !Server.GlobalBanned().Contains(e.Data.Nick.ToLower()) && !Server.GlobalBanned().Contains(temp.Split(':')[0]) && !pl.ignoreList.Contains(temp.Split(':')[0]) && !Server.OmniBanned().Contains(e.Data.Nick.ToLower()) && !Server.OmniBanned().Contains(temp.Split(':')[0]))
                     {
-                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage("&g>[Global] &6*" + storedNick + " " + temp); }
-                        else { pl.SendMessage("&g>[Global] " + Server.GlobalChatColour + "*" + storedNick + " " + temp); }
+                        if (storedNick.ToLower() == "staff" || storedNick.ToLower() == "devs" || storedNick.ToLower() == "updates") { pl.SendMessage(">[Global] &6*" + storedNick + " " + temp); }
+                        else { pl.SendMessage(">[Global] " + Server.GlobalChatColour + "*" + storedNick + " " + temp); }
                     }
                 }
-                Server.s.Log(">[Global] *" + storedNick + " " + temp);
+                Server.s.Log(">[Global] " + Server.GlobalChatColour + "*" + storedNick + " " + temp);
                 try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteGlobalLine(">[Global] *" + storedNick + " " + temp); } }
                 catch { }
             }
@@ -129,7 +128,8 @@ namespace MCDawn
         {
             try
             {
-                string temp = e.Data.Message; string storedNick = e.Data.Nick;
+                // TODO: make this irctominecraftcolor shit work
+                string temp = IRCColor.IRCToMinecraftColor(e.Data.Message); string storedNick = e.Data.Nick;
 
                 if (e.Data.Channel == devchannel)
                 {
@@ -201,10 +201,7 @@ namespace MCDawn
                     if (temp.Contains("$color") || temp.Contains("&") || temp.Contains("&")) { return; }
                     Player.GlobalMessageDevsStaff(">[DevGlobal] " + Server.GlobalChatColour + storedNick + ": &f" + temp);
                 }
-                else
-                {
-                    DisplayMessage(temp, e);
-                }
+                else DisplayMessage(temp, e);
 
                 //if (temp.IndexOf(':') < temp.IndexOf(' ')) {
                 //    storedNick = temp.Substring(0, temp.IndexOf(':'));
@@ -222,14 +219,7 @@ namespace MCDawn
         {
             try
             {
-                if (e.Data.Channel == devchannel)
-                {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has joined the Dev Global Chat Channel.");
-                }
-                else
-                {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has joined the Global Chat Channel.");
-                }
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has joined the " + (e.Data.Channel == devchannel ? "Dev " : "") + "Global Chat Channel.");
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
             }
@@ -240,14 +230,7 @@ namespace MCDawn
         {
             try
             {
-                if (e.Data.Channel == devchannel)
-                {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has left the Dev Global Chat Channel");
-                }
-                else
-                {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has left the Global Chat Channel");
-                }
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has left the " + (e.Data.Channel == devchannel ? "Dev " : "") + "Global Chat Channel" + (!String.IsNullOrEmpty(e.PartMessage) ? " (" + e.PartMessage + ")" : ""));
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
             }
@@ -257,30 +240,18 @@ namespace MCDawn
         {
             try
             {
-                if (e.Data.Channel == devchannel)
-                {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has quit the Dev Global Chat Channel");
-                }
-                else
-                {
-                    Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has quit the Global Chat Channel");
-                }
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.Data.Nick + "&g has quit the Global Chat IRC" + (!String.IsNullOrEmpty(e.QuitMessage) ? " (" + e.QuitMessage + ")" : ""));
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
         }
-        void OnPrivMsg(object sender, IrcEventArgs e)
-        {
-            // LOLNOPE NO MOAR COMMANDS IN PRIVMSGS LAWL
-            /*Server.s.Log(">[PrivMsgGlobal] " + e.Data.Nick + ": " + e.Data.Message);
-            Player.GlobalMessageAdmins(">[PrivMsgGlobal] " + Server.GlobalChatColour + e.Data.Nick + ": &f" + e.Data.Message);*/
-        }
+
         public void OnNickChange(object sender, NickChangeEventArgs e)
         {
             try
             {
-                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.OldNickname + "&g is now known as " + e.NewNickname + " on " + e.Data.Channel);
+                Player.GlobalMessageDevs("To Devs: " + Server.GlobalChatColour + e.OldNickname + "&g is now known as " + e.NewNickname);
                 globalchat.RfcNames(channel);
                 globalchat.RfcNames(devchannel);
             }
@@ -290,14 +261,11 @@ namespace MCDawn
         {
             try
             {
-                if (e.Data.Channel == devchannel)
-                    Player.GlobalMessageDevsStaff("<[DevGlobal] *" + Server.GlobalChatColour + e.Data.Nick + " &g" + e.ActionMessage);
-                else
-                    DisplayAction(e.ActionMessage, e);
+                if (e.Data.Channel == devchannel) Player.GlobalMessageDevsStaff("<[DevGlobal] *" + Server.GlobalChatColour + e.Data.Nick + " &g" + e.ActionMessage);
+                else DisplayAction(e.ActionMessage, e);
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
         }
-
 
         /// <summary>
         /// A simple say method for use outside the bot class
@@ -305,21 +273,14 @@ namespace MCDawn
         /// <param name="msg">what to send</param>
         public static void Say(string msg, bool devchat = false)
         {
-            msg = Regex.Replace(msg, @"&[0-9a-g]|%[0-9a-g]|&\s|&&+?", "");
-            if (!devchat && globalchat != null && globalchat.IsConnected && Server.useglobal)
-                globalchat.SendMessage(SendType.Message, channel, msg);
-            else if (devchat && globalchat != null && globalchat.IsConnected)
-                globalchat.SendMessage(SendType.Message, devchannel, msg);
+            if (IsConnected())
+            {
+                if (!devchat && Server.useglobal) globalchat.SendMessage(SendType.Message, channel, IRCColor.MinecraftToIRCColor(msg));
+                else if (devchat) globalchat.SendMessage(SendType.Message, devchannel, IRCColor.MinecraftToIRCColor(msg));
+            }
         }
 
-        public static bool IsConnected()
-        {
-            if (globalchat.IsConnected)
-                return true;
-            else
-                return false;
-        }
-
+        public static bool IsConnected() { return (globalchat == null) ? false : globalchat.IsConnected; }
 
         public static void Reset()
         {

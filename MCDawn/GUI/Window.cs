@@ -108,7 +108,7 @@ namespace MCDawn.Gui
                 s.OnPlayerBotListChange += UpdateBotList;
                 s.OnSettingsUpdate += SettingsUpdate;
                 s.Start();
-                notifyIcon1.Text = ("MCDawn Server: " + Server.name);
+                notifyIcon1.Text = "MCDawn Server: " + Server.name;
 
                 this.notifyIcon1.ContextMenuStrip = this.iconContext;
                 this.notifyIcon1.Icon = this.Icon;
@@ -394,9 +394,9 @@ namespace MCDawn.Gui
             else
             {
                 if (Server.consoleSound && Window.thisWindow.WindowState == FormWindowState.Minimized) consoleSound.Play();
+                if (!parseColors) { txtLog.AppendText(Player.RemoveAllColors(s) + Environment.NewLine); ScrollToBottom(); return; }
                 s = Player.RemoveBadColors("&0" + s.Replace("&g", "&0").Replace("%g", "&0"));
                 string nocolors = Player.RemoveAllColors(s);
-                if (!parseColors) { txtLog.AppendText(nocolors + Environment.NewLine); ScrollToBottom(); return; }
                 txtLog.AppendText(nocolors + Environment.NewLine);
                 var sections = s.Split('&');
                 string done = txtLog.Text.Remove(txtLog.Text.Length - nocolors.Length - 1);

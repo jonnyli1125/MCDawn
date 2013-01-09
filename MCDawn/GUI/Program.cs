@@ -120,8 +120,8 @@ namespace MCDawn_.Gui
         public static void WriteLine(string text, bool parseColors = true)
         {
             Console.ForegroundColor = ConsoleColor.Gray;
-            text = Player.RemoveBadColors(text.Replace("&g", "&7").Replace("%g", "&7"));
             if (!parseColors) { Console.WriteLine(Player.RemoveAllColors(text)); return; }
+            text = Player.RemoveBadColors(text.Replace("&g", "&7").Replace("%g", "&7"));
             var sections = text.Split('&');
             for (int i = 0; i < sections.Length; i++)
             {

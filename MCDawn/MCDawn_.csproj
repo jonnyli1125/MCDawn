@@ -97,7 +97,7 @@
     <Compile Include="Commands\Building\CmdPyramid.cs" />
     <Compile Include="Commands\Games\CmdPushBallTeam.cs" />
     <Compile Include="Commands\Homes\CmdHAllowGuns.cs" />
-    <Compile Include="Commands\Information\CmdProperties.cs" />
+    <Compile Include="Commands\Moderation\CmdProperties.cs" />
     <Compile Include="Commands\Moderation\CmdShowNames.cs" />
     <Compile Include="Commands\Moderation\CmdReport.cs" />
     <Compile Include="Commands\Other\CmdAdminChat.cs" />

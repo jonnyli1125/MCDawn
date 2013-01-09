@@ -1,3 +1,5 @@
+
+
 using System;
 
 namespace MCDawn
@@ -31,7 +33,7 @@ namespace MCDawn
                 GCMessage(message);
                 try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteGlobalLine("<[Global] Console [" + Server.ZallState + "]: " + message); } }
                 catch { }
-                Server.s.Log("<[Global] Console [" + Server.ZallState + "]: " + message);
+                Server.s.Log("<[Global] &gConsole [&a" + Server.ZallState + "&g]: &0" + message);
                 return;
             }
             //if (message.Contains("%") || message.Contains("&") || message.ToLower().Contains("$color")) { p.SendMessage("Percents and Color Codes are not allowed in Global Chat."); return; }
@@ -55,10 +57,10 @@ namespace MCDawn
             GlobalChatBot.Say(p.name + ": " + message);
             GCMessage(p, message);
 
-            if (Server.devs.Contains(p.name.ToLower())) { Server.s.Log("<[Global] [Developer] " + p.name + ": " + message); }
-            else if (Server.staff.Contains(p.name.ToLower())) { Server.s.Log("<[Global] [MCDawn Staff] " + p.name + ": " + message); }
-            else if (Server.administration.Contains(p.name.ToLower())) { Server.s.Log("<[Global] " + "[Administrator] " + p.name + ": " + message); }
-            else { Server.s.Log("<[Global] " + p.name + ": " + message); }
+            if (Server.devs.Contains(p.name.ToLower())) { Server.s.Log("<[Global] " + p.color + "[" + p.titlecolor + "Developer" + p.color + "] " + p.name + ": &0" + message); }
+            else if (Server.staff.Contains(p.name.ToLower())) { Server.s.Log("<[Global] " + p.color + "[" + p.titlecolor + "MCDawn Staff" + p.color + "] " + p.name + ": &0" + message); }
+            else if (Server.administration.Contains(p.name.ToLower())) { Server.s.Log("<[Global] " + p.color + "[" + p.titlecolor + "Administrator" + p.color + "] " + p.name + ": &0" + message); }
+            else { Server.s.Log("<[Global] " + p.color + p.name + ": &0" + message); }
 
             try
             {
