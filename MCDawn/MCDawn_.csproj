@@ -97,6 +97,7 @@
     <Compile Include="Commands\Building\CmdPyramid.cs" />
     <Compile Include="Commands\Games\CmdPushBallTeam.cs" />
     <Compile Include="Commands\Homes\CmdHAllowGuns.cs" />
+    <Compile Include="Commands\Information\CmdProperties.cs" />
     <Compile Include="Commands\Moderation\CmdShowNames.cs" />
     <Compile Include="Commands\Moderation\CmdReport.cs" />
     <Compile Include="Commands\Other\CmdAdminChat.cs" />
@@ -400,23 +401,11 @@
     <Compile Include="Commands\Other\CmdText.cs" />
     <Compile Include="Commands\Other\CmdView.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="GUI\Chat.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Chat.Designer.cs">
-      <DependentUpon>Chat.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\EditText.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\EditText.Designer.cs">
       <DependentUpon>EditText.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Hax.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Hax.Designer.cs">
-      <DependentUpon>Hax.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\PropertyWindow.cs">
       <SubType>Form</SubType>
@@ -477,14 +466,8 @@
     <EmbeddedResource Include="GUI\AddRemoveRemote.resx">
       <DependentUpon>AddRemoveRemote.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Chat.resx">
-      <DependentUpon>Chat.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\EditText.resx">
       <DependentUpon>EditText.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Hax.resx">
-      <DependentUpon>Hax.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PropertyWindow.resx">
       <DependentUpon>PropertyWindow.cs</DependentUpon>

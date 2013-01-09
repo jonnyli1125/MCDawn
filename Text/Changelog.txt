@@ -1,3 +1,9 @@
+MCDawn 1.0.2.0
+-New Commands
+	-/properties (/prop) <set/get> [property] [value] - Manages your server.properties file.
+-Mini-Console window in GUI removed
+-Console (GUI and CLI) can now read Minecraft chat color codes. This is toggle-able.
+
 MCDawn 1.0.1.9
 -Updated Commands
 	-/rules - Works as intended from Console.

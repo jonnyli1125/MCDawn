@@ -277,6 +277,9 @@ namespace MCDawn
 
         // Playing sounds on chat update in Console
         public static bool consoleSound = false;
+        
+        // Show chat colors
+        public static bool consoleChatColors = true;
 
         // Log/Show attempted logins
         public static bool showAttemptedLogins = false;
@@ -652,7 +655,7 @@ namespace MCDawn
                             else
                             {
                                 Log("mainlevel not found");
-                                mainLevel = new Level(Server.level, 128, 64, 128, "flat");
+                                mainLevel = new Level(Server.level, 128, 128, 128, "flat");
 
                                 mainLevel.permissionvisit = LevelPermission.Guest;
                                 mainLevel.permissionbuild = LevelPermission.Guest;
@@ -663,7 +666,7 @@ namespace MCDawn
                     else
                     {
                         Log("mainlevel not found");
-                        mainLevel = new Level(Server.level, 128, 64, 128, "flat");
+                        mainLevel = new Level(Server.level, 128, 128, 128, "flat");
 
                         mainLevel.permissionvisit = LevelPermission.Guest;
                         mainLevel.permissionbuild = LevelPermission.Guest;
@@ -1125,66 +1128,29 @@ namespace MCDawn
 
         public void Log(string message, bool systemMsg = false)
         {
-            if (cli) { message = StripIllegalChars(message); }
             if (OnLog != null)
             {
-                if (!systemMsg)
-                {
-                    OnLog(DateTime.Now.ToString("(HH:mm:ss) ") + message);
-                }
-                else
-                {
-                    OnSystem(DateTime.Now.ToString("(HH:mm:ss) ") + message);
-                }
+                if (!systemMsg) OnLog(DateTime.Now.ToString("(HH:mm:ss) ") + message);
+                else OnSystem(DateTime.Now.ToString("(HH:mm:ss) ") + message);
             }
-
             Logger.Write(DateTime.Now.ToString("(HH:mm:ss) ") + message + Environment.NewLine);
         }
 
         public void Log(string message)
         {
-            if (cli) { message = StripIllegalChars(message); }
-            if (OnLog != null)
-            {
-                OnLog(DateTime.Now.ToString("(HH:mm:ss) ") + message);
-            }
-
+            if (OnLog != null) OnLog(DateTime.Now.ToString("(HH:mm:ss) ") + message);
             Logger.Write(DateTime.Now.ToString("(HH:mm:ss) ") + message + Environment.NewLine);
         }
 
-        public string StripIllegalChars(string message) { return Regex.Replace(message, @"(&[0-9a-f])|(%[0-9a-f])", ""); }
-
-        public void OpLog(string message, bool systemMsg = false)
+        public void OpLog(string message)
         {
-            if (OnOp != null)
-            {
-                if (!systemMsg)
-                {
-                    OnOp(DateTime.Now.ToString("(HH:mm:ss) ") + message);
-                }
-                else
-                {
-                    OnSystem(DateTime.Now.ToString("(HH:mm:ss) ") + message);
-                }
-            }
-
+            if (OnOp != null) OnOp(DateTime.Now.ToString("(HH:mm:ss) ") + message);
             Logger.Write(DateTime.Now.ToString("(HH:mm:ss) ") + message + Environment.NewLine);
         }
 
-        public void AdminLog(string message, bool systemMsg = false)
+        public void AdminLog(string message)
         {
-            if (OnAdmin != null)
-            {
-                if (!systemMsg)
-                {
-                    OnAdmin(DateTime.Now.ToString("(HH:mm:ss) ") + message);
-                }
-                else
-                {
-                    OnSystem(DateTime.Now.ToString("(HH:mm:ss) ") + message);
-                }
-            }
-
+            if (OnAdmin != null) OnAdmin(DateTime.Now.ToString("(HH:mm:ss) ") + message);
             Logger.Write(DateTime.Now.ToString("(HH:mm:ss) ") + message + Environment.NewLine);
         }
 

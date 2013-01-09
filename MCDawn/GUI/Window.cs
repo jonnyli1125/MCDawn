@@ -232,6 +232,7 @@ namespace MCDawn.Gui
                 // Map Viewer/Editor
                 txtMapEditorLevelName.Text = Server.level;
                 txtMapEditorX.Text = "0"; txtMapEditorY.Text = "0"; txtMapEditorZ.Text = "0";
+                chkChatColors.Checked = Server.consoleChatColors;
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
         }
@@ -380,38 +381,8 @@ namespace MCDawn.Gui
         }
 
         delegate void LogDelegate(string message);
-
-        /// <summary>
-        /// Does the same as Console.Write() only in the form
-        /// </summary>
-        /// <param name="s">The string to write</param>
-        public void Write(string s) {
-            if (shuttingDown) return;
-            // Main chat channel
-            if (txtLog.InvokeRequired) {
-                LogDelegate d = new LogDelegate(Write);
-                this.Invoke(d, new object[] { s });
-            } else {
-                s = Player.RemoveAllColors(s);
-                txtLog.AppendText(s);
-            }
-            if (Server.consoleSound && Window.thisWindow.WindowState == FormWindowState.Minimized/* && !s.StartsWith("<CONSOLE>")*/) { consoleSound.Play(); }
-            // Op chat channel
-            /*if (txtOpLog.InvokeRequired)
-            {
-                LogDelegate d = new LogDelegate(Write);
-                this.Invoke(d, new object[] { s });
-            }
-            else
-            {
-                txtOpLog.AppendText(s);
-            }*/
-        }
-        /// <summary>
-        /// Does the same as Console.WriteLine() only in the form
-        /// </summary>
-        /// <param name="s">The line to write</param>
-        public void WriteLine(string s)
+        public void WriteLine(string s) { WriteLine(s, Server.consoleChatColors); }
+        public void WriteLine(string s, bool parseColors = true)
         {
             if (shuttingDown) return;
             // Main chat channel
@@ -422,14 +393,61 @@ namespace MCDawn.Gui
             }
             else
             {
-                s = Player.RemoveAllColors(s);
-                txtLog.AppendText("\r\n" + s);
+                if (Server.consoleSound && Window.thisWindow.WindowState == FormWindowState.Minimized) consoleSound.Play();
+                s = Player.RemoveBadColors("&0" + s);
+                string nocolors = Player.RemoveAllColors(s);
+                if (!parseColors) { txtLog.AppendText(nocolors + Environment.NewLine); return; }
+                txtLog.AppendText(nocolors + Environment.NewLine);
+                var sections = s.Split('&');
+                string done = txtLog.Text.Remove(txtLog.Text.Length - nocolors.Length - 1);
+                for (int i = 1; i < sections.Length; i++)
+                {
+                    string section = sections[i];
+                    if (String.IsNullOrEmpty(section)) continue;
+                    Color color = GetColor(section[0]);
+                    section = section.Substring(1);
+                    done += section;
+                    ColorText(done.Length - section.Length, section.Length, color);
+                }
+                ScrollToBottom();
             }
-            if (Server.consoleSound && Window.thisWindow.WindowState == FormWindowState.Minimized/* && !s.StartsWith("<CONSOLE>")*/) { consoleSound.Play(); }
-            // Chat Channels
-            /*if (s.ToLower().StartsWith("(ops)")) { txtOpLog.AppendLine("\r\n" + s); }
-            if (s.ToLower().StartsWith("(admins)")) { txtAdminLog.AppendLine("\r\n" + s); }
-            if (s.ToLower().StartsWith("<[global]") || s.ToLower().StartsWith(">[global]")) { txtGlobalLog.AppendLine("\r\n" + s); }*/
+        }
+
+        public void ScrollToBottom()
+        {
+            txtLog.SelectionStart = txtLog.Text.Length;
+            txtLog.ScrollToCaret();
+        }
+
+        public void ColorText(int start, int length, Color color)
+        {
+            txtLog.Select(start, length);
+            txtLog.SelectionColor = color;
+            txtLog.DeselectAll();
+        }
+
+        public Color GetColor(char ch)
+        {
+            switch (ch.ToString().ToLower())
+            {
+                case "a": return Color.LimeGreen;
+                case "b": return Color.Aqua;
+                case "c": return Color.Red;
+                case "d": return Color.Pink;
+                case "e": return Color.Yellow;
+                case "f": return Color.Silver;
+                case "g": case "0": return Color.Black;
+                case "1": return Color.Navy;
+                case "2": return Color.Green;
+                case "3": return Color.Teal;
+                case "4": return Color.Maroon;
+                case "5": return Color.Purple;
+                case "6": return Color.Gold;
+                case "7": return Color.SlateGray;
+                case "8": return Color.DarkSlateGray;
+                case "9": return Color.Blue;
+                default: return Color.Black;
+            }
         }
 
         public void WriteAdminLine(string s) { txtAdminLog.AppendText("\r\n" + Player.RemoveAllColors(s)); }
@@ -555,21 +573,12 @@ namespace MCDawn.Gui
             }
             MCDawn_.Gui.Program.ExitProgram(false);
         }
-        // hax button, if they find it lawl
-        Form HaxForm;
+
         private void txtInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtInput.Text == null || txtInput.Text.Trim()=="") { return; }
-                if (txtInput.Text.ToLower() == "jonnyisawesome")
-                {
-                    Server.s.Log("YOU FOUND ZE HAX, ZOMG!!!");
-                    txtInput.Clear();
-                    HaxForm = new Hax();
-                    HaxForm.Show();
-                    return;
-                }
+                if (String.IsNullOrEmpty(txtInput.Text.Trim())) return;
                 string text = txtInput.Text.Trim();
                 string newtext = text;
                 switch (text[0])
@@ -605,13 +614,11 @@ namespace MCDawn.Gui
                         who.SendMessage("&bFrom Console: &f" + words[1]);
                         Server.s.Log("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                         if (!Server.devs.Contains(who.name.ToLower()))
-                        {
                             Player.GlobalMessageDevs("To Devs &f-" + Server.DefaultColor + "Console &b[>] " + who.color + who.name + "&f- " + words[1]);
-                        }
                         //AllServerChat.Say("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                         break;
                     default:
-                        Player.GlobalChat(null, "Console [&a" + Server.ZallState + Server.DefaultColor + "]:&f " + text, false);
+                        Player.GlobalChat(null, "Console [&a" + Server.ZallState + Server.DefaultColor + "]: &f" + text, false);
                         IRCBot.Say("Console [" + Server.ZallState + "]: " + text);
                         Server.s.Log("<CONSOLE> " + text);
                         //AllServerChat.Say("Console [" + Server.ZallState + "]: " + text);
@@ -1800,17 +1807,6 @@ namespace MCDawn.Gui
             System.Diagnostics.Process.Start(txtUrl.Text);
         }
 
-        private void btnOpenChat_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Chat chat = new Chat();
-                chat.Show();
-                miniConsole = true;
-            }
-            catch { }
-        }
-
         private void btnUpdateChangelog_Click(object sender, EventArgs e)
         {
             try
@@ -2026,6 +2022,12 @@ namespace MCDawn.Gui
                     Process.Start(Application.StartupPath + "/" + saveLocation);
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+        }
+
+        private void chkChatColors_CheckedChanged(object sender, EventArgs e)
+        {
+            Server.consoleChatColors = chkChatColors.Checked;
+            Properties.Save("properties/server.properties");
         }
     }
 }

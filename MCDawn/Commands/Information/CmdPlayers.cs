@@ -57,36 +57,27 @@ namespace MCDawn
                         totalPlayers++;
                         string foundName = pl.name;
 
-                        if (Server.afkset.Contains(pl.name))
-                        {
-                            foundName = pl.name + "-afk";
-                        }
+                        if (Server.afkset.Contains(pl.name)) foundName = pl.name + "-afk";
 
                         if (Server.devs.Contains(pl.name.ToLower()) && !pl.devUnverified && !pl.unverified)
                         {
-                            if (pl.voice)
-                                devs += " " + "&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + "),";
-                            else
-                                devs += " " + foundName + " (" + pl.level.name + "),";
+                            if (pl.voice) devs += " " + "&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + "),";
+                            else devs += " " + foundName + " (" + pl.level.name + "),";
                         }
                         else if (pl.unverified || pl.devUnverified)
                         {
-                            if (pl.voice)
-                                unverified += " " + "&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + "),";
-                            else
-                                unverified += " " + foundName + " (" + pl.level.name + "),";
+                            if (pl.voice) unverified += " " + "&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + "),";
+                            else unverified += " " + foundName + " (" + pl.level.name + "),";
                         }
                         else
                         {
-                            if (pl.voice)
-                                playerList.Find(grp => grp.group == pl.group).players.Add("&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + ")");
-                            else
-                                playerList.Find(grp => grp.group == pl.group).players.Add(foundName + " (" + pl.level.name + ")");
+                            if (pl.voice) playerList.Find(grp => grp.group == pl.group).players.Add("&f+" + Server.DefaultColor + foundName + " (" + pl.level.name + ")");
+                            else playerList.Find(grp => grp.group == pl.group).players.Add(foundName + " (" + pl.level.name + ")");
                         }
                     }
                 }
-                Player.SendMessage(p, "There are " + totalPlayers + " players online " + 
-                    (Server.irc ? ("(" + IRCBot.GetChannelUsers(Server.ircChannel).Count + " users on IRC" + 
+                Player.SendMessage(p, "There are " + totalPlayers + " players online" + 
+                    (Server.irc ? (" (" + IRCBot.GetChannelUsers(Server.ircChannel).Count + " users on IRC" + 
                     ((p == null || (p != null && p.group.Permission > Server.opchatperm)) ? ", " + 
                     IRCBot.GetChannelUsers(Server.ircOpChannel).Count + " users on OP IRC" : "") + ")") : "") + ".");
                 if (devs.Length > 0) { Player.SendMessage(p, ":&9Developers:" + Server.DefaultColor + devs.Trim(',')); }
@@ -95,13 +86,9 @@ namespace MCDawn
                     groups groups = playerList[i];
                     string appendString = "";
 
-                    foreach (string player in groups.players)
-                    {
-                        appendString += ", " + player;
-                    }
+                    foreach (string player in groups.players) appendString += ", " + player;
 
-                    if (appendString != "")
-                        appendString = appendString.Remove(0, 2);
+                    if (appendString != "") appendString = appendString.Remove(0, 2);
                     appendString = ":" + groups.group.color + getPlural(groups.group.trueName) + ": " + appendString;
 
                     Player.SendMessage(p, appendString);
@@ -123,16 +110,10 @@ namespace MCDawn
             try
             {
                 string last2 = groupName.Substring(groupName.Length - 2).ToLower();
-                if ((last2 != "ed" || groupName.Length <= 3) && last2[1] != 's')
-                {
-                    return groupName + "s";
-                }
+                if ((last2 != "ed" || groupName.Length <= 3) && last2[1] != 's') return groupName + "s";
                 return groupName;
             }
-            catch
-            {
-                return groupName;
-            }
+            catch { return groupName; }
         }
 
         public override void Help(Player p)

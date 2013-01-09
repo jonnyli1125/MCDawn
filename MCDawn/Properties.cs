@@ -629,6 +629,10 @@ namespace MCDawn
                                 try { Server.enableMapLiking = bool.Parse(value); }
                                 catch { Server.s.Log("enablemapliking invalid! setting to default."); }
                                 break;
+                            case "console-chatcolors":
+                                try { Server.consoleChatColors = bool.Parse(value); }
+                                catch { Server.s.Log("console-chatcolors invalid! setting to default."); }
+                                break;
                         }
                     }
                 }
@@ -836,6 +840,7 @@ namespace MCDawn
                     w.WriteLine("usewompasswords = " + Server.useWOMPasswords.ToString().ToLower());
                     w.WriteLine("womipaddress = " + Server.WOMIPAddress);
                     w.WriteLine("enablemapliking = " + Server.enableMapLiking.ToString().ToLower());
+                    w.WriteLine("console-chatcolors = " + Server.consoleChatColors.ToString().ToLower());
                     w.WriteLine();
                     w.WriteLine("#Remote Console");
                     w.WriteLine("use-remote = " + Server.useRemote.ToString().ToLower());

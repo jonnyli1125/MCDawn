@@ -270,7 +270,6 @@ namespace MCDawn.Gui
             this.txtAdminInput = new System.Windows.Forms.TextBox();
             this.txtAdminLog = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnOpenChat = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.label38 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -286,7 +285,6 @@ namespace MCDawn.Gui
             this.gBCommands = new System.Windows.Forms.GroupBox();
             this.txtCommandsUsed = new System.Windows.Forms.TextBox();
             this.gBChat = new System.Windows.Forms.GroupBox();
-            this.txtLog = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtHost = new System.Windows.Forms.TextBox();
             this.txtCommands = new System.Windows.Forms.TextBox();
@@ -319,6 +317,8 @@ namespace MCDawn.Gui
             this.label48 = new System.Windows.Forms.Label();
             this.btnGenerateRCKey = new System.Windows.Forms.Button();
             this.txtRCKey = new System.Windows.Forms.TextBox();
+            this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.chkChatColors = new System.Windows.Forms.CheckBox();
             this.playerStrip.SuspendLayout();
             this.mapsStrip.SuspendLayout();
             this.iconContext.SuspendLayout();
@@ -1341,7 +1341,7 @@ namespace MCDawn.Gui
             this.chkAutoLoad.AutoSize = true;
             this.chkAutoLoad.Location = new System.Drawing.Point(131, 241);
             this.chkAutoLoad.Name = "chkAutoLoad";
-            this.chkAutoLoad.Size = new System.Drawing.Size(75, 17);
+            this.chkAutoLoad.Size = new System.Drawing.Size(73, 17);
             this.chkAutoLoad.TabIndex = 25;
             this.chkAutoLoad.Text = "Auto Load";
             this.chkAutoLoad.UseVisualStyleBackColor = true;
@@ -1351,7 +1351,7 @@ namespace MCDawn.Gui
             this.chkAllowGuns.AutoSize = true;
             this.chkAllowGuns.Location = new System.Drawing.Point(214, 241);
             this.chkAllowGuns.Name = "chkAllowGuns";
-            this.chkAllowGuns.Size = new System.Drawing.Size(79, 17);
+            this.chkAllowGuns.Size = new System.Drawing.Size(78, 17);
             this.chkAllowGuns.TabIndex = 24;
             this.chkAllowGuns.Text = "Allow Guns";
             this.chkAllowGuns.UseVisualStyleBackColor = true;
@@ -1372,7 +1372,7 @@ namespace MCDawn.Gui
             this.chkRPChat.AutoSize = true;
             this.chkRPChat.Location = new System.Drawing.Point(143, 50);
             this.chkRPChat.Name = "chkRPChat";
-            this.chkRPChat.Size = new System.Drawing.Size(57, 23);
+            this.chkRPChat.Size = new System.Drawing.Size(53, 23);
             this.chkRPChat.TabIndex = 22;
             this.chkRPChat.Text = "RP Chat";
             this.chkRPChat.UseVisualStyleBackColor = true;
@@ -1414,7 +1414,7 @@ namespace MCDawn.Gui
             this.chkSurvivalDeath.AutoSize = true;
             this.chkSurvivalDeath.Location = new System.Drawing.Point(10, 227);
             this.chkSurvivalDeath.Name = "chkSurvivalDeath";
-            this.chkSurvivalDeath.Size = new System.Drawing.Size(96, 17);
+            this.chkSurvivalDeath.Size = new System.Drawing.Size(94, 17);
             this.chkSurvivalDeath.TabIndex = 17;
             this.chkSurvivalDeath.Text = "Survival Death";
             this.chkSurvivalDeath.UseVisualStyleBackColor = true;
@@ -1456,7 +1456,7 @@ namespace MCDawn.Gui
             this.chkInstant.AutoSize = true;
             this.chkInstant.Location = new System.Drawing.Point(10, 208);
             this.chkInstant.Name = "chkInstant";
-            this.chkInstant.Size = new System.Drawing.Size(98, 17);
+            this.chkInstant.Size = new System.Drawing.Size(100, 17);
             this.chkInstant.TabIndex = 11;
             this.chkInstant.Text = "Instant Building";
             this.chkInstant.UseVisualStyleBackColor = true;
@@ -1466,7 +1466,7 @@ namespace MCDawn.Gui
             this.chkAutoPhysics.AutoSize = true;
             this.chkAutoPhysics.Location = new System.Drawing.Point(10, 188);
             this.chkAutoPhysics.Name = "chkAutoPhysics";
-            this.chkAutoPhysics.Size = new System.Drawing.Size(87, 17);
+            this.chkAutoPhysics.Size = new System.Drawing.Size(85, 17);
             this.chkAutoPhysics.TabIndex = 10;
             this.chkAutoPhysics.Text = "Auto Physics";
             this.chkAutoPhysics.UseVisualStyleBackColor = true;
@@ -1496,7 +1496,7 @@ namespace MCDawn.Gui
             this.chkGrassGrowing.AutoSize = true;
             this.chkGrassGrowing.Location = new System.Drawing.Point(10, 108);
             this.chkGrassGrowing.Name = "chkGrassGrowing";
-            this.chkGrassGrowing.Size = new System.Drawing.Size(95, 17);
+            this.chkGrassGrowing.Size = new System.Drawing.Size(94, 17);
             this.chkGrassGrowing.TabIndex = 7;
             this.chkGrassGrowing.Text = "Grass Growing";
             this.chkGrassGrowing.UseVisualStyleBackColor = true;
@@ -1506,7 +1506,7 @@ namespace MCDawn.Gui
             this.chkEdgeWater.AutoSize = true;
             this.chkEdgeWater.Location = new System.Drawing.Point(10, 128);
             this.chkEdgeWater.Name = "chkEdgeWater";
-            this.chkEdgeWater.Size = new System.Drawing.Size(83, 17);
+            this.chkEdgeWater.Size = new System.Drawing.Size(80, 17);
             this.chkEdgeWater.TabIndex = 6;
             this.chkEdgeWater.Text = "Edge Water";
             this.chkEdgeWater.UseVisualStyleBackColor = true;
@@ -1526,7 +1526,7 @@ namespace MCDawn.Gui
             this.chkFiniteMode.AutoSize = true;
             this.chkFiniteMode.Location = new System.Drawing.Point(10, 69);
             this.chkFiniteMode.Name = "chkFiniteMode";
-            this.chkFiniteMode.Size = new System.Drawing.Size(81, 17);
+            this.chkFiniteMode.Size = new System.Drawing.Size(82, 17);
             this.chkFiniteMode.TabIndex = 4;
             this.chkFiniteMode.Text = "Finite Mode";
             this.chkFiniteMode.UseVisualStyleBackColor = true;
@@ -2455,7 +2455,7 @@ namespace MCDawn.Gui
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Transparent;
-            this.tabPage1.Controls.Add(this.btnOpenChat);
+            this.tabPage1.Controls.Add(this.chkChatColors);
             this.tabPage1.Controls.Add(this.btnPlay);
             this.tabPage1.Controls.Add(this.label38);
             this.tabPage1.Controls.Add(this.label36);
@@ -2483,16 +2483,6 @@ namespace MCDawn.Gui
             this.tabPage1.Size = new System.Drawing.Size(786, 553);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
-            // 
-            // btnOpenChat
-            // 
-            this.btnOpenChat.Location = new System.Drawing.Point(494, 257);
-            this.btnOpenChat.Name = "btnOpenChat";
-            this.btnOpenChat.Size = new System.Drawing.Size(266, 23);
-            this.btnOpenChat.TabIndex = 47;
-            this.btnOpenChat.Text = "Open Mini-Console (Chat and Commands only)";
-            this.btnOpenChat.UseVisualStyleBackColor = true;
-            this.btnOpenChat.Click += new System.EventHandler(this.btnOpenChat_Click);
             // 
             // btnPlay
             // 
@@ -2536,11 +2526,11 @@ namespace MCDawn.Gui
             // chkConsoleSounds
             // 
             this.chkConsoleSounds.AutoSize = true;
-            this.chkConsoleSounds.Location = new System.Drawing.Point(646, 199);
+            this.chkConsoleSounds.Location = new System.Drawing.Point(585, 201);
             this.chkConsoleSounds.Name = "chkConsoleSounds";
-            this.chkConsoleSounds.Size = new System.Drawing.Size(100, 17);
+            this.chkConsoleSounds.Size = new System.Drawing.Size(60, 17);
             this.chkConsoleSounds.TabIndex = 42;
-            this.chkConsoleSounds.Text = "Console Sounds";
+            this.chkConsoleSounds.Text = "Sounds";
             this.chkConsoleSounds.UseVisualStyleBackColor = true;
             this.chkConsoleSounds.CheckedChanged += new System.EventHandler(this.chkConsoleSounds_CheckedChanged);
             // 
@@ -2568,7 +2558,7 @@ namespace MCDawn.Gui
             // chkMaintenance
             // 
             this.chkMaintenance.AutoSize = true;
-            this.chkMaintenance.Location = new System.Drawing.Point(522, 199);
+            this.chkMaintenance.Location = new System.Drawing.Point(651, 201);
             this.chkMaintenance.Name = "chkMaintenance";
             this.chkMaintenance.Size = new System.Drawing.Size(118, 17);
             this.chkMaintenance.TabIndex = 38;
@@ -2628,9 +2618,9 @@ namespace MCDawn.Gui
             // 
             this.gBCommands.Controls.Add(this.txtCommandsUsed);
             this.gBCommands.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gBCommands.Location = new System.Drawing.Point(491, 286);
+            this.gBCommands.Location = new System.Drawing.Point(491, 257);
             this.gBCommands.Name = "gBCommands";
-            this.gBCommands.Size = new System.Drawing.Size(278, 233);
+            this.gBCommands.Size = new System.Drawing.Size(278, 262);
             this.gBCommands.TabIndex = 34;
             this.gBCommands.TabStop = false;
             this.gBCommands.Text = "Commands";
@@ -2645,7 +2635,7 @@ namespace MCDawn.Gui
             this.txtCommandsUsed.Name = "txtCommandsUsed";
             this.txtCommandsUsed.ReadOnly = true;
             this.txtCommandsUsed.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCommandsUsed.Size = new System.Drawing.Size(262, 204);
+            this.txtCommandsUsed.Size = new System.Drawing.Size(262, 233);
             this.txtCommandsUsed.TabIndex = 0;
             this.txtCommandsUsed.TextChanged += new System.EventHandler(this.txtCommandsUsed_TextChanged);
             // 
@@ -2659,19 +2649,6 @@ namespace MCDawn.Gui
             this.gBChat.TabIndex = 32;
             this.gBChat.TabStop = false;
             this.gBChat.Text = "Chat";
-            // 
-            // txtLog
-            // 
-            this.txtLog.BackColor = System.Drawing.SystemColors.Window;
-            this.txtLog.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtLog.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLog.Location = new System.Drawing.Point(10, 23);
-            this.txtLog.Multiline = true;
-            this.txtLog.Name = "txtLog";
-            this.txtLog.ReadOnly = true;
-            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(451, 233);
-            this.txtLog.TabIndex = 1;
             // 
             // label2
             // 
@@ -3002,6 +2979,30 @@ namespace MCDawn.Gui
             this.txtRCKey.TabIndex = 0;
             this.txtRCKey.TextChanged += new System.EventHandler(this.txtRCKey_TextChanged);
             // 
+            // txtLog
+            // 
+            this.txtLog.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLog.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLog.Location = new System.Drawing.Point(6, 20);
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.txtLog.Size = new System.Drawing.Size(458, 236);
+            this.txtLog.TabIndex = 2;
+            this.txtLog.Text = "";
+            // 
+            // chkChatColors
+            // 
+            this.chkChatColors.AutoSize = true;
+            this.chkChatColors.Location = new System.Drawing.Point(499, 201);
+            this.chkChatColors.Name = "chkChatColors";
+            this.chkChatColors.Size = new System.Drawing.Size(80, 17);
+            this.chkChatColors.TabIndex = 47;
+            this.chkChatColors.Text = "Chat Colors";
+            this.chkChatColors.UseVisualStyleBackColor = true;
+            this.chkChatColors.CheckedChanged += new System.EventHandler(this.chkChatColors_CheckedChanged);
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -3073,7 +3074,6 @@ namespace MCDawn.Gui
             this.gBCommands.ResumeLayout(false);
             this.gBCommands.PerformLayout();
             this.gBChat.ResumeLayout(false);
-            this.gBChat.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();
@@ -3274,7 +3274,6 @@ namespace MCDawn.Gui
         private TextBox txtAdminInput;
         private TextBox txtAdminLog;
         private TabPage tabPage1;
-        private Button btnOpenChat;
         private Button btnPlay;
         private Label label38;
         private Label label36;
@@ -3298,7 +3297,6 @@ namespace MCDawn.Gui
         private Label label1;
         private ListBox liClients;
         private TabControl tabControl1;
-        internal TextBox txtLog;
         private TabPage tabPage10;
         private Button btnAddRCUser;
         private GroupBox grpRCUsers;
@@ -3348,5 +3346,7 @@ namespace MCDawn.Gui
         private TextBox txtMapViewerZ;
         private TextBox txtMapViewerY;
         private TextBox txtMapViewerX;
+        internal RichTextBox txtLog;
+        private CheckBox chkChatColors;
     }
 }

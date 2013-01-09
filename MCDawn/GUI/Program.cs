@@ -85,7 +85,7 @@ namespace MCDawn_.Gui
                 if (Server.cli)
                 {
                     Server s = new Server();
-                    s.OnLog += Console.WriteLine;
+                    s.OnLog += WriteLine;
                     s.OnCommand += Console.WriteLine;
                     s.OnSystem += Console.WriteLine;
                     s.Start();
@@ -116,6 +116,51 @@ namespace MCDawn_.Gui
             catch (Exception e) { Server.ErrorLog(e); handleChat(Console.ReadLine()); return; }
         }
 
+        public static void WriteLine(string text) { WriteLine(text, Server.consoleChatColors); }
+        public static void WriteLine(string text, bool parseColors = true)
+        {
+            Console.ForegroundColor = ConsoleColor.Gray;
+            text = Player.RemoveBadColors(text);
+            if (!parseColors) { Console.WriteLine(Player.RemoveAllColors(text)); return; }
+            var sections = text.Split('&');
+            for (int i = 0; i < sections.Length; i++)
+            {
+                string section = sections[i];
+                if (String.IsNullOrEmpty(section)) continue;
+                ConsoleColor color = GetColor(section[0]);
+                section = section.Substring(1);
+                Console.ForegroundColor = color;
+                Console.Write(section);
+            }
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write(Environment.NewLine);
+        }
+
+        public static ConsoleColor GetColor(char ch)
+        {
+            switch (ch.ToString().ToLower())
+            {
+                case "a": return ConsoleColor.Green;
+                case "b": return ConsoleColor.Cyan;
+                case "c": return ConsoleColor.Red;
+                case "d": return ConsoleColor.Magenta;
+                case "e": return ConsoleColor.Yellow;
+                case "f": return ConsoleColor.White;
+                case "g": return ConsoleColor.Gray;
+                case "0": return ConsoleColor.DarkGray;
+                case "1": return ConsoleColor.DarkBlue;
+                case "2": return ConsoleColor.DarkGreen;
+                case "3": return ConsoleColor.DarkCyan;
+                case "4": return ConsoleColor.DarkRed;
+                case "5": return ConsoleColor.DarkMagenta;
+                case "6": return ConsoleColor.DarkYellow;
+                case "7": return ConsoleColor.Gray;
+                case "8": return ConsoleColor.DarkGray;
+                case "9": return ConsoleColor.Blue;
+                default: return ConsoleColor.Gray;
+            }
+        }
+
         public static void handleChat(string s)
         {
             string st = "";
@@ -133,9 +178,7 @@ namespace MCDawn_.Gui
                     who.SendMessage("&bFrom Console: &f" + words[1]);
                     Server.s.Log("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                     if (!Server.devs.Contains(who.name.ToLower()))
-                    {
                         Player.GlobalMessageDevs("To Devs &f-" + Server.DefaultColor + "Console &b[>] " + who.color + who.name + "&f- " + words[1]);
-                    }
                     //AllServerChat.Say("(whispers to " + who.name + ") <CONSOLE> " + words[1]);
                     break;
                 case '#':
