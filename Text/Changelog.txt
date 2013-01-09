@@ -5,6 +5,8 @@ MCDawn 1.0.2.0
 -Console (GUI and CLI) can now read Minecraft chat color codes. This is toggle-able.
 -Default main level size for first startups is now 128/128/128.
 -For custom commands and plugins, usage of &g/%g color code is encouraged, instead of the old Server.DefaultColor.
+-Added colors for IRC to Minecraft (and vice versa).
+-Fixed various IRCBot and GlobalChatBot bugs
 
 MCDawn 1.0.1.9
 -Updated Commands

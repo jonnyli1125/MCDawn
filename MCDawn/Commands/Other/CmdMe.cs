@@ -18,15 +18,9 @@ namespace MCDawn
             if (p.muted) { Player.SendMessage(p, "You are currently muted and cannot use this command."); return; }
             if (Server.chatmod && !p.voice) { Player.SendMessage(p, "Chat moderation is on, you cannot emote."); return; }
 
-            if (Server.worldChat && !p.levelchat)
-            {
-                Player.GlobalChat(p, p.color + "*" + p.displayName + " " + message, false);
-            }
-            else
-            {
-                Player.GlobalChatLevel(p, p.color + "*" + p.displayName + " " + message, false);
-            }
-            IRCBot.Say("*" + p.displayName + " " + message);
+            if (Server.worldChat && !p.levelchat) Player.GlobalChat(p, p.color + "*" + p.displayName + " " + message, false);
+            else Player.GlobalChatLevel(p, p.color + "*" + p.displayName + " " + message, false);
+            IRCBot.Say(p.color + "*" + p.displayName + " " + p.color + message);
             //AllServerChat.Say("*" + p.name + " " + message);
 
         }

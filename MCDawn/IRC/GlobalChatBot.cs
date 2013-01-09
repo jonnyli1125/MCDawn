@@ -131,7 +131,7 @@ namespace MCDawn
                 // TODO: make this irctominecraftcolor shit work
                 string temp = IRCColor.IRCToMinecraftColor(e.Data.Message); string storedNick = e.Data.Nick;
 
-                if (e.Data.Channel == devchannel)
+                if (e.Data.Channel.ToLower() == devchannel.ToLower())
                 {
                     // Commands in DevGlobal.
                     //string[] splitted = temp.Split(new char[] { ' ' }, 2);

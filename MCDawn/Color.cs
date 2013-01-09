@@ -71,29 +71,30 @@ namespace MCDawn
 
     public static class IRCColor
     {
-        public const string white = "\u000300";
-        public const string black = "\u000301";
-        public const string navy =  "\u000302";
-        public const string green =  "\u000303";
-        public const string red = "\u000304";
-        public const string maroon = "\u000305";
-        public const string purple = "\u000306";
-        public const string gold = "\u000307";
-        public const string yellow = "\u000308";
-        public const string lime = "\u000309";
-        public const string teal = "\u000310";
-        public const string aqua = "\u000311";
-        public const string blue = "\u000312";
-        public const string pink = "\u000313";
-        public const string gray = "\u000314";
-        public const string silver = "\u000315";
-        public const string reset = "\u000f";
-        public const string bold = "\u0002";
-        public const string italic = "\u0009";
-        public const string strikethrough = "\u0013";
-        public const string underline = "\u0015";
-        public const string underline2 = "\u001f";
-        public const string reverse = "\u0016";
+        public const string color = "\x03";
+        public const string white = color + "0";
+        public const string black = color + "1";
+        public const string navy = color + "2";
+        public const string green = color + "3";
+        public const string red = color + "4";
+        public const string maroon = color + "5";
+        public const string purple = color + "6";
+        public const string gold = color + "7";
+        public const string yellow = color + "8";
+        public const string lime = color + "9";
+        public const string teal = color + "10";
+        public const string aqua = color + "11";
+        public const string blue = color + "12";
+        public const string pink = color + "13";
+        public const string gray = color + "14";
+        public const string silver = color + "15";
+        public const string reset = "\x0f";
+        public const string bold = "\x02";
+        public const string italic = "\x09";
+        public const string strikethrough = "\x013";
+        public const string underline = "\x015";
+        public const string underline2 = "\x01f";
+        public const string reverse = "\x016";
 
         public static string IRCToMinecraftColor(string text)
         {
@@ -113,7 +114,7 @@ namespace MCDawn
             text = text.Replace(pink, c.pink);
             text = text.Replace(gray, c.gray);
             text = text.Replace(silver, c.silver);
-            text = text.Replace(reset, "&g");
+            text = text.Replace(color, "&g");
             return text;
         }
 
@@ -135,7 +136,7 @@ namespace MCDawn
             text = text.Replace(c.pink, pink);
             text = text.Replace(c.gray, gray);
             text = text.Replace(c.silver, silver);
-            text = text.Replace("&g", reset);
+            text = text.Replace("&g", color);
             return text;
         }
     }

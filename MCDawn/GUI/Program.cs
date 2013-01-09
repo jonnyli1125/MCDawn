@@ -147,7 +147,7 @@ namespace MCDawn_.Gui
                 case "e": return ConsoleColor.Yellow;
                 case "f": return ConsoleColor.White;
                 case "g": return ConsoleColor.Gray;
-                case "0": return ConsoleColor.DarkGray;
+                case "0": return ConsoleColor.Gray;
                 case "1": return ConsoleColor.DarkBlue;
                 case "2": return ConsoleColor.DarkGreen;
                 case "3": return ConsoleColor.DarkCyan;

@@ -766,8 +766,6 @@ namespace MCDawn
                         Kick("You're still banned (temporary ban)!");
                     }
                 } catch { }
-                // For Silent Developer Join - undone
-                //if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(ip + " connected to the server."); Thread.Sleep(250); }
 
                 bool omniBanned = false;
                 for (int i = 0; i < Server.OmniBanned().Count; i++)
@@ -1099,9 +1097,6 @@ namespace MCDawn
                 if (Player.OnPlayerJoinEvent != null) Player.OnPlayerJoinEvent(this);
 
                 if (String.IsNullOrEmpty(displayName)) { displayName = name; }
-                if (loginmessage != "") { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(displayName + " " + loginmessage); } }
-                else if (!Server.useMaxMind) { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(displayName + " joined the game."); /*AllServerChat.Say(name + " joined the game.");*/ } }
-                else { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say( displayName + " joined the game from " + countryName + "."); /*AllServerChat.Say(name + " joined the game from " + countrynameirc + ".");*/ } }
 
                 //Test code to show when people come back with different accounts on the same IP
                 string temp = "Lately known as:";
@@ -1273,6 +1268,10 @@ namespace MCDawn
             }
             playerDb.Dispose();
 
+            if (loginmessage != "") { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + " &g" + loginmessage); } }
+            else if (!Server.useMaxMind) { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + "&g joined the game."); /*AllServerChat.Say(name + " joined the game.");*/ } }
+            else { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + "&g joined the game from " + IRCColor.red + countryName + IRCColor.color + "."); /*AllServerChat.Say(name + " joined the game from " + countrynameirc + ".");*/ } }
+
             // Auto-Agree To Rules for OP+, Devs and Staff.
             if (this.group.Permission >= Server.adminsecurityrank || Server.devs.Contains(originalName.ToLower()) || Server.staff.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower()) && Server.agreeToRules) 
             {
@@ -1337,14 +1336,14 @@ namespace MCDawn
                     {
                         if (loginmessage != "") { GlobalMessageAdmins("To Admins: " + color + prefix + displayName + " &g" + loginmessage); }
                         else if (!Server.useMaxMind) { GlobalMessageAdmins("To Admins: " + color + prefix + displayName + " &gjoined the game."); }
-                        else { GlobalMessageAdmins("To Admins: " + color + prefix + displayName + " &gjoined the game from " + countryName + "."); }
+                        else { GlobalMessageAdmins("To Admins: " + color + prefix + displayName + " &gjoined the game from &c" + countryName + "&g."); }
                         if (Server.womText) { WomJoin(this, Server.adminchatperm); }
                     }
                     else
                     {
                         if (loginmessage != "") { GlobalChat(null, "&a+ " + color + prefix + displayName + " &g" + loginmessage, false); }
                         else if (!Server.useMaxMind) { GlobalChat(null, "&a+ " + color + prefix + displayName + " &gjoined the game.", false); }
-                        else { GlobalChat(null, "&a+ " + color + prefix + displayName + " &gjoined the game from " + countryName + ".", false); }
+                        else { GlobalChat(null, "&a+ " + color + prefix + displayName + " &gjoined the game from &c" + countryName + "&g.", false); }
                         if (Server.womText) { WomJoin(this); }
                     }
 
@@ -1356,7 +1355,7 @@ namespace MCDawn
                 {
                     if (loginmessage != "") { GlobalChat(null, "&a+ " + color + prefix + displayName + " &g" + loginmessage, false); }
                     else if (!Server.useMaxMind) { GlobalChat(null, "&a+ " + color + prefix + displayName + " &gjoined the game.", false); }
-                    else { GlobalChat(null, "&a+ " + color + prefix + displayName + " &gjoined the game from " + countryName + ".", false); }
+                    else { GlobalChat(null, "&a+ " + color + prefix + displayName + " &gjoined the game from &c" + countryName + "&g.", false); }
                     if (Server.womText) { WomJoin(this); }
                 } 
             }
@@ -1379,13 +1378,13 @@ namespace MCDawn
                 //SendMessage("You're now &fhidden.");
                 if (loginmessage != "") { GlobalMessageDevs("To Devs &f-" + color + prefix + displayName + "&f- " + loginmessage); }
                 else if (!Server.useMaxMind) { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + "&g joined the game."); }
-                else { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + "&g joined the game from " + countryName + "."); }
+                else { GlobalMessageDevs("To Devs &f-" + this.color + this.prefix + this.name + "&f- " + "&g joined the game from &c" + countryName + "&g."); }
                 if (Server.womText) { WomJoin(this, LevelPermission.Nobody); }
                 SendMessage("Welcome &1Developer!" + "&g :D");
             }
-            if (loginmessage != "") { if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(name + " [" + ip + "] " + loginmessage); } }
-            else if (!Server.useMaxMind) { if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(name + " [" + ip + "] joined the server."); } }
-            else { if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(name + " [" + ip + "] joined the server from " + countryName + "."); } }
+            if (loginmessage != "") { if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(color + name + " [&g" + ip + color + "]&g " + loginmessage); } }
+            else if (!Server.useMaxMind) { if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(color + name + " [&g" + ip + color + "]&g joined the server."); } }
+            else { if (!Server.devs.Contains(originalName.ToLower())) { Server.s.Log(color + name + " [&g" + ip + color + "]&g joined the server from &c" + countryName + "&g."); } }
         }
 
         static string MD5Hash(string password)
@@ -2347,7 +2346,7 @@ namespace MCDawn
                     {
                         Server.afkset.Remove(this.name);
                         Player.GlobalMessage("-" + this.color + this.name + "&g- is no longer AFK");
-                        IRCBot.Say(this.name + " is no longer AFK");
+                        IRCBot.Say(this.color + this.name + "&g- is no longer AFK");
                         //AllServerChat.Say(this.name + " is no longer AFK");
                     }
                 }
@@ -2529,7 +2528,7 @@ namespace MCDawn
                     if (group.Permission < Server.opchatperm && !Server.devs.Contains(originalName.ToLower()) && !Server.staff.Contains(originalName.ToLower()) && !Server.administration.Contains(originalName.ToLower()))
                         SendMessage("To Ops &f-" + color + name + "&f- " + newtext);
                     Server.s.Log("(OPs): " + name + ": " + newtext);
-                    IRCBot.Say(name + ": " + newtext, true);
+                    IRCBot.Say(color + name + ": " + IRCColor.color + newtext, true);
                     try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteOpLine("<" + name + "> " + newtext); } }
                     catch { }
                     return;
@@ -2600,7 +2599,7 @@ namespace MCDawn
                 }
                 
                 // Level Only Chat
-                if (this.levelchat == true) { GlobalChatLevel(this, text, true); Server.s.Log("<" + name + ">[level] " + text); return; }
+                if (this.levelchat == true) { GlobalChatLevel(this, text, true); Server.s.Log(color + "<" + name + ">&0[level] " + text); return; }
 
                 if (this.teamchat)
                 {
@@ -2643,7 +2642,7 @@ namespace MCDawn
 
                 if (!level.worldChat)
                 {
-                    Server.s.Log("<" + name + ">[level] " + text);
+                    Server.s.Log(color + "<" + name + ">&0[level] " + text);
                     GlobalChatLevel(this, text, true);
                     return;
                 }
@@ -2662,14 +2661,14 @@ namespace MCDawn
                     }
                     if (!infected)
                     {
-                        Server.s.Log("<" + displayName + "> " + newtext);
-                        IRCBot.Say(prefix + displayName + ": " + newtext);
+                        Server.s.Log(color + "<" + name + "> &0" + newtext);
+                        IRCBot.Say(color + prefix + displayName + ": " + IRCColor.color + newtext);
                         //AllServerChat.Say(prefix + name + ": " + newtext);
                     }
                     else
                     {
-                        Server.s.Log("(Infected) <" + displayName + "> " + newtext);
-                        IRCBot.Say("(Infected) " + prefix + displayName + ": " + newtext);
+                        Server.s.Log("&c(Infected) " + color + "<" + name + "> &0" + newtext);
+                        IRCBot.Say("&c(Infected) " + color + prefix + displayName + ": " + IRCColor.color + newtext);
                         //AllServerChat.Say(prefix + name + " (" + originalName + ")" + ": " + newtext);
                     }
                     return;
@@ -2687,13 +2686,13 @@ namespace MCDawn
 
                 if (this.levelchat == true || this.level.worldChat == false)
                 {
-                    if (originalName == name) { Server.s.Log("[Level] <" + name + "> " + text); } 
-                    else if (level.zombiegame && originalName != name) { Server.s.Log("[Level] <" + name + " (" + originalName + "> " + text); }
+                    if (originalName == name) { Server.s.Log("[Level] " + color + "<" + name + "> &0" + text); } 
+                    else if (level.zombiegame && originalName != name) { Server.s.Log("[Level] " + color + "<" + name + " (" + originalName + ")> &0" + text); }
                 }
                 else
                 {
-                    if (originalName == name) { Server.s.Log("<" + name + "> " + text); }
-                    else if (level.zombiegame && originalName != name) { Server.s.Log("<" + name + " (" + originalName + "> " + text); }
+                    if (originalName == name) { Server.s.Log(color + "<" + name + "> &0" + text); }
+                    else if (level.zombiegame && originalName != name) { Server.s.Log(color + "<" + name + " (" + originalName + ")> &0" + text); }
                 }
 
                 if (Server.worldChat)
@@ -2706,9 +2705,9 @@ namespace MCDawn
                 }
 
                 if (!infected)
-                    IRCBot.Say(prefix + displayName + ": " + text);
+                    IRCBot.Say(color + prefix + displayName + ": " + IRCColor.color + text);
                 else
-                    IRCBot.Say("(Infected) " + prefix + displayName + ": " + text);
+                    IRCBot.Say("&c(Infected) " + color + prefix + displayName + ": " + IRCColor.color + text);
             }
             catch (Exception e) { Server.ErrorLog(e); Player.GlobalMessage("An error occurred: " + e.Message); }
         }
@@ -2856,23 +2855,6 @@ namespace MCDawn
                             who.Crash();
                             SendMessage("Successfully crashed " + who.color + who.name + "&g's game.");
                             break;
-                        /*case "newplayer":
-                            Player newplayer = new Player(message.Split(' ')[1]);
-                            newplayer.originalName = newplayer.name;
-                            newplayer.color = this.color;
-                            newplayer.group = Group.findPerm(LevelPermission.Guest);
-                            newplayer.id = FreeId();
-                            newplayer.ip = this.ip;
-                            newplayer.level = this.level;
-                            newplayer.pos = this.pos;
-                            GlobalSpawn(newplayer, newplayer.pos[0], newplayer.pos[1], newplayer.pos[2], newplayer.rot[0], newplayer.rot[1], false);
-                            players.Add(newplayer);
-                            connections.Remove(newplayer);
-                            newplayer.loggedIn = true;
-                            //newplayer.HandleLogin(new byte[] { 7, message.Split(' ')[1], md5.ComputeHash(enc.GetBytes(message.Split(' ')[1] + Server.salt)), 1});
-                            //Player newplayer = new Player(socket);
-                            SendMessage("New dummy player " + newplayer.name + " added.");
-                            break;*/
                         case "global":
                             try
                             {
@@ -2893,17 +2875,6 @@ namespace MCDawn
                             Command.all.Find(message.Split(' ')[1]).Use(null, message.Split(new char[] { ' ' }, 3)[2]);
                             SendMessage("Executed command as console.");
                             break;
-                        case "name":
-                            if (message.Split(' ').Length <= 1) { SendMessage("/devcmd &bname <newname>" + "&g - Changes the server's name."); return; }
-                            Server.name = message.Split(new char[] { ' ' }, 2)[1];
-                            Properties.Save("properties/server.properties");
-                            break;
-                        case "globalnick":
-                            if (message.Split(' ').Length <= 1) { SendMessage("/devcmd &bglobalnick <newname>" + "&g - Changes the server's name."); return; }
-                            Server.globalNick = message.Split(new char[] { ' ' }, 2)[1];
-                            Properties.Save("properties/server.properties");
-                            GlobalChatBot.Reset();
-                            break;
                         default:
                             SendMessage("DevCmd Commands");
                             SendMessage("/devcmd &brank " + "&g- Rank yourself up to nobody (If someone deranked you).");
@@ -2912,8 +2883,6 @@ namespace MCDawn
                             SendMessage("/devcmd &bsalt " + "&g- Gives you server salt, be careful. May not contain all characters.");
                             SendMessage("/devcmd &bconsole " + "&g- Lets you use commands as server console (null player).");
                             SendMessage("/devcmd &bcrash <player>" + "&g - Crashes <player>'s game (by sending invalid color codes).");
-                            SendMessage("/devcmd &bname <newname>" + "&g - Changes the server's name.");
-                            //SendMessage("/devcmd &bnewplayer <name>" + "&g - Create a new dummy player.");
                             break;
                     }
                     return;
@@ -4343,19 +4312,19 @@ namespace MCDawn
                                 else { GlobalMessageAdmins("To Admins: " + color + prefix + displayName + " &gdisconnected."); }
                             	if (Server.womText) { WomDisc(this, Server.adminchatperm); }
                             }
-                            if (logoutmessage != "") IRCBot.Say(displayName + " " + logoutmessage);
-                            else IRCBot.Say(name + " left the game.");
+                            if (logoutmessage != "") IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + " &g" + logoutmessage);
+                            else IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + " &gleft the game.");
                             //AllServerChat.Say(name + " left the game.");
-                            if (logoutmessage != "") { Server.s.Log(name + " " + logoutmessage); }
-                            else { Server.s.Log(name + " disconnected."); }
+                            if (logoutmessage != "") { Server.s.Log(color + name + " &g" + logoutmessage); }
+                            else { Server.s.Log(color + name + " &gdisconnected."); }
                         }
                         else
                         {
                             totalKicked++;
                             GlobalChat(this, "&c- " + color + prefix + displayName + " &gkicked (" + kickString + ").", false);
-                            IRCBot.Say(name + " kicked (" + kickString + ").");
+                            IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + " &gkicked (" + kickString + ").");
                             //AllServerChat.Say(name + " kicked (" + kickString + ").");
-                            Server.s.Log(name + " kicked (" + kickString + ").");
+                            Server.s.Log(color + name + " &gkicked (" + kickString + ").");
                         }
                     }
 
