@@ -1686,54 +1686,57 @@ namespace MCDawn.Gui
 
         private void btnPropertiesSave_Click(object sender, EventArgs e)
         {
-            if (propertiesoflevel == null) return;
-            Level l = propertiesoflevel;
-            l.motd = txtLevelMotd.Text;
-            l.motd = (String.IsNullOrEmpty(txtLevelMotd.Text) ? "ignore" : txtLevelMotd.Text);
-            l.physics = (int)txtPhysics.Value;
-            l.GrassGrow = chkGrassGrowing.Checked;
-            l.worldChat = !chkRPChat.Checked;
-            l.Killer = chkKillerBlocks.Checked;
-            l.Death = chkSurvivalDeath.Checked;
-            l.finite = chkFiniteMode.Checked;
-            l.edgeWater = chkEdgeWater.Checked;
-            l.ai = chkAnimalAI.Checked;
-            l.allowguns = chkAllowGuns.Checked;
-            l.fall = (int)txtFall.Value;
-            l.drown = (int)txtDrown.Value;
-            l.unload = chkUnload.Checked;
+            try
             {
-                List<string> oldlines = new List<string>();
-                using (StreamReader r = new StreamReader("text/autoload.txt"))
+                if (propertiesoflevel == null) return;
+                Level l = propertiesoflevel;
+                l.motd = txtLevelMotd.Text;
+                l.motd = (String.IsNullOrEmpty(txtLevelMotd.Text) ? "ignore" : txtLevelMotd.Text);
+                l.physics = (int)txtPhysics.Value;
+                l.GrassGrow = chkGrassGrowing.Checked;
+                l.worldChat = !chkRPChat.Checked;
+                l.Killer = chkKillerBlocks.Checked;
+                l.Death = chkSurvivalDeath.Checked;
+                l.finite = chkFiniteMode.Checked;
+                l.edgeWater = chkEdgeWater.Checked;
+                l.ai = chkAnimalAI.Checked;
+                l.allowguns = chkAllowGuns.Checked;
+                l.fall = (int)txtFall.Value;
+                l.drown = (int)txtDrown.Value;
+                l.unload = chkUnload.Checked;
                 {
-                    bool done = false;
-                    string line;
-                    while ((line = r.ReadLine()) != null)
+                    List<string> oldlines = new List<string>();
+                    using (StreamReader r = new StreamReader("text/autoload.txt"))
                     {
-                        if (line.ToLower().Contains(l.name.ToLower()))
+                        bool done = false;
+                        string line;
+                        while ((line = r.ReadLine()) != null)
                         {
-                            if (chkAutoLoad.Checked == false)
+                            if (line.ToLower().Contains(l.name.ToLower()))
                             {
-                                line = "";
+                                if (chkAutoLoad.Checked == false)
+                                {
+                                    line = "";
+                                }
+                                done = true;
                             }
-                            done = true;
+                            oldlines.Add(line);
                         }
-                        oldlines.Add(line);
+                        if (chkAutoLoad.Checked == true && done == false)
+                        {
+                            oldlines.Add(l.name + "=" + l.physics);
+                        }
                     }
-                    if (chkAutoLoad.Checked == true && done == false)
-                    {
-                        oldlines.Add(l.name + "=" + l.physics);
-                    }
+                    File.Delete("text/autoload.txt");
+                    using (StreamWriter SW = new StreamWriter("text/autoload.txt"))
+                        foreach (string line in oldlines)
+                            if (line.Trim() != "")
+                                SW.WriteLine(line);
                 }
-                File.Delete("text/autoload.txt");
-                using (StreamWriter SW = new StreamWriter("text/autoload.txt"))
-                    foreach (string line in oldlines)
-                        if (line.Trim() != "")
-                            SW.WriteLine(line);
+                txtLevelLog.AppendText("Level " + l.name + " saved." + Environment.NewLine);
+                UpdateMapList();
             }
-            txtLevelLog.AppendText("Level " + l.name + " saved." + Environment.NewLine);
-            UpdateMapList();
-            return;
+            catch { txtLevelLog.AppendText("Error saving level." + Environment.NewLine); }
         }
 
         private void btnUnloadLevel_Click(object sender, EventArgs e)
@@ -1747,7 +1750,7 @@ namespace MCDawn.Gui
                 UpdateMapList();
                 UnloadedlistUpdate();
             }
-            catch { txtLevelLog.AppendText("Error Unloading Level."); }
+            catch { txtLevelLog.AppendText("Error Unloading Level." + Environment.NewLine); }
         }
 
         private void btnLoadLevel_Click(object sender, EventArgs e)
@@ -1760,7 +1763,7 @@ namespace MCDawn.Gui
                 UpdateMapList();
                 UnloadedlistUpdate();
             }
-            catch { txtLevelLog.AppendText("Error Loading Level."); }
+            catch { txtLevelLog.AppendText("Error Loading Level." + Environment.NewLine); }
         }
 
         private void btnUpdatePlayerList_Click(object sender, EventArgs e)

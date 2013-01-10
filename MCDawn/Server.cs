@@ -1201,7 +1201,7 @@ namespace MCDawn
         public static List<string> OmniBanned()
         {
             string url = "http://mcdawn.com/omniban.txt";
-            List<string> backup = new List<string>("pinevil hawtcake 178.23.100.* legorek 80.3.166.* jetsviewfromcod1 valenx64 72.222.165.* creatorfromhell 98.236.* jackthekat9 173.170.182.*".Split(' ')); // offline list
+            List<string> backup = new List<string>("pinevil Legorek 80.3.166.* jetsviewfromcod1 Valenx64 72.222.165.* creatorfromhell SoySauceChips TYLERSON".Split(' ')); // offline list
             Thread t = new Thread(new ThreadStart(delegate
             {
                 try
@@ -1232,7 +1232,7 @@ namespace MCDawn
         public static List<string> GlobalBanned()
         {
             string url = "http://mcdawn.com/globalban.txt";
-            List<string> backup = new List<string>("notch herobrine".Split(' ')); // offline list
+            List<string> backup = new List<string>("Notch Herobrine CqKxDEATH bellison Deson12 evan6778".Split(' ')); // offline list
             Thread t = new Thread(new ThreadStart(delegate
             {
                 try
