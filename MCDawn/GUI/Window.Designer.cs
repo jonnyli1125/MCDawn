@@ -124,6 +124,11 @@ namespace MCDawn.Gui
             this.label26 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cmbErrors = new System.Windows.Forms.ComboBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.cmbLogs = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtLogs = new System.Windows.Forms.TextBox();
             this.txtErrors = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnUpdateChangelog = new System.Windows.Forms.Button();
@@ -132,6 +137,7 @@ namespace MCDawn.Gui
             this.txtSystem = new System.Windows.Forms.TextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.grpMapViewer = new System.Windows.Forms.GroupBox();
+            this.txtMapViewerRotation = new System.Windows.Forms.NumericUpDown();
             this.txtMapViewerZ = new System.Windows.Forms.TextBox();
             this.txtMapViewerY = new System.Windows.Forms.TextBox();
             this.txtMapViewerX = new System.Windows.Forms.TextBox();
@@ -318,12 +324,6 @@ namespace MCDawn.Gui
             this.label48 = new System.Windows.Forms.Label();
             this.btnGenerateRCKey = new System.Windows.Forms.Button();
             this.txtRCKey = new System.Windows.Forms.TextBox();
-            this.txtMapViewerRotation = new System.Windows.Forms.NumericUpDown();
-            this.txtLogs = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.cmbLogs = new System.Windows.Forms.ComboBox();
-            this.cmbErrors = new System.Windows.Forms.ComboBox();
-            this.label52 = new System.Windows.Forms.Label();
             this.playerStrip.SuspendLayout();
             this.mapsStrip.SuspendLayout();
             this.iconContext.SuspendLayout();
@@ -336,6 +336,7 @@ namespace MCDawn.Gui
             this.tabPage4.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.grpMapViewer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMapViewerRotation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMapViewer)).BeginInit();
             this.grpMapEditor.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -366,7 +367,6 @@ namespace MCDawn.Gui
             this.grpRCUsers.SuspendLayout();
             this.grpRCSettings.SuspendLayout();
             this.grpConnectedRCs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMapViewerRotation)).BeginInit();
             this.SuspendLayout();
             // 
             // playerStrip
@@ -974,6 +974,55 @@ namespace MCDawn.Gui
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Logs/Errors";
             // 
+            // cmbErrors
+            // 
+            this.cmbErrors.FormattingEnabled = true;
+            this.cmbErrors.Location = new System.Drawing.Point(51, 284);
+            this.cmbErrors.Name = "cmbErrors";
+            this.cmbErrors.Size = new System.Drawing.Size(121, 21);
+            this.cmbErrors.TabIndex = 6;
+            this.cmbErrors.SelectedIndexChanged += new System.EventHandler(this.cmbErrors_SelectedIndexChanged);
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(7, 287);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(38, 13);
+            this.label52.TabIndex = 5;
+            this.label52.Text = "Errors:";
+            // 
+            // cmbLogs
+            // 
+            this.cmbLogs.FormattingEnabled = true;
+            this.cmbLogs.Location = new System.Drawing.Point(44, 12);
+            this.cmbLogs.Name = "cmbLogs";
+            this.cmbLogs.Size = new System.Drawing.Size(121, 21);
+            this.cmbLogs.TabIndex = 4;
+            this.cmbLogs.SelectedIndexChanged += new System.EventHandler(this.cmbLogs_SelectedIndexChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(7, 15);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(31, 13);
+            this.label25.TabIndex = 3;
+            this.label25.Text = "Logs:";
+            // 
+            // txtLogs
+            // 
+            this.txtLogs.BackColor = System.Drawing.Color.White;
+            this.txtLogs.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtLogs.Location = new System.Drawing.Point(8, 39);
+            this.txtLogs.Multiline = true;
+            this.txtLogs.Name = "txtLogs";
+            this.txtLogs.ReadOnly = true;
+            this.txtLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLogs.Size = new System.Drawing.Size(772, 237);
+            this.txtLogs.TabIndex = 2;
+            this.txtLogs.TextChanged += new System.EventHandler(this.txtLogs_TextChanged);
+            // 
             // txtErrors
             // 
             this.txtErrors.BackColor = System.Drawing.Color.White;
@@ -1075,6 +1124,18 @@ namespace MCDawn.Gui
             this.grpMapViewer.TabStop = false;
             this.grpMapViewer.Text = "Map Viewer";
             // 
+            // txtMapViewerRotation
+            // 
+            this.txtMapViewerRotation.Location = new System.Drawing.Point(240, 14);
+            this.txtMapViewerRotation.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.txtMapViewerRotation.Name = "txtMapViewerRotation";
+            this.txtMapViewerRotation.Size = new System.Drawing.Size(44, 21);
+            this.txtMapViewerRotation.TabIndex = 20;
+            // 
             // txtMapViewerZ
             // 
             this.txtMapViewerZ.Location = new System.Drawing.Point(540, 14);
@@ -1162,7 +1223,7 @@ namespace MCDawn.Gui
             this.picMapViewer.Location = new System.Drawing.Point(6, 41);
             this.picMapViewer.Name = "picMapViewer";
             this.picMapViewer.Size = new System.Drawing.Size(760, 402);
-            this.picMapViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMapViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picMapViewer.TabIndex = 0;
             this.picMapViewer.TabStop = false;
             // 
@@ -1871,7 +1932,7 @@ namespace MCDawn.Gui
             this.liLoadedLevels.ScrollAlwaysVisible = true;
             this.liLoadedLevels.Size = new System.Drawing.Size(159, 212);
             this.liLoadedLevels.TabIndex = 38;
-            this.liLoadedLevels.Click += new System.EventHandler(this.liLoadedLevels_Click);
+            this.liLoadedLevels.SelectedIndexChanged += new System.EventHandler(this.liLoadedLevels_SelectedIndexChanged);
             // 
             // liUnloadedLevels
             // 
@@ -3011,67 +3072,6 @@ namespace MCDawn.Gui
             this.txtRCKey.TabIndex = 0;
             this.txtRCKey.TextChanged += new System.EventHandler(this.txtRCKey_TextChanged);
             // 
-            // txtMapViewerRotation
-            // 
-            this.txtMapViewerRotation.Location = new System.Drawing.Point(240, 14);
-            this.txtMapViewerRotation.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.txtMapViewerRotation.Name = "txtMapViewerRotation";
-            this.txtMapViewerRotation.Size = new System.Drawing.Size(44, 21);
-            this.txtMapViewerRotation.TabIndex = 20;
-            // 
-            // txtLogs
-            // 
-            this.txtLogs.BackColor = System.Drawing.Color.White;
-            this.txtLogs.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.txtLogs.Location = new System.Drawing.Point(8, 39);
-            this.txtLogs.Multiline = true;
-            this.txtLogs.Name = "txtLogs";
-            this.txtLogs.ReadOnly = true;
-            this.txtLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLogs.Size = new System.Drawing.Size(772, 237);
-            this.txtLogs.TabIndex = 2;
-            this.txtLogs.TextChanged += new System.EventHandler(this.txtLogs_TextChanged);
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(7, 15);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(31, 13);
-            this.label25.TabIndex = 3;
-            this.label25.Text = "Logs:";
-            // 
-            // cmbLogs
-            // 
-            this.cmbLogs.FormattingEnabled = true;
-            this.cmbLogs.Location = new System.Drawing.Point(44, 12);
-            this.cmbLogs.Name = "cmbLogs";
-            this.cmbLogs.Size = new System.Drawing.Size(121, 21);
-            this.cmbLogs.TabIndex = 4;
-            this.cmbLogs.SelectedIndexChanged += new System.EventHandler(this.cmbLogs_SelectedIndexChanged);
-            // 
-            // cmbErrors
-            // 
-            this.cmbErrors.FormattingEnabled = true;
-            this.cmbErrors.Location = new System.Drawing.Point(51, 284);
-            this.cmbErrors.Name = "cmbErrors";
-            this.cmbErrors.Size = new System.Drawing.Size(121, 21);
-            this.cmbErrors.TabIndex = 6;
-            this.cmbErrors.SelectedIndexChanged += new System.EventHandler(this.cmbErrors_SelectedIndexChanged);
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(7, 287);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(38, 13);
-            this.label52.TabIndex = 5;
-            this.label52.Text = "Errors:";
-            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -3105,6 +3105,7 @@ namespace MCDawn.Gui
             this.tabPage7.ResumeLayout(false);
             this.grpMapViewer.ResumeLayout(false);
             this.grpMapViewer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMapViewerRotation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMapViewer)).EndInit();
             this.grpMapEditor.ResumeLayout(false);
             this.grpMapEditor.PerformLayout();
@@ -3152,7 +3153,6 @@ namespace MCDawn.Gui
             this.grpRCSettings.PerformLayout();
             this.grpConnectedRCs.ResumeLayout(false);
             this.grpConnectedRCs.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMapViewerRotation)).EndInit();
             this.ResumeLayout(false);
 
         }

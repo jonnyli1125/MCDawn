@@ -273,7 +273,7 @@ namespace MCDawn.Gui
             //ForeColor = back;
         }
 
-        private void LoadPlayerTabDetails(object sender, EventArgs e)
+        private void LoadPlayerTabDetails()
         {
             try
             {
@@ -333,15 +333,11 @@ namespace MCDawn.Gui
                 liPlayers.Items.Add(p.name);
             }
         }
-        private void liPlayers_Click(object sender, EventArgs e)
-        {
-            LoadPlayerTabDetails(sender, e);
-        }
 
         private void tabPage5_Click(object sender, EventArgs e)
         {
             UpdatePlayersListBox();
-            LoadPlayerTabDetails(sender, e);
+            LoadPlayerTabDetails();
         }
 
         void SettingsUpdate()
@@ -1525,7 +1521,7 @@ namespace MCDawn.Gui
 
         private void liPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadPlayerTabDetails(sender, e);
+            LoadPlayerTabDetails();
         }
 
 		private void btnInvincible_Click(object sender, EventArgs e)
@@ -1655,23 +1651,15 @@ namespace MCDawn.Gui
         }
         private void liLoadedLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                UpdateMapList();
-                UnloadedlistUpdate();
-            }
-            catch { txtLevelLog.AppendText("Error Loading Level Details."); }
-        }
-        private void liLoadedLevels_Click(object sender, EventArgs e)
-        {
             LoadLevelTabDetails();
         }
         private void LoadLevelTabDetails()
         {
             try
             {
-                string lvl = liLoadedLevels.SelectedItem.ToString();
-                lvl = lvl.Substring(0, lvl.IndexOf("-")).Trim();
+                string lvl = (liLoadedLevels.SelectedItem != null ? liLoadedLevels.SelectedItem.ToString() : "");
+                if (String.IsNullOrEmpty(lvl)) return;
+                lvl = lvl.Contains("-") ? lvl.Substring(0, lvl.IndexOf("-")).Trim() : lvl;
                 Level l = Level.Find(lvl);
                 if (l != null)
                 {
@@ -1777,7 +1765,7 @@ namespace MCDawn.Gui
 
         private void btnUpdatePlayerList_Click(object sender, EventArgs e)
         {
-            LoadPlayerTabDetails(sender, e);
+            LoadPlayerTabDetails();
         }
 
         private void btnUpdateLevelList_Click(object sender, EventArgs e)
@@ -2013,7 +2001,11 @@ namespace MCDawn.Gui
             try
             {
                 Level l = Level.Find(txtMapViewerLevelName.Text);
-                if (l == null) { l = Level.Load(txtMapViewerLevelName.Text); }
+                if (l == null)
+                {
+                    Command.all.Find("load").Use(null, txtMapViewerLevelName.Text);
+                    l = Level.Find(txtMapViewerLevelName.Text);
+                }
                 if (l == null) { MessageBox.Show("Level could not be found.", "Map Viewer"); return; }
                 txtMapViewerX.Text = l.width.ToString();
                 txtMapViewerY.Text = l.depth.ToString();
