@@ -243,11 +243,13 @@ namespace MCDawn.Gui
                     if (!cmbLogs.Items.Contains(LogFileNameFormat(file)))
                         cmbLogs.Items.Add(LogFileNameFormat(file));
                 cmbLogs.Text = LogFileNameFormat(Logger.LogPath);
+                ScrollToBottom(txtLogs);
 
                 foreach (string file in Directory.GetFiles("logs/errors"))
                     if (!cmbErrors.Items.Contains(LogFileNameFormat(file)))
                         cmbErrors.Items.Add(LogFileNameFormat(file));
                 cmbErrors.Text = LogFileNameFormat(Logger.ErrorLogPath);
+                ScrollToBottom(txtErrors);
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
         }
