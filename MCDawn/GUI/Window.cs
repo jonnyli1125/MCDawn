@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -118,7 +119,7 @@ namespace MCDawn.Gui
                 System.Timers.Timer MapTimer = new System.Timers.Timer(10000);
                 MapTimer.Elapsed += delegate
                 {
-                    UpdateMapList("'");
+                    UpdateMapList();
                 }; MapTimer.Start();
 
                 System.Timers.Timer uptimeTimer = new System.Timers.Timer(1000);
@@ -233,6 +234,13 @@ namespace MCDawn.Gui
                 txtMapEditorLevelName.Text = Server.level;
                 txtMapEditorX.Text = "0"; txtMapEditorY.Text = "0"; txtMapEditorZ.Text = "0";
                 chkChatColors.Checked = Server.consoleChatColors;
+
+                try
+                {
+                    UpdateMapList();
+                    UnloadedlistUpdate();
+                }
+                catch { }
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
         }
@@ -300,7 +308,7 @@ namespace MCDawn.Gui
         private void tabPage6_Click(object sender, EventArgs e)
         {
             UnloadedlistUpdate();
-            UpdateMapList("'");
+            UpdateMapList();
         }
 
         public void UpdatePlayersListBox()
@@ -505,18 +513,16 @@ namespace MCDawn.Gui
             }
         }
         
-        public void UpdateMapList(string blah) {            
-            if (this.InvokeRequired) {
-                LogDelegate d = new LogDelegate(UpdateMapList);
-                this.Invoke(d, new object[] { blah });
-            } else {
+        public void UpdateMapList() {
+            Invoke(new Action(delegate {
                 liMaps.Items.Clear();
                 liLoadedLevels.Items.Clear();
-                foreach (Level level in Server.levels) {
+                foreach (Level level in Server.levels)
+                {
                     liMaps.Items.Add(level.name + " - " + level.physics);
                     liLoadedLevels.Items.Add(level.name + " - " + level.physics);
                 }
-            }
+            }));
         }
 
         public void UpdateBotList(List<PlayerBot> bots)
@@ -1006,6 +1012,8 @@ namespace MCDawn.Gui
         private void tabControl1_Click(object sender, EventArgs e)
         {
             try { UpdatePlayersListBox(); }
+            catch { }
+            try { UpdateMapList(); UnloadedlistUpdate(); }
             catch { }
             foreach (TabPage tP in tabControl1.TabPages)
             {
@@ -1515,34 +1523,32 @@ namespace MCDawn.Gui
                 if (txtLevelName.Text == "" || txtXDim.Text == "" || txtYDim.Text == "" || txtZDim.Text == "" || cmbLevelType.SelectedItem == null || cmbLevelType.Text == "") { txtLevelLog.AppendText("Please fill in all the boxes." + Environment.NewLine); return; }
                 if (File.Exists("levels/" + txtLevelName.Text + ".lvl")) { txtLevelLog.AppendText("Level already exists. Delete the existing level first to proceed."); return; }
 
-                new Thread(() =>
+                try
                 {
+                    Command.all.Find("newlvl").Use(null, txtLevelName.Text.ToLower() + " " + txtXDim.Text + " " + txtYDim.Text + " " + txtZDim.Text + " " + cmbLevelType.Text.ToLower());
+                }
+                catch
+                {
+                    txtLevelLog.AppendText("Error Creating Level." + Environment.NewLine);
+                }
+
+                if (File.Exists("levels/" + txtLevelName.Text + ".lvl"))
+                {
+                    txtLevelLog.AppendText("Level " + txtLevelName.Text + " created." + Environment.NewLine);
                     try
                     {
-                        Command.all.Find("newlvl").Use(null, txtLevelName.Text + " " + txtXDim.Text + " " + txtYDim.Text + " " + txtZDim.Text + " " + cmbLevelType.Text);
+                        UnloadedlistUpdate();
+                        UpdateMapList();
                     }
-                    catch
-                    {
-                        txtLevelLog.AppendText("Error Creating Level." + Environment.NewLine);
-                    }
-
-                    if (File.Exists("levels/" + txtLevelName.Text + ".lvl"))
-                    {
-                        txtLevelLog.AppendText("Level " + txtLevelName.Text + " created." + Environment.NewLine);
-                        try
-                        {
-                            UnloadedlistUpdate();
-                            UpdateMapList("'");
-                        }
-                        catch { }
-                    }
-                    else
-                    {
-                        txtLevelLog.AppendText("Error Creating Level." + Environment.NewLine);
-                    }
-                }).Start(); ;
+                    catch { }
+                }
+                else
+                {
+                    MessageBox.Show("levelfilenotfound");
+                    txtLevelLog.AppendText("Error Creating Level." + Environment.NewLine);
+                }
             }
-            catch { txtLevelLog.AppendText("Error Creating Level." + Environment.NewLine); }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); txtLevelLog.AppendText("Error Creating Level." + Environment.NewLine); }
             finally
             {
                 txtLevelName.Clear();
@@ -1558,13 +1564,15 @@ namespace MCDawn.Gui
             try
             {
                 if (txtDeleteLevelName.Text == "") { txtLevelLog.AppendText("Please specify a level name." + Environment.NewLine); return; }
-                if (!File.Exists("levels/" + txtLevelName.Text + ".lvl")) { txtLevelLog.AppendText("Level does not exist, you can't delete it." + Environment.NewLine); }
+                if (!File.Exists("levels/" + txtDeleteLevelName.Text + ".lvl")) { txtLevelLog.AppendText("Level does not exist, you can't delete it." + Environment.NewLine); }
                 else if (txtDeleteLevelName.Text == Server.mainLevel.ToString()) { txtLevelLog.AppendText("Cannot delete the server's main level!"); return; }
                 else
                 {
                     Command.all.Find("deletelvl").Use(null, txtDeleteLevelName.Text);
                     txtLevelLog.AppendText("Level " + txtDeleteLevelName.Text + " has been deleted." + Environment.NewLine);
                     txtDeleteLevelName.Clear();
+                    UpdateMapList();
+                    UnloadedlistUpdate();
                 }
             }
             catch { txtLevelLog.AppendText("Error Deleting Level." + Environment.NewLine); }
@@ -1575,14 +1583,16 @@ namespace MCDawn.Gui
         {
             try
             {
-                if ((txtCurName.Text == Server.mainLevel.ToString()) || (txtNewName.Text == Server.mainLevel.ToString())) { txtLevelLog.AppendText("Cannot rename the main level."); return; }
+                if ((txtCurName.Text == Server.mainLevel.ToString()) || (txtNewName.Text == Server.mainLevel.ToString())) { txtLevelLog.AppendText("Cannot rename the main level." + Environment.NewLine); return; }
                 if (txtCurName.Text == "" || txtNewName.Text == "") { txtLevelLog.AppendText("Please fill in all the Level Name boxes." + Environment.NewLine); return; }
                 if (File.Exists("levels/" + txtNewName.Text + ".lvl")) { txtLevelLog.AppendText("New Level already exists." + Environment.NewLine); return; }
                 if (!File.Exists("levels/" + txtCurName.Text + ".lvl")) { txtLevelLog.AppendText("Current Level does not exist." + Environment.NewLine); return; }
-                Command.all.Find("renamelvl").Use(null, txtCurName.Text + txtNewName.Text);
-                txtLevelLog.AppendText("Level " + txtCurName.Text + " renamed to " + txtNewName.Text);
+                Command.all.Find("renamelvl").Use(null, txtCurName.Text + " " + txtNewName.Text);
+                txtLevelLog.AppendText("Level " + txtCurName.Text + " renamed to " + txtNewName.Text + Environment.NewLine);
                 txtCurName.Clear();
                 txtNewName.Clear();
+                UpdateMapList();
+                UnloadedlistUpdate();
             }
             catch { txtLevelLog.AppendText("Error Renaming Level." + Environment.NewLine); }
             finally
@@ -1612,7 +1622,7 @@ namespace MCDawn.Gui
         {
             try
             {
-                UpdateMapList("'");
+                UpdateMapList();
                 UnloadedlistUpdate();
             }
             catch { txtLevelLog.AppendText("Error Loading Level Details."); }
@@ -1625,45 +1635,30 @@ namespace MCDawn.Gui
         {
             try
             {
-                Level l = Level.Find(liLoadedLevels.SelectedItem.ToString());
+                string lvl = liLoadedLevels.SelectedItem.ToString();
+                lvl = lvl.Substring(0, lvl.IndexOf("-")).Trim();
+                Level l = Level.Find(lvl);
                 if (l != null)
                 {
                     propertiesoflevel = l;
-                    txtLevelMotd.Text = l.motd;
+                    txtLevelMotd.Text = l.motd ?? "ignore";
                     txtPhysics.Value = l.physics;
                     chkGrassGrowing.Checked = l.GrassGrow;
-                    chkRPChat.Checked = l.worldChat;
+                    chkRPChat.Checked = !l.worldChat;
                     chkKillerBlocks.Checked = l.Killer;
                     chkSurvivalDeath.Checked = l.Death;
                     chkFiniteMode.Checked = l.finite;
                     chkEdgeWater.Checked = l.edgeWater;
-                    if (l.ai == true) { chkAnimalAI.Checked = true; }
-                    else { chkAnimalAI.Checked = false; }
+                    chkAnimalAI.Checked = l.ai;
                     chkAllowGuns.Checked = l.allowguns;
                     txtFall.Value = l.fall;
                     txtDrown.Value = l.drown;
                     chkUnload.Checked = l.unload;
-                    chkAutoLoad.Checked = false;
-                    if (File.Exists("text/autoload.txt"))
-                    {
-                        using (StreamReader r = new StreamReader("text/autoload.txt"))
-                        {
-                            string line;
-                            while ((line = r.ReadLine()) != null)
-                            {
-                                if (line.Contains(l.name) || line.Contains(l.name.ToLower()))
-                                {
-                                    chkAutoLoad.Checked = true;
-                                }
-                            }
-                        }
-                    }
+                    chkAutoLoad.Checked = (File.Exists("text/autoload.txt") ? (File.ReadAllLines("text/autoload.txt").Contains(l.name) || File.ReadAllLines("text/autoload.txt").Contains(l.name.ToLower())) : false);
+                    txtLevelLog.AppendText("Level " + l.name + Environment.NewLine);
                 }
-                txtLevelLog.AppendText("Level " + l.name + Environment.NewLine);
-                UpdateMapList("'");
-                return;
             }
-            catch { txtLevelLog.AppendText("Failed to load Level details." + Environment.NewLine); }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); txtLevelLog.AppendText("Failed to load Level details." + Environment.NewLine); }
         }
 
         private void btnPropertiesSave_Click(object sender, EventArgs e)
@@ -1671,19 +1666,15 @@ namespace MCDawn.Gui
             if (propertiesoflevel == null) return;
             Level l = propertiesoflevel;
             l.motd = txtLevelMotd.Text;
-            if (txtLevelMotd.Text == "")
-            {
-                l.motd = "ignore";
-            }
+            l.motd = (String.IsNullOrEmpty(txtLevelMotd.Text) ? "ignore" : txtLevelMotd.Text);
             l.physics = (int)txtPhysics.Value;
             l.GrassGrow = chkGrassGrowing.Checked;
-            l.worldChat = chkRPChat.Checked;
+            l.worldChat = !chkRPChat.Checked;
             l.Killer = chkKillerBlocks.Checked;
             l.Death = chkSurvivalDeath.Checked;
             l.finite = chkFiniteMode.Checked;
             l.edgeWater = chkEdgeWater.Checked;
-            if (chkAnimalAI.Checked == true) { l.ai = true; }
-            else { l.ai = false; }
+            l.ai = chkAnimalAI.Checked;
             l.allowguns = chkAllowGuns.Checked;
             l.fall = (int)txtFall.Value;
             l.drown = (int)txtDrown.Value;
@@ -1724,7 +1715,7 @@ namespace MCDawn.Gui
                 }
             }
             txtLevelLog.AppendText("Level " + l.name + " saved." + Environment.NewLine);
-            UpdateMapList("'");
+            UpdateMapList();
             return;
         }
 
@@ -1733,10 +1724,10 @@ namespace MCDawn.Gui
             try
             {
                 string lvl = liLoadedLevels.SelectedItem.ToString();
-                lvl = lvl.Remove(lvl.Length, lvl.Length - 4);
-                if (liLoadedLevels.SelectedItem.ToString() == "") { txtLevelLog.AppendText("No Level Selected!"); return; }
+                lvl = (lvl.Contains("-") ? lvl.Substring(0, lvl.IndexOf("-")).Trim() : lvl.Trim());
+                if (String.IsNullOrEmpty(liLoadedLevels.SelectedItem.ToString())) { txtLevelLog.AppendText("No Level Selected!"); return; }
                 Command.all.Find("unload").Use(null, lvl);
-                UpdateMapList("'");
+                UpdateMapList();
                 UnloadedlistUpdate();
             }
             catch { txtLevelLog.AppendText("Error Unloading Level."); }
@@ -1747,9 +1738,9 @@ namespace MCDawn.Gui
             try
             {
                 string lvl = liUnloadedLevels.SelectedItem.ToString();
-                if (liUnloadedLevels.SelectedItem.ToString() == "") { txtLevelLog.AppendText("No Level Selected!"); return; }
+                if (String.IsNullOrEmpty(liUnloadedLevels.SelectedItem.ToString())) { txtLevelLog.AppendText("No Level Selected!"); return; }
                 Command.all.Find("load").Use(null, lvl);
-                UpdateMapList("'");
+                UpdateMapList();
                 UnloadedlistUpdate();
             }
             catch { txtLevelLog.AppendText("Error Loading Level."); }
@@ -1763,7 +1754,7 @@ namespace MCDawn.Gui
         private void btnUpdateLevelList_Click(object sender, EventArgs e)
         {
             UnloadedlistUpdate();
-            UpdateMapList("'");
+            UpdateMapList();
         }
 
         private void btnKillPhysics_Click_1(object sender, EventArgs e)
@@ -1965,8 +1956,8 @@ namespace MCDawn.Gui
                 if (l == null) { MessageBox.Show("Level " + txtMapEditorLevelName.Text + " could not be found.", "Map Editor"); return; }
                 ushort x, y, z;
                 if (!ushort.TryParse(txtMapEditorX.Text, out x) || (x >= l.width || x < 0)) { txtMapEditorX.Text = "0"; MessageBox.Show("Invalid x value.", "Map Editor"); return; }
-                if (!ushort.TryParse(txtMapEditorY.Text, out y) || (y >= l.height || y < 0)) { txtMapEditorY.Text = "0"; MessageBox.Show("Invalid y value.", "Map Editor"); return; }
-                if (!ushort.TryParse(txtMapEditorZ.Text, out z) || (z >= l.depth || z < 0)) { txtMapEditorZ.Text = "0"; MessageBox.Show("Invalid z value.", "Map Editor"); return; }
+                if (!ushort.TryParse(txtMapEditorY.Text, out y) || (y >= l.depth || y < 0)) { txtMapEditorY.Text = "0"; MessageBox.Show("Invalid y value.", "Map Editor"); return; }
+                if (!ushort.TryParse(txtMapEditorZ.Text, out z) || (z >= l.height || z < 0)) { txtMapEditorZ.Text = "0"; MessageBox.Show("Invalid z value.", "Map Editor"); return; }
                 txtMapEditorCurrentBlock.Text = Block.Name(l.GetTile(x, y, z));
                 MapViewerUpdateLevel();
             }
@@ -1991,10 +1982,9 @@ namespace MCDawn.Gui
                 if (l == null) { l = Level.Load(txtMapViewerLevelName.Text); }
                 if (l == null) { MessageBox.Show("Level could not be found.", "Map Viewer"); return; }
                 txtMapViewerX.Text = l.width.ToString();
-                txtMapViewerY.Text = l.height.ToString();
-                txtMapViewerZ.Text = l.depth.ToString();
-                int rotation = 0;
-                if (!int.TryParse(txtMapViewerRotation.Text, out rotation)) { MessageBox.Show("Invalid rotation (must be from 0-3).", "Map Viewer"); return; }
+                txtMapViewerY.Text = l.depth.ToString();
+                txtMapViewerZ.Text = l.height.ToString();
+                int rotation = (int)txtMapViewerRotation.Value;
                 if (rotation < 0 || rotation > 3) { MessageBox.Show("Invalid rotation (must be from 0-3).", "Map Viewer"); return; }
                 IsoCat IsoCat = new IsoCat(l, IsoCatMode.Normal, rotation);
                 Rectangle r = new Rectangle(0, 0, picMapViewer.Width, picMapViewer.Height);

@@ -18,6 +18,7 @@ namespace MCDawn
             if (message == "") { Help(p); return; }
 
             string[] parameters = message.Split(' '); // Grab the parameters from the player's message
+            parameters[4] = parameters[4].ToLower();
             if (parameters.Length >= 5 && parameters.Length <= 6) // make sure there are 5 params, or 6, if type is sphere.
             {
                 switch (parameters[4])
@@ -58,13 +59,15 @@ namespace MCDawn
                 try
                 {
                     if (p != null)
-                    if (p.group.Permission < LevelPermission.Admin)
                     {
-                        if (x * y * z > 30000000) { Player.SendMessage(p, "Cannot create a map with over 30 million blocks"); return; }
-                    }
-                    else
-                    {
-                        if (x * y * z > Int32.MaxValue) { Player.SendMessage(p, "You cannot make a map with over 2147483647 blocks."); return; }
+                        if (p.group.Permission < LevelPermission.Admin)
+                        {
+                            if (x * y * z > 30000000) { Player.SendMessage(p, "Cannot create a map with over 30 million blocks"); return; }
+                        }
+                        else
+                        {
+                            if (x * y * z > Int32.MaxValue) { Player.SendMessage(p, "You cannot make a map with over 2147483647 blocks."); return; }
+                        }
                     }
                 }
                 catch 

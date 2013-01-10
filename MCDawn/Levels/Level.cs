@@ -205,11 +205,11 @@ namespace MCDawn
                 shadows = new ushort[width, height];
                 for (ushort x = 0; x < width; x++)
                 {
-                    for (ushort y = 0; y < depth; y++)
+                    for (ushort y = 0; y < height; y++)
                     {
-                        for (ushort z = (ushort)(height - 1); z >= 0; z--)
+                        for (ushort z = (ushort)(depth - 1); z >= 0; z--)
                         {
-                            switch (GetTile(x, z, y))
+                            switch (GetTile(x, y, z))
                             {
                                 case Block.air:
                                 case Block.mushroom:
@@ -220,7 +220,7 @@ namespace MCDawn
                                 case Block.yellowflower:
                                     continue;
                                 default:
-                                    shadows[x, z] = y;
+                                    shadows[x, y] = z;
                                     break;
                             }
                             break;
@@ -228,7 +228,7 @@ namespace MCDawn
                     }
                 }
             }
-            catch { shadows = new ushort[width, height]; }
+            catch (Exception ex) { Server.ErrorLog(ex); shadows = new ushort[width, height]; }
         }
 
         public Level(string n, ushort x, ushort y, ushort z, string type, byte b = 20)

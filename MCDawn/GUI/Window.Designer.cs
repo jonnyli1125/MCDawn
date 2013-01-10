@@ -137,7 +137,6 @@ namespace MCDawn.Gui
             this.txtMapViewerX = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.btnMapViewerSave = new System.Windows.Forms.Button();
-            this.txtMapViewerRotation = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btnMapViewerUpdate = new System.Windows.Forms.Button();
             this.txtMapViewerLevelName = new System.Windows.Forms.TextBox();
@@ -270,6 +269,7 @@ namespace MCDawn.Gui
             this.txtAdminInput = new System.Windows.Forms.TextBox();
             this.txtAdminLog = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.chkChatColors = new System.Windows.Forms.CheckBox();
             this.btnPlay = new System.Windows.Forms.Button();
             this.label38 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
@@ -285,6 +285,7 @@ namespace MCDawn.Gui
             this.gBCommands = new System.Windows.Forms.GroupBox();
             this.txtCommandsUsed = new System.Windows.Forms.TextBox();
             this.gBChat = new System.Windows.Forms.GroupBox();
+            this.txtLog = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtHost = new System.Windows.Forms.TextBox();
             this.txtCommands = new System.Windows.Forms.TextBox();
@@ -317,8 +318,7 @@ namespace MCDawn.Gui
             this.label48 = new System.Windows.Forms.Label();
             this.btnGenerateRCKey = new System.Windows.Forms.Button();
             this.txtRCKey = new System.Windows.Forms.TextBox();
-            this.txtLog = new System.Windows.Forms.RichTextBox();
-            this.chkChatColors = new System.Windows.Forms.CheckBox();
+            this.txtMapViewerRotation = new System.Windows.Forms.NumericUpDown();
             this.playerStrip.SuspendLayout();
             this.mapsStrip.SuspendLayout();
             this.iconContext.SuspendLayout();
@@ -361,6 +361,7 @@ namespace MCDawn.Gui
             this.grpRCUsers.SuspendLayout();
             this.grpRCSettings.SuspendLayout();
             this.grpConnectedRCs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMapViewerRotation)).BeginInit();
             this.SuspendLayout();
             // 
             // playerStrip
@@ -1045,12 +1046,12 @@ namespace MCDawn.Gui
             // 
             // grpMapViewer
             // 
+            this.grpMapViewer.Controls.Add(this.txtMapViewerRotation);
             this.grpMapViewer.Controls.Add(this.txtMapViewerZ);
             this.grpMapViewer.Controls.Add(this.txtMapViewerY);
             this.grpMapViewer.Controls.Add(this.txtMapViewerX);
             this.grpMapViewer.Controls.Add(this.label24);
             this.grpMapViewer.Controls.Add(this.btnMapViewerSave);
-            this.grpMapViewer.Controls.Add(this.txtMapViewerRotation);
             this.grpMapViewer.Controls.Add(this.label23);
             this.grpMapViewer.Controls.Add(this.btnMapViewerUpdate);
             this.grpMapViewer.Controls.Add(this.txtMapViewerLevelName);
@@ -1108,14 +1109,6 @@ namespace MCDawn.Gui
             this.btnMapViewerSave.Text = "Save Image";
             this.btnMapViewerSave.UseVisualStyleBackColor = true;
             this.btnMapViewerSave.Click += new System.EventHandler(this.btnMapViewerSave_Click);
-            // 
-            // txtMapViewerRotation
-            // 
-            this.txtMapViewerRotation.Location = new System.Drawing.Point(240, 14);
-            this.txtMapViewerRotation.Name = "txtMapViewerRotation";
-            this.txtMapViewerRotation.Size = new System.Drawing.Size(34, 21);
-            this.txtMapViewerRotation.TabIndex = 14;
-            this.txtMapViewerRotation.Text = "0";
             // 
             // label23
             // 
@@ -1610,13 +1603,16 @@ namespace MCDawn.Gui
             // 
             this.cmbLevelType.FormattingEnabled = true;
             this.cmbLevelType.Items.AddRange(new object[] {
-            "Flat",
             "Island",
             "Mountains",
             "Forest",
             "Ocean",
+            "Flat",
             "Pixel",
-            "Desert"});
+            "Desert",
+            "Nether",
+            "Arctic",
+            "Sphere"});
             this.cmbLevelType.Location = new System.Drawing.Point(63, 208);
             this.cmbLevelType.Name = "cmbLevelType";
             this.cmbLevelType.Size = new System.Drawing.Size(86, 21);
@@ -1864,6 +1860,7 @@ namespace MCDawn.Gui
             this.liLoadedLevels.ScrollAlwaysVisible = true;
             this.liLoadedLevels.Size = new System.Drawing.Size(159, 212);
             this.liLoadedLevels.TabIndex = 38;
+            this.liLoadedLevels.Click += new System.EventHandler(this.liLoadedLevels_Click);
             // 
             // liUnloadedLevels
             // 
@@ -2484,6 +2481,17 @@ namespace MCDawn.Gui
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             // 
+            // chkChatColors
+            // 
+            this.chkChatColors.AutoSize = true;
+            this.chkChatColors.Location = new System.Drawing.Point(499, 201);
+            this.chkChatColors.Name = "chkChatColors";
+            this.chkChatColors.Size = new System.Drawing.Size(80, 17);
+            this.chkChatColors.TabIndex = 47;
+            this.chkChatColors.Text = "Chat Colors";
+            this.chkChatColors.UseVisualStyleBackColor = true;
+            this.chkChatColors.CheckedChanged += new System.EventHandler(this.chkChatColors_CheckedChanged);
+            // 
             // btnPlay
             // 
             this.btnPlay.Location = new System.Drawing.Point(440, 8);
@@ -2649,6 +2657,19 @@ namespace MCDawn.Gui
             this.gBChat.TabIndex = 32;
             this.gBChat.TabStop = false;
             this.gBChat.Text = "Chat";
+            // 
+            // txtLog
+            // 
+            this.txtLog.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLog.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLog.Location = new System.Drawing.Point(6, 20);
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.txtLog.Size = new System.Drawing.Size(458, 236);
+            this.txtLog.TabIndex = 2;
+            this.txtLog.Text = "";
             // 
             // label2
             // 
@@ -2979,29 +3000,17 @@ namespace MCDawn.Gui
             this.txtRCKey.TabIndex = 0;
             this.txtRCKey.TextChanged += new System.EventHandler(this.txtRCKey_TextChanged);
             // 
-            // txtLog
+            // txtMapViewerRotation
             // 
-            this.txtLog.BackColor = System.Drawing.SystemColors.Window;
-            this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLog.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLog.Location = new System.Drawing.Point(6, 20);
-            this.txtLog.Name = "txtLog";
-            this.txtLog.ReadOnly = true;
-            this.txtLog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.txtLog.Size = new System.Drawing.Size(458, 236);
-            this.txtLog.TabIndex = 2;
-            this.txtLog.Text = "";
-            // 
-            // chkChatColors
-            // 
-            this.chkChatColors.AutoSize = true;
-            this.chkChatColors.Location = new System.Drawing.Point(499, 201);
-            this.chkChatColors.Name = "chkChatColors";
-            this.chkChatColors.Size = new System.Drawing.Size(80, 17);
-            this.chkChatColors.TabIndex = 47;
-            this.chkChatColors.Text = "Chat Colors";
-            this.chkChatColors.UseVisualStyleBackColor = true;
-            this.chkChatColors.CheckedChanged += new System.EventHandler(this.chkChatColors_CheckedChanged);
+            this.txtMapViewerRotation.Location = new System.Drawing.Point(240, 14);
+            this.txtMapViewerRotation.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.txtMapViewerRotation.Name = "txtMapViewerRotation";
+            this.txtMapViewerRotation.Size = new System.Drawing.Size(44, 21);
+            this.txtMapViewerRotation.TabIndex = 20;
             // 
             // Window
             // 
@@ -3083,6 +3092,7 @@ namespace MCDawn.Gui
             this.grpRCSettings.PerformLayout();
             this.grpConnectedRCs.ResumeLayout(false);
             this.grpConnectedRCs.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMapViewerRotation)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3340,7 +3350,6 @@ namespace MCDawn.Gui
         private Label label22;
         private Button btnMapViewerUpdate;
         private Label label23;
-        private TextBox txtMapViewerRotation;
         private Button btnMapViewerSave;
         private Label label24;
         private TextBox txtMapViewerZ;
@@ -3348,5 +3357,6 @@ namespace MCDawn.Gui
         private TextBox txtMapViewerX;
         internal RichTextBox txtLog;
         private CheckBox chkChatColors;
+        private NumericUpDown txtMapViewerRotation;
     }
 }

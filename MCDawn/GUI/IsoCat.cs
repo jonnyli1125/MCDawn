@@ -124,18 +124,18 @@ namespace MCDawn
             Level = level;
 
             dimX = Level.width;
-            dimY = Level.depth;
-            offsetY = Math.Max(0, Level.width - Level.depth);
-            offsetX = Math.Max(0, Level.depth - Level.width);
+            dimY = Level.height;
+            offsetY = Math.Max(0, Level.width - Level.height);
+            offsetX = Math.Max(0, Level.height - Level.width);
             dimX2 = dimX / 2 - 1;
             dimY2 = dimY / 2 - 1;
             dimX1 = dimX - 1;
             dimY1 = dimY - 1;
 
-            blendDivisor = 255 * Level.height;
+            blendDivisor = 255 * Level.depth;
 
-            imageWidth = TileX * Math.Max(dimX, dimY) + TileY / 2 * Level.height + TileX * 2;
-            imageHeight = TileY / 2 * Level.height + MaxTileDim / 2 * Math.Max(Math.Max(dimX, dimY), Level.height) + TileY * 2;
+            imageWidth = TileX * Math.Max(dimX, dimY) + TileY / 2 * Level.depth + TileX * 2;
+            imageHeight = TileY / 2 * Level.depth + MaxTileDim / 2 * Math.Max(Math.Max(dimX, dimY), Level.depth) + TileY * 2;
 
             imageBmp = new Bitmap(imageWidth, imageHeight, PixelFormat.Format32bppArgb);
             imageData = imageBmp.LockBits(new Rectangle(0, 0, imageBmp.Width, imageBmp.Height),
@@ -145,12 +145,12 @@ namespace MCDawn
             image = (byte*)imageData.Scan0;
             imageStride = imageData.Stride;
 
-            isoOffset = (Level.height * TileY / 2 * imageStride + imageStride / 2 + TileX * 2);
+            isoOffset = (Level.depth * TileY / 2 * imageStride + imageStride / 2 + TileX * 2);
             isoX = (TileX / 4 * imageStride + TileX * 2);
             isoY = (TileY / 4 * imageStride - TileY * 2);
             isoH = (-TileY / 2 * imageStride);
 
-            mh34 = Level.height * 3 / 4;
+            mh34 = Level.depth * 3 / 4;
         }
 
         byte* bp, ctp;
@@ -167,7 +167,7 @@ namespace MCDawn
                         fixed (byte* stp = ShadowTiles)
                         {
                             bp = bpx;
-                            while (z < Level.height)
+                            while (z < Level.depth)
                             {
                                 block = GetBlock(x, y, z);
                                 if (block != 0)
@@ -187,7 +187,7 @@ namespace MCDawn
                                     else blockRight = 0;
                                     if (y != (Rot == 1 || Rot == 3 ? dimX1 : dimY1)) blockLeft = GetBlock(x, y + 1, z);
                                     else blockLeft = 0;
-                                    if (z != Level.height - 1) blockUp = GetBlock(x, y, z + 1);
+                                    if (z != Level.depth - 1) blockUp = GetBlock(x, y, z + 1);
                                     else blockUp = 0;
 
                                     if (blockUp == 0 || blockLeft == 0 || blockRight == 0 || // air
@@ -221,7 +221,7 @@ namespace MCDawn
                                     if (worker != null && z % 4 == 0)
                                     {
                                         if (worker.CancellationPending) return null;
-                                        worker.ReportProgress((z * 100) / Level.height);
+                                        worker.ReportProgress((z * 100) / Level.depth);
                                     }
                                 }
                             }
