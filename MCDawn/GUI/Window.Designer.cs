@@ -319,6 +319,11 @@ namespace MCDawn.Gui
             this.btnGenerateRCKey = new System.Windows.Forms.Button();
             this.txtRCKey = new System.Windows.Forms.TextBox();
             this.txtMapViewerRotation = new System.Windows.Forms.NumericUpDown();
+            this.txtLogs = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.cmbLogs = new System.Windows.Forms.ComboBox();
+            this.cmbErrors = new System.Windows.Forms.ComboBox();
+            this.label52 = new System.Windows.Forms.Label();
             this.playerStrip.SuspendLayout();
             this.mapsStrip.SuspendLayout();
             this.iconContext.SuspendLayout();
@@ -956,24 +961,29 @@ namespace MCDawn.Gui
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage3.Controls.Add(this.cmbErrors);
+            this.tabPage3.Controls.Add(this.label52);
+            this.tabPage3.Controls.Add(this.cmbLogs);
+            this.tabPage3.Controls.Add(this.label25);
+            this.tabPage3.Controls.Add(this.txtLogs);
             this.tabPage3.Controls.Add(this.txtErrors);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(786, 553);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Errors";
+            this.tabPage3.Text = "Logs/Errors";
             // 
             // txtErrors
             // 
             this.txtErrors.BackColor = System.Drawing.Color.White;
             this.txtErrors.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.txtErrors.Location = new System.Drawing.Point(8, 6);
+            this.txtErrors.Location = new System.Drawing.Point(8, 311);
             this.txtErrors.Multiline = true;
             this.txtErrors.Name = "txtErrors";
             this.txtErrors.ReadOnly = true;
             this.txtErrors.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtErrors.Size = new System.Drawing.Size(772, 538);
+            this.txtErrors.Size = new System.Drawing.Size(772, 233);
             this.txtErrors.TabIndex = 1;
             // 
             // tabPage2
@@ -3012,6 +3022,54 @@ namespace MCDawn.Gui
             this.txtMapViewerRotation.Size = new System.Drawing.Size(44, 21);
             this.txtMapViewerRotation.TabIndex = 20;
             // 
+            // txtLogs
+            // 
+            this.txtLogs.BackColor = System.Drawing.Color.White;
+            this.txtLogs.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtLogs.Location = new System.Drawing.Point(8, 39);
+            this.txtLogs.Multiline = true;
+            this.txtLogs.Name = "txtLogs";
+            this.txtLogs.ReadOnly = true;
+            this.txtLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLogs.Size = new System.Drawing.Size(772, 237);
+            this.txtLogs.TabIndex = 2;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(7, 15);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(31, 13);
+            this.label25.TabIndex = 3;
+            this.label25.Text = "Logs:";
+            // 
+            // cmbLogs
+            // 
+            this.cmbLogs.FormattingEnabled = true;
+            this.cmbLogs.Location = new System.Drawing.Point(44, 12);
+            this.cmbLogs.Name = "cmbLogs";
+            this.cmbLogs.Size = new System.Drawing.Size(121, 21);
+            this.cmbLogs.TabIndex = 4;
+            this.cmbLogs.SelectedIndexChanged += new System.EventHandler(this.cmbLogs_SelectedIndexChanged);
+            // 
+            // cmbErrors
+            // 
+            this.cmbErrors.FormattingEnabled = true;
+            this.cmbErrors.Location = new System.Drawing.Point(51, 284);
+            this.cmbErrors.Name = "cmbErrors";
+            this.cmbErrors.Size = new System.Drawing.Size(121, 21);
+            this.cmbErrors.TabIndex = 6;
+            this.cmbErrors.SelectedIndexChanged += new System.EventHandler(this.cmbErrors_SelectedIndexChanged);
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(7, 287);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(38, 13);
+            this.label52.TabIndex = 5;
+            this.label52.Text = "Errors:";
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -3358,5 +3416,10 @@ namespace MCDawn.Gui
         internal RichTextBox txtLog;
         private CheckBox chkChatColors;
         private NumericUpDown txtMapViewerRotation;
+        private ComboBox cmbLogs;
+        private Label label25;
+        private TextBox txtLogs;
+        private ComboBox cmbErrors;
+        private Label label52;
     }
 }

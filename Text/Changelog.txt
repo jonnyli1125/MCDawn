@@ -8,6 +8,7 @@ MCDawn 1.0.2.0
 -Added colors for IRC to Minecraft (and vice versa).
 -Fixed various IRCBot and GlobalChatBot bugs.
 -Fixed various Console GUI bugs.
+-In Console GUI, Errors tab has been changed to Logs/Errors tab.
 
 MCDawn 1.0.1.9
 -Updated Commands

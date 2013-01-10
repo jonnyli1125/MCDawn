@@ -153,9 +153,6 @@ namespace MCDawn.Gui
                     SetLabel(lblThreads, Process.GetCurrentProcess().Threads.Count + " Threads");
                 }; statsTimer.Start();
 
-                //if (File.Exists(Logger.ErrorLogPath))
-                //txtErrors.Lines = File.ReadAllLines(Logger.ErrorLogPath);
-
                 try
                 {
                     using (WebClient w = new WebClient())
@@ -241,6 +238,16 @@ namespace MCDawn.Gui
                     UnloadedlistUpdate();
                 }
                 catch { }
+
+                foreach (string file in Directory.GetFiles("logs"))
+                    if (!cmbLogs.Items.Contains(LogFileNameFormat(file)))
+                        cmbLogs.Items.Add(LogFileNameFormat(file));
+                cmbLogs.Text = LogFileNameFormat(Logger.LogPath);
+
+                foreach (string file in Directory.GetFiles("logs/errors"))
+                    if (!cmbErrors.Items.Contains(LogFileNameFormat(file)))
+                        cmbErrors.Items.Add(LogFileNameFormat(file));
+                cmbErrors.Text = LogFileNameFormat(Logger.ErrorLogPath);
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
         }
@@ -357,6 +364,13 @@ namespace MCDawn.Gui
             WriteLine("Recent Heartbeat Failed");
         }
 
+        string LogFileNameFormat(string input)
+        {
+            if (input.LastIndexOf(@"\") != -1) input = input.Substring(input.LastIndexOf(@"\") + 1);
+            if (input.LastIndexOf("/") != -1) input = input.Substring(input.LastIndexOf("/") + 1);
+            return input.Replace(".log", "").Replace(".txt", "");
+        }
+
         void newError(string message)
         {
             try
@@ -368,7 +382,9 @@ namespace MCDawn.Gui
                 }
                 else
                 {
-                    txtErrors.AppendText(Environment.NewLine + message);
+                    if (LogFileNameFormat(cmbErrors.Text.ToLower()) == LogFileNameFormat(Logger.ErrorLogPath.ToLower()))
+                        txtErrors.AppendText(Environment.NewLine + message);
+                    ScrollToBottom(txtErrors);
                 }
             } catch { }
         }
@@ -402,7 +418,7 @@ namespace MCDawn.Gui
             else
             {
                 if (Server.consoleSound && Window.thisWindow.WindowState == FormWindowState.Minimized) consoleSound.Play();
-                if (!parseColors) { txtLog.AppendText(Player.RemoveAllColors(s) + Environment.NewLine); ScrollToBottom(); return; }
+                if (!parseColors) { txtLog.AppendText(Player.RemoveAllColors(s) + Environment.NewLine); ScrollToBottom(txtLog); return; }
                 s = Player.RemoveBadColors("&0" + s.Replace("&g", "&0").Replace("%g", "&0"));
                 string nocolors = Player.RemoveAllColors(s);
                 txtLog.AppendText(nocolors + Environment.NewLine);
@@ -417,14 +433,24 @@ namespace MCDawn.Gui
                     done += section;
                     ColorText(done.Length - section.Length, section.Length, color);
                 }
-                ScrollToBottom();
+                ScrollToBottom(txtLog);
+
+                if (LogFileNameFormat(cmbLogs.Text.ToLower()) == LogFileNameFormat(Logger.LogPath.ToLower()))
+                    txtLogs.AppendText(nocolors + Environment.NewLine);
+                ScrollToBottom(txtLogs);
             }
         }
 
-        public void ScrollToBottom()
+        public void ScrollToBottom(RichTextBox txt)
         {
-            txtLog.SelectionStart = txtLog.Text.Length;
-            txtLog.ScrollToCaret();
+            txt.SelectionStart = txt.Text.Length;
+            txt.ScrollToCaret();
+        }
+
+        public void ScrollToBottom(TextBox txt)
+        {
+            txt.SelectionStart = txt.Text.Length;
+            txt.ScrollToCaret();
         }
 
         public void ColorText(int start, int length, Color color)
@@ -2018,6 +2044,20 @@ namespace MCDawn.Gui
         {
             Server.consoleChatColors = chkChatColors.Checked;
             Properties.Save("properties/server.properties");
+        }
+
+        private void cmbLogs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ext = File.Exists("logs/" + cmbLogs.Text + ".txt") ? ".txt" : ".log";
+            txtLogs.Lines = File.ReadAllLines("logs/" + cmbLogs.Text + ext);
+            ScrollToBottom(txtLogs);
+        }
+
+        private void cmbErrors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ext = File.Exists("logs/errors/" + cmbLogs.Text + ".txt") ? ".txt" : ".log";
+            txtErrors.Lines = File.ReadAllLines("logs/errors/" + cmbErrors.Text + ext);
+            ScrollToBottom(txtErrors);
         }
     }
 }
