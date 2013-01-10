@@ -160,6 +160,11 @@ namespace MCDawn
             cropRectangle = Rectangle.Empty;
             try
             {
+                //byte[] convertedBlocks = Level.blocks;
+                //for (ushort x = 0; x < Level.width; x++)
+                //    for (ushort y = 0; y < Level.depth; y++)
+                //        for (ushort z = 0; z < Level.height; z++)
+                //            convertedBlocks[Level.PosToInt(x, y, z)] = Block.Convert(Level.GetTile(x, y, z));
                 fixed (byte* bpx = Level.blocks)
                 {
                     fixed (byte* tp = Tiles)
@@ -426,7 +431,7 @@ namespace MCDawn
 
             if (Mode == IsoCatMode.Normal)
             {
-                return bp[pos];
+                return Block.Convert(bp[pos]);
             }
             else if (Mode == IsoCatMode.Peeled && (xx == (Rot == 1 || Rot == 3 ? dimY1 : dimX1) || yy == (Rot == 1 || Rot == 3 ? dimX1 : dimY1) || zz == Level.height - 1))
             {
@@ -441,7 +446,7 @@ namespace MCDawn
                 return 0;
             }
 
-            return bp[pos];
+            return Block.Convert(bp[pos]);
         }
     }
 }

