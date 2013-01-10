@@ -162,7 +162,12 @@ namespace MCDawn.Gui
                 if (File.Exists("Changelog.txt"))
                 {
                     txtChangelog.Clear();
-                    txtChangelog.Lines = File.ReadAllLines("Changelog.txt");
+                    new Thread(() => {
+                        Invoke(new Action(() => {
+                            foreach (string line in File.ReadAllLines("Changelog.txt"))
+                                txtChangelog.AppendText(line + Environment.NewLine);
+                        }));
+                    }).Start();
                 }
                 Properties.Load("properties/server.properties");
                 txtHost.Text = Server.ZallState;
@@ -385,7 +390,7 @@ namespace MCDawn.Gui
                 else
                 {
                     if (LogFileNameFormat(cmbErrors.Text.ToLower()) == LogFileNameFormat(Logger.ErrorLogPath.ToLower()))
-                        txtErrors.AppendText(Environment.NewLine + message);
+                        txtErrors.AppendText(message + Environment.NewLine);
                     ScrollToBottom(txtErrors);
                 }
             } catch { }
@@ -401,7 +406,7 @@ namespace MCDawn.Gui
                 }
                 else
                 {
-                    txtSystem.AppendText(Environment.NewLine + message);
+                    txtSystem.AppendText(message + Environment.NewLine);
                 }
             } catch { }
         }
@@ -1043,6 +1048,8 @@ namespace MCDawn.Gui
             catch { }
             try { UpdateMapList(); UnloadedlistUpdate(); }
             catch { }
+            ScrollToBottom(txtLogs);
+            ScrollToBottom(txtErrors);
             foreach (TabPage tP in tabControl1.TabPages)
             {
                 foreach (Control ctrl in tP.Controls)
@@ -1732,15 +1739,9 @@ namespace MCDawn.Gui
                 }
                 File.Delete("text/autoload.txt");
                 using (StreamWriter SW = new StreamWriter("text/autoload.txt"))
-                {
                     foreach (string line in oldlines)
-                    {
                         if (line.Trim() != "")
-                        {
                             SW.WriteLine(line);
-                        }
-                    }
-                }
             }
             txtLevelLog.AppendText("Level " + l.name + " saved." + Environment.NewLine);
             UpdateMapList();
@@ -1837,7 +1838,12 @@ namespace MCDawn.Gui
             if (File.Exists("Changelog.txt"))
             {
                 txtChangelog.Clear();
-                txtChangelog.Lines = File.ReadAllLines("Changelog.txt");
+                new Thread(() => {
+                    Invoke(new Action(() => {
+                        foreach (string line in File.ReadAllLines("Changelog.txt"))
+                            txtChangelog.AppendText(line + Environment.NewLine);
+                    }));
+                }).Start();
             }
         }
 
@@ -2051,14 +2057,34 @@ namespace MCDawn.Gui
         private void cmbLogs_SelectedIndexChanged(object sender, EventArgs e)
         {
             string ext = File.Exists("logs/" + cmbLogs.Text + ".txt") ? ".txt" : ".log";
-            txtLogs.Lines = File.ReadAllLines("logs/" + cmbLogs.Text + ext);
+            new Thread(() => {
+                Invoke(new Action(() => {
+                    foreach (string line in File.ReadAllLines("logs/" + cmbLogs.Text + ext))
+                        txtLogs.AppendText(line + Environment.NewLine);
+                }));
+            }).Start();
             ScrollToBottom(txtLogs);
         }
 
         private void cmbErrors_SelectedIndexChanged(object sender, EventArgs e)
         {
             string ext = File.Exists("logs/errors/" + cmbLogs.Text + ".txt") ? ".txt" : ".log";
-            txtErrors.Lines = File.ReadAllLines("logs/errors/" + cmbErrors.Text + ext);
+            new Thread(() => {
+                Invoke(new Action(() => {
+                    foreach (string line in File.ReadAllLines("logs/errors/" + cmbErrors.Text + ext))
+                        txtErrors.AppendText(line + Environment.NewLine);
+                }));
+            }).Start();
+            ScrollToBottom(txtErrors);
+        }
+
+        private void txtLogs_TextChanged(object sender, EventArgs e)
+        {
+            ScrollToBottom(txtLogs);
+        }
+
+        private void txtErrors_TextChanged(object sender, EventArgs e)
+        {
             ScrollToBottom(txtErrors);
         }
     }

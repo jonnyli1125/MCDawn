@@ -985,6 +985,7 @@ namespace MCDawn.Gui
             this.txtErrors.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtErrors.Size = new System.Drawing.Size(772, 233);
             this.txtErrors.TabIndex = 1;
+            this.txtErrors.TextChanged += new System.EventHandler(this.txtErrors_TextChanged);
             // 
             // tabPage2
             // 
@@ -3033,6 +3034,7 @@ namespace MCDawn.Gui
             this.txtLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLogs.Size = new System.Drawing.Size(772, 237);
             this.txtLogs.TabIndex = 2;
+            this.txtLogs.TextChanged += new System.EventHandler(this.txtLogs_TextChanged);
             // 
             // label25
             // 
