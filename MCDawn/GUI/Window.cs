@@ -198,12 +198,8 @@ namespace MCDawn.Gui
                 lblLatestVersion.Text = Server.LatestVersion();
                 // Auto-Update on server start
                 if (lblCurVersion.Text != lblLatestVersion.Text)
-                {
                     if (MessageBox.Show("New version found. Would you like to update?", "Update?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        Process proc = Process.Start("MCDawn Updater", "main " + System.Diagnostics.Process.GetCurrentProcess().Id.ToString() + ".exe");
-                    }
-                }
+                        new Updater().Show();
                 string total = " / " + Server.players;
                 lblTotalPlayers.Text = Player.number.ToString() + total;
                 lblTotalGuests.Text = Player.guests.ToString() + total;
@@ -833,11 +829,7 @@ namespace MCDawn.Gui
         
         private void button1_Click_1(object sender, EventArgs e)
         {
-            // Updater IS NAO DONE - Thanks Givo
-            //Process proc = Process.Start("MCDawn Updater", "main " + System.Diagnostics.Process.GetCurrentProcess().Id.ToString() + ".exe");
-
-            // SO LIEK IM REDOING TEH UPDATER ALMOST LIEK MCLAWL STYLE YA LAWL
-            Updater u = new Updater(); u.Show();
+            new Updater().Show();
         }
 
         private void tmrRestart_Tick(object sender, EventArgs e)
