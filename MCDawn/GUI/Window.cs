@@ -99,8 +99,6 @@ namespace MCDawn.Gui
                 s.OnError += newError;
                 s.OnSystem += newSystem;
 
-                foreach (TabPage tP in tabControl1.TabPages)
-                    tabControl1.SelectTab(tP);
                 tabControl1.SelectTab(tabControl1.TabPages[0]);
 
                 s.HeartBeatFail += HeartBeatFail;

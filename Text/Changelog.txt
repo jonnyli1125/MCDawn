@@ -1,5 +1,6 @@
 MCDawn 1.0.2.1
--Fixed startup update check.
+-Fixed startup update check for GUI users.
+-Reduced startup lag for GUI users.
 
 MCDawn 1.0.2.0
 -New Commands
