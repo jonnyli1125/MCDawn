@@ -188,16 +188,16 @@ namespace MCDawn
 
             foreach (portPos pos in bp.port)
             {
-                DataTable Portals = MySQL.fillData("SELECT * FROM `Portals" + pos.portMapName + "` WHERE EntryX=" + (int)pos.x + " AND EntryY=" + (int)pos.y + " AND EntryZ=" + (int)pos.z);
+                DataTable Portals = MySQL.fillData("SELECT * FROM `Portals" + pos.portMapName.Replace("@", "$") + "` WHERE EntryX=" + (int)pos.x + " AND EntryY=" + (int)pos.y + " AND EntryZ=" + (int)pos.z);
                 Portals.Dispose();
 
                 if (Portals.Rows.Count == 0)
                 {
-                    MySQL.executeQuery("INSERT INTO `Portals" + pos.portMapName + "` (EntryX, EntryY, EntryZ, ExitMap, ExitX, ExitY, ExitZ) VALUES (" + (int)pos.x + ", " + (int)pos.y + ", " + (int)pos.z + ", '" + p.level.name + "', " + (int)x + ", " + (int)y + ", " + (int)z + ")");
+                    MySQL.executeQuery("INSERT INTO `Portals" + pos.portMapName.Replace("@", "$") + "` (EntryX, EntryY, EntryZ, ExitMap, ExitX, ExitY, ExitZ) VALUES (" + (int)pos.x + ", " + (int)pos.y + ", " + (int)pos.z + ", '" + p.level.name + "', " + (int)x + ", " + (int)y + ", " + (int)z + ")");
                 }
                 else
                 {
-                    MySQL.executeQuery("UPDATE `Portals" + pos.portMapName + "` SET ExitMap='" + p.level.name + "', ExitX=" + (int)x + ", ExitY=" + (int)y + ", ExitZ=" + (int)z + " WHERE EntryX=" + (int)pos.x + " AND EntryY=" + (int)pos.y + " AND EntryZ=" + (int)pos.z);
+                    MySQL.executeQuery("UPDATE `Portals" + pos.portMapName.Replace("@", "$") + "` SET ExitMap='" + p.level.name + "', ExitX=" + (int)x + ", ExitY=" + (int)y + ", ExitZ=" + (int)z + " WHERE EntryX=" + (int)pos.x + " AND EntryY=" + (int)pos.y + " AND EntryZ=" + (int)pos.z);
                 }
                 //DB
 
@@ -216,7 +216,7 @@ namespace MCDawn
         {
             p.showPortals = !p.showPortals;
 
-            DataTable Portals = MySQL.fillData("SELECT * FROM `Portals" + p.level.name + "`");
+            DataTable Portals = MySQL.fillData("SELECT * FROM `Portals" + p.level.name.Replace("@", "$") + "`");
 
             int i;
 

@@ -2,6 +2,7 @@ MCDawn 1.0.2.1
 -Fixed startup update check for GUI users.
 -Reduced startup lag for GUI users.
 -Fixed /viewlikes timer on non-MySQL servers.
+-Fixed yet another bug with the email usernames for levels.
 
 MCDawn 1.0.2.0
 -New Commands

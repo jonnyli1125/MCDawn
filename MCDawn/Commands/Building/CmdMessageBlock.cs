@@ -59,16 +59,16 @@ namespace MCDawn
 
             cpos.message = cpos.message.Replace("'", "\\'");
 
-            DataTable Messages = MySQL.fillData("SELECT * FROM `Messages" + p.level.name + "` WHERE X=" + (int)x + " AND Y=" + (int)y + " AND Z=" + (int)z);
+            DataTable Messages = MySQL.fillData("SELECT * FROM `Messages" + p.level.name.Replace("@", "$") + "` WHERE X=" + (int)x + " AND Y=" + (int)y + " AND Z=" + (int)z);
             Messages.Dispose();
 
             if (Messages.Rows.Count == 0)
             {
-                MySQL.executeQuery("INSERT INTO `Messages" + p.level.name + "` (X, Y, Z, Message) VALUES (" + (int)x + ", " + (int)y + ", " + (int)z + ", '" + cpos.message + "')");
+                MySQL.executeQuery("INSERT INTO `Messages" + p.level.name.Replace("@", "$") + "` (X, Y, Z, Message) VALUES (" + (int)x + ", " + (int)y + ", " + (int)z + ", '" + cpos.message + "')");
             }
             else
             {
-                MySQL.executeQuery("UPDATE `Messages" + p.level.name + "` SET Message='" + cpos.message + "' WHERE X=" + (int)x + " AND Y=" + (int)y + " AND Z=" + (int)z);
+                MySQL.executeQuery("UPDATE `Messages" + p.level.name.Replace("@", "$") + "` SET Message='" + cpos.message + "' WHERE X=" + (int)x + " AND Y=" + (int)y + " AND Z=" + (int)z);
             }
 
             Player.SendMessage(p, "Message block placed.");
@@ -85,7 +85,7 @@ namespace MCDawn
             p.showMBs = !p.showMBs;
 
             DataTable Messages = new DataTable("Messages");
-            Messages = MySQL.fillData("SELECT * FROM `Messages" + p.level.name + "`");
+            Messages = MySQL.fillData("SELECT * FROM `Messages" + p.level.name.Replace("@", "$") + "`");
 
             int i;
 

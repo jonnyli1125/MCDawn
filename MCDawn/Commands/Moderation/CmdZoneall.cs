@@ -25,7 +25,7 @@ namespace MCDawn
                 if (Group.Find(split[1]) != null) { zoneOwner = "grp" + Group.Find(split[1]).name; }
                 else if (Player.Find(split[1]) != null) { zoneOwner = Player.Find(split[1]).name; }
                 else { zoneOwner = split[1]; }
-                MySQL.executeQuery("INSERT INTO `Zone" + target + "` (SmallX, SmallY, SmallZ, BigX, BigY, BigZ, Owner) VALUES (" + 0 + ", " + 0 + ", " + 0 + ", " + (p.level.width - 1) + ", " + (p.level.depth - 1) + ", " + (p.level.height - 1) + ", '" + zoneOwner + "')");
+                MySQL.executeQuery("INSERT INTO `Zone" + target.Replace("@", "$") + "` (SmallX, SmallY, SmallZ, BigX, BigY, BigZ, Owner) VALUES (" + 0 + ", " + 0 + ", " + 0 + ", " + (p.level.width - 1) + ", " + (p.level.depth - 1) + ", " + (p.level.height - 1) + ", '" + zoneOwner + "')");
                 Player.SendMessage(p, "Zoned entire level " + target + " for &b" + zoneOwner);
                 if (level != null)
                 {
@@ -45,7 +45,7 @@ namespace MCDawn
                 if (Group.Find(split[0]) != null) { zoneOwner = "grp" + Group.Find(split[0]).name; }
                 else if (Player.Find(split[0]) != null) { zoneOwner = Player.Find(split[0]).name;  }
                 else { zoneOwner = split[0]; }
-                MySQL.executeQuery("INSERT INTO `Zone" + p.level.name + "` (SmallX, SmallY, SmallZ, BigX, BigY, BigZ, Owner) VALUES (" + 0 + ", " + 0 + ", " + 0 + ", " + (p.level.width - 1) + ", " + (p.level.depth - 1) + ", " + (p.level.height - 1) + ", '" + zoneOwner + "')");
+                MySQL.executeQuery("INSERT INTO `Zone" + p.level.name.Replace("@", "$") + "` (SmallX, SmallY, SmallZ, BigX, BigY, BigZ, Owner) VALUES (" + 0 + ", " + 0 + ", " + 0 + ", " + (p.level.width - 1) + ", " + (p.level.depth - 1) + ", " + (p.level.height - 1) + ", '" + zoneOwner + "')");
                 Player.SendMessage(p, "Zoned entire level " + p.level.name + " for &b" + zoneOwner);
                 Level.Zone Zn;
                 Zn.smallX = 0;

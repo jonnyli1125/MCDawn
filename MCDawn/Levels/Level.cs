@@ -385,7 +385,7 @@ namespace MCDawn
             List<BlockPos> tempCache = blockCache;
             blockCache = new List<BlockPos>();
             string queryString;
-            queryString = "INSERT INTO `Block" + name + "` (Username, TimePerformed, X, Y, Z, type, deleted) VALUES ";
+            queryString = "INSERT INTO `Block" + name.Replace("@", "$") +"` (Username, TimePerformed, X, Y, Z, type, deleted) VALUES ";
 
             foreach (BlockPos bP in tempCache)
             {
@@ -486,7 +486,7 @@ namespace MCDawn
                                 if (p.zoneDel)
                                 {
                                     //DB
-                                    MySQL.executeQuery("DELETE FROM `Zone" + p.level.name + "` WHERE Owner='" + Zn.Owner + "' AND SmallX='" + Zn.smallX + "' AND SMALLY='" + Zn.smallY + "' AND SMALLZ='" + Zn.smallZ + "' AND BIGX='" + Zn.bigX + "' AND BIGY='" + Zn.bigY + "' AND BIGZ='" + Zn.bigZ + "'");
+                                    MySQL.executeQuery("DELETE FROM `Zone" + p.level.name.Replace("@", "$") + "` WHERE Owner='" + Zn.Owner + "' AND SmallX='" + Zn.smallX + "' AND SMALLY='" + Zn.smallY + "' AND SMALLZ='" + Zn.smallZ + "' AND BIGX='" + Zn.bigX + "' AND BIGY='" + Zn.bigY + "' AND BIGZ='" + Zn.bigZ + "'");
                                     toDel.Add(Zn);
 
                                     p.SendBlockchange(x, y, z, b);
@@ -896,20 +896,21 @@ namespace MCDawn
 
             if (noLoad) return null;
 
-            MySQL.executeQuery("CREATE TABLE if not exists `Block" + givenName + "` (Username VARCHAR(256), TimePerformed DATETIME, X SMALLINT UNSIGNED, Y SMALLINT UNSIGNED, Z SMALLINT UNSIGNED, Type TINYINT UNSIGNED, Deleted BOOL)");
-            MySQL.executeQuery("CREATE TABLE if not exists `Portals" + givenName + "` (EntryX SMALLINT UNSIGNED, EntryY SMALLINT UNSIGNED, EntryZ SMALLINT UNSIGNED, ExitMap CHAR(20), ExitX SMALLINT UNSIGNED, ExitY SMALLINT UNSIGNED, ExitZ SMALLINT UNSIGNED)");
-            MySQL.executeQuery("CREATE TABLE if not exists `Messages" + givenName + "` (X SMALLINT UNSIGNED, Y SMALLINT UNSIGNED, Z SMALLINT UNSIGNED, Message CHAR(255));");
-            MySQL.executeQuery("CREATE TABLE if not exists `Zone" + givenName + "` (SmallX SMALLINT UNSIGNED, SmallY SMALLINT UNSIGNED, SmallZ SMALLINT UNSIGNED, BigX SMALLINT UNSIGNED, BigY SMALLINT UNSIGNED, BigZ SMALLINT UNSIGNED, Owner VARCHAR(256));");
+            string mysqlName = givenName.Replace("@", "$"); // dollar signs are legal and dont exist in minecraft usernames or emails :D
+            MySQL.executeQuery("CREATE TABLE if not exists `Block" + mysqlName + "` (Username VARCHAR(256), TimePerformed DATETIME, X SMALLINT UNSIGNED, Y SMALLINT UNSIGNED, Z SMALLINT UNSIGNED, Type TINYINT UNSIGNED, Deleted BOOL)");
+            MySQL.executeQuery("CREATE TABLE if not exists `Portals" + mysqlName + "` (EntryX SMALLINT UNSIGNED, EntryY SMALLINT UNSIGNED, EntryZ SMALLINT UNSIGNED, ExitMap CHAR(20), ExitX SMALLINT UNSIGNED, ExitY SMALLINT UNSIGNED, ExitZ SMALLINT UNSIGNED)");
+            MySQL.executeQuery("CREATE TABLE if not exists `Messages" + mysqlName + "` (X SMALLINT UNSIGNED, Y SMALLINT UNSIGNED, Z SMALLINT UNSIGNED, Message CHAR(255));");
+            MySQL.executeQuery("CREATE TABLE if not exists `Zone" + mysqlName + "` (SmallX SMALLINT UNSIGNED, SmallY SMALLINT UNSIGNED, SmallZ SMALLINT UNSIGNED, BigX SMALLINT UNSIGNED, BigY SMALLINT UNSIGNED, BigZ SMALLINT UNSIGNED, Owner VARCHAR(256));");
             
             // Allow email usernames
-            MySQL.executeQuery("ALTER TABLE Block" + givenName + " MODIFY COLUMN Username VARCHAR(256)");
-            MySQL.executeQuery("ALTER TABLE Zone" + givenName + " MODIFY COLUMN Owner VARCHAR(256)");
+            MySQL.executeQuery("ALTER TABLE Block" + mysqlName + " MODIFY COLUMN Username VARCHAR(256)");
+            MySQL.executeQuery("ALTER TABLE Zone" + mysqlName + " MODIFY COLUMN Owner VARCHAR(256)");
 
             // CommandBlock
-            MySQL.executeQuery("CREATE TABLE if not exists `Commandblocks" + givenName + "` (X SMALLINT UNSIGNED, Y SMALLINT UNSIGNED, Z SMALLINT UNSIGNED, Message CHAR(255));");
+            MySQL.executeQuery("CREATE TABLE if not exists `Commandblocks" + mysqlName + "` (X SMALLINT UNSIGNED, Y SMALLINT UNSIGNED, Z SMALLINT UNSIGNED, Message CHAR(255));");
             
             // Map Likes
-            MySQL.executeQuery("CREATE TABLE if not exists `Likes" + givenName + "` (Username VARCHAR(256));");
+            MySQL.executeQuery("CREATE TABLE if not exists `Likes" + mysqlName + "` (Username VARCHAR(256));");
 
             string path = "levels/" + givenName + ".lvl";
             if (File.Exists(path))
@@ -960,7 +961,7 @@ namespace MCDawn
 
                     level.backedup = true;
 
-                    DataTable ZoneDB = MySQL.fillData("SELECT * FROM `Zone" + givenName + "`");
+                    DataTable ZoneDB = MySQL.fillData("SELECT * FROM `Zone" + mysqlName + "`");
 
                     Zone Zn;
                     for (int i = 0; i < ZoneDB.Rows.Count; ++i)
@@ -984,34 +985,34 @@ namespace MCDawn
 
                     try
                     {
-                        DataTable foundDB = MySQL.fillData("SELECT * FROM `Portals" + givenName + "`");
+                        DataTable foundDB = MySQL.fillData("SELECT * FROM `Portals" + mysqlName + "`");
 
                         for (int i = 0; i < foundDB.Rows.Count; ++i)
                         {
                             if (!Block.portal(level.GetTile((ushort)foundDB.Rows[i]["EntryX"], (ushort)foundDB.Rows[i]["EntryY"], (ushort)foundDB.Rows[i]["EntryZ"])))
                             {
-                                MySQL.executeQuery("DELETE FROM `Portals" + givenName + "` WHERE EntryX=" + foundDB.Rows[i]["EntryX"] + " AND EntryY=" + foundDB.Rows[i]["EntryY"] + " AND EntryZ=" + foundDB.Rows[i]["EntryZ"]);
+                                MySQL.executeQuery("DELETE FROM `Portals" + mysqlName + "` WHERE EntryX=" + foundDB.Rows[i]["EntryX"] + " AND EntryY=" + foundDB.Rows[i]["EntryY"] + " AND EntryZ=" + foundDB.Rows[i]["EntryZ"]);
                             }
                         }
 
-                        foundDB = MySQL.fillData("SELECT * FROM `Messages" + givenName + "`");
+                        foundDB = MySQL.fillData("SELECT * FROM `Messages" + mysqlName + "`");
 
                         for (int i = 0; i < foundDB.Rows.Count; ++i)
                         {
                             if (!Block.mb(level.GetTile((ushort)foundDB.Rows[i]["X"], (ushort)foundDB.Rows[i]["Y"], (ushort)foundDB.Rows[i]["Z"])))
                             {
-                                MySQL.executeQuery("DELETE FROM `Messages" + givenName + "` WHERE X=" + foundDB.Rows[i]["X"] + " AND Y=" + foundDB.Rows[i]["Y"] + " AND Z=" + foundDB.Rows[i]["Z"]);
+                                MySQL.executeQuery("DELETE FROM `Messages" + mysqlName + "` WHERE X=" + foundDB.Rows[i]["X"] + " AND Y=" + foundDB.Rows[i]["Y"] + " AND Z=" + foundDB.Rows[i]["Z"]);
                             }
                         }
 
                         //Commandblock
-                        foundDB = MySQL.fillData("SELECT * FROM `Commandblocks" + givenName + "`");
+                        foundDB = MySQL.fillData("SELECT * FROM `Commandblocks" + mysqlName + "`");
 
                         for (int i = 0; i < foundDB.Rows.Count; ++i)
                         {
                             if (!Block.mb(level.GetTile((ushort)foundDB.Rows[i]["X"], (ushort)foundDB.Rows[i]["Y"], (ushort)foundDB.Rows[i]["Z"])))
                             {
-                                MySQL.executeQuery("DELETE FROM `Commandblocks" + givenName + "` WHERE X=" + foundDB.Rows[i]["X"] + " AND Y=" + foundDB.Rows[i]["Y"] + " AND Z=" + foundDB.Rows[i]["Z"]);
+                                MySQL.executeQuery("DELETE FROM `Commandblocks" + mysqlName + "` WHERE X=" + foundDB.Rows[i]["X"] + " AND Y=" + foundDB.Rows[i]["Y"] + " AND Z=" + foundDB.Rows[i]["Z"]);
                             }
                         }
                         foundDB.Dispose();
@@ -1075,7 +1076,7 @@ namespace MCDawn
 
                     level.CalculateShadows();
 
-                    level.likes = MySQL.fillData("SELECT * FROM Likes" + level.name).Rows.Count;
+                    level.likes = MySQL.fillData("SELECT * FROM Likes" + level.name.Replace("@", "$")).Rows.Count;
 
                     level.ctfgame.mapOn = level;
                     level.infection.level = level;

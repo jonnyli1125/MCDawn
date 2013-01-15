@@ -48,7 +48,7 @@ namespace MCDawn
                     try { File.Delete("levels/level properties/" + message); }
                     catch { }
 
-                    MySQL.executeQuery("DROP TABLE `Block" + message + "`, `Portals" + message + "`, `Messages" + message + "`, `Zone" + message + "`");
+                    MySQL.executeQuery("DROP TABLE `Block" + message.Replace("@", "$") + "`, `Portals" + message.Replace("@", "$") + "`, `Messages" + message.Replace("@", "$") + "`, `Zone" + message.Replace("@", "$") + "`");
 
                     Player.GlobalMessage("Level " + message + " was deleted.");
                 }
