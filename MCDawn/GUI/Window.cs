@@ -266,11 +266,11 @@ namespace MCDawn.Gui
         {
             foreach (TabPage tp in tabControl1.TabPages)
             {
-                tp.BackColor = color;
-                tp.ForeColor = back;
+                tp.BackColor = back;
+                tp.ForeColor = color;
             }
-            //BackColor = color;
-            //ForeColor = back;
+            //BackColor = back;
+            //ForeColor = color;
         }
 
         private void LoadPlayerTabDetails()

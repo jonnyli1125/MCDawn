@@ -533,7 +533,7 @@ namespace MCDawn
                             reports++;
                     if (reports > 0) SendMessage("There are " + reports + " unread reports. Type &c/report view&g to see them.");
 
-                    Command.all.Find("viewlikes").Use(this, "");
+                    if (Server.useMySQL) Command.all.Find("viewlikes").Use(this, "");
                 };
 
                 afkTimer.Elapsed += delegate
