@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace MCDawn
 {
-    internal class Remote // remote/client side shit
+    public class Remote // remote/client side shit
     {
         public static UTF8Encoding enc = new UTF8Encoding();
         public static List<Remote> remotes = new List<Remote>();
@@ -20,7 +20,7 @@ namespace MCDawn
         public bool loggedIn = false;
         public bool disconnected = false;
         public Socket connectionSocket { get; private set; }
-        byte[] tempbuffer = new byte[300];
+        byte[] tempbuffer = new byte[0xFF];
         byte[] buffer = new byte[0];
 
         public Remote(Socket s)
@@ -28,8 +28,6 @@ namespace MCDawn
             try
             {
                 loggedIn = false;
-                tempbuffer = new byte[300];
-                buffer = new byte[0];
                 connectionSocket = s;
                 ip = connectionSocket.RemoteEndPoint.ToString().Split(':')[0];
                 Server.s.Log("Remote Console at " + ip + " connecting...");
@@ -42,10 +40,9 @@ namespace MCDawn
         {
             try
             {
-            //    Server.s.Log(result.AsyncState.ToString());
-                Remote p = (Remote)result.AsyncState;
-                if (p.disconnected)
-                    return;
+                //Server.s.Log(result.AsyncState.ToString());
+                Remote p = (Remote)result.AsyncState; // crashes when this happens, only after a disconnect :/
+                if (p.disconnected) return;
                 try
                 {
                     int length = p.connectionSocket.EndReceive(result);
@@ -58,10 +55,8 @@ namespace MCDawn
                     p.buffer = p.HandleMessage(b);
                     p.connectionSocket.BeginReceive(p.tempbuffer, 0, p.tempbuffer.Length, SocketFlags.None, new AsyncCallback(Receive), p);
                 }
-                catch (SocketException)
-                {
-                    p.Disconnect("Error!");
-                }
+                catch (ObjectDisposedException) { p.Disconnect(); return; }
+                catch (SocketException) { p.Disconnect("Error!"); return; }
                 catch (Exception e)
                 {
                     Server.ErrorLog(e);
@@ -280,6 +275,12 @@ namespace MCDawn
                     remotes.Remove(this);
                 }
                 else { Server.s.Log("Remote Console at " + ip + " disconnected."); }
+                try
+                {
+                    connectionSocket.Shutdown(SocketShutdown.Both);
+                    connectionSocket.Close();
+                }
+                catch (Exception e) { Server.ErrorLog(e); }
                 RemoteServer.RemoteListUpdate();
             }
             catch (Exception ex) { Server.ErrorLog(ex); }
@@ -325,7 +326,7 @@ namespace MCDawn
             catch { }
         }
 
-        internal static byte[] StringFormat(string str, int size)
+        public static byte[] StringFormat(string str, int size)
         {
             byte[] bytes = new byte[size];
             bytes = enc.GetBytes(str.PadRight(size).Substring(0, size));
@@ -405,7 +406,7 @@ namespace MCDawn
             } return lines;
         }
 
-        void SendPing() { /*pingDelay = 0; pingDelayTimer.Start();*/ SendRaw(4); }
+        void SendPing() { /*pingDelay = 0; pingDelayTimer.Start(); */ SendRaw(4); }
         void SendKick(string message)
         {
             byte[] buffer = new byte[64];
@@ -437,6 +438,7 @@ namespace MCDawn
                               Server.s.Log("BUFFER LENGTH: " + buffer.Length);
                               Server.s.Log(TxStr);
                           }*/
+
                 }
                 catch (SocketException)
                 {

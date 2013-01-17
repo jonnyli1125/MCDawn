@@ -383,7 +383,7 @@ namespace MCDawn
 
         public bool loggedIn = false;
 
-        public bool IsLocalhostIP(string ip) { return (ip.StartsWith("127.0.0.") | ip.StartsWith("192.168.") | ip.StartsWith("10.10.")); }
+        public static bool IsLocalhostIP(string ip) { return (ip.StartsWith("127.0.0.") | ip.StartsWith("192.168.") | ip.StartsWith("10.10.")); }
         public Player(Socket s)
         {
             try
@@ -4178,17 +4178,9 @@ namespace MCDawn
 
                     // DevGlobal Notify on unverified devs/staff
                     if (Server.hasProtection(name.ToLower())) { if (devUnverified) { GlobalChatBot.Say(name + " logged out of server " + Server.name + " without verifying!", true); } }
-                    // Passtries Reset
-                    this.passtries = 0;
-                    // Review Remove
-                    bool cancelrev = false;
-                    foreach (string str in Server.reviewlist)
-                    {
-                        if (str == name) { cancelrev = true; }
-                    }
-                    if (cancelrev) { Server.reviewlist.Remove(name); }
-                    // Warnings Remove
-                    if (this.warnings > 0) { this.warnings = 0; }
+                    passtries = 0;
+                    if (Server.reviewlist.Contains(name)) Server.reviewlist.Remove(name);
+                    warnings = 0;
                     isFlying = false;
                     aiming = false;
 

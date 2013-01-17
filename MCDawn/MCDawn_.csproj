@@ -259,7 +259,7 @@
     <Compile Include="Player\PushBallTeam.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Remote\Remote.cs" />
-    <Compile Include="Database\MCDawnDB.cs" />
+    <Compile Include="Remote\RemoteServer.cs" />
     <Compile Include="Discourager.cs" />
     <Compile Include="Games\CTFGame.cs" />
     <Compile Include="Games\GunGame.cs" />
@@ -458,7 +458,6 @@
     <Compile Include="Queue\ICacheable.cs" />
     <Compile Include="Queue\MainLoop.cs" />
     <Compile Include="Queue\TorrentException.cs" />
-    <Compile Include="Remote\RemoteServer.cs" />
     <Compile Include="Scripting\Scripting.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="ProfanityFilter.cs" />

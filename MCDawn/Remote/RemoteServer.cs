@@ -9,7 +9,7 @@ using NATUPNPLib;
 
 namespace MCDawn
 {
-    internal class RemoteServer // server side shit
+    public class RemoteServer // server side shit
     {
         public delegate void RemoteListChangeHandler(List<Remote> remotes);
         public static event RemoteListChangeHandler OnRemoteListUpdate = null;
@@ -116,7 +116,6 @@ namespace MCDawn
             {
                 ushort ar = Convert.ToUInt16(port);
                 UpnpHelper Upnp = new UpnpHelper();
-                //Upnp.AddMapping(ar, "UDP", "MCDawnUDP");
                 Upnp.AddMapping(ar, "TCP", "MCDawnTCP");
                 return true;
             }

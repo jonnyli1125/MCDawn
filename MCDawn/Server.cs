@@ -991,8 +991,6 @@ namespace MCDawn
                 });
             });
         }
-
-        
         
         public static bool Setup()
         {
