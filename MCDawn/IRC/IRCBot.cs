@@ -368,7 +368,7 @@ namespace MCDawn
         public static void Say(string msg, bool opchat = false)
         {
             if (IsConnected() && Server.irc)
-                irc.SendMessage(SendType.Message, (opchat ? opchannel : channel), IRCColor.MinecraftToIRCColor(Player.RemoveBadColors(msg.Replace("&g", IRCColor.color).Replace("%g", IRCColor.color))));
+                irc.SendMessage(SendType.Message, (opchat ? opchannel : channel), IRCColor.MinecraftToIRCColor(Player.RemoveBadColors(msg.Replace("&g", IRCColor.color + IRCColor.reset).Replace("%g", IRCColor.color))));
         }
 
         public static bool IsConnected() { return (irc == null) ? false : irc.IsConnected; }

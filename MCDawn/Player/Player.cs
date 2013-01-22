@@ -1274,7 +1274,7 @@ namespace MCDawn
 
             if (loginmessage != "") { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + " &g" + loginmessage); } }
             else if (!Server.useMaxMind) { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + "&g joined the game."); /*AllServerChat.Say(name + " joined the game.");*/ } }
-            else { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + "&g joined the game from " + IRCColor.red + countryName + IRCColor.color + "."); /*AllServerChat.Say(name + " joined the game from " + countrynameirc + ".");*/ } }
+            else { if (!Server.devs.Contains(originalName.ToLower())) { IRCBot.Say(IRCColor.bold + color + displayName + IRCColor.bold + "&g joined the game from " + IRCColor.red + countryName + IRCColor.color + IRCColor.reset + "."); /*AllServerChat.Say(name + " joined the game from " + countrynameirc + ".");*/ } }
 
             // Auto-Agree To Rules for OP+, Devs and Staff.
             if (Server.agreeToRules && (this.group.Permission >= Server.adminsecurityrank || Server.hasProtection(originalName.ToLower())))
@@ -1645,6 +1645,7 @@ namespace MCDawn
                 {
                     SendMessage("Cannot break the ball during PushBall!");
                     SendBlockchange(x, y, z, b);
+                    return;
                 }
                 if (!this.referee)
                 {
@@ -2531,7 +2532,7 @@ namespace MCDawn
                     if (group.Permission < Server.opchatperm && !Server.hasProtection(originalName.ToLower()))
                         SendMessage("To Ops &f-" + color + name + "&f- " + newtext);
                     Server.s.Log("(OPs): " + name + ": " + newtext);
-                    IRCBot.Say(color + name + ": " + IRCColor.color + newtext, true);
+                    IRCBot.Say(color + name + ": " + IRCColor.color + IRCColor.reset + newtext, true);
                     try { if (!Server.cli) { MCDawn.Gui.Window.thisWindow.WriteOpLine("<" + name + "> " + newtext); } }
                     catch { }
                     return;
@@ -2665,13 +2666,13 @@ namespace MCDawn
                     if (!infected)
                     {
                         Server.s.Log(color + "<" + name + "> &0" + newtext);
-                        IRCBot.Say(color + prefix + displayName + ": " + IRCColor.color + newtext);
+                        IRCBot.Say(color + prefix + displayName + ": " + IRCColor.color + IRCColor.reset + newtext);
                         //AllServerChat.Say(prefix + name + ": " + newtext);
                     }
                     else
                     {
                         Server.s.Log("&c(Infected) " + color + "<" + name + "> &0" + newtext);
-                        IRCBot.Say("&c(Infected) " + color + prefix + displayName + ": " + IRCColor.color + newtext);
+                        IRCBot.Say("&c(Infected) " + color + prefix + displayName + ": " + IRCColor.color + IRCColor.reset + newtext);
                         //AllServerChat.Say(prefix + name + " (" + originalName + ")" + ": " + newtext);
                     }
                     return;
@@ -2708,9 +2709,9 @@ namespace MCDawn
                 }
 
                 if (!infected)
-                    IRCBot.Say(color + prefix + displayName + ": " + IRCColor.color + text);
+                    IRCBot.Say(color + prefix + displayName + ": " + IRCColor.color + IRCColor.reset + text);
                 else
-                    IRCBot.Say("&c(Infected) " + color + prefix + displayName + ": " + IRCColor.color + text);
+                    IRCBot.Say("&c(Infected) " + color + prefix + displayName + ": " + IRCColor.color + IRCColor.reset + text);
             }
             catch (Exception e) { Server.ErrorLog(e); Player.GlobalMessage("An error occurred: " + e.Message); }
         }
@@ -3265,6 +3266,19 @@ namespace MCDawn
                         break;
                 }
             }
+        }
+
+        public ushort[] GetPosAtCursor(ushort distance)
+        {
+            ushort x = 0, y = 0, z = 0;
+            double a = Math.Sin(((double)(128 - rot[0]) / 256) * 2 * Math.PI);
+            double b = Math.Cos(((double)(128 - rot[0]) / 256) * 2 * Math.PI);
+            double c = Math.Cos(((double)(rot[1] + 64) / 256) * 2 * Math.PI);
+            double d = Math.Cos(((double)(rot[1]) / 256) * 2 * Math.PI);
+            x = (ushort)(Math.Round((pos[0] / 32) + (double)(a * distance * d)));
+            y = (ushort)(Math.Round((pos[1] / 32) + (double)(c * distance)));
+            z = (ushort)(Math.Round((pos[2] / 32) + (double)(b * distance * d)));
+            return new ushort[] { x, y, z };
         }
 
         public void BlockInfo()

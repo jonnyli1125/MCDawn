@@ -256,7 +256,7 @@
       <DependentUpon>AddRemoveRemote.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\IsoCat.cs" />
-    <Compile Include="Player\PushBallTeam.cs" />
+    <Compile Include="Games\PushBallTeam.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Remote\Remote.cs" />
     <Compile Include="Remote\RemoteServer.cs" />
@@ -434,7 +434,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Player\PlayerGroup.cs" />
-    <Compile Include="Player\CTFTeam.cs" />
+    <Compile Include="Games\CTFTeam.cs" />
     <Compile Include="Player\Group.cs" />
     <Compile Include="GUI\Program.cs" />
     <Compile Include="Levels\MapGenerator.cs" />

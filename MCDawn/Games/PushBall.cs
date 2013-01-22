@@ -32,7 +32,7 @@ namespace MCDawn
                 if (level.timeLeft >= 10)
                 {
                     SpawnBall();
-                    Player.GlobalMessageLevel(level, "&ePushBall game to be started in 10 seconds!");
+                    Player.GlobalMessageLevel(level, "&ePushBall game starting in 10 seconds!");
                     level.timeLeft--;
                 }
                 else if (level.timeLeft <= 9 && level.timeLeft >= 1)
@@ -58,7 +58,7 @@ namespace MCDawn
                     foreach (PushBallTeam pbt in pushBallTeams)
                         foreach (PushBallTeam.Pos goalPos in pbt.goalPositions)
                             level.Blockchange(goalPos.x, goalPos.y, goalPos.z, Block.air);
-                    while (level.pushBallStarted) { Push(); }
+                    new Thread(() => { while (level.pushBallStarted) Push(); }).Start();
                 }
             }; countDown.Start();
         }
@@ -77,7 +77,7 @@ namespace MCDawn
             if (winningTeam != null)
             {
                 SpawnBall();
-                Player.GlobalMessageLevel(level, winningTeam.color + winningTeam.teamstring + " &ehas won the PushBall game, with " + winningTeam.points + " points!");
+                Player.GlobalMessageLevel(level, winningTeam.teamstring + "&e has won the PushBall game, with " + winningTeam.points + " points!");
                 Player mvp = null; var mvpGoals = 0;
                 foreach (Player p in level.players)
                 {
@@ -98,8 +98,8 @@ namespace MCDawn
                 try
                 {
                     UpdateBallPos();
-                    foreach (Player p in level.players) 
-                        MoveBall(p);
+                    foreach (Player p in level.players)
+                        new Thread(() => { if (p.pushBallTeam != null && !p.referee) MoveBall(p); }).Start();
                     foreach (PushBallTeam pbt in pushBallTeams)
                         foreach (PushBallTeam.Pos goal in pbt.goalPositions)
                             if (goal.x == currentBallPos.x && goal.y == currentBallPos.y && goal.z == currentBallPos.z)
@@ -149,55 +149,103 @@ namespace MCDawn
 
         public void MoveBall(Player p)
         {
-            if (p.referee || p.pushBallTeam == null) return;
+            if (p == null || p.referee || p.pushBallTeam == null) return;
             UpdateBallPos();
-            bool moved = false;
-            if (Block.Walkthrough(level.GetTile((ushort)(currentBallPos.x + 2), currentBallPos.x, currentBallPos.z)) && currentBallPos.x == (ushort)((p.pos[0] / 32) + 1) && currentBallPos.y == (ushort)(p.pos[1] / 32) && currentBallPos.z == (ushort)(p.pos[2] / 32))
+            ushort dx = (ushort)(Math.Abs((ushort)(p.pos[0] / 32) - currentBallPos.x)), dy = (ushort)(Math.Abs((ushort)(p.pos[1] / 32) - currentBallPos.y)), dz = (ushort)(Math.Abs((ushort)(p.pos[2] / 32) - currentBallPos.z));
+            ushort rotsplit = 256 / 8;
+            Pos ppos = new Pos(); ppos.x = (ushort)(p.pos[0] / 32); ppos.y = (ushort)(p.pos[1] / 32); ppos.z = (ushort)(p.pos[2] / 32);
+            if (dy <= 1)
             {
-                level.Blockchange((ushort)(currentBallPos.x + 1), currentBallPos.y, currentBallPos.z, Block.air);
-                level.Blockchange((ushort)(currentBallPos.x + 2), currentBallPos.y, currentBallPos.z, Block.pushball);
-                lastTouched = p;
-                moved = true;
+                if (dx == 1 && ppos.z == currentBallPos.z)
+                {
+                    if ((p.rot[0] > rotsplit && p.rot[0] <= rotsplit * 3))
+                    {
+                        if ((Block.Walkthrough(level.GetTile((ushort)(currentBallPos.x + 1), currentBallPos.y, currentBallPos.z)) && ppos.x + 1 == currentBallPos.x) || (!Block.Walkthrough(level.GetTile((ushort)(currentBallPos.x - 1), currentBallPos.y, currentBallPos.z)) && ppos.x - 1 == currentBallPos.x))
+                        {
+                            level.Blockchange(currentBallPos.x, currentBallPos.y, currentBallPos.z, Block.air);
+                            level.Blockchange((ushort)(currentBallPos.x + 1), currentBallPos.y, currentBallPos.z, Block.pushball);
+                            lastTouched = p;
+                        }
+                    }
+                    else if ((p.rot[0] > rotsplit * 5 && p.rot[0] <= rotsplit * 7))
+                    {
+                        if ((Block.Walkthrough(level.GetTile((ushort)(currentBallPos.x - 1), currentBallPos.y, currentBallPos.z)) && ppos.x - 1 == currentBallPos.x) || (!Block.Walkthrough(level.GetTile((ushort)(currentBallPos.x + 1), currentBallPos.y, currentBallPos.z)) && ppos.x + 1 == currentBallPos.x))
+                        {
+                            level.Blockchange(currentBallPos.x, currentBallPos.y, currentBallPos.z, Block.air);
+                            level.Blockchange((ushort)(currentBallPos.x - 1), currentBallPos.y, currentBallPos.z, Block.pushball);
+                            lastTouched = p;
+                        }
+                    }
+                }
+                else if (dz == 1 && ppos.x == currentBallPos.x)
+                {
+                    if ((p.rot[0] > rotsplit * 3 && p.rot[0] <= rotsplit * 5))
+                    {
+                        if ((Block.Walkthrough(level.GetTile(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z + 1))) && ppos.z + 1 == currentBallPos.z) || (!Block.Walkthrough(level.GetTile(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z - 1))) && ppos.z - 1 == currentBallPos.z))
+                        {
+                            level.Blockchange(currentBallPos.x, currentBallPos.y, currentBallPos.z, Block.air);
+                            level.Blockchange(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z + 1), Block.pushball);
+                            lastTouched = p;
+                        }
+                    }
+                    else if ((p.rot[0] > rotsplit * 7 || p.rot[0] <= rotsplit))
+                    {
+                        if ((Block.Walkthrough(level.GetTile(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z - 1))) && ppos.z - 1 == currentBallPos.z) || (!Block.Walkthrough(level.GetTile(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z + 1))) && ppos.z + 1 == currentBallPos.z))
+                        {
+                            level.Blockchange(currentBallPos.x, currentBallPos.y, currentBallPos.z, Block.air);
+                            level.Blockchange(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z - 1), Block.pushball);
+                            lastTouched = p;
+                        }
+                    }
+                }
             }
-            if (Block.Walkthrough(level.GetTile(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z + 2))) && currentBallPos.x == (ushort)(p.pos[0] / 32) && currentBallPos.y == (ushort)(p.pos[1] / 32) && currentBallPos.z == (ushort)((p.pos[0] / 32) + 1))
-            {
-                level.Blockchange(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z + 1), Block.air);
-                level.Blockchange(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z + 2), Block.pushball);
-                lastTouched = p;
-                moved = true;
-            }
-            if (Block.Walkthrough(level.GetTile((ushort)(currentBallPos.x - 2), currentBallPos.x, currentBallPos.z)) && currentBallPos.x == (ushort)((p.pos[0] / 32) - 1) && currentBallPos.y == (ushort)(p.pos[1] / 32) && currentBallPos.z == (ushort)(p.pos[2] / 32))
-            {
-                level.Blockchange((ushort)(currentBallPos.x - 1), currentBallPos.y, currentBallPos.z, Block.air);
-                level.Blockchange((ushort)(currentBallPos.x - 2), currentBallPos.y, currentBallPos.z, Block.pushball);
-                lastTouched = p;
-                moved = true;
-            }
-            if (Block.Walkthrough(level.GetTile(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z - 2))) && currentBallPos.x == (ushort)(p.pos[0] / 32) && currentBallPos.y == (ushort)(p.pos[1] / 32) && currentBallPos.z == (ushort)((p.pos[0] / 32) - 1))
-            {
-                level.Blockchange(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z - 1), Block.air);
-                level.Blockchange(currentBallPos.x, currentBallPos.y, (ushort)(currentBallPos.z - 2), Block.pushball);
-                lastTouched = p;
-                moved = true;
-            }
-            if (moved) Player.GlobalMessage(p.name + " moved the ball"); // debug
             UpdateBallPos();
             if (Block.Walkthrough(level.GetTile(currentBallPos.x, (ushort)(currentBallPos.y - 1), currentBallPos.z)))
             {
                 level.Blockchange(currentBallPos.x, currentBallPos.y, currentBallPos.z, Block.air);
                 level.Blockchange(currentBallPos.x, (ushort)(currentBallPos.y - 1), currentBallPos.z, Block.pushball);
             }
-            UpdateBallPos();
+            RemoveDuplicateBalls();
+        }
+
+        public void RemoveDuplicateBalls()
+        {
+            var duplicateBalls = new List<Pos>();
+            for (ushort x = 0; x <= level.width; x++)
+                for (ushort y = 0; y <= level.width; y++)
+                    for (ushort z = 0; z <= level.width; z++)
+                        if (level.GetTile(x, y, z) == Block.pushball)
+                        {
+                            Pos db = new Pos();
+                            db.x = x; db.y = y; db.z = z;
+                            duplicateBalls.Add(db);
+                        }
+            if (duplicateBalls.Count > 1)
+                for (int i = 1; i < duplicateBalls.Count; i++)
+                    level.Blockchange(duplicateBalls[i].x, duplicateBalls[i].y, duplicateBalls[i].z, Block.air);
         }
 
         public void ScorePoint(Player p, PushBallTeam scoredOn)
         {
-            p.pushBallGoals++;
-            p.pushBallTeam.points++;
+            if (p.pushBallTeam != scoredOn)
+            {
+                p.pushBallGoals++;
+                p.pushBallTeam.points++;
+                Player.GlobalMessageLevel(level, p.color + p.prefix + p.name + " &escored a point on the " + scoredOn.teamstring + "&e!");
+            }
+            else
+            {
+                foreach (PushBallTeam team in pushBallTeams)
+                    if (team != scoredOn)
+                        team.points++;
+                Player.GlobalMessageLevel(level, p.color + p.prefix + p.name + " &escored on their own goal!");
+            }
             SpawnBall();
-            if (p.pushBallTeam != scoredOn) Player.GlobalMessageLevel(level, p.color + p.prefix + p.name + "(" + p.pushBallTeam.teamstring + ") &escored a point on the " + scoredOn.teamstring + "&e!");
-            else Player.GlobalMessageLevel(level, p.color + p.prefix + p.name + "(" + p.pushBallTeam.teamstring + ") &escored on his own goal!");
-            if (scoredOn.points >= winPoints) { End(scoredOn); }
+            foreach (PushBallTeam team in pushBallTeams)
+            {
+                foreach (Player pl in team.players) team.SpawnPlayer(pl);
+                if (team.points >= winPoints) { End(team); break; }
+            }
         }
 
         public void AddTeam(string color)
@@ -231,34 +279,6 @@ namespace MCDawn
             foreach (Player p in storedP)
                 workteam.RemoveMember(p);
         }
-
-        /*public static int getDirection(byte rotx) // raw bytes (256 scale)
-        {
-            if (rotx >= 32 && rotx <= 95) // add to x coord
-                return 0;
-            else if (rotx >= 96 && rotx <= 159) // add to the z coord
-                return 1;
-            else if (rotx >= 160 && rotx <= 223) // subtract the x coord
-                return 2;
-            else if ((rotx >= 224 && rotx <= 255) || (rotx >= 0 && rotx <= 31)) // subtract the z coord
-                return 3;
-            else // idk, lolz.
-                return 3;
-        }
-
-        public static int getDirection(byte rotx) // raw bytes (256 scale)
-        {
-            if (rotx >= 160 && rotx <= 223) // add to x coord
-                return 0;
-            else if ((rotx >= 224 && rotx <= 255) || (rotx >= 0 && rotx <= 31)) // add to the z coord
-                return 1;
-            else if (rotx >= 32 && rotx <= 95) // subtract the x coord
-                return 2;
-            else if (rotx >= 96 && rotx <= 159) // subtract the z coord
-                return 3;
-            else // idk, lolz.
-                return 3;
-        }*/
 
         public struct Pos { public ushort x, y, z; }
     }

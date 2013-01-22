@@ -3,6 +3,8 @@ MCDawn 1.0.2.1
 -Reduced startup lag for GUI users.
 -Fixed /viewlikes timer on non-MySQL servers.
 -Fixed yet another bug with the email usernames for levels.
+-Fixed IRC colors bug when first letter of chat message right is a number.
+-PushBall game mode is complete! It works similarly in a sense to CTF, use /pushball and /pushballteam to set up the game.
 
 MCDawn 1.0.2.0
 -New Commands

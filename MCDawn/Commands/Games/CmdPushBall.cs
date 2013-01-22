@@ -9,7 +9,7 @@ namespace MCDawn
         public override string[] aliases { get { return new string[] { }; } }
         public override string type { get { return "games"; } }
         public override bool museumUsable { get { return false; } }
-        public override LevelPermission defaultRank { get { return LevelPermission.AdvBuilder; } }
+        public override LevelPermission defaultRank { get { return LevelPermission.Admin; } }
         public CmdPushBall() { }
 
         public override void Use(Player p, string message)
@@ -101,7 +101,11 @@ namespace MCDawn
                         case 'c':
                         case 'e':
                         case 'f':
-                            if (message.Split(' ')[1].ToLower() == "add") AddTeam(p, color);
+                            if (message.Split(' ')[1].ToLower() == "add")
+                            {
+                                //if (p.level.pushBall.pushBallTeams.Count == 2) { Player.SendMessage(p, "Cannot have more than 2 teams in PushBall."); return; }
+                                AddTeam(p, color);
+                            }
                             else if (message.Split(' ')[1].ToLower() == "del") RemoveTeam(p, color);
                             else Help(p);
                             break;
