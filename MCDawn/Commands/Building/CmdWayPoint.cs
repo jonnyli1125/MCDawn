@@ -42,7 +42,7 @@ namespace MCDawn
                     if (wpFile.Count <= 0) { Player.SendMessage(p, "No waypoints saved yet."); Help(p); return; }
                     if (!wpNames.Contains(message.Split(' ')[1].ToLower())) { Player.SendMessage(p, "Waypoint could not be found."); return; }
                     string[] values = wpFile[wpNames.IndexOf(message.Split(' ')[1])].Split('|');
-                    if (!File.Exists("levels/" + values[1] + ".lvl")) { Player.SendMessage(p, "Level does not exist."); return; }
+                    if (!File.Exists("levels/" + values[0] + ".lvl")) { Player.SendMessage(p, "Level does not exist."); return; }
                     Level endLevel = Level.Find(values[1]);
                     if (endLevel == null || p.level != endLevel)
                     {
