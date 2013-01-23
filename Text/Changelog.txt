@@ -5,6 +5,8 @@ MCDawn 1.0.2.1
 -Fixed yet another bug with the email usernames for levels.
 -Fixed IRC colors bug when first letter of chat message right is a number.
 -PushBall game mode is complete! It works similarly in a sense to CTF, use /pushball and /pushballteam to set up the game.
+-New Commands
+	-/waypoint <list/tp/add/del> [name] - Manages your waypoints (a waypoint is a location on the server that you can teleport to easily).
 
 MCDawn 1.0.2.0
 -New Commands

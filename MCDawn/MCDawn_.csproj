@@ -95,6 +95,7 @@
     <Compile Include="Commands\Building\CmdReflection.cs" />
     <Compile Include="Commands\Building\CmdCone.cs" />
     <Compile Include="Commands\Building\CmdPyramid.cs" />
+    <Compile Include="Commands\Building\CmdWayPoint.cs" />
     <Compile Include="Commands\Games\CmdPushBallTeam.cs" />
     <Compile Include="Commands\Homes\CmdHAllowGuns.cs" />
     <Compile Include="Commands\Moderation\CmdProperties.cs" />
