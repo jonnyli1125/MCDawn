@@ -32,7 +32,12 @@ namespace MCDawn
                 case "":
                 case "list":
                     if (wpFile.Count <= 0) { Player.SendMessage(p, "No waypoints saved yet."); Help(p); return; }
-                    Player.SendMessage(p, "Your waypoints: &9" + String.Join("&g, &9", wpNames.ToArray()));
+                    Player.SendMessage(p, "Your waypoints:");
+                    for (int i = 0; i < wpFile.Count; i++)
+                    {
+                        string[] wp = wpFile[i].Split('|');
+                        Player.SendMessage(p, (i + 1) + ": &9" + wp[0] + " - " + wp[1] + " > " + wp[2] + "/" + wp[3] + "/" + wp[4]);
+                    }
                     break;
                 case "tp":
                 case "teleport":
@@ -42,7 +47,7 @@ namespace MCDawn
                     if (wpFile.Count <= 0) { Player.SendMessage(p, "No waypoints saved yet."); Help(p); return; }
                     if (!wpNames.Contains(message.Split(' ')[1].ToLower())) { Player.SendMessage(p, "Waypoint could not be found."); return; }
                     string[] values = wpFile[wpNames.IndexOf(message.Split(' ')[1])].Split('|');
-                    if (!File.Exists("levels/" + values[0] + ".lvl")) { Player.SendMessage(p, "Level does not exist."); return; }
+                    if (!File.Exists("levels/" + values[1] + ".lvl")) { Player.SendMessage(p, "Level does not exist."); return; }
                     Level endLevel = Level.Find(values[1]);
                     if (endLevel == null || p.level != endLevel)
                     {
@@ -58,7 +63,8 @@ namespace MCDawn
                     bool existing = false;
                     if (wpNames.Contains(message.Split(' ')[1].ToLower().Trim())) { existing = true; wpFile.RemoveAt(wpNames.IndexOf(message.Split(' ')[1].ToLower().Trim())); }
                     var toAdd = new List<string>();
-                    toAdd.Add(message.Split(' ')[1].ToLower().Trim());
+                    toAdd.Add(message.Split(' ')[1].ToLower().Trim().Replace("|", ""));
+                    toAdd.Add(p.level.name.ToLower());
                     toAdd.Add(((ushort)(p.pos[0] / 32)).ToString());
                     toAdd.Add(((ushort)(p.pos[1] / 32)).ToString());
                     toAdd.Add(((ushort)(p.pos[2] / 32)).ToString());
