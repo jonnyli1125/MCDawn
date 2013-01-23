@@ -36,7 +36,7 @@ namespace MCDawn
                     for (int i = 0; i < wpFile.Count; i++)
                     {
                         string[] wp = wpFile[i].Split('|');
-                        Player.SendMessage(p, (i + 1) + ": &9" + wp[0] + " - " + wp[1] + " > " + wp[2] + "/" + wp[3] + "/" + wp[4]);
+                        Player.SendMessage(p, (i + 1) + ". &9" + wp[0] + "&g - &c" + wp[1] + "/" + wp[2] + "/" + wp[3] + "/" + wp[4]);
                     }
                     break;
                 case "tp":
