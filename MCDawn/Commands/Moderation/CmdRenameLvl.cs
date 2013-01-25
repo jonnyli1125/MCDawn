@@ -41,7 +41,7 @@ namespace MCDawn
                 }
                 catch { }
 
-                MySQL.executeQuery("RENAME TABLE `Block" + foundLevel.name.ToLower().Replace("@", "$") + "` TO `Block" + newName.ToLower() +
+                MySQL.executeQuery("RENAME TABLE `Block" + foundLevel.name.ToLower() + "` TO `Block" + newName.ToLower() +
                     "`, `Portals" + foundLevel.name.ToLower() + "` TO `Portals" + newName.ToLower() +
                     "`, `Messages" + foundLevel.name.ToLower() + "` TO Messages" + newName.ToLower() +
                     "`, `Commandblocks" + foundLevel.name.ToLower() + "` TO Commandblocks" + newName.ToLower() +

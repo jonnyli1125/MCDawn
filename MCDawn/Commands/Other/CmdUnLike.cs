@@ -19,8 +19,8 @@ namespace MCDawn
             if (message.Split(' ').Length > 1) { Help(p); return; }
             Level l = (String.IsNullOrEmpty(message) ? p.level : Level.Find(message));
             if (l == null) { Player.SendMessage(p, "Level could not be found or is not loaded."); return; }
-            if (MySQL.fillData("SELECT * FROM Likes" + l.name.Replace("@", "$") + " WHERE Username='" + p.name + "'").Rows.Count == 0) { Player.SendMessage(p, "You have not liked this map yet."); return; }
-            MySQL.executeQuery("DELETE FROM Likes" + l.name.Replace("@", "$") + " WHERE Username='" + p.name + "'");
+            if (MySQL.fillData("SELECT * FROM `Likes" + l.name + "` WHERE Username='" + p.name + "'").Rows.Count == 0) { Player.SendMessage(p, "You have not liked this map yet."); return; }
+            MySQL.executeQuery("DELETE FROM `Likes" + l.name + "` WHERE Username='" + p.name + "'");
             l.likes--;
             Player.SendMessage(p, "Unliked map &a" + l.name + "&g!");
             Command.all.Find("viewlikes").Use(p, "");

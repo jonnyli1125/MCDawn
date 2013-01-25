@@ -7,6 +7,7 @@ MCDawn 1.0.2.1
 -PushBall game mode is complete! It works similarly in a sense to CTF, use /pushball and /pushballteam to set up the game.
 -New Commands
 	-/waypoint <list/tp/add/del> [name] - Manages your waypoints (a waypoint is a location on the server that you can teleport to easily).
+-Fixed various SQL table naming bugs.
 
 MCDawn 1.0.2.0
 -New Commands
