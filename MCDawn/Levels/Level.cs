@@ -1075,7 +1075,7 @@ namespace MCDawn
 
                     level.CalculateShadows();
 
-                    level.likes = MySQL.fillData("SELECT * FROM Likes" + level.name).Rows.Count;
+                    level.likes = MySQL.fillData("SELECT * FROM `Likes" + level.name + "`").Rows.Count;
 
                     level.ctfgame.mapOn = level;
                     level.infection.level = level;
