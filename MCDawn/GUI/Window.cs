@@ -821,10 +821,6 @@ namespace MCDawn.Gui
             PropertyForm.Left = this.Left;
         }
 
-        private void Window_Resize(object sender, EventArgs e) {
-            this.Hide();
-        }
-
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e) {
             this.Show();
             this.BringToFront();
@@ -2077,6 +2073,10 @@ namespace MCDawn.Gui
         private void txtErrors_TextChanged(object sender, EventArgs e)
         {
             ScrollToBottom(txtErrors);
+        }
+
+        private void Window_Resize(object sender, EventArgs e)
+        {
         }
     }
 }

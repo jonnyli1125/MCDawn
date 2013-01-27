@@ -377,33 +377,33 @@ namespace MCDawn.Gui
             this.banToolStripMenuItem,
             this.voiceToolStripMenuItem});
             this.playerStrip.Name = "playerStrip";
-            this.playerStrip.Size = new System.Drawing.Size(106, 92);
+            this.playerStrip.Size = new System.Drawing.Size(117, 100);
             // 
             // whoisToolStripMenuItem
             // 
             this.whoisToolStripMenuItem.Name = "whoisToolStripMenuItem";
-            this.whoisToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.whoisToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.whoisToolStripMenuItem.Text = "whois";
             this.whoisToolStripMenuItem.Click += new System.EventHandler(this.whoisToolStripMenuItem_Click);
             // 
             // kickToolStripMenuItem
             // 
             this.kickToolStripMenuItem.Name = "kickToolStripMenuItem";
-            this.kickToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.kickToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.kickToolStripMenuItem.Text = "kick";
             this.kickToolStripMenuItem.Click += new System.EventHandler(this.kickToolStripMenuItem_Click);
             // 
             // banToolStripMenuItem
             // 
             this.banToolStripMenuItem.Name = "banToolStripMenuItem";
-            this.banToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.banToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.banToolStripMenuItem.Text = "ban";
             this.banToolStripMenuItem.Click += new System.EventHandler(this.banToolStripMenuItem_Click);
             // 
             // voiceToolStripMenuItem
             // 
             this.voiceToolStripMenuItem.Name = "voiceToolStripMenuItem";
-            this.voiceToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.voiceToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.voiceToolStripMenuItem.Text = "voice";
             this.voiceToolStripMenuItem.Click += new System.EventHandler(this.voiceToolStripMenuItem_Click);
             // 
@@ -415,7 +415,7 @@ namespace MCDawn.Gui
             this.settingsToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.mapsStrip.Name = "mapsStrip";
-            this.mapsStrip.Size = new System.Drawing.Size(117, 92);
+            this.mapsStrip.Size = new System.Drawing.Size(132, 100);
             // 
             // physicsToolStripMenuItem
             // 
@@ -426,48 +426,48 @@ namespace MCDawn.Gui
             this.toolStripMenuItem5,
             this.toolStripMenuItem6});
             this.physicsToolStripMenuItem.Name = "physicsToolStripMenuItem";
-            this.physicsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.physicsToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
             this.physicsToolStripMenuItem.Text = "Physics";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(86, 24);
             this.toolStripMenuItem2.Text = "0";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(86, 24);
             this.toolStripMenuItem3.Text = "1";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(86, 24);
             this.toolStripMenuItem4.Text = "2";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(86, 24);
             this.toolStripMenuItem5.Text = "3";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(86, 24);
             this.toolStripMenuItem6.Text = "4";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // unloadToolStripMenuItem
             // 
             this.unloadToolStripMenuItem.Name = "unloadToolStripMenuItem";
-            this.unloadToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.unloadToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
             this.unloadToolStripMenuItem.Text = "Unload";
             this.unloadToolStripMenuItem.Click += new System.EventHandler(this.unloadToolStripMenuItem_Click);
             // 
@@ -482,62 +482,62 @@ namespace MCDawn.Gui
             this.killerBlocksToolStripMenuItem,
             this.rPChatToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // finiteModeToolStripMenuItem
             // 
             this.finiteModeToolStripMenuItem.Name = "finiteModeToolStripMenuItem";
-            this.finiteModeToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.finiteModeToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.finiteModeToolStripMenuItem.Text = "Finite Mode";
             this.finiteModeToolStripMenuItem.Click += new System.EventHandler(this.finiteModeToolStripMenuItem_Click);
             // 
             // animalAIToolStripMenuItem
             // 
             this.animalAIToolStripMenuItem.Name = "animalAIToolStripMenuItem";
-            this.animalAIToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.animalAIToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.animalAIToolStripMenuItem.Text = "Animal AI";
             this.animalAIToolStripMenuItem.Click += new System.EventHandler(this.animalAIToolStripMenuItem_Click);
             // 
             // edgeWaterToolStripMenuItem
             // 
             this.edgeWaterToolStripMenuItem.Name = "edgeWaterToolStripMenuItem";
-            this.edgeWaterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.edgeWaterToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.edgeWaterToolStripMenuItem.Text = "Edge Water";
             this.edgeWaterToolStripMenuItem.Click += new System.EventHandler(this.edgeWaterToolStripMenuItem_Click);
             // 
             // growingGrassToolStripMenuItem
             // 
             this.growingGrassToolStripMenuItem.Name = "growingGrassToolStripMenuItem";
-            this.growingGrassToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.growingGrassToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.growingGrassToolStripMenuItem.Text = "Grass Growing";
             this.growingGrassToolStripMenuItem.Click += new System.EventHandler(this.growingGrassToolStripMenuItem_Click);
             // 
             // survivalDeathToolStripMenuItem
             // 
             this.survivalDeathToolStripMenuItem.Name = "survivalDeathToolStripMenuItem";
-            this.survivalDeathToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.survivalDeathToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.survivalDeathToolStripMenuItem.Text = "Survival Death";
             this.survivalDeathToolStripMenuItem.Click += new System.EventHandler(this.survivalDeathToolStripMenuItem_Click);
             // 
             // killerBlocksToolStripMenuItem
             // 
             this.killerBlocksToolStripMenuItem.Name = "killerBlocksToolStripMenuItem";
-            this.killerBlocksToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.killerBlocksToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.killerBlocksToolStripMenuItem.Text = "Killer Blocks";
             this.killerBlocksToolStripMenuItem.Click += new System.EventHandler(this.killerBlocksToolStripMenuItem_Click);
             // 
             // rPChatToolStripMenuItem
             // 
             this.rPChatToolStripMenuItem.Name = "rPChatToolStripMenuItem";
-            this.rPChatToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.rPChatToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.rPChatToolStripMenuItem.Text = "RP Chat";
             this.rPChatToolStripMenuItem.Click += new System.EventHandler(this.rPChatToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -552,19 +552,19 @@ namespace MCDawn.Gui
             this.openConsole,
             this.shutdownServer});
             this.iconContext.Name = "iconContext";
-            this.iconContext.Size = new System.Drawing.Size(164, 48);
+            this.iconContext.Size = new System.Drawing.Size(190, 52);
             // 
             // openConsole
             // 
             this.openConsole.Name = "openConsole";
-            this.openConsole.Size = new System.Drawing.Size(163, 22);
+            this.openConsole.Size = new System.Drawing.Size(189, 24);
             this.openConsole.Text = "Open Console";
             this.openConsole.Click += new System.EventHandler(this.openConsole_Click);
             // 
             // shutdownServer
             // 
             this.shutdownServer.Name = "shutdownServer";
-            this.shutdownServer.Size = new System.Drawing.Size(163, 22);
+            this.shutdownServer.Size = new System.Drawing.Size(189, 24);
             this.shutdownServer.Text = "Shutdown Server";
             this.shutdownServer.Click += new System.EventHandler(this.shutdownServer_Click);
             // 
@@ -584,9 +584,9 @@ namespace MCDawn.Gui
             this.tabPage8.Controls.Add(this.label27);
             this.tabPage8.Controls.Add(this.label26);
             this.tabPage8.Controls.Add(this.txtDescription);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Location = new System.Drawing.Point(4, 26);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(786, 553);
+            this.tabPage8.Size = new System.Drawing.Size(786, 549);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "About/Stats";
             // 
@@ -596,16 +596,17 @@ namespace MCDawn.Gui
             this.label37.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.Location = new System.Drawing.Point(547, 369);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(170, 14);
+            this.label37.Size = new System.Drawing.Size(194, 18);
             this.label37.TabIndex = 12;
             this.label37.Text = "MCDawn Administration Team";
             // 
             // liAdministration
             // 
             this.liAdministration.FormattingEnabled = true;
+            this.liAdministration.ItemHeight = 17;
             this.liAdministration.Location = new System.Drawing.Point(504, 386);
             this.liAdministration.Name = "liAdministration";
-            this.liAdministration.Size = new System.Drawing.Size(254, 69);
+            this.liAdministration.Size = new System.Drawing.Size(254, 55);
             this.liAdministration.TabIndex = 11;
             // 
             // grpStats
@@ -632,7 +633,7 @@ namespace MCDawn.Gui
             this.lblThreads.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThreads.Location = new System.Drawing.Point(168, 127);
             this.lblThreads.Name = "lblThreads";
-            this.lblThreads.Size = new System.Drawing.Size(20, 18);
+            this.lblThreads.Size = new System.Drawing.Size(25, 23);
             this.lblThreads.TabIndex = 11;
             this.lblThreads.Text = "...";
             // 
@@ -642,7 +643,7 @@ namespace MCDawn.Gui
             this.lblCPU.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCPU.Location = new System.Drawing.Point(168, 93);
             this.lblCPU.Name = "lblCPU";
-            this.lblCPU.Size = new System.Drawing.Size(20, 18);
+            this.lblCPU.Size = new System.Drawing.Size(25, 23);
             this.lblCPU.TabIndex = 10;
             this.lblCPU.Text = "...";
             // 
@@ -652,7 +653,7 @@ namespace MCDawn.Gui
             this.lblMemory.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMemory.Location = new System.Drawing.Point(168, 60);
             this.lblMemory.Name = "lblMemory";
-            this.lblMemory.Size = new System.Drawing.Size(20, 18);
+            this.lblMemory.Size = new System.Drawing.Size(25, 23);
             this.lblMemory.TabIndex = 9;
             this.lblMemory.Text = "...";
             // 
@@ -662,7 +663,7 @@ namespace MCDawn.Gui
             this.label42.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label42.Location = new System.Drawing.Point(81, 130);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(54, 14);
+            this.label42.Size = new System.Drawing.Size(61, 18);
             this.label42.TabIndex = 8;
             this.label42.Text = "Threads:";
             // 
@@ -672,7 +673,7 @@ namespace MCDawn.Gui
             this.label41.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label41.Location = new System.Drawing.Point(68, 96);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(67, 14);
+            this.label41.Size = new System.Drawing.Size(77, 18);
             this.label41.TabIndex = 7;
             this.label41.Text = "CPU Usage:";
             // 
@@ -682,7 +683,7 @@ namespace MCDawn.Gui
             this.label40.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label40.Location = new System.Drawing.Point(45, 63);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(90, 14);
+            this.label40.Size = new System.Drawing.Size(104, 18);
             this.label40.TabIndex = 6;
             this.label40.Text = "Memory Usage:";
             // 
@@ -692,7 +693,7 @@ namespace MCDawn.Gui
             this.lblUptime.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUptime.Location = new System.Drawing.Point(168, 27);
             this.lblUptime.Name = "lblUptime";
-            this.lblUptime.Size = new System.Drawing.Size(20, 18);
+            this.lblUptime.Size = new System.Drawing.Size(25, 23);
             this.lblUptime.TabIndex = 2;
             this.lblUptime.Text = "...";
             // 
@@ -702,7 +703,7 @@ namespace MCDawn.Gui
             this.label34.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.Location = new System.Drawing.Point(86, 30);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(49, 14);
+            this.label34.Size = new System.Drawing.Size(57, 18);
             this.label34.TabIndex = 0;
             this.label34.Text = "Uptime:";
             // 
@@ -732,7 +733,7 @@ namespace MCDawn.Gui
             this.lblTotalOps.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalOps.Location = new System.Drawing.Point(168, 104);
             this.lblTotalOps.Name = "lblTotalOps";
-            this.lblTotalOps.Size = new System.Drawing.Size(20, 18);
+            this.lblTotalOps.Size = new System.Drawing.Size(25, 23);
             this.lblTotalOps.TabIndex = 5;
             this.lblTotalOps.Text = "...";
             // 
@@ -742,7 +743,7 @@ namespace MCDawn.Gui
             this.lblTotalPlayersBanned.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPlayersBanned.Location = new System.Drawing.Point(168, 179);
             this.lblTotalPlayersBanned.Name = "lblTotalPlayersBanned";
-            this.lblTotalPlayersBanned.Size = new System.Drawing.Size(20, 18);
+            this.lblTotalPlayersBanned.Size = new System.Drawing.Size(25, 23);
             this.lblTotalPlayersBanned.TabIndex = 5;
             this.lblTotalPlayersBanned.Text = "...";
             // 
@@ -751,7 +752,7 @@ namespace MCDawn.Gui
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(64, 107);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(71, 14);
+            this.label32.Size = new System.Drawing.Size(81, 18);
             this.label32.TabIndex = 4;
             this.label32.Text = "Ops Online:";
             // 
@@ -761,7 +762,7 @@ namespace MCDawn.Gui
             this.lblTotalPlayersVisited.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPlayersVisited.Location = new System.Drawing.Point(168, 141);
             this.lblTotalPlayersVisited.Name = "lblTotalPlayersVisited";
-            this.lblTotalPlayersVisited.Size = new System.Drawing.Size(20, 18);
+            this.lblTotalPlayersVisited.Size = new System.Drawing.Size(25, 23);
             this.lblTotalPlayersVisited.TabIndex = 3;
             this.lblTotalPlayersVisited.Text = "...";
             // 
@@ -771,7 +772,7 @@ namespace MCDawn.Gui
             this.label39.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label39.Location = new System.Drawing.Point(11, 182);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(124, 14);
+            this.label39.Size = new System.Drawing.Size(140, 18);
             this.label39.TabIndex = 4;
             this.label39.Text = "Total Players Banned:";
             // 
@@ -781,7 +782,7 @@ namespace MCDawn.Gui
             this.lblTotalGuests.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalGuests.Location = new System.Drawing.Point(168, 66);
             this.lblTotalGuests.Name = "lblTotalGuests";
-            this.lblTotalGuests.Size = new System.Drawing.Size(20, 18);
+            this.lblTotalGuests.Size = new System.Drawing.Size(25, 23);
             this.lblTotalGuests.TabIndex = 3;
             this.lblTotalGuests.Text = "...";
             // 
@@ -790,7 +791,7 @@ namespace MCDawn.Gui
             this.label33.AutoSize = true;
             this.label33.Location = new System.Drawing.Point(47, 69);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(88, 14);
+            this.label33.Size = new System.Drawing.Size(99, 18);
             this.label33.TabIndex = 2;
             this.label33.Text = "Guests Online:";
             // 
@@ -800,7 +801,7 @@ namespace MCDawn.Gui
             this.lblTotalPlayers.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPlayers.Location = new System.Drawing.Point(168, 27);
             this.lblTotalPlayers.Name = "lblTotalPlayers";
-            this.lblTotalPlayers.Size = new System.Drawing.Size(20, 18);
+            this.lblTotalPlayers.Size = new System.Drawing.Size(25, 23);
             this.lblTotalPlayers.TabIndex = 1;
             this.lblTotalPlayers.Text = "...";
             // 
@@ -810,7 +811,7 @@ namespace MCDawn.Gui
             this.label35.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.Location = new System.Drawing.Point(14, 144);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(121, 14);
+            this.label35.Size = new System.Drawing.Size(137, 18);
             this.label35.TabIndex = 1;
             this.label35.Text = "Total Players Visited:";
             // 
@@ -819,7 +820,7 @@ namespace MCDawn.Gui
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(46, 30);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(89, 14);
+            this.label31.Size = new System.Drawing.Size(102, 18);
             this.label31.TabIndex = 0;
             this.label31.Text = "Players Online:";
             // 
@@ -844,7 +845,7 @@ namespace MCDawn.Gui
             this.lblLatestVersion.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLatestVersion.Location = new System.Drawing.Point(168, 67);
             this.lblLatestVersion.Name = "lblLatestVersion";
-            this.lblLatestVersion.Size = new System.Drawing.Size(20, 18);
+            this.lblLatestVersion.Size = new System.Drawing.Size(25, 23);
             this.lblLatestVersion.TabIndex = 3;
             this.lblLatestVersion.Text = "...";
             // 
@@ -854,7 +855,7 @@ namespace MCDawn.Gui
             this.lblCurVersion.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurVersion.Location = new System.Drawing.Point(168, 30);
             this.lblCurVersion.Name = "lblCurVersion";
-            this.lblCurVersion.Size = new System.Drawing.Size(20, 18);
+            this.lblCurVersion.Size = new System.Drawing.Size(25, 23);
             this.lblCurVersion.TabIndex = 2;
             this.lblCurVersion.Text = "...";
             // 
@@ -863,7 +864,7 @@ namespace MCDawn.Gui
             this.label30.AutoSize = true;
             this.label30.Location = new System.Drawing.Point(48, 70);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(87, 14);
+            this.label30.Size = new System.Drawing.Size(99, 18);
             this.label30.TabIndex = 1;
             this.label30.Text = "Latest Version:";
             // 
@@ -872,7 +873,7 @@ namespace MCDawn.Gui
             this.label29.AutoSize = true;
             this.label29.Location = new System.Drawing.Point(42, 33);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(93, 14);
+            this.label29.Size = new System.Drawing.Size(109, 18);
             this.label29.TabIndex = 0;
             this.label29.Text = "Current Version:";
             // 
@@ -881,7 +882,7 @@ namespace MCDawn.Gui
             this.linkSite.AutoSize = true;
             this.linkSite.Location = new System.Drawing.Point(106, 531);
             this.linkSite.Name = "linkSite";
-            this.linkSite.Size = new System.Drawing.Size(91, 13);
+            this.linkSite.Size = new System.Drawing.Size(108, 17);
             this.linkSite.TabIndex = 7;
             this.linkSite.TabStop = true;
             this.linkSite.Text = "MCDawn Website";
@@ -892,7 +893,7 @@ namespace MCDawn.Gui
             this.linkForums.AutoSize = true;
             this.linkForums.Location = new System.Drawing.Point(274, 532);
             this.linkForums.Name = "linkForums";
-            this.linkForums.Size = new System.Drawing.Size(86, 13);
+            this.linkForums.Size = new System.Drawing.Size(104, 17);
             this.linkForums.TabIndex = 6;
             this.linkForums.TabStop = true;
             this.linkForums.Text = "MCDawn Forums";
@@ -901,9 +902,10 @@ namespace MCDawn.Gui
             // liStaff
             // 
             this.liStaff.FormattingEnabled = true;
+            this.liStaff.ItemHeight = 17;
             this.liStaff.Location = new System.Drawing.Point(504, 475);
             this.liStaff.Name = "liStaff";
-            this.liStaff.Size = new System.Drawing.Size(254, 69);
+            this.liStaff.Size = new System.Drawing.Size(254, 55);
             this.liStaff.TabIndex = 5;
             // 
             // label28
@@ -912,16 +914,17 @@ namespace MCDawn.Gui
             this.label28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.Location = new System.Drawing.Point(579, 458);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(113, 14);
+            this.label28.Size = new System.Drawing.Size(130, 18);
             this.label28.TabIndex = 4;
             this.label28.Text = "MCDawn Staff Team";
             // 
             // liDevs
             // 
             this.liDevs.FormattingEnabled = true;
+            this.liDevs.ItemHeight = 17;
             this.liDevs.Location = new System.Drawing.Point(504, 284);
             this.liDevs.Name = "liDevs";
-            this.liDevs.Size = new System.Drawing.Size(254, 82);
+            this.liDevs.Size = new System.Drawing.Size(254, 72);
             this.liDevs.TabIndex = 3;
             // 
             // label27
@@ -930,7 +933,7 @@ namespace MCDawn.Gui
             this.label27.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(552, 267);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(162, 14);
+            this.label27.Size = new System.Drawing.Size(187, 18);
             this.label27.TabIndex = 2;
             this.label27.Text = "MCDawn Development Team";
             // 
@@ -940,7 +943,7 @@ namespace MCDawn.Gui
             this.label26.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(579, 23);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(91, 15);
+            this.label26.Size = new System.Drawing.Size(120, 21);
             this.label26.TabIndex = 1;
             this.label26.Text = "About MCDawn";
             // 
@@ -967,10 +970,10 @@ namespace MCDawn.Gui
             this.tabPage3.Controls.Add(this.label25);
             this.tabPage3.Controls.Add(this.txtLogs);
             this.tabPage3.Controls.Add(this.txtErrors);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(786, 553);
+            this.tabPage3.Size = new System.Drawing.Size(786, 549);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Logs/Errors";
             // 
@@ -979,7 +982,7 @@ namespace MCDawn.Gui
             this.cmbErrors.FormattingEnabled = true;
             this.cmbErrors.Location = new System.Drawing.Point(51, 284);
             this.cmbErrors.Name = "cmbErrors";
-            this.cmbErrors.Size = new System.Drawing.Size(121, 21);
+            this.cmbErrors.Size = new System.Drawing.Size(121, 25);
             this.cmbErrors.TabIndex = 6;
             this.cmbErrors.SelectedIndexChanged += new System.EventHandler(this.cmbErrors_SelectedIndexChanged);
             // 
@@ -988,7 +991,7 @@ namespace MCDawn.Gui
             this.label52.AutoSize = true;
             this.label52.Location = new System.Drawing.Point(7, 287);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(38, 13);
+            this.label52.Size = new System.Drawing.Size(46, 17);
             this.label52.TabIndex = 5;
             this.label52.Text = "Errors:";
             // 
@@ -997,7 +1000,7 @@ namespace MCDawn.Gui
             this.cmbLogs.FormattingEnabled = true;
             this.cmbLogs.Location = new System.Drawing.Point(44, 12);
             this.cmbLogs.Name = "cmbLogs";
-            this.cmbLogs.Size = new System.Drawing.Size(121, 21);
+            this.cmbLogs.Size = new System.Drawing.Size(121, 25);
             this.cmbLogs.TabIndex = 4;
             this.cmbLogs.SelectedIndexChanged += new System.EventHandler(this.cmbLogs_SelectedIndexChanged);
             // 
@@ -1006,7 +1009,7 @@ namespace MCDawn.Gui
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(7, 15);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(31, 13);
+            this.label25.Size = new System.Drawing.Size(37, 17);
             this.label25.TabIndex = 3;
             this.label25.Text = "Logs:";
             // 
@@ -1041,10 +1044,10 @@ namespace MCDawn.Gui
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
             this.tabPage2.Controls.Add(this.btnUpdateChangelog);
             this.tabPage2.Controls.Add(this.txtChangelog);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(786, 553);
+            this.tabPage2.Size = new System.Drawing.Size(786, 549);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Changelog";
             // 
@@ -1074,10 +1077,10 @@ namespace MCDawn.Gui
             // 
             this.tabPage4.BackColor = System.Drawing.Color.Transparent;
             this.tabPage4.Controls.Add(this.txtSystem);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(786, 553);
+            this.tabPage4.Size = new System.Drawing.Size(786, 549);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "System";
             // 
@@ -1098,9 +1101,9 @@ namespace MCDawn.Gui
             this.tabPage7.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage7.Controls.Add(this.grpMapViewer);
             this.tabPage7.Controls.Add(this.grpMapEditor);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Location = new System.Drawing.Point(4, 26);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(786, 553);
+            this.tabPage7.Size = new System.Drawing.Size(786, 549);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Map Editor/Viewer";
             // 
@@ -1133,7 +1136,7 @@ namespace MCDawn.Gui
             0,
             0});
             this.txtMapViewerRotation.Name = "txtMapViewerRotation";
-            this.txtMapViewerRotation.Size = new System.Drawing.Size(44, 21);
+            this.txtMapViewerRotation.Size = new System.Drawing.Size(44, 24);
             this.txtMapViewerRotation.TabIndex = 20;
             // 
             // txtMapViewerZ
@@ -1141,7 +1144,7 @@ namespace MCDawn.Gui
             this.txtMapViewerZ.Location = new System.Drawing.Point(540, 14);
             this.txtMapViewerZ.Name = "txtMapViewerZ";
             this.txtMapViewerZ.ReadOnly = true;
-            this.txtMapViewerZ.Size = new System.Drawing.Size(34, 21);
+            this.txtMapViewerZ.Size = new System.Drawing.Size(34, 24);
             this.txtMapViewerZ.TabIndex = 19;
             this.txtMapViewerZ.Text = "0";
             // 
@@ -1150,7 +1153,7 @@ namespace MCDawn.Gui
             this.txtMapViewerY.Location = new System.Drawing.Point(500, 14);
             this.txtMapViewerY.Name = "txtMapViewerY";
             this.txtMapViewerY.ReadOnly = true;
-            this.txtMapViewerY.Size = new System.Drawing.Size(34, 21);
+            this.txtMapViewerY.Size = new System.Drawing.Size(34, 24);
             this.txtMapViewerY.TabIndex = 18;
             this.txtMapViewerY.Text = "0";
             // 
@@ -1159,7 +1162,7 @@ namespace MCDawn.Gui
             this.txtMapViewerX.Location = new System.Drawing.Point(460, 14);
             this.txtMapViewerX.Name = "txtMapViewerX";
             this.txtMapViewerX.ReadOnly = true;
-            this.txtMapViewerX.Size = new System.Drawing.Size(34, 21);
+            this.txtMapViewerX.Size = new System.Drawing.Size(34, 24);
             this.txtMapViewerX.TabIndex = 17;
             this.txtMapViewerX.Text = "0";
             // 
@@ -1168,7 +1171,7 @@ namespace MCDawn.Gui
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(371, 17);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(83, 13);
+            this.label24.Size = new System.Drawing.Size(103, 17);
             this.label24.TabIndex = 16;
             this.label24.Text = "Level Size (X,Y,Z):";
             // 
@@ -1187,7 +1190,7 @@ namespace MCDawn.Gui
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(184, 17);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(50, 13);
+            this.label23.Size = new System.Drawing.Size(61, 17);
             this.label23.TabIndex = 13;
             this.label23.Text = "Rotation:";
             // 
@@ -1205,7 +1208,7 @@ namespace MCDawn.Gui
             // 
             this.txtMapViewerLevelName.Location = new System.Drawing.Point(78, 14);
             this.txtMapViewerLevelName.Name = "txtMapViewerLevelName";
-            this.txtMapViewerLevelName.Size = new System.Drawing.Size(100, 21);
+            this.txtMapViewerLevelName.Size = new System.Drawing.Size(100, 24);
             this.txtMapViewerLevelName.TabIndex = 2;
             this.txtMapViewerLevelName.Text = "main";
             // 
@@ -1214,7 +1217,7 @@ namespace MCDawn.Gui
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(7, 17);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(65, 13);
+            this.label22.Size = new System.Drawing.Size(78, 17);
             this.label22.TabIndex = 1;
             this.label22.Text = "Level Name:";
             // 
@@ -1272,7 +1275,7 @@ namespace MCDawn.Gui
             // 
             this.txtMapEditorChangeBlock.Location = new System.Drawing.Point(139, 52);
             this.txtMapEditorChangeBlock.Name = "txtMapEditorChangeBlock";
-            this.txtMapEditorChangeBlock.Size = new System.Drawing.Size(100, 21);
+            this.txtMapEditorChangeBlock.Size = new System.Drawing.Size(100, 24);
             this.txtMapEditorChangeBlock.TabIndex = 9;
             // 
             // label21
@@ -1280,7 +1283,7 @@ namespace MCDawn.Gui
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(6, 55);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(127, 13);
+            this.label21.Size = new System.Drawing.Size(153, 17);
             this.label21.TabIndex = 8;
             this.label21.Text = "Change Selected Block to:";
             // 
@@ -1289,7 +1292,7 @@ namespace MCDawn.Gui
             this.txtMapEditorCurrentBlock.Location = new System.Drawing.Point(515, 20);
             this.txtMapEditorCurrentBlock.Name = "txtMapEditorCurrentBlock";
             this.txtMapEditorCurrentBlock.ReadOnly = true;
-            this.txtMapEditorCurrentBlock.Size = new System.Drawing.Size(100, 21);
+            this.txtMapEditorCurrentBlock.Size = new System.Drawing.Size(100, 24);
             this.txtMapEditorCurrentBlock.TabIndex = 7;
             this.txtMapEditorCurrentBlock.Text = "none";
             // 
@@ -1298,7 +1301,7 @@ namespace MCDawn.Gui
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(436, 23);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(73, 13);
+            this.label20.Size = new System.Drawing.Size(88, 17);
             this.label20.TabIndex = 6;
             this.label20.Text = "Current Block:";
             // 
@@ -1306,7 +1309,7 @@ namespace MCDawn.Gui
             // 
             this.txtMapEditorZ.Location = new System.Drawing.Point(386, 20);
             this.txtMapEditorZ.Name = "txtMapEditorZ";
-            this.txtMapEditorZ.Size = new System.Drawing.Size(34, 21);
+            this.txtMapEditorZ.Size = new System.Drawing.Size(34, 24);
             this.txtMapEditorZ.TabIndex = 5;
             this.txtMapEditorZ.Text = "0";
             // 
@@ -1314,7 +1317,7 @@ namespace MCDawn.Gui
             // 
             this.txtMapEditorY.Location = new System.Drawing.Point(346, 20);
             this.txtMapEditorY.Name = "txtMapEditorY";
-            this.txtMapEditorY.Size = new System.Drawing.Size(34, 21);
+            this.txtMapEditorY.Size = new System.Drawing.Size(34, 24);
             this.txtMapEditorY.TabIndex = 4;
             this.txtMapEditorY.Text = "0";
             // 
@@ -1322,7 +1325,7 @@ namespace MCDawn.Gui
             // 
             this.txtMapEditorX.Location = new System.Drawing.Point(306, 20);
             this.txtMapEditorX.Name = "txtMapEditorX";
-            this.txtMapEditorX.Size = new System.Drawing.Size(34, 21);
+            this.txtMapEditorX.Size = new System.Drawing.Size(34, 24);
             this.txtMapEditorX.TabIndex = 3;
             this.txtMapEditorX.Text = "0";
             // 
@@ -1331,7 +1334,7 @@ namespace MCDawn.Gui
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(194, 23);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(106, 13);
+            this.label19.Size = new System.Drawing.Size(130, 17);
             this.label19.TabIndex = 2;
             this.label19.Text = "Selected Block (X,Y,Z):";
             // 
@@ -1339,7 +1342,7 @@ namespace MCDawn.Gui
             // 
             this.txtMapEditorLevelName.Location = new System.Drawing.Point(78, 20);
             this.txtMapEditorLevelName.Name = "txtMapEditorLevelName";
-            this.txtMapEditorLevelName.Size = new System.Drawing.Size(100, 21);
+            this.txtMapEditorLevelName.Size = new System.Drawing.Size(100, 24);
             this.txtMapEditorLevelName.TabIndex = 1;
             this.txtMapEditorLevelName.Text = "main";
             // 
@@ -1348,7 +1351,7 @@ namespace MCDawn.Gui
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(7, 23);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(65, 13);
+            this.label18.Size = new System.Drawing.Size(78, 17);
             this.label18.TabIndex = 0;
             this.label18.Text = "Level Name:";
             // 
@@ -1361,9 +1364,9 @@ namespace MCDawn.Gui
             this.tabPage6.Controls.Add(this.grpNewDelRenLevel);
             this.tabPage6.Controls.Add(this.txtLevelLog);
             this.tabPage6.Controls.Add(this.grpLevels);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(4, 26);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(786, 553);
+            this.tabPage6.Size = new System.Drawing.Size(786, 549);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Levels";
             // 
@@ -1406,7 +1409,7 @@ namespace MCDawn.Gui
             this.chkAutoLoad.AutoSize = true;
             this.chkAutoLoad.Location = new System.Drawing.Point(131, 241);
             this.chkAutoLoad.Name = "chkAutoLoad";
-            this.chkAutoLoad.Size = new System.Drawing.Size(73, 17);
+            this.chkAutoLoad.Size = new System.Drawing.Size(87, 21);
             this.chkAutoLoad.TabIndex = 25;
             this.chkAutoLoad.Text = "Auto Load";
             this.chkAutoLoad.UseVisualStyleBackColor = true;
@@ -1416,7 +1419,7 @@ namespace MCDawn.Gui
             this.chkAllowGuns.AutoSize = true;
             this.chkAllowGuns.Location = new System.Drawing.Point(214, 241);
             this.chkAllowGuns.Name = "chkAllowGuns";
-            this.chkAllowGuns.Size = new System.Drawing.Size(78, 17);
+            this.chkAllowGuns.Size = new System.Drawing.Size(92, 21);
             this.chkAllowGuns.TabIndex = 24;
             this.chkAllowGuns.Text = "Allow Guns";
             this.chkAllowGuns.UseVisualStyleBackColor = true;
@@ -1437,7 +1440,7 @@ namespace MCDawn.Gui
             this.chkRPChat.AutoSize = true;
             this.chkRPChat.Location = new System.Drawing.Point(143, 50);
             this.chkRPChat.Name = "chkRPChat";
-            this.chkRPChat.Size = new System.Drawing.Size(53, 23);
+            this.chkRPChat.Size = new System.Drawing.Size(62, 27);
             this.chkRPChat.TabIndex = 22;
             this.chkRPChat.Text = "RP Chat";
             this.chkRPChat.UseVisualStyleBackColor = true;
@@ -1446,7 +1449,7 @@ namespace MCDawn.Gui
             // 
             this.txtDrown.Location = new System.Drawing.Point(143, 214);
             this.txtDrown.Name = "txtDrown";
-            this.txtDrown.Size = new System.Drawing.Size(147, 21);
+            this.txtDrown.Size = new System.Drawing.Size(147, 24);
             this.txtDrown.TabIndex = 21;
             // 
             // label16
@@ -1454,7 +1457,7 @@ namespace MCDawn.Gui
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(140, 198);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(38, 13);
+            this.label16.Size = new System.Drawing.Size(46, 17);
             this.label16.TabIndex = 20;
             this.label16.Text = "Drown";
             // 
@@ -1463,7 +1466,7 @@ namespace MCDawn.Gui
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(140, 158);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(24, 13);
+            this.label15.Size = new System.Drawing.Size(27, 17);
             this.label15.TabIndex = 19;
             this.label15.Text = "Fall";
             // 
@@ -1471,7 +1474,7 @@ namespace MCDawn.Gui
             // 
             this.txtFall.Location = new System.Drawing.Point(143, 174);
             this.txtFall.Name = "txtFall";
-            this.txtFall.Size = new System.Drawing.Size(147, 21);
+            this.txtFall.Size = new System.Drawing.Size(147, 24);
             this.txtFall.TabIndex = 18;
             // 
             // chkSurvivalDeath
@@ -1479,7 +1482,7 @@ namespace MCDawn.Gui
             this.chkSurvivalDeath.AutoSize = true;
             this.chkSurvivalDeath.Location = new System.Drawing.Point(10, 227);
             this.chkSurvivalDeath.Name = "chkSurvivalDeath";
-            this.chkSurvivalDeath.Size = new System.Drawing.Size(94, 17);
+            this.chkSurvivalDeath.Size = new System.Drawing.Size(111, 21);
             this.chkSurvivalDeath.TabIndex = 17;
             this.chkSurvivalDeath.Text = "Survival Death";
             this.chkSurvivalDeath.UseVisualStyleBackColor = true;
@@ -1488,7 +1491,7 @@ namespace MCDawn.Gui
             // 
             this.txtPhysicsOverload.Location = new System.Drawing.Point(143, 134);
             this.txtPhysicsOverload.Name = "txtPhysicsOverload";
-            this.txtPhysicsOverload.Size = new System.Drawing.Size(147, 21);
+            this.txtPhysicsOverload.Size = new System.Drawing.Size(147, 24);
             this.txtPhysicsOverload.TabIndex = 16;
             // 
             // label14
@@ -1496,7 +1499,7 @@ namespace MCDawn.Gui
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(140, 118);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(87, 13);
+            this.label14.Size = new System.Drawing.Size(101, 17);
             this.label14.TabIndex = 15;
             this.label14.Text = "Physics Overload";
             // 
@@ -1505,7 +1508,7 @@ namespace MCDawn.Gui
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(140, 78);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(73, 13);
+            this.label11.Size = new System.Drawing.Size(84, 17);
             this.label11.TabIndex = 14;
             this.label11.Text = "Physics Speed";
             // 
@@ -1513,7 +1516,7 @@ namespace MCDawn.Gui
             // 
             this.txtPhysicsSpeed.Location = new System.Drawing.Point(143, 94);
             this.txtPhysicsSpeed.Name = "txtPhysicsSpeed";
-            this.txtPhysicsSpeed.Size = new System.Drawing.Size(147, 21);
+            this.txtPhysicsSpeed.Size = new System.Drawing.Size(147, 24);
             this.txtPhysicsSpeed.TabIndex = 13;
             // 
             // chkInstant
@@ -1521,7 +1524,7 @@ namespace MCDawn.Gui
             this.chkInstant.AutoSize = true;
             this.chkInstant.Location = new System.Drawing.Point(10, 208);
             this.chkInstant.Name = "chkInstant";
-            this.chkInstant.Size = new System.Drawing.Size(100, 17);
+            this.chkInstant.Size = new System.Drawing.Size(118, 21);
             this.chkInstant.TabIndex = 11;
             this.chkInstant.Text = "Instant Building";
             this.chkInstant.UseVisualStyleBackColor = true;
@@ -1531,7 +1534,7 @@ namespace MCDawn.Gui
             this.chkAutoPhysics.AutoSize = true;
             this.chkAutoPhysics.Location = new System.Drawing.Point(10, 188);
             this.chkAutoPhysics.Name = "chkAutoPhysics";
-            this.chkAutoPhysics.Size = new System.Drawing.Size(85, 17);
+            this.chkAutoPhysics.Size = new System.Drawing.Size(99, 21);
             this.chkAutoPhysics.TabIndex = 10;
             this.chkAutoPhysics.Text = "Auto Physics";
             this.chkAutoPhysics.UseVisualStyleBackColor = true;
@@ -1541,7 +1544,7 @@ namespace MCDawn.Gui
             this.chkUnload.AutoSize = true;
             this.chkUnload.Location = new System.Drawing.Point(10, 168);
             this.chkUnload.Name = "chkUnload";
-            this.chkUnload.Size = new System.Drawing.Size(85, 17);
+            this.chkUnload.Size = new System.Drawing.Size(101, 21);
             this.chkUnload.TabIndex = 9;
             this.chkUnload.Text = "Auto-Unload";
             this.chkUnload.UseVisualStyleBackColor = true;
@@ -1551,7 +1554,7 @@ namespace MCDawn.Gui
             this.chkKillerBlocks.AutoSize = true;
             this.chkKillerBlocks.Location = new System.Drawing.Point(10, 148);
             this.chkKillerBlocks.Name = "chkKillerBlocks";
-            this.chkKillerBlocks.Size = new System.Drawing.Size(83, 17);
+            this.chkKillerBlocks.Size = new System.Drawing.Size(96, 21);
             this.chkKillerBlocks.TabIndex = 8;
             this.chkKillerBlocks.Text = "Killer Blocks";
             this.chkKillerBlocks.UseVisualStyleBackColor = true;
@@ -1561,7 +1564,7 @@ namespace MCDawn.Gui
             this.chkGrassGrowing.AutoSize = true;
             this.chkGrassGrowing.Location = new System.Drawing.Point(10, 108);
             this.chkGrassGrowing.Name = "chkGrassGrowing";
-            this.chkGrassGrowing.Size = new System.Drawing.Size(94, 17);
+            this.chkGrassGrowing.Size = new System.Drawing.Size(112, 21);
             this.chkGrassGrowing.TabIndex = 7;
             this.chkGrassGrowing.Text = "Grass Growing";
             this.chkGrassGrowing.UseVisualStyleBackColor = true;
@@ -1571,7 +1574,7 @@ namespace MCDawn.Gui
             this.chkEdgeWater.AutoSize = true;
             this.chkEdgeWater.Location = new System.Drawing.Point(10, 128);
             this.chkEdgeWater.Name = "chkEdgeWater";
-            this.chkEdgeWater.Size = new System.Drawing.Size(80, 17);
+            this.chkEdgeWater.Size = new System.Drawing.Size(97, 21);
             this.chkEdgeWater.TabIndex = 6;
             this.chkEdgeWater.Text = "Edge Water";
             this.chkEdgeWater.UseVisualStyleBackColor = true;
@@ -1581,7 +1584,7 @@ namespace MCDawn.Gui
             this.chkAnimalAI.AutoSize = true;
             this.chkAnimalAI.Location = new System.Drawing.Point(10, 89);
             this.chkAnimalAI.Name = "chkAnimalAI";
-            this.chkAnimalAI.Size = new System.Drawing.Size(70, 17);
+            this.chkAnimalAI.Size = new System.Drawing.Size(84, 21);
             this.chkAnimalAI.TabIndex = 5;
             this.chkAnimalAI.Text = "Animal AI";
             this.chkAnimalAI.UseVisualStyleBackColor = true;
@@ -1591,7 +1594,7 @@ namespace MCDawn.Gui
             this.chkFiniteMode.AutoSize = true;
             this.chkFiniteMode.Location = new System.Drawing.Point(10, 69);
             this.chkFiniteMode.Name = "chkFiniteMode";
-            this.chkFiniteMode.Size = new System.Drawing.Size(82, 17);
+            this.chkFiniteMode.Size = new System.Drawing.Size(97, 21);
             this.chkFiniteMode.TabIndex = 4;
             this.chkFiniteMode.Text = "Finite Mode";
             this.chkFiniteMode.UseVisualStyleBackColor = true;
@@ -1600,7 +1603,7 @@ namespace MCDawn.Gui
             // 
             this.txtPhysics.Location = new System.Drawing.Point(66, 45);
             this.txtPhysics.Name = "txtPhysics";
-            this.txtPhysics.Size = new System.Drawing.Size(55, 21);
+            this.txtPhysics.Size = new System.Drawing.Size(55, 24);
             this.txtPhysics.TabIndex = 3;
             // 
             // label9
@@ -1608,7 +1611,7 @@ namespace MCDawn.Gui
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(7, 50);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 13);
+            this.label9.Size = new System.Drawing.Size(51, 17);
             this.label9.TabIndex = 2;
             this.label9.Text = "Physics:";
             // 
@@ -1616,7 +1619,7 @@ namespace MCDawn.Gui
             // 
             this.txtLevelMotd.Location = new System.Drawing.Point(58, 18);
             this.txtLevelMotd.Name = "txtLevelMotd";
-            this.txtLevelMotd.Size = new System.Drawing.Size(232, 21);
+            this.txtLevelMotd.Size = new System.Drawing.Size(232, 24);
             this.txtLevelMotd.TabIndex = 1;
             // 
             // label3
@@ -1624,7 +1627,7 @@ namespace MCDawn.Gui
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.Size = new System.Drawing.Size(49, 17);
             this.label3.TabIndex = 0;
             this.label3.Text = "MOTD:";
             // 
@@ -1687,7 +1690,7 @@ namespace MCDawn.Gui
             "Sphere"});
             this.cmbLevelType.Location = new System.Drawing.Point(63, 208);
             this.cmbLevelType.Name = "cmbLevelType";
-            this.cmbLevelType.Size = new System.Drawing.Size(86, 21);
+            this.cmbLevelType.Size = new System.Drawing.Size(86, 25);
             this.cmbLevelType.TabIndex = 11;
             // 
             // btnNewLevel
@@ -1704,21 +1707,21 @@ namespace MCDawn.Gui
             // 
             this.txtZDim.Location = new System.Drawing.Point(63, 172);
             this.txtZDim.Name = "txtZDim";
-            this.txtZDim.Size = new System.Drawing.Size(86, 21);
+            this.txtZDim.Size = new System.Drawing.Size(86, 24);
             this.txtZDim.TabIndex = 9;
             // 
             // txtYDim
             // 
             this.txtYDim.Location = new System.Drawing.Point(63, 133);
             this.txtYDim.Name = "txtYDim";
-            this.txtYDim.Size = new System.Drawing.Size(86, 21);
+            this.txtYDim.Size = new System.Drawing.Size(86, 24);
             this.txtYDim.TabIndex = 8;
             // 
             // txtXDim
             // 
             this.txtXDim.Location = new System.Drawing.Point(63, 92);
             this.txtXDim.Name = "txtXDim";
-            this.txtXDim.Size = new System.Drawing.Size(86, 21);
+            this.txtXDim.Size = new System.Drawing.Size(86, 24);
             this.txtXDim.TabIndex = 7;
             // 
             // label8
@@ -1726,7 +1729,7 @@ namespace MCDawn.Gui
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(14, 210);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.Size = new System.Drawing.Size(38, 17);
             this.label8.TabIndex = 6;
             this.label8.Text = "Type:";
             // 
@@ -1735,7 +1738,7 @@ namespace MCDawn.Gui
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(14, 175);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 13);
+            this.label7.Size = new System.Drawing.Size(45, 17);
             this.label7.TabIndex = 5;
             this.label7.Text = "Z Dim:";
             // 
@@ -1744,7 +1747,7 @@ namespace MCDawn.Gui
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(14, 136);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 13);
+            this.label6.Size = new System.Drawing.Size(45, 17);
             this.label6.TabIndex = 4;
             this.label6.Text = "Y Dim:";
             // 
@@ -1753,7 +1756,7 @@ namespace MCDawn.Gui
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(14, 96);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.Size = new System.Drawing.Size(45, 17);
             this.label5.TabIndex = 3;
             this.label5.Text = "X Dim:";
             // 
@@ -1762,7 +1765,7 @@ namespace MCDawn.Gui
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(14, 58);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.Size = new System.Drawing.Size(46, 17);
             this.label4.TabIndex = 2;
             this.label4.Text = "Name:";
             // 
@@ -1770,7 +1773,7 @@ namespace MCDawn.Gui
             // 
             this.txtLevelName.Location = new System.Drawing.Point(63, 54);
             this.txtLevelName.Name = "txtLevelName";
-            this.txtLevelName.Size = new System.Drawing.Size(86, 21);
+            this.txtLevelName.Size = new System.Drawing.Size(86, 24);
             this.txtLevelName.TabIndex = 1;
             // 
             // grpNewLevel
@@ -1799,7 +1802,7 @@ namespace MCDawn.Gui
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(7, 36);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.Size = new System.Drawing.Size(46, 17);
             this.label10.TabIndex = 16;
             this.label10.Text = "Name:";
             // 
@@ -1817,7 +1820,7 @@ namespace MCDawn.Gui
             // 
             this.txtDeleteLevelName.Location = new System.Drawing.Point(51, 33);
             this.txtDeleteLevelName.Name = "txtDeleteLevelName";
-            this.txtDeleteLevelName.Size = new System.Drawing.Size(197, 21);
+            this.txtDeleteLevelName.Size = new System.Drawing.Size(197, 24);
             this.txtDeleteLevelName.TabIndex = 15;
             // 
             // grpRenameLevel
@@ -1849,7 +1852,7 @@ namespace MCDawn.Gui
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(13, 66);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(61, 13);
+            this.label13.Size = new System.Drawing.Size(75, 17);
             this.label13.TabIndex = 21;
             this.label13.Text = "New Name:";
             // 
@@ -1857,7 +1860,7 @@ namespace MCDawn.Gui
             // 
             this.txtNewName.Location = new System.Drawing.Point(87, 62);
             this.txtNewName.Name = "txtNewName";
-            this.txtNewName.Size = new System.Drawing.Size(161, 21);
+            this.txtNewName.Size = new System.Drawing.Size(161, 24);
             this.txtNewName.TabIndex = 22;
             // 
             // label12
@@ -1865,7 +1868,7 @@ namespace MCDawn.Gui
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(13, 30);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(76, 13);
+            this.label12.Size = new System.Drawing.Size(92, 17);
             this.label12.TabIndex = 19;
             this.label12.Text = "Current Name:";
             // 
@@ -1873,7 +1876,7 @@ namespace MCDawn.Gui
             // 
             this.txtCurName.Location = new System.Drawing.Point(105, 27);
             this.txtCurName.Name = "txtCurName";
-            this.txtCurName.Size = new System.Drawing.Size(143, 21);
+            this.txtCurName.Size = new System.Drawing.Size(143, 24);
             this.txtCurName.TabIndex = 20;
             // 
             // txtLevelLog
@@ -1927,10 +1930,11 @@ namespace MCDawn.Gui
             this.liLoadedLevels.ContextMenuStrip = this.playerStrip;
             this.liLoadedLevels.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.liLoadedLevels.FormattingEnabled = true;
+            this.liLoadedLevels.ItemHeight = 17;
             this.liLoadedLevels.Location = new System.Drawing.Point(7, 17);
             this.liLoadedLevels.Name = "liLoadedLevels";
             this.liLoadedLevels.ScrollAlwaysVisible = true;
-            this.liLoadedLevels.Size = new System.Drawing.Size(159, 212);
+            this.liLoadedLevels.Size = new System.Drawing.Size(159, 208);
             this.liLoadedLevels.TabIndex = 38;
             this.liLoadedLevels.SelectedIndexChanged += new System.EventHandler(this.liLoadedLevels_SelectedIndexChanged);
             // 
@@ -1939,10 +1943,11 @@ namespace MCDawn.Gui
             this.liUnloadedLevels.ContextMenuStrip = this.playerStrip;
             this.liUnloadedLevels.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.liUnloadedLevels.FormattingEnabled = true;
+            this.liUnloadedLevels.ItemHeight = 17;
             this.liUnloadedLevels.Location = new System.Drawing.Point(174, 17);
             this.liUnloadedLevels.Name = "liUnloadedLevels";
             this.liUnloadedLevels.ScrollAlwaysVisible = true;
-            this.liUnloadedLevels.Size = new System.Drawing.Size(157, 212);
+            this.liUnloadedLevels.Size = new System.Drawing.Size(157, 208);
             this.liUnloadedLevels.TabIndex = 40;
             // 
             // tabPage5
@@ -1959,9 +1964,9 @@ namespace MCDawn.Gui
             this.tabPage5.Controls.Add(this.grpInGameCmds);
             this.tabPage5.Controls.Add(this.grpBanCmds);
             this.tabPage5.Controls.Add(this.grpPlayerInfo);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(786, 553);
+            this.tabPage5.Size = new System.Drawing.Size(786, 549);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Players";
             // 
@@ -2074,10 +2079,11 @@ namespace MCDawn.Gui
             this.liPlayers.ContextMenuStrip = this.playerStrip;
             this.liPlayers.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.liPlayers.FormattingEnabled = true;
+            this.liPlayers.ItemHeight = 17;
             this.liPlayers.Location = new System.Drawing.Point(7, 17);
             this.liPlayers.Name = "liPlayers";
             this.liPlayers.ScrollAlwaysVisible = true;
-            this.liPlayers.Size = new System.Drawing.Size(315, 251);
+            this.liPlayers.Size = new System.Drawing.Size(315, 242);
             this.liPlayers.TabIndex = 38;
             this.liPlayers.SelectedIndexChanged += new System.EventHandler(this.liPlayers_SelectedIndexChanged);
             // 
@@ -2251,7 +2257,7 @@ namespace MCDawn.Gui
             this.txtStatus.Location = new System.Drawing.Point(344, 115);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(63, 21);
+            this.txtStatus.Size = new System.Drawing.Size(63, 24);
             this.txtStatus.TabIndex = 56;
             // 
             // lblStatus
@@ -2259,7 +2265,7 @@ namespace MCDawn.Gui
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(298, 117);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(40, 13);
+            this.lblStatus.Size = new System.Drawing.Size(47, 17);
             this.lblStatus.TabIndex = 55;
             this.lblStatus.Text = "Status:";
             // 
@@ -2270,7 +2276,7 @@ namespace MCDawn.Gui
             this.txtDeaths.Location = new System.Drawing.Point(187, 114);
             this.txtDeaths.Name = "txtDeaths";
             this.txtDeaths.ReadOnly = true;
-            this.txtDeaths.Size = new System.Drawing.Size(103, 21);
+            this.txtDeaths.Size = new System.Drawing.Size(103, 24);
             this.txtDeaths.TabIndex = 54;
             // 
             // lblDeaths
@@ -2278,7 +2284,7 @@ namespace MCDawn.Gui
             this.lblDeaths.AutoSize = true;
             this.lblDeaths.Location = new System.Drawing.Point(137, 117);
             this.lblDeaths.Name = "lblDeaths";
-            this.lblDeaths.Size = new System.Drawing.Size(44, 13);
+            this.lblDeaths.Size = new System.Drawing.Size(52, 17);
             this.lblDeaths.TabIndex = 53;
             this.lblDeaths.Text = "Deaths:";
             // 
@@ -2289,7 +2295,7 @@ namespace MCDawn.Gui
             this.txtKicks.Location = new System.Drawing.Point(48, 114);
             this.txtKicks.Name = "txtKicks";
             this.txtKicks.ReadOnly = true;
-            this.txtKicks.Size = new System.Drawing.Size(83, 21);
+            this.txtKicks.Size = new System.Drawing.Size(83, 24);
             this.txtKicks.TabIndex = 52;
             // 
             // lblKicks
@@ -2297,7 +2303,7 @@ namespace MCDawn.Gui
             this.lblKicks.AutoSize = true;
             this.lblKicks.Location = new System.Drawing.Point(8, 118);
             this.lblKicks.Name = "lblKicks";
-            this.lblKicks.Size = new System.Drawing.Size(34, 13);
+            this.lblKicks.Size = new System.Drawing.Size(39, 17);
             this.lblKicks.TabIndex = 51;
             this.lblKicks.Text = "Kicks:";
             // 
@@ -2308,7 +2314,7 @@ namespace MCDawn.Gui
             this.txtModified.Location = new System.Drawing.Point(245, 84);
             this.txtModified.Name = "txtModified";
             this.txtModified.ReadOnly = true;
-            this.txtModified.Size = new System.Drawing.Size(162, 21);
+            this.txtModified.Size = new System.Drawing.Size(162, 24);
             this.txtModified.TabIndex = 50;
             // 
             // lblModified
@@ -2316,7 +2322,7 @@ namespace MCDawn.Gui
             this.lblModified.AutoSize = true;
             this.lblModified.Location = new System.Drawing.Point(187, 87);
             this.lblModified.Name = "lblModified";
-            this.lblModified.Size = new System.Drawing.Size(52, 13);
+            this.lblModified.Size = new System.Drawing.Size(62, 17);
             this.lblModified.TabIndex = 49;
             this.lblModified.Text = "Modified:";
             // 
@@ -2327,7 +2333,7 @@ namespace MCDawn.Gui
             this.txtLevel.Location = new System.Drawing.Point(49, 83);
             this.txtLevel.Name = "txtLevel";
             this.txtLevel.ReadOnly = true;
-            this.txtLevel.Size = new System.Drawing.Size(129, 21);
+            this.txtLevel.Size = new System.Drawing.Size(129, 24);
             this.txtLevel.TabIndex = 48;
             // 
             // lblLevel
@@ -2335,7 +2341,7 @@ namespace MCDawn.Gui
             this.lblLevel.AutoSize = true;
             this.lblLevel.Location = new System.Drawing.Point(8, 87);
             this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(35, 13);
+            this.lblLevel.Size = new System.Drawing.Size(41, 17);
             this.lblLevel.TabIndex = 47;
             this.lblLevel.Text = "Level:";
             // 
@@ -2346,7 +2352,7 @@ namespace MCDawn.Gui
             this.txtRank.Location = new System.Drawing.Point(269, 48);
             this.txtRank.Name = "txtRank";
             this.txtRank.ReadOnly = true;
-            this.txtRank.Size = new System.Drawing.Size(138, 21);
+            this.txtRank.Size = new System.Drawing.Size(138, 24);
             this.txtRank.TabIndex = 46;
             // 
             // lblRank
@@ -2354,7 +2360,7 @@ namespace MCDawn.Gui
             this.lblRank.AutoSize = true;
             this.lblRank.Location = new System.Drawing.Point(230, 52);
             this.lblRank.Name = "lblRank";
-            this.lblRank.Size = new System.Drawing.Size(33, 13);
+            this.lblRank.Size = new System.Drawing.Size(40, 17);
             this.lblRank.TabIndex = 45;
             this.lblRank.Text = "Rank:";
             // 
@@ -2365,7 +2371,7 @@ namespace MCDawn.Gui
             this.txtIP.Location = new System.Drawing.Point(33, 48);
             this.txtIP.Name = "txtIP";
             this.txtIP.ReadOnly = true;
-            this.txtIP.Size = new System.Drawing.Size(189, 21);
+            this.txtIP.Size = new System.Drawing.Size(189, 24);
             this.txtIP.TabIndex = 44;
             // 
             // lblIP
@@ -2373,7 +2379,7 @@ namespace MCDawn.Gui
             this.lblIP.AutoSize = true;
             this.lblIP.Location = new System.Drawing.Point(8, 52);
             this.lblIP.Name = "lblIP";
-            this.lblIP.Size = new System.Drawing.Size(19, 13);
+            this.lblIP.Size = new System.Drawing.Size(23, 17);
             this.lblIP.TabIndex = 43;
             this.lblIP.Text = "IP:";
             // 
@@ -2384,7 +2390,7 @@ namespace MCDawn.Gui
             this.txtPlayerName.Location = new System.Drawing.Point(52, 16);
             this.txtPlayerName.Name = "txtPlayerName";
             this.txtPlayerName.ReadOnly = true;
-            this.txtPlayerName.Size = new System.Drawing.Size(355, 21);
+            this.txtPlayerName.Size = new System.Drawing.Size(355, 24);
             this.txtPlayerName.TabIndex = 42;
             // 
             // lblName
@@ -2392,7 +2398,7 @@ namespace MCDawn.Gui
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(8, 20);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(38, 13);
+            this.lblName.Size = new System.Drawing.Size(46, 17);
             this.lblName.TabIndex = 41;
             this.lblName.Text = "Name:";
             // 
@@ -2401,9 +2407,9 @@ namespace MCDawn.Gui
             this.tabPage9.Controls.Add(this.groupBox4);
             this.tabPage9.Controls.Add(this.groupBox3);
             this.tabPage9.Controls.Add(this.grpAdmin);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Location = new System.Drawing.Point(4, 26);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(786, 553);
+            this.tabPage9.Size = new System.Drawing.Size(786, 549);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Chat";
             // 
@@ -2424,7 +2430,7 @@ namespace MCDawn.Gui
             this.label45.AutoSize = true;
             this.label45.Location = new System.Drawing.Point(6, 152);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(35, 13);
+            this.label45.Size = new System.Drawing.Size(42, 17);
             this.label45.TabIndex = 2;
             this.label45.Text = "Input:";
             // 
@@ -2432,7 +2438,7 @@ namespace MCDawn.Gui
             // 
             this.txtOpInput.Location = new System.Drawing.Point(47, 149);
             this.txtOpInput.Name = "txtOpInput";
-            this.txtOpInput.Size = new System.Drawing.Size(719, 21);
+            this.txtOpInput.Size = new System.Drawing.Size(719, 24);
             this.txtOpInput.TabIndex = 1;
             this.txtOpInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOpInput_KeyDown);
             // 
@@ -2462,7 +2468,7 @@ namespace MCDawn.Gui
             this.label44.AutoSize = true;
             this.label44.Location = new System.Drawing.Point(6, 152);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(35, 13);
+            this.label44.Size = new System.Drawing.Size(42, 17);
             this.label44.TabIndex = 2;
             this.label44.Text = "Input:";
             // 
@@ -2470,7 +2476,7 @@ namespace MCDawn.Gui
             // 
             this.txtGlobalInput.Location = new System.Drawing.Point(47, 149);
             this.txtGlobalInput.Name = "txtGlobalInput";
-            this.txtGlobalInput.Size = new System.Drawing.Size(719, 21);
+            this.txtGlobalInput.Size = new System.Drawing.Size(719, 24);
             this.txtGlobalInput.TabIndex = 1;
             this.txtGlobalInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGlobalInput_KeyDown);
             // 
@@ -2500,7 +2506,7 @@ namespace MCDawn.Gui
             this.label43.AutoSize = true;
             this.label43.Location = new System.Drawing.Point(6, 152);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(35, 13);
+            this.label43.Size = new System.Drawing.Size(42, 17);
             this.label43.TabIndex = 2;
             this.label43.Text = "Input:";
             // 
@@ -2508,7 +2514,7 @@ namespace MCDawn.Gui
             // 
             this.txtAdminInput.Location = new System.Drawing.Point(47, 149);
             this.txtAdminInput.Name = "txtAdminInput";
-            this.txtAdminInput.Size = new System.Drawing.Size(719, 21);
+            this.txtAdminInput.Size = new System.Drawing.Size(719, 24);
             this.txtAdminInput.TabIndex = 1;
             this.txtAdminInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAdminInput_KeyDown);
             // 
@@ -2546,10 +2552,10 @@ namespace MCDawn.Gui
             this.tabPage1.Controls.Add(this.txtUrl);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.liClients);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(786, 553);
+            this.tabPage1.Size = new System.Drawing.Size(786, 549);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             // 
@@ -2558,7 +2564,7 @@ namespace MCDawn.Gui
             this.chkChatColors.AutoSize = true;
             this.chkChatColors.Location = new System.Drawing.Point(499, 201);
             this.chkChatColors.Name = "chkChatColors";
-            this.chkChatColors.Size = new System.Drawing.Size(80, 17);
+            this.chkChatColors.Size = new System.Drawing.Size(93, 21);
             this.chkChatColors.TabIndex = 47;
             this.chkChatColors.Text = "Chat Colors";
             this.chkChatColors.UseVisualStyleBackColor = true;
@@ -2579,7 +2585,7 @@ namespace MCDawn.Gui
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(12, 13);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(28, 13);
+            this.label38.Size = new System.Drawing.Size(35, 17);
             this.label38.TabIndex = 45;
             this.label38.Text = "URL:";
             // 
@@ -2588,7 +2594,7 @@ namespace MCDawn.Gui
             this.label36.AutoSize = true;
             this.label36.Location = new System.Drawing.Point(592, 42);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(93, 13);
+            this.label36.Size = new System.Drawing.Size(113, 17);
             this.label36.TabIndex = 44;
             this.label36.Text = "Active Player Bots:";
             // 
@@ -2597,10 +2603,11 @@ namespace MCDawn.Gui
             this.liPlayerBots.ContextMenuStrip = this.playerStrip;
             this.liPlayerBots.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.liPlayerBots.FormattingEnabled = true;
+            this.liPlayerBots.ItemHeight = 17;
             this.liPlayerBots.Location = new System.Drawing.Point(551, 59);
             this.liPlayerBots.Name = "liPlayerBots";
             this.liPlayerBots.ScrollAlwaysVisible = true;
-            this.liPlayerBots.Size = new System.Drawing.Size(170, 134);
+            this.liPlayerBots.Size = new System.Drawing.Size(170, 123);
             this.liPlayerBots.TabIndex = 43;
             // 
             // chkConsoleSounds
@@ -2608,7 +2615,7 @@ namespace MCDawn.Gui
             this.chkConsoleSounds.AutoSize = true;
             this.chkConsoleSounds.Location = new System.Drawing.Point(585, 201);
             this.chkConsoleSounds.Name = "chkConsoleSounds";
-            this.chkConsoleSounds.Size = new System.Drawing.Size(60, 17);
+            this.chkConsoleSounds.Size = new System.Drawing.Size(69, 21);
             this.chkConsoleSounds.TabIndex = 42;
             this.chkConsoleSounds.Text = "Sounds";
             this.chkConsoleSounds.UseVisualStyleBackColor = true;
@@ -2619,7 +2626,7 @@ namespace MCDawn.Gui
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(497, 227);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(78, 13);
+            this.label17.Size = new System.Drawing.Size(92, 17);
             this.label17.TabIndex = 41;
             this.label17.Text = "Console Name:";
             // 
@@ -2640,7 +2647,7 @@ namespace MCDawn.Gui
             this.chkMaintenance.AutoSize = true;
             this.chkMaintenance.Location = new System.Drawing.Point(651, 201);
             this.chkMaintenance.Name = "chkMaintenance";
-            this.chkMaintenance.Size = new System.Drawing.Size(118, 17);
+            this.chkMaintenance.Size = new System.Drawing.Size(141, 21);
             this.chkMaintenance.TabIndex = 38;
             this.chkMaintenance.Text = "Maintenance Mode";
             this.chkMaintenance.UseVisualStyleBackColor = true;
@@ -2663,10 +2670,11 @@ namespace MCDawn.Gui
             this.liMaps.ContextMenuStrip = this.mapsStrip;
             this.liMaps.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.liMaps.FormattingEnabled = true;
+            this.liMaps.ItemHeight = 17;
             this.liMaps.Location = new System.Drawing.Point(255, 39);
             this.liMaps.Name = "liMaps";
             this.liMaps.ScrollAlwaysVisible = true;
-            this.liMaps.Size = new System.Drawing.Size(230, 212);
+            this.liMaps.Size = new System.Drawing.Size(230, 208);
             this.liMaps.TabIndex = 33;
             this.liMaps.MouseDown += new System.Windows.Forms.MouseEventHandler(this.liMaps_MouseDown);
             // 
@@ -2749,7 +2757,7 @@ namespace MCDawn.Gui
             this.label2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(491, 528);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.Size = new System.Drawing.Size(72, 17);
             this.label2.TabIndex = 29;
             this.label2.Text = "Command:";
             // 
@@ -2758,7 +2766,7 @@ namespace MCDawn.Gui
             this.txtHost.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHost.Location = new System.Drawing.Point(581, 224);
             this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(179, 21);
+            this.txtHost.Size = new System.Drawing.Size(179, 24);
             this.txtHost.TabIndex = 28;
             this.txtHost.Text = "Alive";
             this.txtHost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -2770,7 +2778,7 @@ namespace MCDawn.Gui
             this.txtCommands.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCommands.Location = new System.Drawing.Point(554, 525);
             this.txtCommands.Name = "txtCommands";
-            this.txtCommands.Size = new System.Drawing.Size(215, 21);
+            this.txtCommands.Size = new System.Drawing.Size(215, 24);
             this.txtCommands.TabIndex = 28;
             this.txtCommands.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCommands_KeyDown);
             // 
@@ -2779,7 +2787,7 @@ namespace MCDawn.Gui
             this.txtInput.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInput.Location = new System.Drawing.Point(59, 525);
             this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(426, 21);
+            this.txtInput.Size = new System.Drawing.Size(426, 24);
             this.txtInput.TabIndex = 27;
             this.txtInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtInput_KeyDown);
             // 
@@ -2790,7 +2798,7 @@ namespace MCDawn.Gui
             this.txtUrl.Location = new System.Drawing.Point(46, 10);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.ReadOnly = true;
-            this.txtUrl.Size = new System.Drawing.Size(388, 21);
+            this.txtUrl.Size = new System.Drawing.Size(388, 24);
             this.txtUrl.TabIndex = 25;
             // 
             // label1
@@ -2799,7 +2807,7 @@ namespace MCDawn.Gui
             this.label1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(22, 528);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(39, 17);
             this.label1.TabIndex = 26;
             this.label1.Text = "Chat:";
             // 
@@ -2808,10 +2816,11 @@ namespace MCDawn.Gui
             this.liClients.ContextMenuStrip = this.playerStrip;
             this.liClients.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.liClients.FormattingEnabled = true;
+            this.liClients.ItemHeight = 17;
             this.liClients.Location = new System.Drawing.Point(15, 39);
             this.liClients.Name = "liClients";
             this.liClients.ScrollAlwaysVisible = true;
-            this.liClients.Size = new System.Drawing.Size(234, 212);
+            this.liClients.Size = new System.Drawing.Size(234, 208);
             this.liClients.TabIndex = 23;
             this.liClients.MouseDown += new System.Windows.Forms.MouseEventHandler(this.liClients_MouseDown);
             // 
@@ -2842,9 +2851,9 @@ namespace MCDawn.Gui
             this.tabPage10.Controls.Add(this.label47);
             this.tabPage10.Controls.Add(this.grpRCUsers);
             this.tabPage10.Controls.Add(this.grpRCSettings);
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Location = new System.Drawing.Point(4, 26);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(786, 553);
+            this.tabPage10.Size = new System.Drawing.Size(786, 549);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Remote";
             // 
@@ -2853,7 +2862,7 @@ namespace MCDawn.Gui
             this.label47.AutoSize = true;
             this.label47.Location = new System.Drawing.Point(281, 39);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(73, 13);
+            this.label47.Size = new System.Drawing.Size(89, 17);
             this.label47.TabIndex = 3;
             this.label47.Text = "Server RC Key:";
             // 
@@ -2893,6 +2902,7 @@ namespace MCDawn.Gui
             // liRCUsers
             // 
             this.liRCUsers.FormattingEnabled = true;
+            this.liRCUsers.ItemHeight = 17;
             this.liRCUsers.Location = new System.Drawing.Point(9, 85);
             this.liRCUsers.Name = "liRCUsers";
             this.liRCUsers.Size = new System.Drawing.Size(219, 446);
@@ -2903,7 +2913,7 @@ namespace MCDawn.Gui
             this.label46.AutoSize = true;
             this.label46.Location = new System.Drawing.Point(60, 24);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(113, 13);
+            this.label46.Size = new System.Drawing.Size(133, 17);
             this.label46.TabIndex = 0;
             this.label46.Text = "Remote Console Users";
             // 
@@ -2929,7 +2939,7 @@ namespace MCDawn.Gui
             this.lblRCCheckPortResult.AutoSize = true;
             this.lblRCCheckPortResult.Location = new System.Drawing.Point(320, 63);
             this.lblRCCheckPortResult.Name = "lblRCCheckPortResult";
-            this.lblRCCheckPortResult.Size = new System.Drawing.Size(133, 13);
+            this.lblRCCheckPortResult.Size = new System.Drawing.Size(160, 17);
             this.lblRCCheckPortResult.TabIndex = 9;
             this.lblRCCheckPortResult.Text = "Port Check not started yet!";
             // 
@@ -2948,7 +2958,7 @@ namespace MCDawn.Gui
             this.chkUseRemote.AutoSize = true;
             this.chkUseRemote.Location = new System.Drawing.Point(394, 20);
             this.chkUseRemote.Name = "chkUseRemote";
-            this.chkUseRemote.Size = new System.Drawing.Size(123, 17);
+            this.chkUseRemote.Size = new System.Drawing.Size(145, 21);
             this.chkUseRemote.TabIndex = 7;
             this.chkUseRemote.Text = "Use Remote Console";
             this.chkUseRemote.UseVisualStyleBackColor = true;
@@ -2975,7 +2985,7 @@ namespace MCDawn.Gui
             // 
             this.textBox1.Location = new System.Drawing.Point(255, 201);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(256, 21);
+            this.textBox1.Size = new System.Drawing.Size(256, 24);
             this.textBox1.TabIndex = 10;
             // 
             // label51
@@ -2983,7 +2993,7 @@ namespace MCDawn.Gui
             this.label51.AutoSize = true;
             this.label51.Location = new System.Drawing.Point(252, 185);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(96, 13);
+            this.label51.Size = new System.Drawing.Size(116, 17);
             this.label51.TabIndex = 9;
             this.label51.Text = "Change Host State:";
             // 
@@ -3001,14 +3011,14 @@ namespace MCDawn.Gui
             // 
             this.txtRCWhisper.Location = new System.Drawing.Point(255, 138);
             this.txtRCWhisper.Name = "txtRCWhisper";
-            this.txtRCWhisper.Size = new System.Drawing.Size(256, 21);
+            this.txtRCWhisper.Size = new System.Drawing.Size(256, 24);
             this.txtRCWhisper.TabIndex = 7;
             // 
             // txtRCDisc
             // 
             this.txtRCDisc.Location = new System.Drawing.Point(252, 79);
             this.txtRCDisc.Name = "txtRCDisc";
-            this.txtRCDisc.Size = new System.Drawing.Size(259, 21);
+            this.txtRCDisc.Size = new System.Drawing.Size(259, 24);
             this.txtRCDisc.TabIndex = 6;
             // 
             // label50
@@ -3016,7 +3026,7 @@ namespace MCDawn.Gui
             this.label50.AutoSize = true;
             this.label50.Location = new System.Drawing.Point(252, 122);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(50, 13);
+            this.label50.Size = new System.Drawing.Size(58, 17);
             this.label50.TabIndex = 2;
             this.label50.Text = "Whisper:";
             // 
@@ -3025,23 +3035,24 @@ namespace MCDawn.Gui
             this.label49.AutoSize = true;
             this.label49.Location = new System.Drawing.Point(252, 63);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(86, 13);
+            this.label49.Size = new System.Drawing.Size(101, 17);
             this.label49.TabIndex = 1;
             this.label49.Text = "Kick/Disconnect:";
             // 
             // liConnectedRCs
             // 
             this.liConnectedRCs.FormattingEnabled = true;
+            this.liConnectedRCs.ItemHeight = 17;
             this.liConnectedRCs.Location = new System.Drawing.Point(6, 20);
             this.liConnectedRCs.Name = "liConnectedRCs";
-            this.liConnectedRCs.Size = new System.Drawing.Size(240, 407);
+            this.liConnectedRCs.Size = new System.Drawing.Size(240, 395);
             this.liConnectedRCs.TabIndex = 0;
             // 
             // txtRCPort
             // 
             this.txtRCPort.Location = new System.Drawing.Point(106, 60);
             this.txtRCPort.Name = "txtRCPort";
-            this.txtRCPort.Size = new System.Drawing.Size(132, 21);
+            this.txtRCPort.Size = new System.Drawing.Size(132, 24);
             this.txtRCPort.TabIndex = 5;
             this.txtRCPort.TextChanged += new System.EventHandler(this.txtRCPort_TextChanged);
             // 
@@ -3050,7 +3061,7 @@ namespace MCDawn.Gui
             this.label48.AutoSize = true;
             this.label48.Location = new System.Drawing.Point(24, 63);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(76, 13);
+            this.label48.Size = new System.Drawing.Size(93, 17);
             this.label48.TabIndex = 4;
             this.label48.Text = "Server RC Port:";
             // 
@@ -3068,13 +3079,13 @@ namespace MCDawn.Gui
             // 
             this.txtRCKey.Location = new System.Drawing.Point(106, 33);
             this.txtRCKey.Name = "txtRCKey";
-            this.txtRCKey.Size = new System.Drawing.Size(132, 21);
+            this.txtRCKey.Size = new System.Drawing.Size(132, 24);
             this.txtRCKey.TabIndex = 0;
             this.txtRCKey.TextChanged += new System.EventHandler(this.txtRCKey_TextChanged);
             // 
             // Window
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 595);
             this.Controls.Add(this.tabControl1);
