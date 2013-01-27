@@ -202,15 +202,8 @@ namespace MCDawn
         //Lua
         //public static LuaScripting scripting = new LuaScripting();
 
-        // Custom Command variables. Allows custom command makers to have more control and abilites to do things.
-        public struct CustomCommand
-        {
-            public string[] str;
-            public int[] i;
-            public bool[] b;
-            public object[] obj;
-        }
-        public static CustomCommand customCommand;
+        // Custom Command object array. Allows custom command makers to have more control and abilites to do things.
+        public static object[] CustomCommand = new object[] { };
 
         //Settings
         #region Server Settings

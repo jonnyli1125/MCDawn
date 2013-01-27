@@ -230,15 +230,8 @@ namespace MCDawn
         public bool voice = false;
         public string voicestring = "";
 
-        // Custom Command variables. Allows custom command makers to have more control and abilites to do things.
-        public struct CustomCommand
-        {
-            public string[] str;
-            public int[] i;
-            public bool[] b;
-            public object[] obj;
-        }
-        public CustomCommand customCommand;
+        // Custom Command object storing. Allows custom command makers to have more control and abilites to do things.
+        public object[] CustomCommand = new object[] { };
 
         //CTF
         public CTFTeam team;

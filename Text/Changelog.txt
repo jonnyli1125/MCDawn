@@ -1,3 +1,6 @@
+MCDawn 1.0.2.2
+-CustomCommand struct removed, replaced with just an object array (object[]).
+
 MCDawn 1.0.2.1
 -Fixed startup update check for GUI users.
 -Reduced startup lag for GUI users.
