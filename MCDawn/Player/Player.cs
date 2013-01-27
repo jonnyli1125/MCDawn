@@ -3270,14 +3270,13 @@ namespace MCDawn
 
         public ushort[] GetPosAtCursor(ushort distance)
         {
-            ushort x = 0, y = 0, z = 0;
             double a = Math.Sin(((double)(128 - rot[0]) / 256) * 2 * Math.PI);
             double b = Math.Cos(((double)(128 - rot[0]) / 256) * 2 * Math.PI);
             double c = Math.Cos(((double)(rot[1] + 64) / 256) * 2 * Math.PI);
             double d = Math.Cos(((double)(rot[1]) / 256) * 2 * Math.PI);
-            x = (ushort)(Math.Round((pos[0] / 32) + (double)(a * distance * d)));
-            y = (ushort)(Math.Round((pos[1] / 32) + (double)(c * distance)));
-            z = (ushort)(Math.Round((pos[2] / 32) + (double)(b * distance * d)));
+            ushort x = (ushort)(Math.Round((pos[0] / 32) + (double)(a * distance * d)));
+            ushort y = (ushort)(Math.Round((pos[1] / 32) + (double)(c * distance)));
+            ushort z = (ushort)(Math.Round((pos[2] / 32) + (double)(b * distance * d)));
             return new ushort[] { x, y, z };
         }
 
