@@ -1,5 +1,8 @@
 MCDawn 1.0.2.2
 -CustomCommand struct removed, replaced with just an object array (object[]).
+-Updated Commands
+	-/title - Can't title non-dev players with dev title from Console anymore.
+	-/displayname - Can't change displayname of non-dev players to a dev's name from Console anymore.
 
 MCDawn 1.0.2.1
 -Fixed startup update check for GUI users.

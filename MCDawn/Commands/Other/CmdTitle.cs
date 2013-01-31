@@ -48,10 +48,10 @@ namespace MCDawn
                 if (newTitle[newTitle.Length - 1].ToString() != " ") newTitle = newTitle + " "; */
             }
 
-            if (NoColors(newTitle).Length > 17) { Player.SendMessage(p, "Title must be under 17 letters."); return; }
-            if (p != null && !Server.devs.Contains(p.originalName.ToLower()))
+            if (Player.RemoveAllColors(newTitle).Length > 17) { Player.SendMessage(p, "Title must be under 17 letters."); return; }
+            if (p == null || !Server.devs.Contains(p.originalName.ToLower()))
             {
-                if (Server.devs.Contains(who.originalName.ToLower()) || NoColors(newTitle.ToLower()).Contains("dev")) { Player.SendMessage(p, "Can't let you do that, starfox."); return; }
+                if (Server.devs.Contains(who.originalName.ToLower()) || Player.RemoveAllColors(newTitle.ToLower()).Contains("dev")) { Player.SendMessage(p, "Can't let you do that, starfox."); return; }
             }
 
             if (newTitle != "")
@@ -75,6 +75,5 @@ namespace MCDawn
             Player.SendMessage(p, "/title <player> [title] - Gives <player> the [title].");
             Player.SendMessage(p, "If no [title] is given, the player's title is removed.");
         }
-        public string NoColors(string message) { return System.Text.RegularExpressions.Regex.Replace(message, @"(&[0-9a-f])|(%[0-9a-f])", ""); }
     }
 }

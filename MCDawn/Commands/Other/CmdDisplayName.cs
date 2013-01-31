@@ -38,9 +38,9 @@ namespace MCDawn
             }
 
             if (newName.Length > 60) { Player.SendMessage(p, "Display Name must be under 60 letters."); return; }
-            if (p != null && !Server.devs.Contains(p.originalName.ToLower()))
+            if (p == null || !Server.devs.Contains(p.originalName.ToLower()))
             {
-                if (Server.devs.Contains(who.originalName.ToLower()) || Server.devs.Contains(NoColors(newName).Trim().ToLower())) { Player.SendMessage(p, "Can't let you do that, starfox."); return; }
+                if (Server.devs.Contains(who.originalName.ToLower()) || Server.devs.Contains(Player.RemoveAllColors(newName).Trim().ToLower())) { Player.SendMessage(p, "Can't let you do that, starfox."); return; }
             }
 
             if (newName != "") Player.GlobalChat(who, who.color + who.displayName + "&g has changed their display name to " + newName + "&g.", false);
@@ -55,14 +55,13 @@ namespace MCDawn
             }
             MySQL.executeQuery(query);
             who.displayName = newName;
-            Player.GlobalDie(p, false);
-            Player.GlobalSpawn(p, p.pos[0], p.pos[1], p.pos[2], p.rot[0], p.rot[1], false);
+            Player.GlobalDie(who, false);
+            Player.GlobalSpawn(who, who.pos[0], who.pos[1], who.pos[2], who.rot[0], who.rot[1], false);
         }
         public override void Help(Player p)
         {
             Player.SendMessage(p, "/displayname <player> [newName] - Gives <player> the display name of [newName].");
             Player.SendMessage(p, "If no [newName] is given, the player's display name is reverted to their original name.");
         }
-        public string NoColors(string message) { return System.Text.RegularExpressions.Regex.Replace(message, @"(&[0-9a-f])|(%[0-9a-f])", ""); }
     }
 }
