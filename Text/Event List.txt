@@ -1,0 +1,36 @@
+Anything prefixed with # requires an object reference.
+These locations are absolute.
+It's set up like this: Namespace.Class.Variable
+MOST events are called BEFORE the stuff in the method happens.
+Below each "section", those are the booleans to stop the original code in that method from happening. These are called after the event is called.
+
+MCDawn.Player.OnPlayerKickedEvent (Player p, string reason)
+#MCDawn.Player.OnKickedEvent (string reason)
+MCDawn.Player.OnPlayerSendMessageEvent (Player p, string message)
+#MCDawn.Player.OnSendMessageEvent (string message)
+MCDawn.Player.OnPlayerJoinEvent (Player p)
+#MCDawn.Player.OnBlockchange (Player p, ushort x, ushort y, ushort z, byte type)
+#MCDawn.Player.OnDisconnectEvent ()
+MCDawn.Player.OnPlayerDisconnectEvent (Player p)
+#MCDawn.Player.OnMoveEvent (ushort x, ushort y, ushort z, byte rotx, byte roty)
+MCDawn.Player.OnPlayerMoveEvent (Player p, ushort x, ushort y, ushort z, byte rotx, byte roty)
+#MCDawn.Player.OnChatEvent (string text)
+MCDawn.Player.OnPlayerChatEvent (Player p, string text)
+#MCDawn.Player.OnCommandEvent (string cmd, string message)
+MCDawn.Player.OnPlayerCommandEvent (Player p, string cmd, string message)
+#MCDawn.Player.OnDeathEvent (string cmd, byte b, string customMessage, bool explode)
+MCDawn.Player.OnPlayerDeathEvent (Player p, byte b, string customMessage, bool explode)
+Booleans: #noKick = false, #noSendMessage = false, #noJoin = false, #noDisconnect = false, #noMove = false, #noChat = false, #noCommand = false, #noDeath = false, #noBuild = false
+
+MCDawn.Level.OnLevelLoadEvent (string givenName, byte phys)
+MCDawn.Level.OnLevelLoadedEvent (string givenName, byte phys)
+#MCDawn.Level.OnSaveEvent (bool Override)
+MCDawn.Level.OnLevelSaveEvent (Level l, bool Override)
+MCDawn.Level.OnUnloadEvent (Level l, bool stealth)
+#MCDawn.Level.OnPhysicsUpdateEvent (ushort x, ushort y, ushort z, byte time, string extraInfo)
+MCDawn.Level.OnLevelPhysicsUpdateEvent (Level l, ushort x, ushort y, ushort z, byte time, string extraInfo)
+Booleans: noLoad = false, #noSave = false, #noUnload = false, #noPhysicsUpdate = false
+
+#MCDawn.Server.OnServerStartEvent ()
+MCDawn.Server.OnServerExitEvent ()
+Booleans: noShutdown = false
