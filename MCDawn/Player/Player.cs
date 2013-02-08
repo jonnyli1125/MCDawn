@@ -1697,7 +1697,12 @@ namespace MCDawn
             {
                 if (!deleteMode)
                 {
-                    if (Block.portal(b)) { if (b == Block.home_portal) { HomeHandlePortal(this); return; } else { HandlePortal(this, x, y, z, b); return; } }
+                    if (Block.portal(b))
+                    {
+                        if (b == Block.home_portal) { HomeHandlePortal(this); }
+                        else { HandlePortal(this, x, y, z, b); }
+                        return;
+                    }
                     if (Block.mb(b)) { HandleMsgBlock(this, x, y, z, b); return; }
                     if (Block.command(b)) { HandleCommandBlock(this, x, y, z, b); return; }
                 }

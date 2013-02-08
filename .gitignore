@@ -1,1 +1,3 @@
-bin/
+*.suo
+MCDawn/bin/
+MCDawn/obj/

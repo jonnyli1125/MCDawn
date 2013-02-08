@@ -1,6 +1,11 @@
 MCDawn
 ======
 
-A full game Bukkit plugin version of the MCDawn Minecraft Classic server software.
+MCDawn Minecraft Classic Custom Server Software
 
-Currently development is still in its Alpha stage, when a stable version is complete, we will release it on the Bukkit website.
+MCDawn by the MCDawn Team is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+You may obtain a copy of the license at: http://creativecommons.org/licenses/by-nc-sa/3.0/
+
+This project is old but still being developed, but at a very slow pace.
+The software is mainly used just for the 24/7 Official MCDawn Server, however you are free to also use it, if you want.
+Visit the website and community at http://www.mcdawn.com.
