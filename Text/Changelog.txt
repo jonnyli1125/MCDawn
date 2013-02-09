@@ -3,6 +3,8 @@ MCDawn 1.0.2.2
 -Updated Commands
 	-/title - Can't title non-dev players with dev title from Console anymore.
 	-/displayname - Can't change displayname of non-dev players to a dev's name from Console anymore.
+-Profanity filter memory leaks fixed.
+-When a player says the name or displayname of an online player, it will automatically color itself.
 
 MCDawn 1.0.2.1
 -Fixed startup update check for GUI users.

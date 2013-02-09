@@ -2318,8 +2318,7 @@ namespace MCDawn
                     return;
                 }
 
-                while (Regex.IsMatch(text, @"\s\s+"))
-                    text = Regex.Replace(text, @"\s\s+", " ");
+                text = Regex.Replace(text, @"\s\s+", " ");
                 /*foreach (char ch in text)
                 {
                     if (ch < 32 || ch >= 127 || ch == '&')
@@ -2477,11 +2476,7 @@ namespace MCDawn
                 #endregion
 
                 // Profanity Filter
-                if (Server.profanityFilter == true)
-                {
-                    if (!Server.profanityFilterOp) { if (this.group.Permission < LevelPermission.Operator) { text = ProfanityFilter.Filter(this, text); } }
-                    else { text = ProfanityFilter.Filter(this, text); }
-                }
+                if (Server.profanityFilter && (group.Permission < LevelPermission.Operator || Server.profanityFilterOp)) text = ProfanityFilter.Filter(this, text);
 
                 // Whisper to Console
                 if (text.Length >= 2 && text.StartsWith("@@"))
@@ -2642,12 +2637,25 @@ namespace MCDawn
 
                 }
 
-                if (!level.worldChat)
+                foreach (Player pl in Player.players)
                 {
-                    Server.s.Log(color + "<" + name + ">&0[level] " + text);
-                    GlobalChatLevel(this, text, true);
-                    return;
+                    text = Regex.Replace(text, Player.RemoveAllColors(pl.displayName).ToLower(), pl.color + pl.displayName + "&f", RegexOptions.IgnoreCase);
+                    text = Regex.Replace(text, pl.name.ToLower() + "+?", pl.color + pl.displayName + "&f", RegexOptions.IgnoreCase);
                 }
+
+                if (Discourager.discouraged.Contains(name.ToLower().Trim()) && Server.useDiscourager && this != null)
+                {
+                    if (Convert.ToBoolean(new Random().Next(0, 2)))
+                    {
+                        SendError(this);
+                        Thread.Sleep(10);
+                        if (!loggedIn) { return; }
+                    }
+                    else { Thread.Sleep(new Random().Next(1, 5) * 1000); }
+                }
+
+                if (Server.worldChat) GlobalChat(this, text);
+                else GlobalChatLevel(this, text, true);
 
                 if (text[0] == '%')
                 {
@@ -2661,6 +2669,7 @@ namespace MCDawn
                     {
                         GlobalChat(this, newtext);
                     }
+                    text = text.Replace("&f", "&g");
                     if (!infected)
                     {
                         Server.s.Log(color + "<" + name + "> &0" + newtext);
@@ -2675,17 +2684,15 @@ namespace MCDawn
                     }
                     return;
                 }
+                text = text.Replace("&f", "&g");
 
-                if (Discourager.discouraged.Contains(name.ToLower().Trim()) && Server.useDiscourager && this != null) {
-                    if (Convert.ToBoolean(new Random().Next(0, 2)))
-                    {
-                        SendError(this);
-                        Thread.Sleep(10);
-                        if (!loggedIn) { return; }
-                    }
-                    else { Thread.Sleep(new Random().Next(1, 5) * 1000); }
+                if (!level.worldChat)
+                {
+                    Server.s.Log(color + "<" + name + ">&0[level] " + text);
+                    GlobalChatLevel(this, text, true);
+                    return;
                 }
-
+                
                 if (this.levelchat == true || this.level.worldChat == false)
                 {
                     if (originalName == name) { Server.s.Log("[Level] " + color + "<" + name + "> &0" + text); } 
@@ -2695,15 +2702,6 @@ namespace MCDawn
                 {
                     if (originalName == name) { Server.s.Log(color + "<" + name + "> &0" + text); }
                     else if (level.zombiegame && originalName != name) { Server.s.Log(color + "<" + name + " (" + originalName + ")> &0" + text); }
-                }
-
-                if (Server.worldChat)
-                {
-                    GlobalChat(this, text);
-                }
-                else
-                {
-                    GlobalChatLevel(this, text, true);
                 }
 
                 if (!infected)
@@ -3522,27 +3520,15 @@ namespace MCDawn
 
         public static string RemoveBadColors(string message)
         {
-            while (Regex.IsMatch(message, @"(&g)|(%g)+?"))
-                message = Regex.Replace(message, @"(&g)|(%g)+?", Server.DefaultColor); // switch %g or &g to defaultcolor
-            while (Regex.IsMatch(message, @"%([0-9a-f])+?"))
-                message = Regex.Replace(message, @"%([0-9a-f])+?", "&$1"); // switch percents to ampersands
-            while (Regex.IsMatch(message, @"\s\s+"))
-                message = Regex.Replace(message, @"\s\s+", " "); // change double spaces to one space
-            //while (Regex.IsMatch(message, @"(&[0-9a-f])\s(&[0-9a-f])|(&&)|(&\s)+"))
-            //    message = Regex.Replace(message, @"(&[0-9a-f])\s(&[0-9a-f])|(&&)|(&\s)+", ""); // strip all invalid color codes, remove bad ampersands
-            while (Regex.IsMatch(message, @"(&[0-9a-f])\s&|(&&)|(&\s)+"))
-                message = Regex.Replace(message, @"(&[0-9a-f])\s&|(&&)|(&\s)+", "&"); // strip all invalid color codes, remove bad ampersands
-            while (Regex.IsMatch(message, @"(&[0-9a-f])$+"))
-                message = Regex.Replace(message, @"(&[0-9a-f])+$", ""); // remove color codes on end of string
+            message = Regex.Replace(message, @"(&g)|(%g)+?", Server.DefaultColor); // switch %g or &g to defaultcolor
+            message = Regex.Replace(message, @"%([0-9a-f])+?", "&$1"); // switch percents to ampersands
+            message = Regex.Replace(message, @"\s\s+", " "); // change double spaces to one space
+            message = Regex.Replace(message, @"(&[0-9a-f])\s&|(&&)|(&\s)+", "&"); // strip all invalid color codes, remove bad ampersands
+            message = Regex.Replace(message, @"(&[0-9a-f])+$", ""); // remove color codes on end of string
             return message;
         }
 
-        public static string RemoveAllColors(string message)
-        {
-            while (Regex.IsMatch(message, @"(&[0-9a-g])|(%[0-9a-g])+?"))
-                message = Regex.Replace(message, @"(&[0-9a-g])|(%[0-9a-g])+?", ""); // remove all colors
-            return message;
-        }
+        public static string RemoveAllColors(string message) { return Regex.Replace(message, @"(&[0-9a-g])|(%[0-9a-g])+?", ""); }
 
         public void SendMotd()
         {

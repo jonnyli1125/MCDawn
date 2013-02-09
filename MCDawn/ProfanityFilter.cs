@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace MCDawn
 {
@@ -62,48 +63,33 @@ namespace MCDawn
                 Server.s.Log("Warned " + p.name + " for using a swear word!");
             }
         }
-        public static string Filter(Player p, string message)
+
+        public static Dictionary<string, string> BadWordPairs
         {
-            try
+            get
             {
                 string path = "text/swearwords.txt";
+                var retval = new Dictionary<string, string>();
                 if (File.Exists(path))
                 {
                     foreach (string line in File.ReadAllLines(path))
-                    {
-                        if (line != null && line.Trim()[0] != '#' && line.Trim() != "")
-                        {
-                        recheck:
-                            if (!line.Trim().Contains(" "))
-                            {
-                                if (message.ToLower().Contains(line.Trim().ToLower()))
-                                {
-                                    int savedIndex = message.ToLower().IndexOf(line.Trim().ToLower());
-                                    message = message.Remove(savedIndex, line.Trim().Length);
-                                    message = message.Insert(savedIndex, "&c<censored>&f");
-                                    //message = message.Replace(line.Trim(), "&c<censored>&f"); // Meh too lazy to test again.
-                                    if (p != null) { Warn(p); }
-                                    goto recheck;
-                                }
-                            }
-                            else
-                            {
-                                if (message.ToLower().Contains(line.Split(' ')[0].ToLower()))
-                                {
-                                    int savedIndex = message.ToLower().IndexOf(line.Trim().Split(' ')[0].ToLower());
-                                    message = message.Remove(savedIndex, line.Trim().Split(' ')[0].Length);
-                                    message = message.Insert(savedIndex, "&c" + line.Trim().Split(new char[] { ' ' }, 2)[1] + "&f");
-                                    if (p != null) { Warn(p); }
-                                    goto recheck;
-                                }
-                            }
-                        }
-                    }
+                        if (!String.IsNullOrEmpty(line) && line.Trim()[0] != '#')
+                            retval.Add(line.Trim().Contains(" ") ? line.Split(' ')[0].ToLower() : line.Trim(), line.Trim().Contains(" ") ? line.Split(' ')[1] : "<censored>");
                 }
-                else { File.Create("text/swearwords.txt").Close(); }
-                return message;
+                else { File.Create(path).Close(); }
+                return retval;
             }
-            catch (Exception e) { Server.ErrorLog(e); return message; }
+        }
+
+        public static string Filter(Player p, string message)
+        {
+            foreach (KeyValuePair<string, string> pair in BadWordPairs)
+                if (Regex.IsMatch(message, @pair.Key.ToLower(), RegexOptions.IgnoreCase))
+                {
+                    message = Regex.Replace(message, @pair.Key, "&c" + pair.Value + "&f", RegexOptions.IgnoreCase);
+                    if (p != null) Warn(p);
+                }
+            return message;
         }
     }
 }
