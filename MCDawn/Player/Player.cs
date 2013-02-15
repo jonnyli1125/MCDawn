@@ -2654,9 +2654,6 @@ namespace MCDawn
                     else { Thread.Sleep(new Random().Next(1, 5) * 1000); }
                 }
 
-                if (Server.worldChat) GlobalChat(this, text);
-                else GlobalChatLevel(this, text, true);
-
                 if (text[0] == '%')
                 {
                     string newtext = text;
@@ -2665,10 +2662,7 @@ namespace MCDawn
                         newtext = text.Remove(0, 1).Trim();
                         GlobalChatWorld(this, newtext, true);
                     }
-                    else
-                    {
-                        GlobalChat(this, newtext);
-                    }
+                    else GlobalChat(this, newtext);
                     text = text.Replace("&f", "&g");
                     if (!infected)
                     {
@@ -2683,6 +2677,11 @@ namespace MCDawn
                         //AllServerChat.Say(prefix + name + " (" + originalName + ")" + ": " + newtext);
                     }
                     return;
+                }
+                else
+                {
+                    if (Server.worldChat) GlobalChat(this, text);
+                    else GlobalChatLevel(this, text, true);
                 }
                 text = text.Replace("&f", "&g");
 
