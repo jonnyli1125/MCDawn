@@ -4126,6 +4126,8 @@ namespace MCDawn
                 afkStart = DateTime.Now;
                 timeSpentTimer.Stop();
                 timeSpentTimer.Dispose();
+                extraTimer.Stop();
+                extraTimer.Dispose();
                 //undoSaveTimer.Stop();
                 //undoSaveTimer.Dispose();
 
